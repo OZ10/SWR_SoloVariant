@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../SWR_SoloVariant/Resources/index.css">
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<body class="body">
+  <!-- Main Header-->
+  <div id="mainheader">
+    Star Wars Rebelion: Solo Variant
+  </div>
+  <div class="container-flex">
+    <div class="row">
+      <!-- Round Selection -->
+      <div class="col-3">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item list-group-item-action active" id="list-assignment-list" data-toggle="list"
+            href="#list-assigment-steps" role="tab">Assigment</a>
+          <a class="list-group-item list-group-item-action" id="list-command-list" data-toggle="list"
+            href="#list-command-steps" role="tab">Command</a>
+          <a class="list-group-item list-group-item-action" id="list-refresh-list" data-toggle="list"
+            href="#list-refresh-steps" role="tab">Refresh</a>
+        </div>
+      </div>
+      <!-- Steps Panel -->
+      <div class="col">
+        <div class="tab-content" id="nav-tabContent">
+
+          <!-- Assignment Steps-->
+          <div class="tab-pane" id="list-assigment-steps" role="tabpanel">
+            <div class="callout callout-rebel">
+              <div class="stepheader font-colour-rebel">Assign Leaders to Missions</div>
+              <p class="stepdescription">Rebel player assigns leaders to missions</p>
+            </div>
+
+            <div class="callout callout-empire">
+              <div class="stepheader font-colour-empire">Create Mission Deck</div>
+              <p class="stepdescription">Draw a specified number of Missions (see Missions Table,
+                below) shuffle the drawn cards, and place them in a
+                facedown pile, forming the <i class="text-medium">Initial Missions Deck</i></p>
+
+              <div class="callout text-small"><u><b>Mission Table</b></u>
+                <div><b>Turn 1: </b>2 Missions (1 Starting Mission + 1 Main Mission)</div>
+                <div><b>Turns 2-3: </b>3 Missions (1 Starting Mission + 2 Main Missions)</div>
+                <div><b>Turns 4+: </b>4 Missions (1 Starting Mission + 3 Main Missions)</div>
+                <p></p>
+                <div><b>Rebal Base Revealed</b></div>
+                <div>3 Missions (1 Starting Mission + 2 Main Missions)</div>
+              </div>
+            </div>
+
+            <div class="callout callout-empire">
+              <div class="stepheader font-colour-empire">Play Action Cards</div>
+              <p class="stepdescription">The Empire plays all Action Cards designated as <b
+                  class="text-medium">playable</b>
+                during the Assignment Phase</p>
+            </div>
+          </div>
+
+          <!-- Command Steps-->
+          <div class="tab-pane active" id="list-command-steps" role="tabpanel">
+            <div class="callout">
+              <div class="stepheader">Play Missions</div>
+              <p class="stepdescription">Starting with the Rebel player, alternate taking turns</p>
+
+              <div class="callout callout-rebel">
+                <div class="stepheader font-colour-rebel">Play Missions / Activate Systems</div>
+                <p class="stepdescription">Rebel player can reveal missions or active systems</p>
+
+                <div class="callout callout-empire">
+                  <div class="stepheader font-colour-empire">Opposing Rebel Missions</div>
+                  <p class="stepdescription">Only if there are more Imperial Leaders than unrevealed Initial Mission
+                    cards, the Empire may issue an order (on a D6 result of 4+) to send their “best” qualified Leader to
+                    oppose a Rebel Mission. If no Leader has matching Skill icons, the Leader with the fewest total
+                    number of Skill icons becomes eligible</p>
+                </div>
+
+                <div class="callout callout-empire">
+                  <div class="stepheader font-colour-empire">Join a Battle</div>
+                  <p class="stepdescription">Only if there are more Imperial Leaders than unrevealed initial Mission
+                    cards, the Empire will send an eligible Leader to join the battle with either no Leader or one
+                    possessing no Tactics Value(s). Prioritize eligible Leaders with a “Start of Combat” Action card and
+                    either the highest combined Tactics Values (if both theaters) or the highest Tactic Value (in the
+                    appropriate theater)</p>
+                </div>
+              </div>
+
+              <div class="callout callout-empire">
+                <div class="stepheader font-colour-empire">Play Initial Missions</div>
+                <p class="stepdescription">The Empire ALWAYS complete Initial Missions first
+                  (i.e. before Activating Systems for movement) </p>
+                <p class="stepdescription">UNDERTAKING INITIAL MISSIONS</p>
+                <p class="stepdescription">
+                  Flip over the top Mission from the deck and assign the “best” qualified Leader (pictured Leader or the
+                  Leader possessing the most matching Skill icons). If a Mission proves unplayable (no appropriate
+                  Leader or for any reason), select a new Mission from the appropriate Deck
+                  and place all unfulfilled Mission cards at the bottom of their
+                  respective Decks. Select Mission locations based on either The Empire’s CardDecision Making List (see
+                  additional sheet) or the System with the highest Production Value.</p>
+              </div>
+            </div>
+            <div class="callout callout-empire">
+              <div class="stepheader font-colour-empire">Activate Systems</div>
+              <p class="stepdescription">The Empire may, having undertaken all initial Missions, use Leaders
+                to Activate Systems (Move Units) to the nearest PRB(s) or Revealed
+                Rebel Base (See MOVEMENT, page 1).
+              </p>
+            </div>
+            <div class="callout callout-empire">
+              <div class="stepheader font-colour-empire">Unused Leaders</div>
+              <p class="stepdescription">In the unlikely event that their remain any unused leaders, draw and undertake
+                a Mission/Leader from the Main Missions Deck
+              </p>
+            </div>
+            <div class="callout callout-empire">
+              <div class="stepheader font-colour-empire">Maintenence</div>
+              <p class="stepdescription">At the end of the Command Phase, shuffle both Mission Decks separately and
+                place any Project Cards acquired on top of the Main Mission Deck </p>
+            </div>
+          </div>
+
+          <!-- Refresh Steps-->
+        </div>
+
+      </div>
+
+    </div>
+    <div>
+      <button>Click me!</button>
+    </div>
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>-->
+</body>
+
+</html>

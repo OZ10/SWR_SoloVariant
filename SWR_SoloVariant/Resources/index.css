@@ -1,0 +1,103 @@
+.body{
+    height: 100%;
+    font-size: medium;
+    background-color: #ffffff;
+}
+
+#mainheader{
+    background-color: lightskyblue;
+    padding: 15px;
+    font-weight: 500;
+    font-size: larger;
+}
+
+/* all divs whos class starts with 'col' */
+div[class^=col]{
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.stepframework{
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 2px #aeaeae;
+    margin: 0px 0px 10px 0px;
+    padding: 4px;
+}
+
+.stepheader{
+    font-size: medium;
+    font-weight: 500;
+}
+
+.stepdescription{
+    font-size: small;
+    margin: 8px;
+}
+
+.margin-small{
+    margin: 8px;
+}
+
+.margin-medium{
+    margin: 16px;
+}
+
+.rebelcolour{
+    background-color:#64DD17;
+}
+
+.empirecolour{
+    background-color: #D50000;
+}
+
+.themecolour{
+    background-color:#e0e0e0;
+}
+
+.themecolour-dark{
+    background-color: #aeaeae;
+}
+
+.themecolour-light{
+    background-color: #ffffff;
+}
+
+.text-medium
+{
+    font-size: medium;
+}
+
+.text-small{
+    font-size: small;
+}
+
+.list-group a{
+    font-size: medium;
+    color:gray;
+}
+
+.callout {
+    padding: 10px 20px;
+    margin: 20px 0;
+    border: 1px solid #E0E0E0;
+    border-left-width: 10px;
+    border-radius: 3px;
+    background-color: #F5F5F5;
+  }
+
+.callout-rebel{
+    border-color: #43A047;
+}
+
+.callout-empire{
+    border-color: #D50000;
+}
+
+.font-colour-rebel{
+    color: #43A047;
+}
+
+.font-colour-empire{
+    color:  #D50000;
+}
