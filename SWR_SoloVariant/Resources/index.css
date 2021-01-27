@@ -66,6 +66,11 @@ div[class^=col]{
     border-color: #D50000;
 }
 
+.callout-both{
+    border-image-source: linear-gradient(180deg, #43A047, #D50000);
+    border-image-slice: 1;
+}
+
 .font-colour-rebel{
     color: #43A047;
 }
@@ -78,4 +83,9 @@ div[class^=col]{
     padding: 5px;
     border: 1px solid #E0E0E0;
     background-color: #F5F5F5;
+  }
+
+  #deployflowchart li{
+    font-size: small;
+    margin: 8px;
   }
