@@ -1,4 +1,9 @@
-@import "./colours";
+// @import "./colours";
+
+$rebelcolour: #43A047;
+$empirecolour: #D50000;
+
+$primary: #343a40;
 
 .body{
     height: 100%;
@@ -7,10 +12,11 @@
 }
 
 #mainheader{
-    background-color: lightskyblue;
+    background-color:$primary;
     padding: 15px;
     font-weight: 500;
     font-size: larger;
+    color: white;
 }
 
 /* all divs whos class starts with 'col' */
@@ -69,16 +75,16 @@ div[class^=col]{
 }
 
 .callout-both{
-    border-image-source: linear-gradient(180deg, #43A047, #D50000);
+    border-image-source: linear-gradient(180deg, $rebelcolour, $empirecolour);
     border-image-slice: 1;
 }
 
 .font-colour-rebel{
-    color: #43A047;
+    color: $rebelcolour;
 }
 
 .font-colour-empire{
-    color:  #D50000;
+    color:  $empirecolour;
 }
 
 .roundselector {
@@ -90,4 +96,8 @@ div[class^=col]{
   #deployflowchart li{
     font-size: small;
     margin: 8px;
+  }
+
+  #missiontable div{
+      margin: 0 8px;
   }
