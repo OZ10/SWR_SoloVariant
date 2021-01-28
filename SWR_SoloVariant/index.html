@@ -33,7 +33,7 @@
         <div class="tab-content" id="nav-tabContent">
 
           <!-- Assignment Steps-->
-          <div class="tab-pane active" id="list-assigment-steps" role="tabpanel" aria-labelledby="list-assignment-list">
+          <div class="tab-pane" id="list-assigment-steps" role="tabpanel" aria-labelledby="list-assignment-list">
             <div class="callout callout-rebel">
               <div class="stepheader font-colour-rebel">Assign Leaders to Missions</div>
               <p class="stepdescription">Rebel player assigns leaders to missions</p>
@@ -67,7 +67,7 @@
           </div>
 
           <!-- Command Steps-->
-          <div class="tab-pane" id="list-command-steps" role="tabpanel" aria-labelledby="list-command-list">
+          <div class="tab-pane active" id="list-command-steps" role="tabpanel" aria-labelledby="list-command-list">
             <div class="callout">
               <div class="stepheader">Play Missions</div>
               <p class="stepdescription">Starting with the Rebel player, alternate taking turns</p>
@@ -107,31 +107,34 @@
                   Leader possessing the most matching Skill icons). If a Mission proves unplayable (no appropriate
                   Leader or for any reason), select a new Mission from the appropriate Deck
                   and place all unfulfilled Mission cards at the bottom of their
-                  respective Decks. Select Mission locations based on either The Empire’s CardDecision Making List (see
+                  respective Decks. Select Mission locations based on either The Empire’s Card Decision Making List (see
                   additional sheet) or the System with the highest Production Value.
                 </p>
               </div>
 
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carddecisionlist">
+                View Card Decision List
               </button>
 
               <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              <div class="modal fade" id="carddecisionlist" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Empire's Card Decision List</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      ...
+                      <form id="searchform" role="search">
+                        <label for="searchbar" class="form-label">Search</label>
+                        <input type="search" class="form-control" id="searchbar">
+                        <button type="button" class="btn" id="searchbutton">Click me!</button>
+                      </form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                   </div>
                 </div>
@@ -244,6 +247,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
       crossorigin="anonymous"></script>
+      <script src="../SWR_SoloVariant/Resources/js/main.js"></script>
 </body>
 
 </html>
