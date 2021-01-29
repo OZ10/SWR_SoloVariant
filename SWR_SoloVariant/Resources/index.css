@@ -18,6 +18,11 @@ div[class^=col] {
   padding: 20px;
 }
 
+#row1 div[class^=col] {
+  border: 1px solid black;
+  padding: 0px;
+}
+
 .stepheader {
   font-size: medium;
   font-weight: 500;
@@ -92,5 +97,9 @@ div[class^=col] {
 
 #missiontable div {
   margin: 0 8px;
+}
+
+#carddecisionlist div {
+  font-size: small;
 }
 /*# sourceMappingURL=index.css.map */

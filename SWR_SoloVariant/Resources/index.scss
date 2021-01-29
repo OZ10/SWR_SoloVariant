@@ -11,6 +11,10 @@ $primary: #343a40;
     background-color: #ffffff;
 }
 
+.colTest{
+    
+}
+
 #mainheader{
     background-color:$primary;
     padding: 15px;
@@ -23,6 +27,11 @@ $primary: #343a40;
 div[class^=col]{
     border: 0px solid black;
     padding: 20px;
+}
+
+#row1 div[class^=col]{
+    border: 1px solid black;
+    padding: 0px;
 }
 
 .stepheader{
@@ -100,4 +109,8 @@ div[class^=col]{
 
   #missiontable div{
       margin: 0 8px;
+  }
+
+  #carddecisionlist div{
+      font-size: small;
   }

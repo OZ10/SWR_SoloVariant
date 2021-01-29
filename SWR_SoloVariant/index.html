@@ -120,13 +120,34 @@
               <!-- Modal -->
               <div class="modal fade" id="carddecisionlist" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-xl">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">Empire's Card Decision List</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                      <div class="container-fluid">
+                        <div id="row1">
+                          <div class="btn" data-bs-toggle="collapse" data-bs-target="#rownum3">Hide</div>
+                          <!-- <div class="collapse.show" id="row1"> -->
+                          <div class="row colTest" title="Boba Fett? Where?">
+                            <div class="col">Boba Fett? Where?</div>
+                            <div class="col">Most productive Imperial System</div>
+                          </div>
+                          <div class="row colTest" title="Brilliant Administrator">
+                            <div class="col">Brilliant Administrator</div>
+                            <div class="col">Most productive Imperial System</div>
+                          </div>
+                          <div class="row colTest" id="rownum3" title="Catch Them by Surprise">
+                            <div class="col">Catch Them by Surprise</div>
+                            <div class="col">System with at least 1 adjacent Imperial unit. Follow movement rules.
+                              Priorities: 1. RB, 2. PRB, 3. Most Productive Rebel System</div>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+
                       <form id="searchform" role="search">
                         <label for="searchbar" class="form-label">Search</label>
                         <input type="search" class="form-control" id="searchbar">
@@ -140,114 +161,115 @@
                 </div>
               </div>
             </div>
-            <div class="callout callout-empire">
-              <div class="stepheader font-colour-empire">Activate Systems</div>
-              <p class="stepdescription">The Empire may, having undertaken all initial Missions, use Leaders
-                to Activate Systems (Move Units) to the nearest PRB(s) or Revealed
-                Rebel Base (See MOVEMENT, page 1).
-              </p>
-            </div>
-            <div class="callout callout-empire">
-              <div class="stepheader font-colour-empire">Unused Leaders</div>
-              <p class="stepdescription">In the unlikely event that their remain any unused leaders, draw and undertake
-                a Mission/Leader from the Main Missions Deck
-              </p>
-            </div>
-            <div class="callout callout-empire">
-              <div class="stepheader font-colour-empire">Maintenence</div>
-              <p class="stepdescription">At the end of the Command Phase, shuffle both Mission Decks separately and
-                place any Project Cards acquired on top of the Main Mission Deck</p>
-            </div>
           </div>
-
-          <!-- Refresh Steps-->
-          <div class="tab-pane" id="list-refresh-steps" role="tabpanel" aria-labelledby="list-refresh-list">
-            <div class="callout callout-both">
-              <div class="stepheader">Retrieve Leaders</div>
-              <p class="stepdescription">Each player takes all of his leaders from the game board and
-                returns them to his leader pool. If a leader is still on a mission card, it returns to the leader pool,
-                and the card returns to the player’s hand</p>
-            </div>
-            <div class="callout callout-rebel">
-              <div class="stepheader font-colour-rebel">Draw Missions</div>
-              <p class="stepdescription">Rebel player draws two mission cards and, if there are more than 10 cards in
-                his hand, he discards down to 10 cards</p>
-            </div>
-            <div class="callout callout-empire">
-              <div class="stepheader font-colour-empire">Launch Prode Droids</div>
-              <p class="stepdescription">Reveal two Probe Cards, as per the normal rules</p>
-            </div>
-            <div class="callout callout-rebel">
-              <div class="stepheader font-colour-rebel">Draw Objective</div>
-              <p class="stepdescription">The Rebel player draws one objective card and adds it to his hand</p>
-            </div>
-            <div class="callout">
-              <div class="stepheader">Advance Time Marker</div>
-              <p class="stepdescription">Advance the time marker one space along the track. Then players recruitand/or
-                build if any icons are shown in the time marker’s new space</p>
-
-              <!-- Recruit -->
-              <div class="callout callout-rebel">
-                <div class="stepheader font-colour-rebel">Rebels Recruit</div>
-                <p class="stepdescription">Rebel player draws two cards from his action deck, chooses one leader shown
-                  on either card, and places that leader in his leader pool</p>
-              </div>
-
-              <div class="callout callout-empire">
-                <div class="stepheader font-colour-empire">Empire Recruit</div>
-                <p class="stepdescription">The Empire draws one Action Card, randomly choosing if there are available
-                  leaders. Draw again, if necessary</p>
-              </div>
-
-              <!-- Build -->
-              <div class="callout callout-both">
-                <div class="stepheader font-colour-empire">Build Units</div>
-                <p class="stepdescription"><b>The Empire Builds before the rebels</b> </p>
-                <p class="stepdescription">Follow normal building rules</p>
-              </div>
-            </div>
-
-            <!-- Deploy -->
-            <div class="callout">
-              <div class="stepheader">Deploy</div>
-              <p></p>
-              <div class="callout callout-empire">
-                <div class="stepheader font-colour-empire">Empire Deploy</div>
-                <p class="stepdescription"><b>The Empire Deploys before the rebels</b> </p>
-                <p class="stepdescription">Follow the steps below to deploy units, adhering to the max 2 units placed
-                  per system rule:</p>
-                <ul id="deployflowchart">
-                  <li>Locate the Highest Production Value System</li>
-                  <li>Find the Theater (Space or Ground) with the fewest Units</li>
-                  <li>Place the strongest available unit in this Theater Note: If the Empire doesn’t have a Unit to
-                    place
-                    in-Theater, place the strongest Built Unit of the other Theater-type into its Theater (if there are
-                    the same number of Units in each Theater, randomly choose between the Theaters)</li>
-                  <li>Move to the next Highest Production Value System; Resolve from the beginning of the flowchart,
-                    wrapping back around to the first Highest Production Value System, if necessary</li>
-                </ul>
-              </div>
-
-              <div class="callout callout-rebel">
-                <div class="stepheader font-colour-rebel">Rebels Deploy</div>
-                <p class="stepdescription">Rebel player follows normal deployment rules</p>
-              </div>
-            </div>
+          <div class="callout callout-empire">
+            <div class="stepheader font-colour-empire">Activate Systems</div>
+            <p class="stepdescription">The Empire may, having undertaken all initial Missions, use Leaders
+              to Activate Systems (Move Units) to the nearest PRB(s) or Revealed
+              Rebel Base (See MOVEMENT, page 1).
+            </p>
+          </div>
+          <div class="callout callout-empire">
+            <div class="stepheader font-colour-empire">Unused Leaders</div>
+            <p class="stepdescription">In the unlikely event that their remain any unused leaders, draw and undertake
+              a Mission/Leader from the Main Missions Deck
+            </p>
+          </div>
+          <div class="callout callout-empire">
+            <div class="stepheader font-colour-empire">Maintenence</div>
+            <p class="stepdescription">At the end of the Command Phase, shuffle both Mission Decks separately and
+              place any Project Cards acquired on top of the Main Mission Deck</p>
           </div>
         </div>
 
+        <!-- Refresh Steps-->
+        <div class="tab-pane" id="list-refresh-steps" role="tabpanel" aria-labelledby="list-refresh-list">
+          <div class="callout callout-both">
+            <div class="stepheader">Retrieve Leaders</div>
+            <p class="stepdescription">Each player takes all of his leaders from the game board and
+              returns them to his leader pool. If a leader is still on a mission card, it returns to the leader pool,
+              and the card returns to the player’s hand</p>
+          </div>
+          <div class="callout callout-rebel">
+            <div class="stepheader font-colour-rebel">Draw Missions</div>
+            <p class="stepdescription">Rebel player draws two mission cards and, if there are more than 10 cards in
+              his hand, he discards down to 10 cards</p>
+          </div>
+          <div class="callout callout-empire">
+            <div class="stepheader font-colour-empire">Launch Prode Droids</div>
+            <p class="stepdescription">Reveal two Probe Cards, as per the normal rules</p>
+          </div>
+          <div class="callout callout-rebel">
+            <div class="stepheader font-colour-rebel">Draw Objective</div>
+            <p class="stepdescription">The Rebel player draws one objective card and adds it to his hand</p>
+          </div>
+          <div class="callout">
+            <div class="stepheader">Advance Time Marker</div>
+            <p class="stepdescription">Advance the time marker one space along the track. Then players recruitand/or
+              build if any icons are shown in the time marker’s new space</p>
+
+            <!-- Recruit -->
+            <div class="callout callout-rebel">
+              <div class="stepheader font-colour-rebel">Rebels Recruit</div>
+              <p class="stepdescription">Rebel player draws two cards from his action deck, chooses one leader shown
+                on either card, and places that leader in his leader pool</p>
+            </div>
+
+            <div class="callout callout-empire">
+              <div class="stepheader font-colour-empire">Empire Recruit</div>
+              <p class="stepdescription">The Empire draws one Action Card, randomly choosing if there are available
+                leaders. Draw again, if necessary</p>
+            </div>
+
+            <!-- Build -->
+            <div class="callout callout-both">
+              <div class="stepheader font-colour-empire">Build Units</div>
+              <p class="stepdescription"><b>The Empire Builds before the rebels</b> </p>
+              <p class="stepdescription">Follow normal building rules</p>
+            </div>
+          </div>
+
+          <!-- Deploy -->
+          <div class="callout">
+            <div class="stepheader">Deploy</div>
+            <p></p>
+            <div class="callout callout-empire">
+              <div class="stepheader font-colour-empire">Empire Deploy</div>
+              <p class="stepdescription"><b>The Empire Deploys before the rebels</b> </p>
+              <p class="stepdescription">Follow the steps below to deploy units, adhering to the max 2 units placed
+                per system rule:</p>
+              <ul id="deployflowchart">
+                <li>Locate the Highest Production Value System</li>
+                <li>Find the Theater (Space or Ground) with the fewest Units</li>
+                <li>Place the strongest available unit in this Theater Note: If the Empire doesn’t have a Unit to
+                  place
+                  in-Theater, place the strongest Built Unit of the other Theater-type into its Theater (if there are
+                  the same number of Units in each Theater, randomly choose between the Theaters)</li>
+                <li>Move to the next Highest Production Value System; Resolve from the beginning of the flowchart,
+                  wrapping back around to the first Highest Production Value System, if necessary</li>
+              </ul>
+            </div>
+
+            <div class="callout callout-rebel">
+              <div class="stepheader font-colour-rebel">Rebels Deploy</div>
+              <p class="stepdescription">Rebel player follows normal deployment rules</p>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
-    <div>
-      <button>Click me!</button>
-    </div>
 
-    <!-- bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-      crossorigin="anonymous"></script>
-      <script src="../SWR_SoloVariant/Resources/js/main.js"></script>
+  </div>
+  <div>
+    <button>Click me!</button>
+  </div>
+
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+  <script src="../SWR_SoloVariant/Resources/js/main.js"></script>
 </body>
 
 </html>
