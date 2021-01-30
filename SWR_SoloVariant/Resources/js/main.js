@@ -1,14 +1,13 @@
-const f = document.getElementById('searchbutton');
 
 function run() {
     // alert('Working?');
 
     var searchText = document.getElementById('searchbar');
 
-    var collapseElementList = [].slice.call(document.querySelectorAll('.colTest'))
+    var collapseElementList = [].slice.call(document.querySelectorAll('.cardlist'))
 
     collapseElementList.forEach(row => {
-        if (row.title.includes(searchText.value)) {
+        if (row.title.toUpperCase().includes(searchText.value.toUpperCase())) {
             row.classList.remove('d-none');
             // var bsCol = new bootstrap.Collapse(row, {
             //     show: true})
@@ -24,7 +23,18 @@ function run() {
     // })
 }
 
-f.addEventListener('click', run);
+function run2(e){
+    if (e.keyCode == 13) {
+        run();
+    }
+}
+
+// searchbutton.addEventListener('click', run);
+// searchbar.addEventListener('keydown', run2);
+
+document.getElementById('searchbar').addEventListener('input', (e) => {
+    run();
+})
 
 // run();
 
