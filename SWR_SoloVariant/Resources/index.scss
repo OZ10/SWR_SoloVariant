@@ -1,15 +1,16 @@
-// @import "./colours";
+@import "./colours";
 
-$rebelcolour: #43A047;
-$empirecolour: #D50000;
+// $rebelcolour: #43A047;
+// $empirecolour: #D50000;
 
-$primary: #343a40;
+// $primary: #343a40;
 
 .body{
     height: 100%;
     font-size: medium;
     background-color: #ffffff;
 }
+
 
 #mainheader{
     background-color:$primary;
@@ -19,15 +20,19 @@ $primary: #343a40;
     color: white;
 }
 
-/* all divs whos class starts with 'col' */
+/* all divs who's class starts with 'col' */
 div[class^=col]{
     border: 0px solid black;
-    padding: 20px;
+    padding: 10px;
 }
 
+// Hack that needs sorting. Styles grid on Empire’s Card Decision Making List
 #row1 div[class^=col]{
-    border: 1px solid black;
-    padding: 0px;
+    border-style: solid;
+    border-color: $gray-400;
+    border-width: 1px;
+    background-color: $gray-200;
+    padding: 5px;
 }
 
 .stepheader{
@@ -104,7 +109,8 @@ div[class^=col]{
   }
 
   #missiontable div{
-      margin: 0 8px;
+      margin: 0;
+      padding: 0;
   }
 
   #carddecisionlist div{

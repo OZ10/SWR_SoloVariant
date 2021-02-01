@@ -5,15 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="../SWR_SoloVariant/Resources/index.css">
 </head>
 
 <body class="body">
   <!-- Main Header-->
-  <div id="mainheader">
-    Star Wars Rebelion: Solo Variant
+  <div class="container-fluid" id="mainheader">
+    <div class="row justify-content-between">
+      <div class="col-md-3">Star Wars Rebellion: Solo Variant</div>
+      <div class="col-md-auto"></div>
+      <div class="col-sm-1 align-items-center">
+        <button type="button" class="btn btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path
+              d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
   <div class="container-fluid">
     <div class="row">
@@ -33,7 +46,7 @@
         <div class="tab-content" id="nav-tabContent">
 
           <!-- Assignment Steps-->
-          <div class="tab-pane" id="list-assigment-steps" role="tabpanel" aria-labelledby="list-assignment-list">
+          <div class="tab-pane active" id="list-assigment-steps" role="tabpanel" aria-labelledby="list-assignment-list">
             <div class="callout callout-rebel">
               <div class="stepheader font-colour-rebel">Assign Leaders to Missions</div>
               <p class="stepdescription">Rebel player assigns leaders to missions</p>
@@ -47,12 +60,24 @@
 
               <div class="callout text-small">
                 <div id="missiontable"><b>Mission Table</b>
-                  <div><b>Turn 1: </b>2 Missions (1 Starting Mission + 1 Main Mission)</div>
-                  <div><b>Turns 2-3: </b>3 Missions (1 Starting Mission + 2 Main Missions)</div>
-                  <div><b>Turns 4+: </b>4 Missions (1 Starting Mission + 3 Main Missions)</div>
-                  <p></p>
-                  <div><b>Rebal Base Revealed</b></div>
-                  <div>3 Missions (1 Starting Mission + 2 Main Missions)</div>
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-3 fw-bold">Turn 1:</div>
+                      <div class="col">2 Missions (1 Starting Mission + 1 Main Mission)</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3 fw-bold">Turns 2-3:</div>
+                      <div class="col">3 Missions (1 Starting Mission + 2 Main Missions)</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3 fw-bold">Turn 4+:</div>
+                      <div class="col">4 Missions (1 Starting Mission + 3 Main Missions)</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3 fw-bold">Rebel Base Revealed</div>
+                      <div class="col">3 Missions (1 Starting Mission + 2 Main Missions)</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -91,8 +116,8 @@
                       class="text-medium"> Initial Mission </i>
                     cards, the Empire will send an eligible Leader to join the battle with either no Leader or one
                     possessing no Tactics Value(s). Prioritize eligible Leaders with a “Start of Combat” Action card and
-                    either the highest combined Tactics Values (if both theaters) or the highest Tactic Value (in the
-                    appropriate theater)</p>
+                    either the highest combined Tactics Values (if both Theaters) or the highest Tactic Value (in the
+                    appropriate Theater)</p>
                 </div>
               </div>
 
@@ -107,12 +132,14 @@
                   Leader possessing the most matching Skill icons). If a Mission proves unplayable (no appropriate
                   Leader or for any reason), select a new Mission from the appropriate Deck
                   and place all unfulfilled Mission cards at the bottom of their
-                  respective Decks. Select Mission locations based on either The Empire’s Card Decision Making List (see
-                  additional sheet) or the System with the highest Production Value.
+                  respective Decks. Select Mission locations based on either <i>The Empire’s Card Decision Making List
+                  </i> (see
+                  below) or the System with the highest Production Value.
                 </p>
+
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carddecisionlist">
-                  View Card Decision List
+                  Empire’s Card Decision Making List
                 </button>
 
                 <!-- Modal -->
@@ -131,17 +158,269 @@
                         <!-- <div class="row"> -->
                         <div class="container" id="row1">
                           <div class="row cardlist" title="Boba Fett? Where?">
-                            <div class="col">Boba Fett? Where?</div>
+                            <div class="col-4">Boba Fett? Where?</div>
                             <div class="col">Most productive Imperial System</div>
                           </div>
                           <div class="row cardlist" title="Brilliant Administrator">
-                            <div class="col">Brilliant Administrator</div>
+                            <div class="col-4">Brilliant Administrator</div>
                             <div class="col">Most productive Imperial System</div>
                           </div>
-                          <div class="row cardlist" id="rownum3" title="Catch Them by Surprise">
-                            <div class="col">Catch Them by Surprise</div>
+                          <div class="row cardlist" title="Catch Them by Surprise">
+                            <div class="col-4">Catch Them by Surprise</div>
                             <div class="col">System with at least 1 adjacent Imperial unit. Follow movement rules.
                               Priorities: 1. RB, 2. PRB, 3. Most Productive Rebel System</div>
+                          </div>
+                          <div class="row cardlist" title="Local Rumors">
+                            <div class="col-4">Local Rumors</div>
+                            <div class="col">Rebel Base revealed: keep this card and use as soon as a new Base ist
+                              established. Otherwise: Random Region with PRB.
+                              If successful the Empire gets the Probe Card of that Region´s Remote System</div>
+                          </div>
+                          <div class="row cardlist" title="Proceeding as Planned">
+                            <div class="col-4">Proceeding as Planned</div>
+                            <div class="col"> Draw Project Cards until an immediately achievable Mission is revealed
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Public Support">
+                            <div class="col-4">Public Support</div>
+                            <div class="col"> Rebel Base revealed: closest System to RB.
+                              Otherwise: Most productive Imperial System.</div>
+                          </div>
+                          <div class="row cardlist" title="Scouting Mission">
+                            <div class="col-4">Scouting Mission</div>
+                            <div class="col">Rebel Base revealed: choose RB.
+                              Otherwise: Most Productive Rebel System.
+                              Choose Tie Fighters furthest away from target System</div>
+                          </div>
+                          <div class="row cardlist" title="According to My Design">
+                            <div class="col-4">According to My Design</div>
+                            <div class="col">-</div>
+                          </div>
+                          <div class="row cardlist" title="Fully Operational">
+                            <div class="col-4">Fully Operational</div>
+                            <div class="col">Choose strongest Ship</div>
+                          </div>
+                          <div class="row cardlist" title="Good Intel">
+                            <div class="col-4">Good Intel</div>
+                            <div class="col">Draw only 1 card per Theater at the start of Combat
+                              (ignore your Leader´s Tactics Values)
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Keep Them from Escaping">
+                            <div class="col-4">Keep Them from Escaping</div>
+                            <div class="col">-
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="More Dangerous Than You Realize">
+                            <div class="col-4">More Dangerous Than You Realize
+                            </div>
+                            <div class="col">Add 3 to a randomly selected Tactics value of the Imperial Leader leading
+                              this Combat
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Ready for Action">
+                            <div class="col-4">Ready for Action</div>
+                            <div class="col">-
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Target the Generator">
+                            <div class="col-4">Target the Generator</div>
+                            <div class="col"> Only use on combat in a System with structures. Priority: Ion Cannon
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Blindside">
+                            <div class="col-4">Blindside</div>
+                            <div class="col">If available use one of these Leaders on the next achievable Mission
+                              revealed
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="It Is Your Destiny">
+                            <div class="col-4">It Is Your Destiny</div>
+                            <div class="col">Keep this card and use as soon as a Leader is rescued
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Independent Operation">
+                            <div class="col-4">Independent Operation</div>
+                            <div class="col">Rebel Base revealed: Empire moves units to closest Imperial System to RB.
+                              Otherwise: Empire moves units to most productive Imperial System
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="It´s a Trap">
+                            <div class="col-4">It´s a Trap</div>
+                            <div class="col">Imperial Leader will not use his space tactics during the first round (no
+                              forced re-rolls)
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Heart Of The Empire">
+                            <div class="col-4">Heart Of The Empire</div>
+                            <div class="col">Remove this card from the game during setup
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Capture Rebel Operative">
+                            <div class="col-4">Capture Rebel Operative</div>
+                            <div class="col">Most valuable Leader
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Gather Intel">
+                            <div class="col-4">Gather Intel</div>
+                            <div class="col">Most productive Rebel System
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Research And Development">
+                            <div class="col-4">Research And Development</div>
+                            <div class="col">Priority: 1. Sabotaged System, 2. Most productive System.
+                              Choose second option. Place Project card on top of the Main Missions deck at the end
+                              of the Command Phase
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Rule by Fear">
+                            <div class="col-4">Rule by Fear</div>
+                            <div class="col">Priority: 1. Subjugated System
+                              2. Most productive System
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Address Delays">
+                            <div class="col-4">Address Delays</div>
+                            <div class="col">Most productive Imperial System
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Carbon Freezing">
+                            <div class="col-4">Carbon Freezing</div>
+                            <div class="col">-
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Collect Bounty">
+                            <div class="col-4">Collect Bounty</div>
+                            <div class="col">Choose strongest Leader
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Detained">
+                            <div class="col-4">Detained</div>
+                            <div class="col">Choose strongest Leader
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Display Of Power">
+                            <div class="col-4">Display Of Power</div>
+                            <div class="col">Most productive Rebel System
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Double Our Efforts">
+                            <div class="col-4">Double Our Efforts</div>
+                            <div class="col">Most productive Imperial System.
+                              Move strongest unit. Prefer space 3
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Fear Will Keep Them…">
+                            <div class="col-4">Fear Will Keep Them…</div>
+                            <div class="col">Random System with Death Star or Super Star Destroyer.
+                              Gain loyalty (Priority): 1. Most productive Rebel System, 2. Subjugated System, 3. Most
+                              productive System
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Homing Beacon">
+                            <div class="col-4">Homing Beacon</div>
+                            <div class="col">Choose strongest captured Leader.
+                              The Empire gets the Probe Cards of all Remote System not in that Region
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Hunt Them Down">
+                            <div class="col-4">Hunt Them Down</div>
+                            <div class="col">Rebel Base revealed: choose RB.
+                              Otherwise: Most productive System with Rebel Units.
+                              Destroy strongest unit from strongest Theater
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Imperial Propaganda">
+                            <div class="col-4">Imperial Propaganda</div>
+                            <div class="col">1. System in Region with most Rebel Systems.
+                              2. Highest combined production value.
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Intercept Transmission">
+                            <div class="col-4">Intercept Transmission</div>
+                            <div class="col">Most productive Rebel System
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Interrogation">
+                            <div class="col-4">Interrogation</div>
+                            <div class="col">Choose strongest captured Leader. Discard 1 random Objective card from hand
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Interrogation Droid">
+                            <div class="col-4">Interrogation Droid</div>
+                            <div class="col">Choose strongest captured Leader. Empire gets all except 3 Remote planet
+                              Probe cards
+                              of your choice. (If there are only 3 or less in the Probe Deck: no effect).
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Long-Range Probe">
+                            <div class="col-4">Long-Range Probe</div>
+                            <div class="col">PRB furthest away from Imperial Systems.
+                              If not RB: The Empire gets that System´s Probe Card.
+                              If RB: The Empire gets the Probe Cards of all other Remote Systems
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Lure Of The Dark Side">
+                            <div class="col-4">Lure Of The Dark Side</div>
+                            <div class="col">Choose strongest captured Leader
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Planetary Conquest">
+                            <div class="col-4">Planetary Conquest</div>
+                            <div class="col">Rebel Base revealed: choose RB.
+                              Otherwise: Most productive Rebel System.
+                              Move units from Systems furthest away from RB
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Probe Droid Initiative">
+                            <div class="col-4">Probe Droid Initiative</div>
+                            <div class="col">-
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Retrieve The Plans">
+                            <div class="col-4">Retrieve The Plans</div>
+                            <div class="col">Choose strongest captured Leader.
+                              Remove highest (most reputation) Objective card from hand to bottom of deck
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Secret Weapons Research">
+                            <div class="col-4">Secret Weapons Research</div>
+                            <div class="col">Most productive Imperial System. Place Project card on top of the Main
+                              Missions deck
+                              at the end of the Command Phase.
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Trade Negotiations">
+                            <div class="col-4">Trade Negotiations</div>
+                            <div class="col">Most productive Rebel System
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Construct Super Destroyer">
+                            <div class="col-4">Construct Super Destroyer</div>
+                            <div class="col">-
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Construct Death Star">
+                            <div class="col-4">Construct Death Star </div>
+                            <div class="col">Random PRB
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Construct Factory">
+                            <div class="col-4">Construct Factory</div>
+                            <div class="col">Most productive System
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Oversee Project">
+                            <div class="col-4">Oversee Project</div>
+                            <div class="col">Rebel Base revealed: closest System to RB.
+                              Otherwise: Most productive Imperial System.
+                              Place strongest unit. Prefer space 2
+                            </div>
+                          </div>
+                          <div class="row cardlist" title="Superlaser Online">
+                            <div class="col-4">Superlaser Online</div>
+                            <div class="col">Priority: 1. RB, 2. PRB, 3. Rebel System, 4. none - skip action
+                            </div>
                           </div>
                         </div>
                         <!-- </div> -->
@@ -166,7 +445,7 @@
               </p>
             </div>
             <div class="callout callout-empire">
-              <div class="stepheader font-colour-empire">Maintenence</div>
+              <div class="stepheader font-colour-empire">Maintenance</div>
               <p class="stepdescription">At the end of the Command Phase, shuffle both Mission Decks separately and
                 place any Project Cards acquired on top of the Main Mission Deck</p>
             </div>
@@ -186,7 +465,7 @@
                 his hand, he discards down to 10 cards</p>
             </div>
             <div class="callout callout-empire">
-              <div class="stepheader font-colour-empire">Launch Prode Droids</div>
+              <div class="stepheader font-colour-empire">Launch Probe Droids</div>
               <p class="stepdescription">Reveal two Probe Cards, as per the normal rules</p>
             </div>
             <div class="callout callout-rebel">
