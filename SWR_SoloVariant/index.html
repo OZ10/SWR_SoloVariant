@@ -15,9 +15,9 @@
   <div class="container-fluid" id="mainheader">
     <div class="row justify-content-between">
       <div class="col-md-3">Star Wars Rebellion: Solo Variant</div>
-      <div class="col-md-auto"></div>
+      <!-- <div class="col-md-auto"></div> -->
       <div class="col-sm-1 align-items-center">
-        <button type="button" class="btn btn-secondary">
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#remotesystemslist">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-exclamation-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -28,6 +28,52 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="remotesystemslist" tabindex="-1" aria-labelledby="remotesystems" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="remotesystems">Remote Systems List</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <input type="checkbox" class="btn-check planetbtn" id="btn-check-outlined1" autocomplete="off">
+            <label for="btn-check-outlined1" class="btn btn-outline-primary">Planet A</label>
+
+            <input type="checkbox" class="btn-check planetbtn" id="btn-check-outlined2" autocomplete="off">
+            <label for="btn-check-outlined2" class="btn btn-outline-primary">Planet B</label>
+
+            <input type="checkbox" class="btn-check planetbtn" id="btn-check-outlined3" autocomplete="off">
+            <label for="btn-check-outlined3" class="btn btn-outline-primary">Planet C</label>
+
+            <input type="checkbox" class="btn-check planetbtn" id="btn-check-outlined4" autocomplete="off">
+            <label for="btn-check-outlined4" class="btn btn-outline-primary">Planet D</label>
+
+            <input type="checkbox" class="btn-check planetbtn" id="btn-check-outlined5" autocomplete="off">
+            <label for="btn-check-outlined5" class="btn btn-outline-primary">Planet E</label>
+
+            <input type="checkbox" class="btn-check planetbtn" id="btn-check-outlined6" autocomplete="off">
+            <label for="btn-check-outlined6" class="btn btn-outline-primary">Planet F</label>
+
+            <input type="checkbox" class="btn-check planetbtn" id="btn-check-outlined7" autocomplete="off">
+            <label for="btn-check-outlined7" class="btn btn-outline-primary">Planet G</label>
+
+            <input type="checkbox" class="btn-check planetbtn" id="btn-check-outlined8" autocomplete="off">
+            <label for="btn-check-outlined8" class="btn btn-outline-primary">Planet H</label>
+          </ul>
+        </div>
+        <p class="text-small">The Rebel Base will be revealed only after the Empire has obtained Probe Cards for the other 7 Remote Systems OR when the
+          Empire has any Ground Units in that System</p>
+        <div class="modal-footer">
+          <div>Number of scanned systems:</div>
+          <div id="numselectedsystems">0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container-fluid">
     <div class="row">
       <!-- Round Selection -->
@@ -531,10 +577,7 @@
 
   </div>
 
-  </div>
-  <div>
-    <button>Click me!</button>
-  </div>
+  <span class="px-2">Footer</span>
 
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
