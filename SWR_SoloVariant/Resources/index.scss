@@ -1,3 +1,4 @@
+// @use "./colours";
 @import "./colours";
 
 // $rebelcolour: #43A047;
@@ -11,9 +12,8 @@
     background-color: #ffffff;
 }
 
-
 #mainheader{
-    background-color:$primary;
+    background-color: $primary;
     padding: 15px;
     font-weight: 500;
     font-size: larger;
@@ -101,18 +101,22 @@ div[class^=col]{
     padding: 5px;
     border: 1px solid #E0E0E0;
     background-color: #F5F5F5;
-  }
+}
 
-  #deployflowchart li{
+.paraseparator{
+    border-top: 1px solid #dee2e6;
+}
+
+#deployflowchart li{
+font-size: small;
+margin: 8px;
+}
+
+#missiontable div{
+    margin: 0;
+    padding: 0;
+}
+
+#carddecisionlist div{
     font-size: small;
-    margin: 8px;
-  }
-
-  #missiontable div{
-      margin: 0;
-      padding: 0;
-  }
-
-  #carddecisionlist div{
-      font-size: small;
-  }
+}

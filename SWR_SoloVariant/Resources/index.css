@@ -11397,6 +11397,10 @@ div[class^=col] {
   background-color: #F5F5F5;
 }
 
+.paraseparator {
+  border-top: 1px solid #dee2e6;
+}
+
 #deployflowchart li {
   font-size: small;
   margin: 8px;
