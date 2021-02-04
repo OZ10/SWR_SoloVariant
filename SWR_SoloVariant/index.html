@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Document</title>
+  <title>Star Wars Rebellion: Solo Variant</title>
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="../SWR_SoloVariant/Resources/index.css">
@@ -29,13 +29,13 @@
     </div>
   </div>
 
-
-
   <div class="container-fluid">
     <div class="row">
       <!-- Round Selection -->
       <div class="col-3">
         <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item list-group-item-action" id="list-setup-list" data-toggle="list"
+            data-bs-toggle="list" href="#list-setup-steps" role="tab" aria-controls="setup">Setup</a>
           <a class="list-group-item list-group-item-action active" id="list-assignment-list" data-toggle="list"
             data-bs-toggle="list" href="#list-assigment-steps" role="tab" aria-controls="assignment">Assignment</a>
           <a class="list-group-item list-group-item-action" id="list-command-list" data-toggle="list"
@@ -47,6 +47,52 @@
       <!-- Steps Panel -->
       <div class="col">
         <div class="tab-content" id="nav-tabContent">
+
+          <!-- Setup Sets -->
+          <div class="tab-pane" id="list-setup-steps" role="tabpanel" aria-labelledby="list-setup-list">
+            <div class="callout">
+              <div class="stepheader">Setup</div>
+              <p class="stepdescription">
+                Use the Advanced Set-up from the Rules with the following changes:
+              </p>
+              <div class="callout callout-rebel">
+                <p class="stepdescription">
+                  Remove the “Heart of the Empire” (Level II) Objective card</p>
+              </div>
+              <div class="callout callout-empire">
+                <p class="stepdescription">
+                  Shuffle one of each of the five different <b>Project</b> cards into the <i>Empire’s Main Missions
+                    Deck.</i><br>The
+                  Empire starts with five Leaders. Recruit the 5th by drawing one Action Card (keep drawing until the
+                  Empire acquires the additional Leader)</p>
+              </div>
+
+              <div class="callout callout-empire">
+                <div class="stepheader font-colour-empire">Deployment</div>
+                <p class="stepdescription">
+                  Deploy the Empire Units as follows (use d6, as needed):
+                </p>
+                <ul>
+                  <li class="stepdescription">2 TIE Fighters & 2 Stormtroopers in each of the initial six Systems</li>
+                  <li class="stepdescription">Randomly deploy 3 Star Destroyers in 3 separate Systems (1 each); deploy 3
+                    Assault Carriers in the
+                    remaining 3 Systems</li>
+                  <li class="stepdescription">Randomly deploy 1 AT-AT to a System; then deploy 5 AT-STs (1 per System)
+                    in the remaining 5
+                    Systems
+                  </li>
+                  <li class="stepdescription">Randomly deploy the Death Star</li>
+                </ul>
+              </div>
+              <div class="callout callout-rebel">
+                <div class="stepheader font-colour-rebel">Rebel Base</div>
+                <p class="stepdescription">
+                  The Solo Player chooses the Rebel Base’s location from among the 8 Remote Systems, after placing all
+                  Starting Units and Loyalty Markers. The Empire knows it is located in one of these Systems (acquired
+                  vital information through its intelligence networks), and will aggressively search for it</p>
+              </div>
+            </div>
+          </div>
 
           <!-- Assignment Steps-->
           <div class="tab-pane active" id="list-assigment-steps" role="tabpanel" aria-labelledby="list-assignment-list">
@@ -95,7 +141,7 @@
           </div>
 
           <!-- Command Steps-->
-          <div class="tab-pane active" id="list-command-steps" role="tabpanel" aria-labelledby="list-command-list">
+          <div class="tab-pane" id="list-command-steps" role="tabpanel" aria-labelledby="list-command-list">
             <div class="callout">
               <div class="stepheader">Play Missions</div>
               <p class="stepdescription">Starting with the Rebel player, alternate taking turns</p>
@@ -137,8 +183,7 @@
                   and place all unfulfilled Mission cards at the bottom of their
                   respective Decks. Select Mission locations based on either the <a class="link-danger text-medium"
                     href="#" data-bs-toggle="modal" data-bs-target="#carddecisionlist">Empire’s Card Decision Making
-                    List</a> (see
-                  below) or the System with the <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
+                    List</a> or the System with the <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
                     data-bs-target="#productionvalueguide">Highest Production Value</a>.
                 </p>
 
@@ -186,8 +231,25 @@
                   reshuffle. When the difference between the
                   Turn and Reputation Markers is ≤ 5, Imperial fleets may move (once/turn) even if there’s a Leader in
                   the starting System. The Empire
-                  will change its movement behavior once the Rebel Base is revealed (See REBEL BASE/REVEALING)
+                  will change its movement behavior once the Rebel Base is revealed (See Revealing the Rebel Base below)
                 </p>
+
+                <div class="stepheader">Revealing the Rebel Base</div>
+                <p class="stepdescription">
+                  Reveal <b>The Rebel Base</b> only after the Empire has obtained Probe Cards for the other 7 Remote
+                  Systems
+                  OR when the Empire has any <b>Ground Units</b> in that System. Once revealed, remove the <i>Gather
+                    Intel</i>
+                  Starting Mission from the pile (it may return to play if the Rebels establish a new base). Note that
+                  when the Rebel Base is revealed and/or when the difference between the Turn and Reputation Markers
+                  is ≤ 5, Imperial fleets may move (once/turn) even if there’s a Leader in the starting System (track
+                  this by, e.g., laying down the Leader activating the System initiating the movement). Also, the
+                  Empire now prioritizes eligible Systems closest to the Rebel Base for both the purposes of fleet
+                  movement and deployment of forces. When the Empire chooses to activate a System, calculate the
+                  difference between the Turn and Reputation Markers. If all fleets within this range have been moved,
+                  shift priority to other fleets which will target the nearest uncontrolled (possessing no Imperial
+                  Ground Units) Remote Systems. When the Empire reveals the Rebel Base, the Empire draws 3 cards (1
+                  Starting Mission and 2 Main Missions) during the Assignment Phase</p>
               </div>
             </div>
             <div class="callout callout-empire">
@@ -200,6 +262,16 @@
               <div class="stepheader font-colour-empire">Maintenance</div>
               <p class="stepdescription">At the end of the Command Phase, shuffle both Mission Decks separately and
                 place any Project Cards acquired on top of the Main Mission Deck</p>
+            </div>
+            <div class="callout callout-rebel">
+              <div class="stepheader font-colour-rebel">Establishing a New Base</div>
+              <p class="stepdescription">The Rebels may establish a new Base similar to the normal procedure. First,
+                return all Probe cards of
+                uncontrolled (no Imperial Ground Units there) Remote Systems from the Empire’s stack to the Probe deck,
+                and shuffle it. Second, the Rebels draw the usual number of cards up to a maximum of the difference
+                between the Turn and Reputation Markers, and establish a new Base in any Remote System drawn. Third, the
+                Empire returns to searching for the Rebel Base as it did prior to revealing the base. Finally,
+                place the <i>Gather Intel</i> card back into the Starting Missions Deck</p>
             </div>
           </div>
 
