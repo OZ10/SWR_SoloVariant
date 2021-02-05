@@ -6,6 +6,15 @@
 
 // $primary: #343a40;
 
+// @font-face {
+//     font-family: 'teuton_magerregular';
+//     src: url('../Resources/font/teutonmager-webfont.woff2') format('woff2'),
+//          url('../Resources/font/teutonmager-webfont.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+
+// }
+
 .body{
     height: 100%;
     font-size: medium;
@@ -13,17 +22,12 @@
 }
 
 #mainheader{
-    background-color: $primary;
+    background-color: whitesmoke;
     padding: 15px;
-    font-weight: 500;
+    font-weight: bolder;
     font-size: larger;
-    color: white;
-}
-
-/* all divs who's class starts with 'col' */
-div[class^=col]{
-    border: 0px solid black;
-    padding: 10px;
+    // font-family: 'teutonmager-webfont',Arial,sans-serif;
+    color: $primary;
 }
 
 // Hack that needs sorting. Styles grid on Empire’s Card Decision Making List
@@ -95,6 +99,10 @@ div[class^=col]{
 
 .font-colour-empire{
     color:  $empirecolour;
+}
+
+.maincolour{
+    color: $primary;
 }
 
 .roundselector {
