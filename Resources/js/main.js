@@ -48,8 +48,18 @@ document.querySelectorAll('.planetbtn').forEach(
     }
 )
 
+// document.getElementById('sidebarToggle').addEventListener('click', (e) => {
+//     document.getElementById('sidebar').toggleClass('show');
+// })
+
+// $(document).ready(function (){
+//     $('#sidebarToggle').on('click', function () {
+//         $('#sidebar').toggleClass('show');
+//     })
+// });
+
 // Example of getting all by toggle type
-var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  return new bootstrap.Popover(popoverTriggerEl)
-})
+// var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+// var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+//   return new bootstrap.Popover(popoverTriggerEl)
+// })

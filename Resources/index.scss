@@ -25,9 +25,62 @@
     background-color: whitesmoke;
     padding: 15px;
     font-weight: bolder;
-    font-size: larger;
+    // font-size: larger;
     // font-family: 'teutonmager-webfont',Arial,sans-serif;
     color: $primary;
+}
+
+.wrapper{
+    // width: 100%;
+    // display: flex;
+    display: block;
+}
+
+#sidebar{
+    // margin-left: -250px;
+    min-width: 250px;
+    max-width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    display: none;
+    background: #F5F5F5;
+    // color: #fff;
+    // transition: all 0.3s;
+}
+
+.overlay{
+    // display: none;
+    position: fixed;
+    width: 0vw;
+    height: 0vh;
+    background: rgba(0,0,0,0.7);
+    z-index: 998;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+#sidebar.show{
+    display: block;
+    // opacity: 1;
+}
+
+.overlay.show{
+    display: block;
+    opacity: 1;
+    width: 100vw;
+    height: 100vh;
+}
+
+#dismissbutton
+{
+    width: 35;
+    height: 35;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 // Hack that needs sorting. Styles grid on Empire’s Card Decision Making List
