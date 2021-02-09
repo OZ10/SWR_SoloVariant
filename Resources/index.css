@@ -11401,7 +11401,7 @@ fieldset:disabled .btn {
 }
 
 .callout {
-  padding: 10px 20px;
+  padding: 10px 5px 10px 10px;
   margin: 0px 5px 10px 5px;
   border: 1px solid #E0E0E0;
   border-left-width: 10px;
