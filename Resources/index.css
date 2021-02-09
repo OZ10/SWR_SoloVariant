@@ -11320,21 +11320,46 @@ fieldset:disabled .btn {
 }
 
 #sidebar {
-  min-width: 250px;
-  max-width: 250px;
+  width: 350px;
+  height: 100vh;
   position: fixed;
   top: 0;
-  left: 0;
-  height: 100vh;
+  left: -350px;
   z-index: 999;
-  display: none;
-  background: #F5F5F5;
+  background: #e9ecef;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#sidebar.show {
+  left: 0;
+}
+
+.sidebarheader {
+  background-color: #dee2e6;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 5px;
+}
+
+.sidebarcontent {
+  padding: 0 5px;
+  font-size: small;
 }
 
 .overlay {
+  display: none;
   position: fixed;
-  width: 0vw;
-  height: 0vh;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.7);
   z-index: 998;
   opacity: 0;
@@ -11342,15 +11367,9 @@ fieldset:disabled .btn {
   transition: all 0.5s ease-in-out;
 }
 
-#sidebar.show {
-  display: block;
-}
-
 .overlay.show {
   display: block;
   opacity: 1;
-  width: 100vw;
-  height: 100vh;
 }
 
 #dismissbutton {
@@ -11441,7 +11460,7 @@ fieldset:disabled .btn {
 }
 
 .paraseparator {
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid #ced4da;
 }
 
 #deployflowchart li {

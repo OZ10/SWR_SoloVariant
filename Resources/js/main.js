@@ -15,6 +15,27 @@ function run() {
     });
 }
 
+function chkClick(cb){
+    switch (cb.id) {
+        case 'ROTE-Deployment':
+            showHideElement('ROTE-Setup');
+            showHideElement('Base-Setup');
+            break;
+    
+        default:
+            break;
+    }
+}
+
+function showHideElement(id) {
+    var element = document.getElementById(id);
+    if (element.classList.contains('d-none')) {
+        element.classList.remove('d-none')
+    }else{
+        element.classList.add('d-none')
+    }
+}
+
 // function run2(e){
 //     if (e.keyCode == 13) {
 //         run();

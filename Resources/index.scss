@@ -37,41 +37,52 @@
 }
 
 #sidebar{
-    // margin-left: -250px;
-    min-width: 250px;
-    max-width: 250px;
+    width: 350px;
+    height: 100vh;
     position: fixed;
     top: 0;
-    left: 0;
-    height: 100vh;
+    left: -350px;
     z-index: 999;
-    display: none;
-    background: #F5F5F5;
+    // display: none;
+    background: $gray-200;
     // color: #fff;
-    // transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+#sidebar.show{
+    left: 0;
+}
+
+.sidebarheader{
+    background-color: $gray-300;
+    height: 60px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.sidebarcontent{
+    padding: 0 5px;
+    font-size: small;
 }
 
 .overlay{
-    // display: none;
+    display: none;
     position: fixed;
-    width: 0vw;
-    height: 0vh;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0,0,0,0.7);
     z-index: 998;
     opacity: 0;
     transition: all 0.5s ease-in-out;
 }
 
-#sidebar.show{
-    display: block;
-    // opacity: 1;
-}
-
 .overlay.show{
     display: block;
     opacity: 1;
-    width: 100vw;
-    height: 100vh;
+    // width: 100vw;
+    // height: 100vh;
 }
 
 #dismissbutton
@@ -165,7 +176,7 @@
 }
 
 .paraseparator{
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid $gray-400;
 }
 
 #deployflowchart li{

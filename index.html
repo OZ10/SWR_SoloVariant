@@ -24,14 +24,28 @@
             d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
         </svg>
       </button>
-      <p>navbar stuff</p>
-      <p>navbar stuff</p>
-      <p>navbar stuff</p>
+      <h3 class="sidebarheader maincolour">Settings</h3>
+      <div class="sidebarcontent">
+        <p">The settings available here allow you to modify which components / rules you want this
+          variant to use. Changes will be made to the wording of some rules to reflect these settings.</p>
+          <h6 class="paraseparator">Rise of the Empire Expansion</h6>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="ROTE-Deployment" onclick="chkClick(this);">
+            <label for="ROTE-Deployment">Use expansion setup rules</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="ROTE-Units">
+            <label for="ROTE-Units">Use Units</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="ROTE-TacticCards">
+            <label for="ROTE-TacticCards">Use Advanced Tactic Cards</label>
+          </div>
+      </div>
     </nav>
 
     <main>
       <nav class="navbar" id="mainheader">
-
         <button id="sidebarToggle" type="button" class="btn btn-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
             viewBox="0 0 16 16">
@@ -69,18 +83,22 @@
                 </span></a>
               <a class="list-group-item list-group-item-action active" id="list-assignment-list" data-toggle="list"
                 data-bs-toggle="list" href="#list-assigment-steps" role="tab" aria-controls="assignment">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                  <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
-                  <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-people-fill" viewBox="0 0 16 16">
+                  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                  <path fill-rule="evenodd"
+                    d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
+                  <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
                 </svg>
                 <span class="d-none d-sm-inline p-1">
                   Assignment
                 </span></a>
               <a class="list-group-item list-group-item-action" id="list-command-list" data-toggle="list"
                 data-bs-toggle="list" href="#list-command-steps" role="tab" aria-controls="command">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-shaded" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M8 14.933a.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067v13.866zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-shield-shaded" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M8 14.933a.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067v13.866zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
                 </svg>
                 <span class="d-none d-sm-inline p-1">
                   Command
@@ -114,8 +132,9 @@
                   </div>
                   <div class="callout callout-empire">
                     <p class="stepdescription">
-                      Shuffle one of each of the five different <b>Project</b> cards into the <i>Empire’s Main Missions
-                        Deck.</i><br>The
+                      Shuffle one of each of the five different <strong>Project</strong> cards into the <em>Empire’s
+                        Main Missions
+                        Deck.</em><br>The
                       Empire starts with five Leaders. Recruit the 5th by drawing one Action Card (keep drawing until
                       the
                       Empire acquires the additional Leader)</p>
@@ -126,20 +145,29 @@
                     <p class="stepdescription">
                       Deploy the Empire Units as follows (use d6, as needed):
                     </p>
-                    <ul>
-                      <li class="stepdescription">2 TIE Fighters & 2 Stormtroopers in each of the initial six Systems
+                    <ul id="Base-Setup">
+                      <li class="stepdescription">2 TIE Fighters & 2 Stormtroopers in each of the
+                        initial six Systems
                       </li>
                       <li class="stepdescription">Randomly deploy 3 Star Destroyers in 3 separate Systems (1 each);
-                        deploy
-                        3
-                        Assault Carriers in the
-                        remaining 3 Systems</li>
+                        deploy 3 Assault Carriers in the remaining 3 Systems</li>
                       <li class="stepdescription">Randomly deploy 1 AT-AT to a System; then deploy 5 AT-STs (1 per
-                        System)
-                        in the remaining 5
-                        Systems
+                        System) in the remaining 5 Systems
                       </li>
                       <li class="stepdescription">Randomly deploy the Death Star</li>
+                    </ul>
+                    <ul class="d-none" id="ROTE-Setup">
+                      <p>Place a Death Star on space 3 of the build queue and the in-construction Death Star, a subjugation marker, 4
+                        TIE Fighters and 1 Stormtrooper in one of the 6 neutral single-triangle resource systems chosen at random
+                        from: Felucia, Kessel, Malastare, Alderaan, Rodia or Ryloth, return its probe card to the game box</p>
+                      <li class="stepdescription">2 Stormtroopers in each of the 6 Systems</li>
+                      <li class="stepdescription">Randomly deploy 3 Star Destroyers in 3 separate Systems (1 each);
+                        deploy 3 Assault Carriers in the remaining 3 Systems</li>
+                      <li class="stepdescription">Place a TIE Fighter in each system except Coruscant, then randomly add TIE striker to 2 of those five and a TIE
+                        Fighter to the remaining 3.
+                      </li>
+                      <li class="stepdescription">Randomly place 2 Assault Tanks and 4 AT-STs in each of the 6 systems (1 per system)</li>
+                      <li class="stepdescription">Randomly place an AT-AT in one of the 5 systems - not Coruscant</li>
                     </ul>
                   </div>
                   <div class="callout callout-rebel">
@@ -167,10 +195,10 @@
 
                   <p class="stepdescription">Draw a specified number of Missions (see Missions Table,
                     below) shuffle the drawn cards, and place them in a
-                    facedown pile, forming the <i class="text-medium">Initial Missions Deck</i></p>
+                    facedown pile, forming the <em class="text-medium">Initial Missions Deck</em></p>
 
                   <div class="callout text-small">
-                    <div id="missiontable"><b>Mission Table</b>
+                    <div id="missiontable"><strong>Mission Table</strong>
                       <div class="container-fluid">
                         <div class="row">
                           <div class="col-3 fw-bold">Turn 1:</div>
@@ -195,8 +223,8 @@
 
                 <div class="callout callout-empire">
                   <div class="stepheader font-colour-empire">Play Action Cards</div>
-                  <p class="stepdescription">The Empire plays all Action Cards designated as <b
-                      class="text-medium">playable</b>
+                  <p class="stepdescription">The Empire plays all Action Cards designated as <strong
+                      class="text-medium">playable</strong>
                     during the Assignment Phase</p>
                 </div>
               </section>
@@ -213,8 +241,8 @@
 
                     <div class="callout callout-empire">
                       <div class="stepheader font-colour-empire">Opposing Rebel Missions</div>
-                      <p class="stepdescription">Only if there are more Imperial Leaders than unrevealed<i
-                          class="text-medium"> Initial Mission </i>
+                      <p class="stepdescription">Only if there are more Imperial Leaders than unrevealed<em
+                          class="text-medium"> Initial Mission </em>
                         cards, the Empire may issue an order (on a D6 result of 4+) to send their “best” qualified
                         Leader
                         to
@@ -224,8 +252,8 @@
 
                     <div class="callout callout-empire">
                       <div class="stepheader font-colour-empire">Join a Battle</div>
-                      <p class="stepdescription">Only if there are more Imperial Leaders than unrevealed<i
-                          class="text-medium"> Initial Mission </i>
+                      <p class="stepdescription">Only if there are more Imperial Leaders than unrevealed<em
+                          class="text-medium"> Initial Mission </em>
                         cards, the Empire will send an eligible Leader to join the battle with either no Leader or one
                         possessing no Tactics Value(s). Prioritize eligible Leaders with a “Start of Combat” Action card
                         and
@@ -237,12 +265,14 @@
 
                   <div class="callout callout-empire">
                     <div class="stepheader font-colour-empire">Play Initial Missions</div>
-                    <p class="stepdescription">The Empire <b>always</b> complete <i class="text-medium"> Initial
+                    <p class="stepdescription">The Empire <strong>always</strong> complete <em class="text-medium">
+                        Initial
                         Missions
-                      </i> first
+                      </em> first
                       before Activating Systems for movement</p>
                     <p class="stepdescription">
-                      <b>Undertaking <i class="text-medium">Initial Missions</i>:</b> Flip over the top Mission from the
+                      <strong>Undertaking <em class="text-medium">Initial Missions</em>:</strong> Flip over the top
+                      Mission from the
                       deck and assign the “best” qualified Leader (pictured Leader or the
                       Leader possessing the most matching Skill icons). If a Mission proves unplayable (no appropriate
                       Leader or for any reason), select a new Mission from the appropriate Deck
@@ -307,10 +337,12 @@
 
                     <div class="stepheader">Revealing the Rebel Base</div>
                     <p class="stepdescription">
-                      Reveal <b>The Rebel Base</b> only after the Empire has obtained Probe Cards for the other 7 Remote
+                      Reveal <strong>The Rebel Base</strong> only after the Empire has obtained Probe Cards for the
+                      other 7 Remote
                       Systems
-                      OR when the Empire has any <b>Ground Units</b> in that System. Once revealed, remove the <i>Gather
-                        Intel</i>
+                      OR when the Empire has any <strong>Ground Units</strong> in that System. Once revealed, remove the
+                      <em>Gather
+                        Intel</em>
                       Starting Mission from the pile (it may return to play if the Rebels establish a new base). Note
                       that
                       when the Rebel Base is revealed and/or when the difference between the Turn and Reputation Markers
@@ -323,7 +355,8 @@
                       moved,
                       shift priority to other fleets which will target the nearest uncontrolled (possessing no Imperial
                       Ground Units) Remote Systems. When the Empire reveals the Rebel Base, the Empire draws 3 cards (1
-                      Starting Mission and 2 Main Missions) during the Assignment Phase</p>
+                      Starting Mission and 2 Main Missions) during the Assignment Phase
+                    </p>
                   </div>
                 </div>
                 <div class="callout callout-empire">
@@ -348,7 +381,7 @@
                     between the Turn and Reputation Markers, and establish a new Base in any Remote System drawn. Third,
                     the
                     Empire returns to searching for the Rebel Base as it did prior to revealing the base. Finally,
-                    place the <i>Gather Intel</i> card back into the Starting Missions Deck</p>
+                    place the <em>Gather Intel</em> card back into the Starting Missions Deck</p>
                 </div>
               </section>
 
@@ -405,7 +438,7 @@
                   <!-- Build -->
                   <div class="callout callout-both">
                     <div class="stepheader font-colour-empire">Build Units</div>
-                    <p class="stepdescription"><b>The Empire Builds before the rebels</b> </p>
+                    <p class="stepdescription"><strong>The Empire Builds before the rebels</strong> </p>
                     <p class="stepdescription">Follow normal building rules</p>
                   </div>
                 </div>
@@ -416,25 +449,25 @@
                   <p></p>
                   <div class="callout callout-empire">
                     <div class="stepheader font-colour-empire">Empire Deploy</div>
-                    <p class="stepdescription"><b>The Empire Deploys before the rebels</b> </p>
+                    <p class="stepdescription"><strong>The Empire Deploys before the rebels</strong> </p>
                     <p class="stepdescription">Follow the steps below to deploy units, adhering to the max 2 units
                       placed
                       per system rule:</p>
                     <ul id="deployflowchart">
-                      <li>Locate the <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
-                          data-bs-target="#productionvalueguide">Highest Production Value</a> System</li>
-                      <li>Find the Theater (Space or Ground) with the fewest Units</li>
-                      <li>Place the strongest available unit in this Theater Note: If the Empire doesn’t have a Unit to
+                      <lem>Locate the <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
+                          data-bs-target="#productionvalueguide">Highest Production Value</a> System</lem>
+                      <lem>Find the Theater (Space or Ground) with the fewest Units</lem>
+                      <lem>Place the strongest available unit in this Theater Note: If the Empire doesn’t have a Unit to
                         place
                         in-Theater, place the strongest Built Unit of the other Theater-type into its Theater (if there
                         are
-                        the same number of Units in each Theater, randomly choose between the Theaters)</li>
-                      <li>Move to the next <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
+                        the same number of Units in each Theater, randomly choose between the Theaters)</lem>
+                      <lem>Move to the next <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
                           data-bs-target="#productionvalueguide">Highest Production Value</a> System; Resolve from the
                         beginning of the flowchart,
                         wrapping back around to the first <a class="link-danger text-medium" href="#"
                           data-bs-toggle="modal" data-bs-target="#productionvalueguide">Highest Production Value</a>
-                        System, if necessary</li>
+                        System, if necessary</lem>
                     </ul>
                   </div>
 
@@ -490,9 +523,7 @@
               </ul>
             </div>
             <p class="paraseparator text-small p-2">The Rebel Base will be revealed only after the Empire has obtained
-              the
-              Probe
-              Cards for the other 7 Remote Systems OR when the
+              the Probe Cards for the other 7 Remote Systems OR when the
               Empire has any Ground Units in that System</p>
             <p class="text-small px-2">Empire movement and deployment will change priority when Rebel Base is revealed
             </p>
@@ -826,36 +857,37 @@
               <ul style="list-style-type: none;">
                 Strength factors into the Empire’s decision-making:
                 <p></p>
-                <li>
+                <lem>
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                     class="bi bi-triangle-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                       d="M7.022 1.566a1.13 1.13 0 0 1 1.96 0l6.857 11.667c.457.778-.092 1.767-.98 1.767H1.144c-.889 0-1.437-.99-.98-1.767L7.022 1.566z" />
                   </svg>
-                  <b class="maincolour">Units: 1 STRENGTH</b> (X-Wings, TIE Fighters, both sides’ Troopers)
-                </li>
-                <li>
+                  <strong> class="maincolour">Units: 1 STRENGTH</strong> (X-Wings, TIE Fighters, both sides’ Troopers)
+                </lem>
+                <lem>
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                     class="bi bi-circle-fill" viewBox="0 0 16 16">
                     <circle cx="8" cy="8" r="8" />
                   </svg>
-                  <b class="maincolour">Units: 2 STRENGTH</b> (Airspeeder and AT-ST)
-                </li>
-                <li>
+                  <strong> class="maincolour">Units: 2 STRENGTH</strong> (Airspeeder and AT-ST)
+                </lem>
+                <lem>
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                     class="bi bi-square-fill" viewBox="0 0 16 16">
                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
                   </svg>
-                  <b class="maincolour">Units: 3 STRENGTH</b> (Mon Calamari Cruiser and Star Destroyer)
-                </li>
-                <li>
+                  <strong> class="maincolour">Units: 3 STRENGTH</strong> (Mon Calamari Cruiser and Star Destroyer)
+                </lem>
+                <lem>
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                     class="bi bi-patch-minus-fill" viewBox="0 0 16 16">
                     <path
                       d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM6 7.5h4a.5.5 0 0 1 0" />
                   </svg>
-                  <b class="maincolour">Units: 4 STRENGTH</b> (The Empire’s Super Star Destroyers and Death Stars)
-                </li>
+                  <strong> class="maincolour">Units: 4 STRENGTH</strong> (The Empire’s Super Star Destroyers and Death
+                  Stars)
+                </lem>
               </ul>
             </div>
           </div>
