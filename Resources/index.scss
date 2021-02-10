@@ -1,32 +1,26 @@
 // @use "./colours";
 @import "./colours";
 
+$SWFont: "Goldman", serif;
+
 // $rebelcolour: #43A047;
 // $empirecolour: #D50000;
 
 // $primary: #343a40;
 
-// @font-face {
-//     font-family: 'teuton_magerregular';
-//     src: url('../Resources/font/teutonmager-webfont.woff2') format('woff2'),
-//          url('../Resources/font/teutonmager-webfont.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-
-// }
-
 .body{
     height: 100%;
-    font-size: medium;
     background-color: #ffffff;
+    // font-weight: 300;
+    color:$gray-700;
 }
 
 #mainheader{
-    background-color: whitesmoke;
-    padding: 15px;
-    font-weight: bolder;
-    // font-size: larger;
-    // font-family: 'teutonmager-webfont',Arial,sans-serif;
+    background-color: $backgroundcolour;
+    padding: 10px;
+    font-weight: bold;
+    font-family: $SWFont;
+    font-size: xx-large;
     color: $primary;
 }
 
@@ -36,6 +30,7 @@
     display: block;
 }
 
+/* Sidebar Rules */
 #sidebar{
     width: 350px;
     height: 100vh;
@@ -43,9 +38,7 @@
     top: 0;
     left: -350px;
     z-index: 999;
-    // display: none;
     background: $gray-200;
-    // color: #fff;
     transition: all 0.3s;
 }
 
@@ -60,6 +53,7 @@
     justify-content: left;
     align-items: center;
     padding-left: 5px;
+    font-family: $SWFont;
 }
 
 .sidebarcontent{
@@ -81,8 +75,6 @@
 .overlay.show{
     display: block;
     opacity: 1;
-    // width: 100vw;
-    // height: 100vh;
 }
 
 #dismissbutton
@@ -103,15 +95,10 @@
     padding: 5px;
 }
 
-.stepheader{
-    font-size: medium;
-    font-weight: 500;
-}
-
-.stepdescription{
-    font-size: small;
-    margin: 8px;
-}
+// .stepdescription{
+//     font-size: small;
+//     margin: 8px;
+// }
 
 .margin-small{
     margin: 8px;
@@ -121,62 +108,78 @@
     margin: 16px;
 }
 
-.text-medium
-{
-    font-size: medium;
-}
-
-.text-small{
-    font-size: small;
-}
-
 .list-group a{
     font-size: medium;
     color:gray;
 }
 
-.callout {
+%callout {
     padding: 10px 5px 10px 10px;
     margin: 0px 5px 10px 5px;
     border: 1px solid #E0E0E0;
-    border-left-width: 10px;
+    border-left-width: 8px;
     border-radius: 3px;
-    background-color: #F5F5F5;
+    background-color: $backgroundcolour;
   }
 
+  %callouttext{
+    font-size: small;
+    margin: 8px;
+  }
+
+.callout {
+    @extend %callout;
+    p{
+        @extend %callouttext;
+    }
+    li{
+        @extend %callouttext;
+    }
+    h5{
+        font-family: $SWFont;
+    }
+}
+
 .callout-rebel{
+    @extend .callout;
     border-color: $rebelcolour;
+    h5{
+        color: $rebelcolour;
+    }
 }
 
 .callout-empire{
+    @extend .callout;
     border-color:$empirecolour;
+    h5{
+        color: $empirecolour;
+    }
 }
 
 .callout-both{
+    @extend .callout;
     border-image-source: linear-gradient(180deg, $rebelcolour, $empirecolour);
     border-image-slice: 1;
 }
 
-.font-colour-rebel{
-    color: $rebelcolour;
-}
-
-.font-colour-empire{
-    color:  $empirecolour;
-}
+// ul[id^=ROTE]{
+//     color: blue;
+// }
 
 .maincolour{
     color: $primary;
 }
 
-.roundselector {
-    padding: 5px;
+.roundselector a{
+    padding: 8px;
     border: 1px solid #E0E0E0;
     background-color: #F5F5F5;
+    font-family: $SWFont;
 }
 
 .paraseparator{
     border-top: 1px solid $gray-400;
+    padding-top: 5px;
 }
 
 #deployflowchart li{

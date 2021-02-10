@@ -5,64 +5,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Star Wars Rebellion: Solo Variant</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="./Resources/index.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="body">
-
   <!-- Dark Overlay element -->
   <div class="overlay"></div>
 
   <div class="wrapper">
     <nav id="sidebar">
       <button class="btn btn-primary" id="dismissbutton">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
-          viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
-            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-        </svg>
+        <span class="material-icons align-middle">arrow_back</span>
       </button>
       <h3 class="sidebarheader maincolour">Settings</h3>
       <div class="sidebarcontent">
         <p">The settings available here allow you to modify which components / rules you want this
           variant to use. Changes will be made to the wording of some rules to reflect these settings.</p>
+          <h6 class="paraseparator">General</h6>
+          <!-- <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="showTooltips" onclick="chkClick(this);">
+            <label for="showTooltips">Show Tooltips</label>
+          </div> -->
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="dynamicInstructions" onclick="chkClick(this);">
+            <label for="dynamicInstructions" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="By default all rules will be displayed. When toggled ON rules will display based on certain criteria, i.e: when the RB is discovered, movement & deployment rules will ONLY be displayed in relation to the RB">Dynamic
+              Rules</label>
+          </div>
           <h6 class="paraseparator">Rise of the Empire Expansion</h6>
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="ROTE-Deployment" onclick="chkClick(this);">
-            <label for="ROTE-Deployment">Use expansion setup rules</label>
+            <input class="form-check-input" type="checkbox" id="ROTE-Units" onclick="chkClick(this);">
+            <label for="ROTE-Units" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Setup deployment rules will change">Use Expansion Units</label>
           </div>
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="ROTE-Units">
-            <label for="ROTE-Units">Use Units</label>
-          </div>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="ROTE-TacticCards">
+            <input class="form-check-input" type="checkbox" id="ROTE-TacticCards" onclick="chkClick(this);">
             <label for="ROTE-TacticCards">Use Advanced Tactic Cards</label>
+          </div>
+          <h6 class="paraseparator">Variants</h6>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="var-Movement" onclick="chkClick(this);">
+            <label for="var-Movement" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="The Empire will roll a D6 to determine whether to move to RB/PRB or nearest rebel units. Movement rules will be updated to reflect this">Movement
+              Variant</label>
           </div>
       </div>
     </nav>
 
     <main>
       <nav class="navbar" id="mainheader">
-        <button id="sidebarToggle" type="button" class="btn btn-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-          </svg>
+        <button id="sidebarToggle" type="button" class="btn btn-primary ml-auto">
+          <span class="material-icons align-middle">menu</span>
         </button>
-
-        <h2>Star Wars Rebellion: Solo Variant</h2>
-        <div class="col-sm-1 align-items-center">
-          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#remotesystemslist">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half"
-              viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
-            </svg>
-          </button>
-        </div>
+        <div class="mx-auto">Star Wars Rebellion: Solo Variant</div>
       </nav>
 
       <div class="container-fluid">
@@ -70,49 +70,38 @@
 
           <!-- Round Selection -->
           <section class="col-auto p-2">
-            <div class="list-group" id="list-tab" role="tablist">
+            <div class="list-group roundselector" id="list-tab" role="tablist">
               <a class="list-group-item list-group-item-action" id="list-setup-list" data-toggle="list"
                 data-bs-toggle="list" href="#list-setup-steps" role="tab" aria-controls="setup">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-gear-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-                </svg>
+                <span class="material-icons align-middle">settings</span>
                 <span class="d-none d-sm-inline p-1">
                   Setup
                 </span></a>
               <a class="list-group-item list-group-item-action active" id="list-assignment-list" data-toggle="list"
                 data-bs-toggle="list" href="#list-assigment-steps" role="tab" aria-controls="assignment">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-people-fill" viewBox="0 0 16 16">
-                  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                  <path fill-rule="evenodd"
-                    d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
-                  <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
-                </svg>
+                <span class="material-icons align-middle">people_alt</span>
                 <span class="d-none d-sm-inline p-1">
                   Assignment
                 </span></a>
               <a class="list-group-item list-group-item-action" id="list-command-list" data-toggle="list"
                 data-bs-toggle="list" href="#list-command-steps" role="tab" aria-controls="command">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-shield-shaded" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd"
-                    d="M8 14.933a.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067v13.866zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
-                </svg>
+                <span class="material-icons align-middle">shield</span>
                 <span class="d-none d-sm-inline p-1">
                   Command
                 </span></a>
               <a class="list-group-item list-group-item-action" id="list-refresh-list" data-toggle="list"
-                data-bs-toggle="list" href="#list-refresh-steps" role="tab" aria-controls="refresh"><svg
-                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-                </svg>
+                data-bs-toggle="list" href="#list-refresh-steps" role="tab" aria-controls="refresh">
+                <span class="material-icons align-middle">refresh</span>
                 <span class="d-none d-sm-inline p-1">
                   Refresh
                 </span></a>
+            </div>
+            <div class="col text-center p-2">
+              <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                data-bs-target="#remotesystemslist">
+                <span class="material-icons align-middle">public</span>
+                <span class="d-none d-sm-inline p-1" style="font-family: Goldman, serif;">Remote Systems</span>
+              </button>
             </div>
           </section>
           <!-- Steps Panel -->
@@ -122,57 +111,58 @@
               <!-- Setup Sets -->
               <section class="tab-pane" id="list-setup-steps" role="tabpanel" aria-labelledby="list-setup-list">
                 <div class="callout">
-                  <div class="stepheader">Setup</div>
-                  <p class="stepdescription">
+                  <h5>Setup</h5>
+                  <p>
                     Use the Advanced Set-up from the Rules with the following changes:
                   </p>
-                  <div class="callout callout-rebel">
-                    <p class="stepdescription">
+                  <div class="callout-rebel">
+                    <p>
                       Remove the “Heart of the Empire” (Level II) Objective card</p>
                   </div>
-                  <div class="callout callout-empire">
-                    <p class="stepdescription">
+                  <div class="callout-empire">
+                    <p>
                       Shuffle one of each of the five different <strong>Project</strong> cards into the <em>Empire’s
-                        Main Missions
-                        Deck.</em><br>The
-                      Empire starts with five Leaders. Recruit the 5th by drawing one Action Card (keep drawing until
-                      the
-                      Empire acquires the additional Leader)</p>
+                        Main Missions Deck.</em><br>The Empire starts with five Leaders. Recruit the 5th by drawing one
+                      Action Card (keep drawing until the Empire acquires the additional Leader)</p>
                   </div>
 
-                  <div class="callout callout-empire">
-                    <div class="stepheader font-colour-empire">Deployment</div>
-                    <p class="stepdescription">
+                  <div class="callout-empire">
+                    <h5>Deployment</h5>
+                    <p>
                       Deploy the Empire Units as follows (use d6, as needed):
                     </p>
                     <ul id="Base-Setup">
-                      <li class="stepdescription">2 TIE Fighters & 2 Stormtroopers in each of the
+                      <li>2 TIE Fighters & 2 Stormtroopers in each of the
                         initial six Systems
                       </li>
-                      <li class="stepdescription">Randomly deploy 3 Star Destroyers in 3 separate Systems (1 each);
+                      <li>Randomly deploy 3 Star Destroyers in 3 separate Systems (1 each);
                         deploy 3 Assault Carriers in the remaining 3 Systems</li>
-                      <li class="stepdescription">Randomly deploy 1 AT-AT to a System; then deploy 5 AT-STs (1 per
+                      <li>Randomly deploy 1 AT-AT to a System; then deploy 5 AT-STs (1 per
                         System) in the remaining 5 Systems
                       </li>
-                      <li class="stepdescription">Randomly deploy the Death Star</li>
+                      <li>Randomly deploy the Death Star</li>
                     </ul>
                     <ul class="d-none" id="ROTE-Setup">
-                      <p>Place a Death Star on space 3 of the build queue and the in-construction Death Star, a subjugation marker, 4
-                        TIE Fighters and 1 Stormtrooper in one of the 6 neutral single-triangle resource systems chosen at random
-                        from: Felucia, Kessel, Malastare, Alderaan, Rodia or Ryloth, return its probe card to the game box</p>
-                      <li class="stepdescription">2 Stormtroopers in each of the 6 Systems</li>
-                      <li class="stepdescription">Randomly deploy 3 Star Destroyers in 3 separate Systems (1 each);
+                      <p>Place a Death Star on space 3 of the build queue and the in-construction Death Star, a
+                        subjugation marker, 4
+                        TIE Fighters and 1 Stormtrooper in one of the 6 neutral single-triangle resource systems chosen
+                        at random
+                        from: Felucia, Kessel, Malastare, Alderaan, Rodia or Ryloth, return its probe card to the game
+                        box</p>
+                      <li>2 Stormtroopers in each of the 6 Systems</li>
+                      <li>Randomly deploy 3 Star Destroyers in 3 separate Systems (1 each);
                         deploy 3 Assault Carriers in the remaining 3 Systems</li>
-                      <li class="stepdescription">Place a TIE Fighter in each system except Coruscant, then randomly add TIE striker to 2 of those five and a TIE
+                      <li>Place a TIE Fighter in each system except Coruscant, then randomly add TIE striker to 2 of
+                        those five and a TIE
                         Fighter to the remaining 3.
                       </li>
-                      <li class="stepdescription">Randomly place 2 Assault Tanks and 4 AT-STs in each of the 6 systems (1 per system)</li>
-                      <li class="stepdescription">Randomly place an AT-AT in one of the 5 systems - not Coruscant</li>
+                      <li>Randomly place 2 Assault Tanks and 4 AT-STs in each of the 6 systems (1 per system)</li>
+                      <li>Randomly place an AT-AT in one of the 5 systems - not Coruscant</li>
                     </ul>
                   </div>
-                  <div class="callout callout-rebel">
-                    <div class="stepheader font-colour-rebel">Rebel Base</div>
-                    <p class="stepdescription">
+                  <div class="callout-rebel">
+                    <h5>Rebel Base</h5>
+                    <p>
                       The Solo Player chooses the Rebel Base’s location from among the 8 Remote Systems, after placing
                       all
                       Starting Units and Loyalty Markers. The Empire knows it is located in one of these Systems
@@ -185,15 +175,15 @@
               <!-- Assignment Steps-->
               <section class="tab-pane active" id="list-assigment-steps" role="tabpanel"
                 aria-labelledby="list-assignment-list">
-                <div class="callout callout-rebel">
-                  <div class="stepheader font-colour-rebel">Assign Leaders to Missions</div>
-                  <p class="stepdescription">Rebel player assigns leaders to missions</p>
+                <div class="callout-rebel">
+                  <h5>Assign Leaders to Missions</h5>
+                  <p>Rebel player assigns leaders to missions</p>
                 </div>
 
-                <div class="callout callout-empire">
-                  <div class="stepheader font-colour-empire">Create Mission Deck</div>
+                <div class="callout-empire">
+                  <h5>Create Mission Deck</h5>
 
-                  <p class="stepdescription">Draw a specified number of Missions (see Missions Table,
+                  <p>Draw a specified number of Missions (see Missions Table,
                     below) shuffle the drawn cards, and place them in a
                     facedown pile, forming the <em class="text-medium">Initial Missions Deck</em></p>
 
@@ -221,10 +211,9 @@
                   </div>
                 </div>
 
-                <div class="callout callout-empire">
-                  <div class="stepheader font-colour-empire">Play Action Cards</div>
-                  <p class="stepdescription">The Empire plays all Action Cards designated as <strong
-                      class="text-medium">playable</strong>
+                <div class="callout-empire">
+                  <h5>Play Action Cards</h5>
+                  <p>The Empire plays all Action Cards designated as <strong class="text-medium">playable</strong>
                     during the Assignment Phase</p>
                 </div>
               </section>
@@ -232,17 +221,17 @@
               <!-- Command Steps-->
               <section class="tab-pane" id="list-command-steps" role="tabpanel" aria-labelledby="list-command-list">
                 <div class="callout">
-                  <div class="stepheader">Play Missions</div>
-                  <p class="stepdescription">Starting with the Rebel player, alternate taking turns</p>
+                  <h5>Play Missions</h5>
+                  <p>Starting with the Rebel player, alternate taking turns</p>
 
-                  <div class="callout callout-rebel">
-                    <div class="stepheader font-colour-rebel">Play Missions / Activate Systems</div>
-                    <p class="stepdescription">Rebel player can reveal missions or active systems</p>
+                  <div class="callout-rebel">
+                    <h5>Play Missions / Activate Systems</h5>
+                    <p>Rebel player can reveal missions or active systems</p>
 
-                    <div class="callout callout-empire">
-                      <div class="stepheader font-colour-empire">Opposing Rebel Missions</div>
-                      <p class="stepdescription">Only if there are more Imperial Leaders than unrevealed<em
-                          class="text-medium"> Initial Mission </em>
+                    <div class="callout-empire">
+                      <h5>Opposing Rebel Missions</h5>
+                      <p>Only if there are more Imperial Leaders than unrevealed<em class="text-medium"> Initial Mission
+                        </em>
                         cards, the Empire may issue an order (on a D6 result of 4+) to send their “best” qualified
                         Leader
                         to
@@ -250,10 +239,10 @@
                         number of Skill icons becomes eligible</p>
                     </div>
 
-                    <div class="callout callout-empire">
-                      <div class="stepheader font-colour-empire">Join a Battle</div>
-                      <p class="stepdescription">Only if there are more Imperial Leaders than unrevealed<em
-                          class="text-medium"> Initial Mission </em>
+                    <div class="callout-empire">
+                      <h5>Join a Battle</h5>
+                      <p>Only if there are more Imperial Leaders than unrevealed<em class="text-medium"> Initial Mission
+                        </em>
                         cards, the Empire will send an eligible Leader to join the battle with either no Leader or one
                         possessing no Tactics Value(s). Prioritize eligible Leaders with a “Start of Combat” Action card
                         and
@@ -263,14 +252,14 @@
                     </div>
                   </div>
 
-                  <div class="callout callout-empire">
-                    <div class="stepheader font-colour-empire">Play Initial Missions</div>
-                    <p class="stepdescription">The Empire <strong>always</strong> complete <em class="text-medium">
+                  <div class="callout-empire">
+                    <h5>Play Initial Missions</h5>
+                    <p>The Empire <strong>always</strong> complete <em class="text-medium">
                         Initial
                         Missions
                       </em> first
                       before Activating Systems for movement</p>
-                    <p class="stepdescription">
+                    <p>
                       <strong>Undertaking <em class="text-medium">Initial Missions</em>:</strong> Flip over the top
                       Mission from the
                       deck and assign the “best” qualified Leader (pictured Leader or the
@@ -286,29 +275,29 @@
                     <p></p>
 
                     <div class="callout">
-                      <div class="stepheader">Capturing Leaders</div>
-                      <p class="stepdescription">
+                      <h5>Capturing Leaders</h5>
+                      <p>
                         A captured Rebel Leader is considered a Ground Unit, and held captive by the strongest Imperial
                         Space Unit currently in the System where he/she is located</p>
 
-                      <div class="stepheader">Acquiring Project Cards</div>
-                      <p class="stepdescription">
+                      <h5>Acquiring Project Cards</h5>
+                      <p>
                         Any Projects acquired during the game are placed face-down (without looking at them) beside the
                         Main Missions Deck, and are placed on top of the deck after it is reshuffled at the end of the
                         Command Phase</p>
                     </div>
                   </div>
                 </div>
-                <div class="callout callout-empire">
-                  <div class="stepheader font-colour-empire">Activate Systems</div>
-                  <p class="stepdescription">The Empire may, having undertaken all initial Missions, use Leaders
+                <div class="callout-empire">
+                  <h5>Activate Systems</h5>
+                  <p>The Empire may, having undertaken all initial Missions, use Leaders
                     to Activate Systems (Move Units) to the nearest PRB(s) or Revealed
                     Rebel Base
                   </p>
 
                   <div class="callout">
-                    <div class="stepheader">Movement Rules</div>
-                    <p class="stepdescription">
+                    <h5>Movement Rules</h5>
+                    <p>
                       Always move the Empire’s Units by the shortest possible route toward the nearest unexplored (Probe
                       Card
                       not yet obtained) Remote System (also known as the Possible Rebel Base [PRB]) and will attack any
@@ -335,8 +324,8 @@
                       below)
                     </p>
 
-                    <div class="stepheader">Revealing the Rebel Base</div>
-                    <p class="stepdescription">
+                    <h5>Revealing the Rebel Base</h5>
+                    <p>
                       Reveal <strong>The Rebel Base</strong> only after the Empire has obtained Probe Cards for the
                       other 7 Remote
                       Systems
@@ -359,21 +348,21 @@
                     </p>
                   </div>
                 </div>
-                <div class="callout callout-empire">
-                  <div class="stepheader font-colour-empire">Unused Leaders</div>
-                  <p class="stepdescription">In the unlikely event that their remain any unused leaders, draw and
+                <div class="callout-empire">
+                  <h5>Unused Leaders</h5>
+                  <p>In the unlikely event that their remain any unused leaders, draw and
                     undertake
                     a Mission/Leader from the Main Missions Deck
                   </p>
                 </div>
-                <div class="callout callout-empire">
-                  <div class="stepheader font-colour-empire">Maintenance</div>
-                  <p class="stepdescription">At the end of the Command Phase, shuffle both Mission Decks separately and
+                <div class="callout-empire">
+                  <h5>Maintenance</h5>
+                  <p>At the end of the Command Phase, shuffle both Mission Decks separately and
                     place any Project Cards acquired on top of the Main Mission Deck</p>
                 </div>
-                <div class="callout callout-rebel">
-                  <div class="stepheader font-colour-rebel">Establishing a New Base</div>
-                  <p class="stepdescription">The Rebels may establish a new Base similar to the normal procedure. First,
+                <div class="callout-rebel">
+                  <h5>Establishing a New Base</h5>
+                  <p>The Rebels may establish a new Base similar to the normal procedure. First,
                     return all Probe cards of
                     uncontrolled (no Imperial Ground Units there) Remote Systems from the Empire’s stack to the Probe
                     deck,
@@ -387,93 +376,93 @@
 
               <!-- Refresh Steps-->
               <section class="tab-pane" id="list-refresh-steps" role="tabpanel" aria-labelledby="list-refresh-list">
-                <div class="callout callout-both">
-                  <div class="stepheader">Retrieve Leaders</div>
-                  <p class="stepdescription">Each player takes all of his leaders from the game board and
+                <div class="callout-both">
+                  <h5>Retrieve Leaders</h5>
+                  <p>Each player takes all of his leaders from the game board and
                     returns them to his leader pool. If a leader is still on a mission card, it returns to the leader
                     pool,
                     and the card returns to the player’s hand</p>
                 </div>
-                <div class="callout callout-rebel">
-                  <div class="stepheader font-colour-rebel">Draw Missions</div>
-                  <p class="stepdescription">Rebel player draws two mission cards and, if there are more than 10 cards
+                <div class="callout-rebel">
+                  <h5>Draw Missions</h5>
+                  <p>Rebel player draws two mission cards and, if there are more than 10 cards
                     in
                     his hand, he discards down to 10 cards</p>
-                  <div class="callout callout-empire">
-                    <p class="stepdescription">
+                  <div class="callout-empire">
+                    <p>
                       The Empire does not draw Mission cards during the Refresh Phase. Empire missions are drawn during
                       the
                       Assignment phase</p>
                   </div>
                 </div>
-                <div class="callout callout-empire">
-                  <div class="stepheader font-colour-empire">Launch Probe Droids</div>
-                  <p class="stepdescription">Reveal two Probe Cards, as per the normal rules</p>
+                <div class="callout-empire">
+                  <h5>Launch Probe Droids</h5>
+                  <p>Reveal two Probe Cards, as per the normal rules</p>
                 </div>
-                <div class="callout callout-rebel">
-                  <div class="stepheader font-colour-rebel">Draw Objective</div>
-                  <p class="stepdescription">The Rebel player draws one objective card and adds it to his hand</p>
+                <div class="callout-rebel">
+                  <h5>Draw Objective</h5>
+                  <p>The Rebel player draws one objective card and adds it to his hand</p>
                 </div>
                 <div class="callout">
-                  <div class="stepheader">Advance Time Marker</div>
-                  <p class="stepdescription">Advance the time marker one space along the track. Then players
+                  <h5>Advance Time Marker</h5>
+                  <p>Advance the time marker one space along the track. Then players
                     recruitand/or
                     build if any icons are shown in the time marker’s new space</p>
 
                   <!-- Recruit -->
-                  <div class="callout callout-rebel">
-                    <div class="stepheader font-colour-rebel">Rebels Recruit</div>
-                    <p class="stepdescription">Rebel player draws two cards from his action deck, chooses one leader
+                  <div class="callout-rebel">
+                    <h5>Rebels Recruit</h5>
+                    <p>Rebel player draws two cards from his action deck, chooses one leader
                       shown
                       on either card, and places that leader in his leader pool</p>
                   </div>
 
-                  <div class="callout callout-empire">
-                    <div class="stepheader font-colour-empire">Empire Recruit</div>
-                    <p class="stepdescription">The Empire draws one Action Card, randomly choosing if there are
+                  <div class="callout-empire">
+                    <h5>Empire Recruit</h5>
+                    <p>The Empire draws one Action Card, randomly choosing if there are
                       available
                       leaders. Draw again, if necessary</p>
                   </div>
 
                   <!-- Build -->
-                  <div class="callout callout-both">
-                    <div class="stepheader font-colour-empire">Build Units</div>
-                    <p class="stepdescription"><strong>The Empire Builds before the rebels</strong> </p>
-                    <p class="stepdescription">Follow normal building rules</p>
+                  <div class="callout-both">
+                    <h5>Build Units</h5>
+                    <p><strong>The Empire Builds before the rebels</strong> </p>
+                    <p>Follow normal building rules</p>
                   </div>
                 </div>
 
                 <!-- Deploy -->
                 <div class="callout">
-                  <div class="stepheader">Deploy</div>
+                  <h5>Deploy</h5>
                   <p></p>
-                  <div class="callout callout-empire">
-                    <div class="stepheader font-colour-empire">Empire Deploy</div>
-                    <p class="stepdescription"><strong>The Empire Deploys before the rebels</strong> </p>
-                    <p class="stepdescription">Follow the steps below to deploy units, adhering to the max 2 units
+                  <div class="callout-empire">
+                    <h5>Empire Deploy</h5>
+                    <p><strong>The Empire Deploys before the rebels</strong> </p>
+                    <p>Follow the steps below to deploy units, adhering to the max 2 units
                       placed
                       per system rule:</p>
                     <ul id="deployflowchart">
-                      <lem>Locate the <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
-                          data-bs-target="#productionvalueguide">Highest Production Value</a> System</lem>
-                      <lem>Find the Theater (Space or Ground) with the fewest Units</lem>
-                      <lem>Place the strongest available unit in this Theater Note: If the Empire doesn’t have a Unit to
+                      <li>Locate the <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
+                          data-bs-target="#productionvalueguide">Highest Production Value</a> System</li>
+                      <li>Find the Theater (Space or Ground) with the fewest Units</li>
+                      <li>Place the strongest available unit in this Theater Note: If the Empire doesn’t have a Unit to
                         place
                         in-Theater, place the strongest Built Unit of the other Theater-type into its Theater (if there
                         are
-                        the same number of Units in each Theater, randomly choose between the Theaters)</lem>
-                      <lem>Move to the next <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
+                        the same number of Units in each Theater, randomly choose between the Theaters)</li>
+                      <li>Move to the next <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
                           data-bs-target="#productionvalueguide">Highest Production Value</a> System; Resolve from the
                         beginning of the flowchart,
                         wrapping back around to the first <a class="link-danger text-medium" href="#"
                           data-bs-toggle="modal" data-bs-target="#productionvalueguide">Highest Production Value</a>
-                        System, if necessary</lem>
+                        System, if necessary</li>
                     </ul>
                   </div>
 
-                  <div class="callout callout-rebel">
-                    <div class="stepheader font-colour-rebel">Rebels Deploy</div>
-                    <p class="stepdescription">Rebel player follows normal deployment rules</p>
+                  <div class="callout-rebel">
+                    <h5>Rebels Deploy</h5>
+                    <p>Rebel player follows normal deployment rules</p>
                   </div>
                 </div>
               </section>

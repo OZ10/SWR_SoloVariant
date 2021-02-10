@@ -11304,14 +11304,16 @@ fieldset:disabled .btn {
 
 .body {
   height: 100%;
-  font-size: medium;
   background-color: #ffffff;
+  color: #495057;
 }
 
 #mainheader {
-  background-color: whitesmoke;
-  padding: 15px;
-  font-weight: bolder;
+  background-color: #F5F5F5;
+  padding: 10px;
+  font-weight: bold;
+  font-family: "Goldman", serif;
+  font-size: xx-large;
   color: #66051f;
 }
 
@@ -11319,6 +11321,7 @@ fieldset:disabled .btn {
   display: block;
 }
 
+/* Sidebar Rules */
 #sidebar {
   width: 350px;
   height: 100vh;
@@ -11348,6 +11351,7 @@ fieldset:disabled .btn {
       -ms-flex-align: center;
           align-items: center;
   padding-left: 5px;
+  font-family: "Goldman", serif;
 }
 
 .sidebarcontent {
@@ -11388,16 +11392,6 @@ fieldset:disabled .btn {
   padding: 5px;
 }
 
-.stepheader {
-  font-size: medium;
-  font-weight: 500;
-}
-
-.stepdescription {
-  font-size: small;
-  margin: 8px;
-}
-
 .margin-small {
   margin: 8px;
 }
@@ -11406,61 +11400,64 @@ fieldset:disabled .btn {
   margin: 16px;
 }
 
-.text-medium {
-  font-size: medium;
-}
-
-.text-small {
-  font-size: small;
-}
-
 .list-group a {
   font-size: medium;
   color: gray;
 }
 
-.callout {
+.callout, .callout-rebel, .callout-empire, .callout-both {
   padding: 10px 5px 10px 10px;
   margin: 0px 5px 10px 5px;
   border: 1px solid #E0E0E0;
-  border-left-width: 10px;
+  border-left-width: 8px;
   border-radius: 3px;
   background-color: #F5F5F5;
 }
 
+.callout p, .callout-rebel p, .callout-empire p, .callout-both p, .callout li, .callout-rebel li, .callout-empire li, .callout-both li {
+  font-size: small;
+  margin: 8px;
+}
+
+.callout h5, .callout-rebel h5, .callout-empire h5, .callout-both h5, .callout .h5, .callout-rebel .h5, .callout-empire .h5, .callout-both .h5 {
+  font-family: "Goldman", serif;
+}
+
 .callout-rebel {
-  border-color: #43A047;
+  border-color: #43a048c4;
+}
+
+.callout-rebel h5, .callout-rebel .h5 {
+  color: #43a048c4;
 }
 
 .callout-empire {
-  border-color: #D50000;
+  border-color: #d50000c4;
+}
+
+.callout-empire h5, .callout-empire .h5 {
+  color: #d50000c4;
 }
 
 .callout-both {
-  border-image-source: linear-gradient(180deg, #43A047, #D50000);
+  border-image-source: linear-gradient(180deg, #43a048c4, #d50000c4);
   border-image-slice: 1;
-}
-
-.font-colour-rebel {
-  color: #43A047;
-}
-
-.font-colour-empire {
-  color: #D50000;
 }
 
 .maincolour {
   color: #66051f;
 }
 
-.roundselector {
-  padding: 5px;
+.roundselector a {
+  padding: 8px;
   border: 1px solid #E0E0E0;
   background-color: #F5F5F5;
+  font-family: "Goldman", serif;
 }
 
 .paraseparator {
   border-top: 1px solid #ced4da;
+  padding-top: 5px;
 }
 
 #deployflowchart li {
