@@ -16,13 +16,34 @@ $SWFont: "Goldman", serif;
 }
 
 #mainheader{
-    background-color: $backgroundcolour;
+    background-color: #F5F5F5;
     padding: 10px;
     font-weight: bold;
     font-family: $SWFont;
-    font-size: xx-large;
+    font-size: 2rem;
     color: $primary;
 }
+
+// @media(min-width: 300px)
+// {
+//     #mainheader{
+//         font-size: 0.8rem;
+//     }
+// }
+
+// @media(min-width: 544px)
+// {
+//     #mainheader{
+//         font-size: 1.5rem;
+//     }
+// }
+
+// @media(min-width: 768px)
+// {
+//     #mainheader{
+//         font-size: 2rem;
+//     }
+// }
 
 .wrapper{
     // width: 100%;
@@ -113,22 +134,21 @@ $SWFont: "Goldman", serif;
     color:gray;
 }
 
-%callout {
-    padding: 10px 5px 10px 10px;
-    margin: 0px 5px 10px 5px;
-    border: 1px solid #E0E0E0;
-    border-left-width: 8px;
-    border-radius: 3px;
-    background-color: $backgroundcolour;
-  }
+/* Callouts */
 
   %callouttext{
     font-size: small;
-    margin: 8px;
+    margin: 10px 8px;
   }
 
 .callout {
-    @extend %callout;
+    padding: 10px 5px 10px 10px;
+    margin: 0px 5px 10px 10px;
+    border-style: solid;
+    border-width: 0px;
+    border-left-width: 4px;
+    border-radius: 3px;
+    background-color: $calloutbackground1;
     p{
         @extend %callouttext;
     }
@@ -153,6 +173,36 @@ $SWFont: "Goldman", serif;
     border-color:$empirecolour;
     h5{
         color: $empirecolour;
+    }
+}
+
+.callout {
+    .callout-rebel{
+        background-color: $calloutbackground2;
+        .callout-empire{
+            background-color: $calloutbackground3;
+        }
+    }
+    .callout-empire{
+        background-color: $calloutbackground2;
+        .callout {
+            background-color: $calloutbackground3;
+        }
+    }
+    .callout-both{
+        background-color: $calloutbackground2;
+    }
+}
+
+.callout-rebel{
+    .callout-empire{
+        background-color: $calloutbackground2;
+    }
+}
+
+.callout-empire{
+    .callout {
+        background-color: $calloutbackground2;
     }
 }
 
@@ -188,6 +238,7 @@ margin: 8px;
 }
 
 #missiontable div{
+    font-size: small;
     margin: 0;
     padding: 0;
 }
@@ -195,3 +246,18 @@ margin: 8px;
 #carddecisionlist div{
     font-size: small;
 }
+
+#d6buttonstyle{
+    font-size: 2rem;
+    padding: 0;
+}
+
+#d6{
+    height: 80px;
+    width: 80px;
+    padding: 10px 0 0 28px;
+    margin: 40px auto;
+    border: 2px solid gray;
+    border-radius: 10px;  
+    font-size:40px;
+  }

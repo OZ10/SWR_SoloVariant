@@ -1,13 +1,17 @@
+$primary: #66051f;
+@import "../Resources/bootstrap-5.0.0-beta1-dist/scss/bootstrap.scss";
 
 $rebelcolour: #43a048c4;
 $empirecolour: #d50000c4;
-$backgroundcolour: #F5F5F5;
+$calloutbackground1: #F5F5F5;
+$calloutbackground2: $gray-200;
+$calloutbackground3: $gray-300;
 // $maincolour: #66051f;
 
 // $primary: #343a40;
-$primary: #66051f;
 
-@import "../Resources/bootstrap-5.0.0-beta1-dist/scss/bootstrap.scss";
+
+
 // @import "../Resources/bootstrap-5.0.0-beta1-dist/scss/_functions.scss";
 // @import "../Resources/bootstrap-5.0.0-beta1-dist/scss/_variables.scss";
 // @import "../Resources/bootstrap-5.0.0-beta1-dist/scss/_mixins.scss";

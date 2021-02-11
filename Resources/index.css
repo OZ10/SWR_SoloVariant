@@ -11313,7 +11313,7 @@ fieldset:disabled .btn {
   padding: 10px;
   font-weight: bold;
   font-family: "Goldman", serif;
-  font-size: xx-large;
+  font-size: 2rem;
   color: #66051f;
 }
 
@@ -11405,18 +11405,20 @@ fieldset:disabled .btn {
   color: gray;
 }
 
-.callout, .callout-rebel, .callout-empire, .callout-both {
-  padding: 10px 5px 10px 10px;
-  margin: 0px 5px 10px 5px;
-  border: 1px solid #E0E0E0;
-  border-left-width: 8px;
-  border-radius: 3px;
-  background-color: #F5F5F5;
-}
-
+/* Callouts */
 .callout p, .callout-rebel p, .callout-empire p, .callout-both p, .callout li, .callout-rebel li, .callout-empire li, .callout-both li {
   font-size: small;
-  margin: 8px;
+  margin: 10px 8px;
+}
+
+.callout, .callout-rebel, .callout-empire, .callout-both {
+  padding: 10px 5px 10px 10px;
+  margin: 0px 5px 10px 10px;
+  border-style: solid;
+  border-width: 0px;
+  border-left-width: 4px;
+  border-radius: 3px;
+  background-color: #F5F5F5;
 }
 
 .callout h5, .callout-rebel h5, .callout-empire h5, .callout-both h5, .callout .h5, .callout-rebel .h5, .callout-empire .h5, .callout-both .h5 {
@@ -11437,6 +11439,34 @@ fieldset:disabled .btn {
 
 .callout-empire h5, .callout-empire .h5 {
   color: #d50000c4;
+}
+
+.callout .callout-rebel, .callout-rebel .callout-rebel, .callout-empire .callout-rebel, .callout-both .callout-rebel {
+  background-color: #e9ecef;
+}
+
+.callout .callout-rebel .callout-empire, .callout-rebel .callout-rebel .callout-empire, .callout-empire .callout-rebel .callout-empire, .callout-both .callout-rebel .callout-empire {
+  background-color: #dee2e6;
+}
+
+.callout .callout-empire, .callout-rebel .callout-empire, .callout-empire .callout-empire, .callout-both .callout-empire {
+  background-color: #e9ecef;
+}
+
+.callout .callout-empire .callout, .callout-rebel .callout-empire .callout, .callout-empire .callout-empire .callout, .callout-both .callout-empire .callout, .callout .callout-empire .callout-rebel, .callout-rebel .callout-empire .callout-rebel, .callout-empire .callout-empire .callout-rebel, .callout-both .callout-empire .callout-rebel, .callout .callout-empire .callout-empire, .callout-rebel .callout-empire .callout-empire, .callout-empire .callout-empire .callout-empire, .callout-both .callout-empire .callout-empire, .callout .callout-empire .callout-both, .callout-rebel .callout-empire .callout-both, .callout-empire .callout-empire .callout-both, .callout-both .callout-empire .callout-both {
+  background-color: #dee2e6;
+}
+
+.callout .callout-both, .callout-rebel .callout-both, .callout-empire .callout-both, .callout-both .callout-both {
+  background-color: #e9ecef;
+}
+
+.callout-rebel .callout-empire {
+  background-color: #e9ecef;
+}
+
+.callout-empire .callout, .callout-empire .callout-rebel, .callout-empire .callout-empire, .callout-empire .callout-both {
+  background-color: #e9ecef;
 }
 
 .callout-both {
@@ -11466,11 +11496,27 @@ fieldset:disabled .btn {
 }
 
 #missiontable div {
+  font-size: small;
   margin: 0;
   padding: 0;
 }
 
 #carddecisionlist div {
   font-size: small;
+}
+
+#d6buttonstyle {
+  font-size: 2rem;
+  padding: 0;
+}
+
+#d6 {
+  height: 80px;
+  width: 80px;
+  padding: 10px 0 0 28px;
+  margin: 40px auto;
+  border: 2px solid gray;
+  border-radius: 10px;
+  font-size: 40px;
 }
 /*# sourceMappingURL=index.css.map */

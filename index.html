@@ -58,12 +58,18 @@
     </nav>
 
     <main>
-      <nav class="navbar" id="mainheader">
+      <div class="container-fluid" id="mainheader">
+        <div class="row align-items-center">
+        <div class="col-1">
         <button id="sidebarToggle" type="button" class="btn btn-primary ml-auto">
           <span class="material-icons align-middle">menu</span>
         </button>
-        <div class="mx-auto">Star Wars Rebellion: Solo Variant</div>
-      </nav>
+      </div>
+        <div class="col text-center">
+          <div>Star Wars Rebellion: Solo Variant</div>
+        </div>
+      </div>
+      </div>
 
       <div class="container-fluid">
         <div class="row">
@@ -96,11 +102,18 @@
                   Refresh
                 </span></a>
             </div>
+            <!-- Remote systems button -->
             <div class="col text-center p-2">
               <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                 data-bs-target="#remotesystemslist">
                 <span class="material-icons align-middle">public</span>
                 <span class="d-none d-sm-inline p-1" style="font-family: Goldman, serif;">Remote Systems</span>
+              </button>
+            </div>
+            <!-- D6 button -->
+            <div class="col text-center p-2">
+              <button type="button" class="btn btn-secondary" id="d6button">
+                <span class="material-icons align-middle" id="d6buttonstyle">casino</span>
               </button>
             </div>
           </section>
@@ -129,7 +142,8 @@
                   <div class="callout-empire">
                     <h5>Deployment</h5>
                     <p>
-                      Deploy the Empire Units as follows (use d6, as needed):
+                      Deploy the Empire Units as follows (use <a href="#" type="button" id="d6button">D6</a>, as
+                      needed):
                     </p>
                     <ul id="Base-Setup">
                       <li>2 TIE Fighters & 2 Stormtroopers in each of the
@@ -232,7 +246,8 @@
                       <h5>Opposing Rebel Missions</h5>
                       <p>Only if there are more Imperial Leaders than unrevealed<em class="text-medium"> Initial Mission
                         </em>
-                        cards, the Empire may issue an order (on a D6 result of 4+) to send their “best” qualified
+                        cards, the Empire may issue an order (on a <a href="#" type="button" id="d6button">D6</a> result
+                        of 4+) to send their “best” qualified
                         Leader
                         to
                         oppose a Rebel Mission. If no Leader has matching Skill icons, the Leader with the fewest total
@@ -812,6 +827,24 @@
         </div>
       </div>
 
+      <!-- D6 -->
+      <!-- Remote Systems List -->
+      <div class="modal fade" id="d6modal" tabindex="-1" aria-labelledby="D6" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="remotesystems">A D6 Has Appeared!</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex">
+              <div id="d6"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Production Value Guide -->
       <div class="modal fade" id="productionvalueguide" tabindex="-1" aria-labelledby="productionvalueguideLabel"
         aria-hidden="true">
@@ -846,37 +879,37 @@
               <ul style="list-style-type: none;">
                 Strength factors into the Empire’s decision-making:
                 <p></p>
-                <lem>
+                <li>
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                     class="bi bi-triangle-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                       d="M7.022 1.566a1.13 1.13 0 0 1 1.96 0l6.857 11.667c.457.778-.092 1.767-.98 1.767H1.144c-.889 0-1.437-.99-.98-1.767L7.022 1.566z" />
                   </svg>
-                  <strong> class="maincolour">Units: 1 STRENGTH</strong> (X-Wings, TIE Fighters, both sides’ Troopers)
-                </lem>
-                <lem>
+                  <strong class="maincolour">Units: 1 STRENGTH</strong> (X-Wings, TIE Fighters, both sides’ Troopers)
+                </li>
+                <li>
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                     class="bi bi-circle-fill" viewBox="0 0 16 16">
                     <circle cx="8" cy="8" r="8" />
                   </svg>
-                  <strong> class="maincolour">Units: 2 STRENGTH</strong> (Airspeeder and AT-ST)
-                </lem>
-                <lem>
+                  <strong class="maincolour">Units: 2 STRENGTH</strong> (Airspeeder and AT-ST)
+                </li>
+                <li>
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                     class="bi bi-square-fill" viewBox="0 0 16 16">
                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
                   </svg>
-                  <strong> class="maincolour">Units: 3 STRENGTH</strong> (Mon Calamari Cruiser and Star Destroyer)
-                </lem>
-                <lem>
+                  <strong class="maincolour">Units: 3 STRENGTH</strong> (Mon Calamari Cruiser and Star Destroyer)
+                </li>
+                <li>
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                     class="bi bi-patch-minus-fill" viewBox="0 0 16 16">
                     <path
                       d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM6 7.5h4a.5.5 0 0 1 0" />
                   </svg>
-                  <strong> class="maincolour">Units: 4 STRENGTH</strong> (The Empire’s Super Star Destroyers and Death
+                  <strong class="maincolour">Units: 4 STRENGTH</strong> (The Empire’s Super Star Destroyers and Death
                   Stars)
-                </lem>
+                </li>
               </ul>
             </div>
           </div>
@@ -911,6 +944,12 @@
         $('.overlay').addClass('show');
       });
 
+      // $('#d6button').on('click', function () {
+      //   // alert("gimme the D6!");
+      //   $.get("http://roll.diceapi.com/json/d6", function(data) {
+      //     alert("gimme the D6!");
+      //   });
+      // });
     });
   </script>
 </body>

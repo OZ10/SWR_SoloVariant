@@ -69,6 +69,37 @@ document.querySelectorAll('.planetbtn').forEach(
     }
 )
 
+var dice = {
+    sides: 6,
+    roll: function () {
+      var randomNumber = Math.floor(Math.random() * this.sides) + 1;
+      return randomNumber;
+    }
+  }
+
+  //Prints dice roll to the page
+  function rollD6(number) {
+    var placeholder = document.getElementById('d6');
+    placeholder.innerHTML = number;
+    var d6Modal = new bootstrap.Modal(document.getElementById('d6modal'));
+    d6Modal.toggle();
+  }
+  
+  document.querySelectorAll('#d6button').forEach(
+      d6Button => {
+        d6Button.onclick = function() {
+            var result = dice.roll();
+            rollD6(result);
+          };
+      });
+
+//   var d6Button = document.getElementById('d6button');
+  
+//   d6Button.onclick = function() {
+//     var result = dice.roll();
+//     rollD6(result);
+//   };
+
 // document.getElementById('sidebarToggle').addEventListener('click', (e) => {
 //     document.getElementById('sidebar').toggleClass('show');
 // })
