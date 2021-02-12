@@ -1,12 +1,11 @@
-// @use "./colours";
 @import "./colours";
 
 $SWFont: "Goldman", serif;
 
-// $rebelcolour: #43A047;
-// $empirecolour: #D50000;
-
-// $primary: #343a40;
+/* Bootstrap modifiers */
+.sticky-top{
+    top: 0.5em;
+}
 
 .body{
     height: 100%;
@@ -24,26 +23,26 @@ $SWFont: "Goldman", serif;
     color: $primary;
 }
 
-// @media(min-width: 300px)
-// {
-//     #mainheader{
-//         font-size: 0.8rem;
-//     }
-// }
+@media(min-width: 300px)
+{
+    #mainheader{
+        font-size: 0.8rem;
+    }
+}
 
-// @media(min-width: 544px)
-// {
-//     #mainheader{
-//         font-size: 1.5rem;
-//     }
-// }
+@media(min-width: 544px)
+{
+    #mainheader{
+        font-size: 1.5rem;
+    }
+}
 
-// @media(min-width: 768px)
-// {
-//     #mainheader{
-//         font-size: 2rem;
-//     }
-// }
+@media(min-width: 768px)
+{
+    #mainheader{
+        font-size: 2rem;
+    }
+}
 
 .wrapper{
     // width: 100%;
@@ -58,7 +57,7 @@ $SWFont: "Goldman", serif;
     position: fixed;
     top: 0;
     left: -350px;
-    z-index: 999;
+    z-index: 2001;
     background: $gray-200;
     transition: all 0.3s;
 }
@@ -88,7 +87,7 @@ $SWFont: "Goldman", serif;
     width: 100vw;
     height: 100vh;
     background: rgba(0,0,0,0.7);
-    z-index: 998;
+    z-index: 2000;
     opacity: 0;
     transition: all 0.5s ease-in-out;
 }

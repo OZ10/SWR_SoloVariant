@@ -11302,6 +11302,11 @@ fieldset:disabled .btn {
   }
 }
 
+/* Bootstrap modifiers */
+.sticky-top {
+  top: 0.5em;
+}
+
 .body {
   height: 100%;
   background-color: #ffffff;
@@ -11317,6 +11322,24 @@ fieldset:disabled .btn {
   color: #66051f;
 }
 
+@media (min-width: 300px) {
+  #mainheader {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 544px) {
+  #mainheader {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #mainheader {
+    font-size: 2rem;
+  }
+}
+
 .wrapper {
   display: block;
 }
@@ -11328,7 +11351,7 @@ fieldset:disabled .btn {
   position: fixed;
   top: 0;
   left: -350px;
-  z-index: 999;
+  z-index: 2001;
   background: #e9ecef;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -11365,7 +11388,7 @@ fieldset:disabled .btn {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 998;
+  z-index: 2000;
   opacity: 0;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
