@@ -57,7 +57,7 @@ $SWFont: "Goldman", serif;
     position: fixed;
     top: 0;
     left: -350px;
-    z-index: 2001;
+    z-index: 1025;
     background: $gray-200;
     transition: all 0.3s;
 }
@@ -87,7 +87,7 @@ $SWFont: "Goldman", serif;
     width: 100vw;
     height: 100vh;
     background: rgba(0,0,0,0.7);
-    z-index: 2000;
+    z-index: 1024;
     opacity: 0;
     transition: all 0.5s ease-in-out;
 }
@@ -209,6 +209,14 @@ $SWFont: "Goldman", serif;
     @extend .callout;
     border-image-source: linear-gradient(180deg, $rebelcolour, $empirecolour);
     border-image-slice: 1;
+}
+
+.important{
+    background-color: $gray-800;
+    color: white;
+    padding: 10;
+    border-radius: 2;
+    // background-clip: padding-box;
 }
 
 // ul[id^=ROTE]{

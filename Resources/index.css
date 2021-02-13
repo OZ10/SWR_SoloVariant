@@ -11351,7 +11351,7 @@ fieldset:disabled .btn {
   position: fixed;
   top: 0;
   left: -350px;
-  z-index: 2001;
+  z-index: 1025;
   background: #e9ecef;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -11388,7 +11388,7 @@ fieldset:disabled .btn {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 2000;
+  z-index: 1024;
   opacity: 0;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -11495,6 +11495,13 @@ fieldset:disabled .btn {
 .callout-both {
   border-image-source: linear-gradient(180deg, #43a048c4, #d50000c4);
   border-image-slice: 1;
+}
+
+.important {
+  background-color: #343a40;
+  color: white;
+  padding: 10;
+  border-radius: 2;
 }
 
 .maincolour {

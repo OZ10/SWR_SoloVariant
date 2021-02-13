@@ -32,25 +32,26 @@
             <label for="showTooltips">Show Tooltips</label>
           </div> -->
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="dynamicInstructions" onclick="chkClick(this);">
-            <label for="dynamicInstructions" data-bs-toggle="tooltip" data-bs-placement="right"
+            <input class="form-check-input" type="checkbox" id="chkdynamicInstructions" onclick="chkClick(this);">
+            <label for="chkdynamicInstructions" data-bs-toggle="tooltip" data-bs-placement="right"
               title="By default all rules will be displayed. When toggled ON rules will display based on certain criteria, i.e: when the RB is discovered, movement & deployment rules will ONLY be displayed in relation to the RB">Dynamic
               Rules</label>
           </div>
           <h6 class="paraseparator">Rise of the Empire Expansion</h6>
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="ROTE-Units" onclick="chkClick(this);">
-            <label for="ROTE-Units" data-bs-toggle="tooltip" data-bs-placement="right"
+            <input class="form-check-input" type="checkbox" id="chkROTE-Units" onclick="chkClick(this);">
+            <label for="chkROTE-Units" data-bs-toggle="tooltip" data-bs-placement="right"
               title="Setup deployment rules will change">Use Expansion Units</label>
           </div>
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="ROTE-TacticCards" onclick="chkClick(this);">
-            <label for="ROTE-TacticCards">Use Advanced Tactic Cards</label>
+            <input class="form-check-input" type="checkbox" id="chkROTE-TacticCards" onclick="chkClick(this);">
+            <label for="chkROTE-TacticCards" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Battle rules will change">Use Advanced Tactic Cards</label>
           </div>
           <h6 class="paraseparator">Variants</h6>
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="var-Movement" onclick="chkClick(this);">
-            <label for="var-Movement" data-bs-toggle="tooltip" data-bs-placement="right"
+            <input class="form-check-input" type="checkbox" id="chkvar-Movement" onclick="chkClick(this);">
+            <label for="chkvar-Movement" data-bs-toggle="tooltip" data-bs-placement="right"
               title="The Empire will roll a D6 to determine whether to move to RB/PRB or nearest rebel units. Movement rules will be updated to reflect this">Movement
               Variant</label>
           </div>
@@ -328,38 +329,55 @@
 
                   <div class="callout">
                     <a class="text-decoration-none" href="#0" role="button" data-bs-toggle="collapse"
-                        data-bs-target="#movementrules">
-                    <h5>Movement Rules</h5>
+                      data-bs-target="#movementrules">
+                      <h5>Movement Rules</h5>
                     </a>
-                    <p class="collapse" id="movementrules">
-                      Always move the Empire’s Units by the shortest possible route toward the nearest unexplored (Probe
-                      Card
-                      not yet obtained) Remote System (also known as the Possible Rebel Base [PRB]) and will attack any
-                      rebel ships in their
-                      way. When moving into a System, the Empire will move all Units from adjacent Systems into the
-                      Activated System, bringing along as many
-                      Ground Units as they can transport, prioritizing Space Units with the highest <a
-                        class="link-danger text-medium" href="#" data-bs-target="#strengthguide"
-                        data-bs-toggle="modal">Strength</a> values.
-                      However, if a fleet is otherwise selected,
-                      but unable, to move, place a Leader into the System, along with a Stormtrooper from supply. The
-                      Empire
-                      will always leave one weakest Ground
-                      Unit and immediately obtain that Remote System’s Probe Card (reshuffle deck). If the Empire ever
-                      loses
-                      its last Ground Unit
-                      stationed on a Remote System (e.g. due to a Combat loss), return the Probe Card to the Probe Deck
-                      and
-                      reshuffle. When the difference between the
-                      Turn and Reputation Markers is ≤ 5, Imperial fleets may move (once/turn) even if there’s a Leader
-                      in
-                      the starting System. The Empire
-                      will change its movement behavior once the Rebel Base is revealed (See Revealing the Rebel Base
-                      below)
-                    </p>
+                    <div class="collapse" id="movementrules">
+                      <div class="d-none" id="var-movement">
+                        <p>
+                          Before moving, roll a <a href="#0" type="button" id="d6button">D6</a>. On 1-3:</p>
+                        <p>Move the
+                          Empire's Units to the closest system that contains the rebel pieces. Prioritize: Loyal Systems
+                          >
+                          largest fleet</p>
+                        <p>On 4-6:<br>
+                        </p>
+                      </div>
+                      <p>
+                        Move the Empire’s Units by the shortest possible route toward the nearest unexplored
+                        (Probe
+                        Card not yet obtained) Remote System (also known as the Possible Rebel Base [PRB]) and will
+                        attack
+                        any rebel ships in their way.</p>
+                      <p>When moving into a System, the Empire will move all Units from
+                        adjacent Systems into the Activated System, bringing along as many Ground Units as they can
+                        transport, prioritizing Space Units with the highest <a class="link-danger text-medium" href="#"
+                          data-bs-target="#strengthguide" data-bs-toggle="modal">Strength</a> values.</p>
+                      <P class="important">IMPORTANT: The Empire
+                        <strong>must</strong> leave one weakest Ground Unit behind to make a valid move. If the fleet
+                        has
+                        been selected (because they are closest) but cannot leave a Ground Unit behind, place a Leader
+                        into the System, along with a Stormtrooper from supply. The fleet will then be able to move on a
+                        later turn.
+                      </p>
+                      <p>
+                        After a successful move - with Ground Units - to a Remote System, immediately obtain that
+                        system's
+                        Probe Card (reshuffle deck). If the Empire ever loses its
+                        last Ground Unit stationed on a Remote System (e.g. due to a Combat loss), return the Probe Card
+                        to the Probe Deck and reshuffle.</p>
+                      <p>When the difference between the Turn and Reputation Markers is
+                        ≤
+                        5, Imperial fleets may move (once/turn) even if there’s a Leader in the starting System. The
+                        Empire will change its movement behavior once the Rebel Base is revealed (See Revealing the
+                        Rebel
+                        Base below)
+                      </p>
+                    </div>
+
                     <a class="text-decoration-none" href="#0" role="button" data-bs-toggle="collapse"
-                    data-bs-target="#revealingtherebelbase">
-                    <h5>Revealing the Rebel Base</h5>
+                      data-bs-target="#revealingtherebelbase">
+                      <h5>Revealing the Rebel Base</h5>
                     </a>
                     <p class="collapse" id="revealingtherebelbase">
                       Reveal <strong>The Rebel Base</strong> only after the Empire has obtained Probe Cards for the
@@ -382,6 +400,36 @@
                       Ground Units) Remote Systems. When the Empire reveals the Rebel Base, the Empire draws 3 cards (1
                       Starting Mission and 2 Main Missions) during the Assignment Phase
                     </p>
+
+                    <a class="text-decoration-none" href="#0" role="button" data-bs-toggle="collapse"
+                      data-bs-target="#battles">
+                      <h5>Battles</h5>
+                    </a>
+                    <div class="collapse" id="battles">
+                      <p id="Base-Battles">
+                        While Battles will play out normally, the Empire will not draw/use any Tactics cards.
+                        Additionally, follow these special rules:</p>
+                      <p class="d-none" id="ROTE-Battles">
+                        While Battles will play out normally, the Empire will randomly draw one Advanced Tactic Card per
+                        attack.
+                        Additionally, follow these special rules:</p>
+                      <ul>
+                        <li>Any Special Icons rolled are considered “hits” vs. Rebel Units </li>
+                        <li>You MUST reroll up to the number of “hits” equal to the Theater-specific Tactics Value of
+                          the
+                          Empire’s Leader (starting with the “Direct Hit” followed by regular/single hits) until they’re
+                          all used; balance may carry-over to later rounds.<br>For example: Empire's Leader has a
+                          tactics
+                          value of 2. You MUST ignore your first two <strong>hits</strong> and re-roll those dice. If
+                          you roll no hits, the two re-rolls will carry-over to the next attack</li>
+                        <li>The Empire will assign hits vs. Rebel Units with the following priority: Ion Cannon, Weakest
+                          Units (Remaining Health); and Greatest Firepower (i.e. number of attack dice rolled) [Note:
+                          Use
+                          Golden Rule to break ties]</li>
+                        <li>THE DEATH STAR: The Empire will ONLY target the Rebel Base, a PRB, or a System with Rebel
+                          Loyalty and/or any Rebel Ground Units</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
                 <div class="callout-empire">

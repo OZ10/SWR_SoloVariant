@@ -17,11 +17,15 @@ function run() {
 
 function chkClick(cb){
     switch (cb.id) {
-        case 'ROTE-Units':
+        case 'chkROTE-Units':
             showHideElement('ROTE-Setup');
             showHideElement('Base-Setup');
             break;
-    
+        case 'chkROTE-TacticCards':
+            showHideElement('ROTE-Battles');
+            showHideElement('Base-Battles');
+        case 'chkvar-Movement':
+            showHideElement('var-movement');
         default:
             break;
     }
