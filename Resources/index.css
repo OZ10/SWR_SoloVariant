@@ -11407,6 +11407,32 @@ fieldset:disabled .btn {
   right: 10px;
 }
 
+.sidebarsubheader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 20px 0 0;
+}
+
+.variant {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #6c757d;
+  color: white;
+  border-radius: 3px;
+}
+
+.variant span {
+  padding: 10px;
+}
+
 #row1 div[class^=col] {
   border-style: solid;
   border-color: #ced4da;
@@ -11497,13 +11523,6 @@ fieldset:disabled .btn {
   border-image-slice: 1;
 }
 
-.important {
-  background-color: #343a40;
-  color: white;
-  padding: 10;
-  border-radius: 2;
-}
-
 .maincolour {
   color: #66051f;
 }
@@ -11515,7 +11534,7 @@ fieldset:disabled .btn {
   font-family: "Goldman", serif;
 }
 
-.paraseparator {
+.paraseparator, .sidebarsubheader {
   border-top: 1px solid #ced4da;
   padding-top: 5px;
 }

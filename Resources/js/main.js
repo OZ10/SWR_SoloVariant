@@ -24,20 +24,36 @@ function chkClick(cb){
         case 'chkROTE-TacticCards':
             showHideElement('ROTE-Battles');
             showHideElement('Base-Battles');
+            break;
         case 'chkvar-Movement':
             showHideElement('var-movement');
+            showHideElement('Base-movement');
+            break;
+        case 'chkvar-Deployment':
+            showHideElement('var-Empiredeploy');
+            showHideElement('Base-Empiredeploy');
+            break;
+        case 'chkvar-UnPlayableMissions':
+            showHideElement('var-Unplayablemissions');
+            showHideElement('Base-Unplayablemissions');
+            break;
         default:
             break;
     }
 }
 
 function showHideElement(id) {
-    var element = document.getElementById(id);
-    if (element.classList.contains('d-none')) {
-        element.classList.remove('d-none')
-    }else{
-        element.classList.add('d-none')
-    }
+    // var element = document.getElementById(id);
+    document.querySelectorAll('#' + id).forEach(
+        element => {
+            if (element.classList.contains('d-none')) {
+                element.classList.remove('d-none')
+            }else{
+                element.classList.add('d-none')
+            }
+        }
+    )
+    
 }
 
 // function run2(e){

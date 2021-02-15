@@ -37,7 +37,10 @@
               title="By default all rules will be displayed. When toggled ON rules will display based on certain criteria, i.e: when the RB is discovered, movement & deployment rules will ONLY be displayed in relation to the RB">Dynamic
               Rules</label>
           </div>
-          <h6 class="paraseparator">Rise of the Empire Expansion</h6>
+
+          <h6 class="sidebarsubheader">Rise of the Empire Expansion
+            <span class="material-icons" style="font-size: large; ">dark_mode</span>
+          </h6>
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="chkROTE-Units" onclick="chkClick(this);">
             <label for="chkROTE-Units" data-bs-toggle="tooltip" data-bs-placement="right"
@@ -48,11 +51,26 @@
             <label for="chkROTE-TacticCards" data-bs-toggle="tooltip" data-bs-placement="right"
               title="Battle rules will change">Use Advanced Tactic Cards</label>
           </div>
-          <h6 class="paraseparator">Variants</h6>
+          <h6 class="sidebarsubheader">Variants
+            <span class="material-icons" style="font-size: large;">science</span>
+          </h6>
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="chkvar-Movement" onclick="chkClick(this);">
             <label for="chkvar-Movement" data-bs-toggle="tooltip" data-bs-placement="right"
               title="The Empire will roll a D6 to determine whether to move to RB/PRB or nearest rebel units. Movement rules will be updated to reflect this">Movement
+              Variant</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="chkvar-Deployment" onclick="chkClick(this);">
+            <label for="chkvar-Deployment" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="The Empire will deploy prioritizing proximity to PRB > proximity to Rebel system (tie going to production strength) > Imperial production strength">Deployment
+              Variant: Priority</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="chkvar-UnPlayableMissions" onclick="chkClick(this);">
+            <label for="chkvar-UnPlayableMissions" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Unplayable Missions will be put at the bottom of the Initial Missions Desk and resolved at the end of the command phase. Wording in 'Play Initial Missions' section will change">Unplayable
+              Missions
               Variant</label>
           </div>
       </div>
@@ -157,23 +175,29 @@
                       </li>
                       <li>Randomly deploy the Death Star</li>
                     </ul>
-                    <ul class="d-none" id="ROTE-Setup">
-                      <p>Place a Death Star on space 3 of the build queue and the in-construction Death Star, a
-                        subjugation marker, 4
-                        TIE Fighters and 1 Stormtrooper in one of the 6 neutral single-triangle resource systems chosen
-                        at random
-                        from: Felucia, Kessel, Malastare, Alderaan, Rodia or Ryloth, return its probe card to the game
-                        box</p>
-                      <li>2 Stormtroopers in each of the 6 Systems</li>
-                      <li>Randomly deploy 3 Star Destroyers in 3 separate Systems (1 each);
-                        deploy 3 Assault Carriers in the remaining 3 Systems</li>
-                      <li>Place a TIE Fighter in each system except Coruscant, then randomly add TIE striker to 2 of
-                        those five and a TIE
-                        Fighter to the remaining 3.
-                      </li>
-                      <li>Randomly place 2 Assault Tanks and 4 AT-STs in each of the 6 systems (1 per system)</li>
-                      <li>Randomly place an AT-AT in one of the 5 systems - not Coruscant</li>
-                    </ul>
+                    <div class="d-none variant" id="ROTE-Setup">
+                      <div>
+                        <p>Place a Death Star on space 3 of the build queue and the in-construction Death Star, a
+                          subjugation marker, 4
+                          TIE Fighters and 1 Stormtrooper in one of the 6 neutral single-triangle resource systems
+                          chosen
+                          at random
+                          from: Felucia, Kessel, Malastare, Alderaan, Rodia or Ryloth, return its probe card to the game
+                          box</p>
+                        <ul>
+                          <li>2 Stormtroopers in each of the 6 Systems</li>
+                          <li>Randomly deploy 3 Star Destroyers in 3 separate Systems (1 each);
+                            deploy 3 Assault Carriers in the remaining 3 Systems</li>
+                          <li>Place a TIE Fighter in each system except Coruscant, then randomly add TIE striker to 2 of
+                            those five and a TIE
+                            Fighter to the remaining 3.
+                          </li>
+                          <li>Randomly place 2 Assault Tanks and 4 AT-STs in each of the 6 systems (1 per system)</li>
+                          <li>Randomly place an AT-AT in one of the 5 systems - not Coruscant</li>
+                        </ul>
+                      </div>
+                      <span class="material-icons">dark_mode</span>
+                    </div>
                   </div>
                   <div class="callout-rebel">
                     <h5>Rebel Base</h5>
@@ -283,19 +307,28 @@
                   <div class="callout-empire">
                     <h5>Play Initial Missions</h5>
                     <p>The Empire <strong>always</strong> complete <em class="text-medium">
-                        Initial
-                        Missions
-                      </em> first
-                      before Activating Systems for movement</p>
+                        Initial Missions </em> first before Activating Systems for movement</p>
                     <p>
                       <strong>Undertaking <em class="text-medium">Initial Missions</em>:</strong> Flip over the top
                       Mission from the
                       deck and assign the “best” qualified Leader (pictured Leader or the
-                      Leader possessing the most matching Skill icons). If a Mission proves unplayable (no appropriate
+                      Leader possessing the most matching Skill icons)
+                    </p>
+                    <p id="Base-Unplayablemissions">If a Mission proves unplayable (no appropriate
                       Leader or for any reason), select a new Mission from the appropriate Deck
                       and place all unfulfilled Mission cards at the bottom of their
-                      respective Decks. Select Mission locations based on either the <a class="link-danger text-medium"
-                        href="#" data-bs-toggle="modal" data-bs-target="#carddecisionlist">Empire’s Card Decision Making
+                      respective Decks</p>
+                    <div class="d-none variant" id="var-Unplayablemissions">
+                      <p>If a mission cannot be performed due to circumstances
+                        that may change (e.g. no leaders captured yet, Death Star hasn't moved), put the card at the
+                        bottom of the <em class="text-medium">Initial Missions</em> Deck. Reserve the leader who would have undertaken the
+                        mission. Once all other <em class="text-medium">Initial Missions</em> and movement have taken place, attempt to resolve any
+                        unplayable mission(s) with reserved leader(s). If the mission(s) still cannot be performed,
+                        draws a new mission(s)</p>
+                      <span class="material-icons">science</span>
+                    </div>
+                    <p>Select Mission locations based on either the <a class="link-danger text-medium" href="#"
+                        data-bs-toggle="modal" data-bs-target="#carddecisionlist">Empire’s Card Decision Making
                         List</a> or the System with the <a class="link-danger text-medium" href="#"
                         data-bs-toggle="modal" data-bs-target="#productionvalueguide">Highest Production Value</a>.
                     </p>
@@ -333,27 +366,37 @@
                       <h5>Movement Rules</h5>
                     </a>
                     <div class="collapse" id="movementrules">
-                      <div class="d-none" id="var-movement">
-                        <p>
-                          Before moving, roll a <a href="#0" type="button" id="d6button">D6</a>. On 1-3:</p>
-                        <p>Move the
-                          Empire's Units to the closest system that contains the rebel pieces. Prioritize: Loyal Systems
-                          >
-                          largest fleet</p>
-                        <p>On 4-6:<br>
-                        </p>
+                      <div class="d-none variant" id="var-movement">
+                        <div>
+                          <p>
+                            Before moving, roll a <a href="#0" type="button" id="d6button">D6</a></p>
+                          <div style="display: flex;">
+                            <p>1-3:</p>
+                            <p>Move the Empire's Units to the closest system that contains the rebel pieces. Prioritize:
+                              Loyal Systems > largest fleet</p>
+                          </div>
+                          <div style="display: flex;">
+                            <p>4-6:</p>
+                            <p>
+                              Move the Empire’s Units by the shortest possible route toward the nearest unexplored
+                              (Probe Card not yet obtained) Remote System (also known as the Possible Rebel Base [PRB])
+                              and
+                              will attack any rebel ships in their way.
+                            </p>
+                          </div>
+                        </div>
+                        <span class="material-icons">science</span>
                       </div>
-                      <p>
+                      <p id="Base-movement">
                         Move the Empire’s Units by the shortest possible route toward the nearest unexplored
-                        (Probe
-                        Card not yet obtained) Remote System (also known as the Possible Rebel Base [PRB]) and will
-                        attack
-                        any rebel ships in their way.</p>
-                      <p>When moving into a System, the Empire will move all Units from
-                        adjacent Systems into the Activated System, bringing along as many Ground Units as they can
+                        (Probe Card not yet obtained) Remote System (also known as the Possible Rebel Base [PRB]) and
+                        will
+                        attack any rebel ships in their way.</p>
+                      <p>When moving into a System, the Empire will move all Units from adjacent Systems into the
+                        Activated System, bringing along as many Ground Units as they can
                         transport, prioritizing Space Units with the highest <a class="link-danger text-medium" href="#"
                           data-bs-target="#strengthguide" data-bs-toggle="modal">Strength</a> values.</p>
-                      <P class="important">IMPORTANT: The Empire
+                      <P class="important"><strong>IMPORTANT:</strong> The Empire
                         <strong>must</strong> leave one weakest Ground Unit behind to make a valid move. If the fleet
                         has
                         been selected (because they are closest) but cannot leave a Ground Unit behind, place a Leader
@@ -409,19 +452,22 @@
                       <p id="Base-Battles">
                         While Battles will play out normally, the Empire will not draw/use any Tactics cards.
                         Additionally, follow these special rules:</p>
-                      <p class="d-none" id="ROTE-Battles">
-                        While Battles will play out normally, the Empire will randomly draw one Advanced Tactic Card per
-                        attack.
-                        Additionally, follow these special rules:</p>
+                      <div class="d-none variant" id="ROTE-Battles">
+                        <p>
+                          While Battles will play out normally, the Empire will randomly draw one <strong>Advanced
+                            Tactic Card</strong>
+                          per attack. Additionally, follow these special rules:</p>
+                        <span class="material-icons">dark_mode</span>
+                      </div>
                       <ul>
                         <li>Any Special Icons rolled are considered “hits” vs. Rebel Units </li>
                         <li>You MUST reroll up to the number of “hits” equal to the Theater-specific Tactics Value of
                           the
                           Empire’s Leader (starting with the “Direct Hit” followed by regular/single hits) until they’re
-                          all used; balance may carry-over to later rounds.<br>For example: Empire's Leader has a
-                          tactics
-                          value of 2. You MUST ignore your first two <strong>hits</strong> and re-roll those dice. If
-                          you roll no hits, the two re-rolls will carry-over to the next attack</li>
+                          all used; balance may carry-over to later rounds.<br><em>For example: Empire's Leader has a
+                            tactics value of 2. You MUST ignore your first two <strong>hits</strong> and re-roll those
+                            dice. If
+                            you roll no hits, the two re-rolls will carry-over to the next attack</em></li>
                         <li>The Empire will assign hits vs. Rebel Units with the following priority: Ion Cannon, Weakest
                           Units (Remaining Health); and Greatest Firepower (i.e. number of attack dice rolled) [Note:
                           Use
@@ -527,20 +573,29 @@
                       placed
                       per system rule:</p>
                     <ul id="deployflowchart">
-                      <li>Locate the <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
-                          data-bs-target="#productionvalueguide">Highest Production Value</a> System</li>
+                      <li id="Base-Empiredeploy">Locate the <a class="link-danger text-medium" href="#"
+                          data-bs-toggle="modal" data-bs-target="#productionvalueguide">Highest Production Value</a>
+                        System</li>
+                      <div class="d-none variant" id="var-Empiredeploy">
+                        <li>Locate the Empire system closest to (in priority order) the RB/PRB > Rebel system (tie going
+                          to production strength) > Imperial production strength</li>
+                        <span class="material-icons">science</span>
+                      </div>
                       <li>Find the Theater (Space or Ground) with the fewest Units</li>
                       <li>Place the strongest available unit in this Theater Note: If the Empire doesn’t have a Unit to
-                        place
-                        in-Theater, place the strongest Built Unit of the other Theater-type into its Theater (if there
-                        are
-                        the same number of Units in each Theater, randomly choose between the Theaters)</li>
-                      <li>Move to the next <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
-                          data-bs-target="#productionvalueguide">Highest Production Value</a> System; Resolve from the
-                        beginning of the flowchart,
-                        wrapping back around to the first <a class="link-danger text-medium" href="#"
+                        place in-Theater, place the strongest Built Unit of the other Theater-type into its Theater (if
+                        there are the same number of Units in each Theater, randomly choose between the Theaters)</li>
+                      <li class="Base-Empiredeploy">Move to the next <a class="link-danger text-medium" href="#"
                           data-bs-toggle="modal" data-bs-target="#productionvalueguide">Highest Production Value</a>
+                        System; Resolve from the beginning of the flowchart, wrapping back around to the first <a
+                          class="link-danger text-medium" href="#" data-bs-toggle="modal"
+                          data-bs-target="#productionvalueguide">Highest Production Value</a>
                         System, if necessary</li>
+                      <div class="d-none variant" id="var-Empiredeploy">
+                        <li class="d-none" id="var-Empiredeploy">Return to the beginning of the flowchart, wrapping back
+                          around to the first located system if necessary</li>
+                        <span class="material-icons">science</span>
+                      </div>
                     </ul>
                   </div>
 

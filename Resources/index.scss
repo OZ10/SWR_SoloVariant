@@ -106,6 +106,25 @@ $SWFont: "Goldman", serif;
     right: 10px;
 }
 
+.sidebarsubheader{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 0;
+    @extend .paraseparator;
+}
+
+.variant{
+    display: flex;
+    justify-content: space-between;
+    background-color: $gray-600;
+    color: white;
+    border-radius: 3px;
+}
+
+.variant span{
+    padding: 10px;
+}
+
 // Hack that needs sorting. Styles grid on Empire’s Card Decision Making List
 #row1 div[class^=col]{
     border-style: solid;
@@ -211,13 +230,13 @@ $SWFont: "Goldman", serif;
     border-image-slice: 1;
 }
 
-.important{
-    background-color: $gray-800;
-    color: white;
-    padding: 10;
-    border-radius: 2;
-    // background-clip: padding-box;
-}
+// .important{
+//     background-color: $gray-800;
+//     color: white;
+//     padding: 10;
+//     border-radius: 2;
+//     // background-clip: padding-box;
+// }
 
 // ul[id^=ROTE]{
 //     color: blue;
