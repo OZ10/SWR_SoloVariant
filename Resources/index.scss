@@ -113,6 +113,14 @@ $SWFont: "Goldman", serif;
     @extend .paraseparator;
 }
 
+.roundslider {
+    // position: absolute;
+    // top: 40%;
+    transform: rotate(270deg);
+    // color: $primary;
+    // height: 200px;
+ }
+
 .variant{
     display: flex;
     justify-content: space-between;
@@ -170,6 +178,9 @@ $SWFont: "Goldman", serif;
     p{
         @extend %callouttext;
     }
+    ul{
+        @extend %callouttext;
+    }
     li{
         @extend %callouttext;
     }
@@ -209,6 +220,25 @@ $SWFont: "Goldman", serif;
     }
     .callout-both{
         background-color: $calloutbackground2;
+        .callout-both{
+            background-color: $calloutbackground3;
+        }
+        .callout-empire{
+            background-color: $calloutbackground3;
+        }
+    }
+    .callout{
+        background-color: $calloutbackground2;
+        .callout{
+            background-color: $calloutbackground3;
+        }
+        .callout-rebel{
+            background-color: $calloutbackground3;
+        }
+        .callout-empire
+        {
+            background-color: $calloutbackground3;
+        }
     }
 }
 

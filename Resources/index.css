@@ -11417,6 +11417,11 @@ fieldset:disabled .btn {
   padding: 0 20px 0 0;
 }
 
+.roundslider {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
 .variant {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11455,7 +11460,7 @@ fieldset:disabled .btn {
 }
 
 /* Callouts */
-.callout p, .callout-rebel p, .callout-empire p, .callout-both p, .callout li, .callout-rebel li, .callout-empire li, .callout-both li {
+.callout p, .callout-rebel p, .callout-empire p, .callout-both p, .callout ul, .callout-rebel ul, .callout-empire ul, .callout-both ul, .callout li, .callout-rebel li, .callout-empire li, .callout-both li {
   font-size: small;
   margin: 10px 8px;
 }
@@ -11508,6 +11513,30 @@ fieldset:disabled .btn {
 
 .callout .callout-both, .callout-rebel .callout-both, .callout-empire .callout-both, .callout-both .callout-both {
   background-color: #e9ecef;
+}
+
+.callout .callout-both .callout-both, .callout-rebel .callout-both .callout-both, .callout-empire .callout-both .callout-both, .callout-both .callout-both .callout-both {
+  background-color: #dee2e6;
+}
+
+.callout .callout-both .callout-empire, .callout-rebel .callout-both .callout-empire, .callout-empire .callout-both .callout-empire, .callout-both .callout-both .callout-empire {
+  background-color: #dee2e6;
+}
+
+.callout .callout, .callout-rebel .callout, .callout-empire .callout, .callout-both .callout, .callout .callout-rebel, .callout-rebel .callout-rebel, .callout-empire .callout-rebel, .callout-both .callout-rebel, .callout .callout-empire, .callout-rebel .callout-empire, .callout-empire .callout-empire, .callout-both .callout-empire, .callout .callout-both, .callout-rebel .callout-both, .callout-empire .callout-both, .callout-both .callout-both {
+  background-color: #e9ecef;
+}
+
+.callout .callout .callout, .callout-rebel .callout .callout, .callout-empire .callout .callout, .callout-both .callout .callout, .callout .callout-rebel .callout, .callout-rebel .callout-rebel .callout, .callout-empire .callout-rebel .callout, .callout-both .callout-rebel .callout, .callout .callout-empire .callout, .callout-rebel .callout-empire .callout, .callout-empire .callout-empire .callout, .callout-both .callout-empire .callout, .callout .callout-both .callout, .callout-rebel .callout-both .callout, .callout-empire .callout-both .callout, .callout-both .callout-both .callout, .callout .callout .callout-rebel, .callout-rebel .callout .callout-rebel, .callout-empire .callout .callout-rebel, .callout-both .callout .callout-rebel, .callout .callout-rebel .callout-rebel, .callout-rebel .callout-rebel .callout-rebel, .callout-empire .callout-rebel .callout-rebel, .callout-both .callout-rebel .callout-rebel, .callout .callout-empire .callout-rebel, .callout-rebel .callout-empire .callout-rebel, .callout-empire .callout-empire .callout-rebel, .callout-both .callout-empire .callout-rebel, .callout .callout-both .callout-rebel, .callout-rebel .callout-both .callout-rebel, .callout-empire .callout-both .callout-rebel, .callout-both .callout-both .callout-rebel, .callout .callout .callout-empire, .callout-rebel .callout .callout-empire, .callout-empire .callout .callout-empire, .callout-both .callout .callout-empire, .callout .callout-rebel .callout-empire, .callout-rebel .callout-rebel .callout-empire, .callout-empire .callout-rebel .callout-empire, .callout-both .callout-rebel .callout-empire, .callout .callout-empire .callout-empire, .callout-rebel .callout-empire .callout-empire, .callout-empire .callout-empire .callout-empire, .callout-both .callout-empire .callout-empire, .callout .callout-both .callout-empire, .callout-rebel .callout-both .callout-empire, .callout-empire .callout-both .callout-empire, .callout-both .callout-both .callout-empire, .callout .callout .callout-both, .callout-rebel .callout .callout-both, .callout-empire .callout .callout-both, .callout-both .callout .callout-both, .callout .callout-rebel .callout-both, .callout-rebel .callout-rebel .callout-both, .callout-empire .callout-rebel .callout-both, .callout-both .callout-rebel .callout-both, .callout .callout-empire .callout-both, .callout-rebel .callout-empire .callout-both, .callout-empire .callout-empire .callout-both, .callout-both .callout-empire .callout-both, .callout .callout-both .callout-both, .callout-rebel .callout-both .callout-both, .callout-empire .callout-both .callout-both, .callout-both .callout-both .callout-both {
+  background-color: #dee2e6;
+}
+
+.callout .callout .callout-rebel, .callout-rebel .callout .callout-rebel, .callout-empire .callout .callout-rebel, .callout-both .callout .callout-rebel, .callout .callout-rebel .callout-rebel, .callout-rebel .callout-rebel .callout-rebel, .callout-empire .callout-rebel .callout-rebel, .callout-both .callout-rebel .callout-rebel, .callout .callout-empire .callout-rebel, .callout-rebel .callout-empire .callout-rebel, .callout-empire .callout-empire .callout-rebel, .callout-both .callout-empire .callout-rebel, .callout .callout-both .callout-rebel, .callout-rebel .callout-both .callout-rebel, .callout-empire .callout-both .callout-rebel, .callout-both .callout-both .callout-rebel {
+  background-color: #dee2e6;
+}
+
+.callout .callout .callout-empire, .callout-rebel .callout .callout-empire, .callout-empire .callout .callout-empire, .callout-both .callout .callout-empire, .callout .callout-rebel .callout-empire, .callout-rebel .callout-rebel .callout-empire, .callout-empire .callout-rebel .callout-empire, .callout-both .callout-rebel .callout-empire, .callout .callout-empire .callout-empire, .callout-rebel .callout-empire .callout-empire, .callout-empire .callout-empire .callout-empire, .callout-both .callout-empire .callout-empire, .callout .callout-both .callout-empire, .callout-rebel .callout-both .callout-empire, .callout-empire .callout-both .callout-empire, .callout-both .callout-both .callout-empire {
+  background-color: #dee2e6;
 }
 
 .callout-rebel .callout-empire {
