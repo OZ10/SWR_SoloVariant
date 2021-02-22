@@ -86,12 +86,11 @@
 
       <div class="container-fluid">
         <div class="row">
-
           <!-- Round Selection & Options-->
           <section class="col-auto p-2">
             <!-- Setup & Round Selection -->
-            <div class="sticky-top">
-              <div class="list-group roundselector" id="list-tab" role="tablist">
+            <ul class="list-group sticky-top">
+              <li class="list-group roundselector" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action" id="list-setup-list" data-toggle="list"
                   data-bs-toggle="list" href="#list-setup-steps" role="tab" aria-controls="setup">
                   <span class="material-icons align-middle">settings</span>
@@ -116,31 +115,32 @@
                   <span class="d-none d-sm-inline p-1">
                     Refresh
                   </span></a>
-              </div>
+                </li>
 
               <!-- Remote systems button -->
-              <div class="text-center p-2">
+              <li class="text-center p-2">
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                   data-bs-target="#remotesystemslist">
                   <span class="material-icons align-middle">public</span>
                   <span class="d-none d-sm-inline p-1" style="font-family: Goldman, serif;">Remote Systems</span>
                 </button>
-              </div>
+              </li>
 
               <!-- D6 button -->
-              <div class="text-center p-2">
+              <li class="text-center p-2">
                 <button type="button" class="btn btn-secondary" id="d6button">
                   <span class="material-icons align-middle" id="d6buttonstyle">casino</span>
                 </button>
-              </div>
+              </li>
 
               <!-- Round Counter -->
-              <!-- <div style="height: 200px; width: 150px; background-color: lightgray;">
+              <!-- <li class="text-center roundslider" style="margin-top: 60px; margin-bottom: 60px; width: 200px; background-color: lightgray;">
                 <label for="round" class="form-label">Round</label>
                 <input class="form-range" type="range" min="0" max="10" id="round">
-                <input class="form-range" type="range">
-              </div> -->
-            </div>
+                <label for="round" class="form-label">Rebel</label>
+                <input class="form-range" type="range" min="0" max="10" id="rebel">
+              </li> -->
+            </ul>
           </section>
 
           <!-- Steps Panel -->
@@ -200,7 +200,7 @@
                     <div class="callout-empire">
                       <p>Shuffle one of each of the five different <strong>Project</strong> cards into the <em>Empire’s
                           Main Missions Deck.</em></p>
-                    </div>
+                      </div>
                   </div>
                   <div class="callout">
                     <h5>Place Starting Units and Loyalty</h5>
@@ -275,11 +275,11 @@
                         <ul>
                           <li>1 Corellian Corvette</li>
                           <li>1 Rebel Transport</li>
-                          <li>1 X-wings</li>
-                          <li>1 Y-wings</li>
+                          <li>1 X-wing</li>
+                          <li>1 Y-wing</li>
                         </ul>
                         <ul>
-                          <li>1 U-wings</li>
+                          <li>1 U-wing</li>
                           <li>5 Rebel Troopers</li>
                           <li>2 Airspeeders</li>
                           <li>1 Rebel Vanguard</li>

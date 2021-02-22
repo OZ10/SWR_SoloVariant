@@ -11422,6 +11422,11 @@ fieldset:disabled .btn {
           transform: rotate(270deg);
 }
 
+.roundslider2 {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
 .variant {
   display: -webkit-box;
   display: -ms-flexbox;
