@@ -136,6 +136,75 @@ a:hover{
     @extend .paraseparator;
 }
 
+.planetlabel:hover{
+    transition-duration: 0.3s;
+    transform: scale(1.05);
+}
+
+#dagobah:before{
+    content: url(./images/SWR_Dagobah_bw.png);
+}
+
+:checked+#dagobah:before{
+    content: url(./images/SWR_Dagobah.png);
+}
+
+#dantooine:before{
+    content: url(./images/SWR_Dantooine_bw.png);
+}
+
+:checked+#dantooine:before{
+    content: url(./images/SWR_Dantooine.png);
+}
+
+#dathomir:before{
+    content: url(./images/SWR_Dathomir_bw.png);
+}
+
+:checked+#dathomir:before{
+    content: url(./images/SWR_Dathomir.png);
+}
+
+#endor:before{
+    content: url(./images/SWR_Endor_bw.png);
+}
+
+:checked+#endor:before{
+    content: url(./images/SWR_Endor.png);
+}
+
+#hoth:before{
+    content: url(./images/SWR_Hoth_bw.png);
+}
+
+:checked+#hoth:before{
+    content: url(./images/SWR_Hoth.png);
+}
+
+#ilum:before{
+    content: url(./images/SWR_Ilum_bw.png);
+}
+
+:checked+#ilum:before{
+    content: url(./images/SWR_Ilum.png);
+}
+
+#tatooine:before{
+    content: url(./images/SWR_Tatooine_bw.png);
+}
+
+:checked+#tatooine:before{
+    content: url(./images/SWR_Tatooine.png);
+}
+
+#yavin:before{
+    content: url(./images/SWR_Yavin_bw.png);
+}
+
+:checked+#yavin:before{
+    content: url(./images/SWR_Yavin.png);
+}
+
 .roundslider {
     // position: absolute;
     // top: 40%;
@@ -182,6 +251,10 @@ a:hover{
 
 .margin-medium{
     margin: 16px;
+}
+
+.fs-7{
+    font-size: small;
 }
 
 .list-group a{
