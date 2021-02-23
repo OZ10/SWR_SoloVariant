@@ -15,7 +15,7 @@ function run() {
     });
 }
 
-function chkClick(cb){
+function chkClick(cb) {
     switch (cb.id) {
         case 'chkROTE-Units':
             showHideElement('ROTE-Setup');
@@ -48,12 +48,12 @@ function showHideElement(id) {
         element => {
             if (element.classList.contains('d-none')) {
                 element.classList.remove('d-none')
-            }else{
+            } else {
                 element.classList.add('d-none')
             }
         }
     )
-    
+
 }
 
 // function run2(e){
@@ -77,44 +77,57 @@ document.querySelectorAll('.planetbtn').forEach(
         planetbutton.addEventListener('click', (event) => {
             if (planetbutton.checked == true) {
                 numSelectedSystems++
-            }else{
+            } else {
                 numSelectedSystems--
             }
             document.getElementById('numselectedsystems').innerText = numSelectedSystems;
 
             if (numSelectedSystems == 7) {
-                alert('they be coming!');
+                alert('The rebel base is on ' + GetRebelBaseName() + '!');
+                // alert(GetRebelBaseName());
             }
         })
     }
 )
 
+function GetRebelBaseName() {
+    let rebelbase;
+    document.querySelectorAll('.planetbtn').forEach(
+        planetbutton => {
+            if (planetbutton.checked == false) {
+                rebelbase = planetbutton.title;
+            }
+        }
+    )
+    return rebelbase;
+}
+
 var dice = {
     sides: 6,
     roll: function () {
-      var randomNumber = Math.floor(Math.random() * this.sides) + 1;
-      return randomNumber;
+        var randomNumber = Math.floor(Math.random() * this.sides) + 1;
+        return randomNumber;
     }
-  }
+}
 
-  //Prints dice roll to the page
-  function rollD6(number) {
+//Prints dice roll to the page
+function rollD6(number) {
     var placeholder = document.getElementById('d6');
     placeholder.innerHTML = number;
     var d6Modal = new bootstrap.Modal(document.getElementById('d6modal'));
     d6Modal.toggle();
-  }
-  
-  document.querySelectorAll('#d6button').forEach(
-      d6Button => {
-        d6Button.onclick = function() {
+}
+
+document.querySelectorAll('#d6button').forEach(
+    d6Button => {
+        d6Button.onclick = function () {
             var result = dice.roll();
             rollD6(result);
-          };
-      });
+        };
+    });
 
 //   var d6Button = document.getElementById('d6button');
-  
+
 //   d6Button.onclick = function() {
 //     var result = dice.roll();
 //     rollD6(result);
@@ -138,5 +151,5 @@ var dice = {
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
+    return new bootstrap.Tooltip(tooltipTriggerEl)
 })
