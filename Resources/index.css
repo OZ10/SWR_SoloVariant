@@ -11682,18 +11682,17 @@ a:hover {
   font-size: small;
 }
 
-#d6buttonstyle {
-  font-size: 2rem;
-  padding: 0;
+.d6buttonstyle {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #d6 {
-  height: 80px;
-  width: 80px;
-  padding: 10px 0 0 28px;
-  margin: 40px auto;
-  border: 2px solid gray;
-  border-radius: 10px;
-  font-size: 40px;
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 /*# sourceMappingURL=index.css.map */
