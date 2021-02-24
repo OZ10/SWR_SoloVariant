@@ -113,11 +113,13 @@ var dice = {
 //Prints dice roll to the page
 function rollD6(number) {
     var placeholder = document.getElementById('d6');
-    placeholder.innerHTML = number;
+    // placeholder.innerHTML = number;
+    placeholder.src = "./Resources/images/D6_" + number + ".png";
     var d6Modal = new bootstrap.Modal(document.getElementById('d6modal'));
     d6Modal.toggle();
 }
 
+// Captures all D6 button on website
 document.querySelectorAll('#d6button').forEach(
     d6Button => {
         d6Button.onclick = function () {

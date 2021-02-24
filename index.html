@@ -32,14 +32,14 @@
             <label for="showTooltips">Show Tooltips</label>
           </div> -->
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="chkdynamicInstructions" onclick="chkClick(this);">
+            <input class="form-check-input" type="checkbox" id="chkdynamicInstructions" onclick="chkClick(this);" disabled>
             <label for="chkdynamicInstructions" data-bs-toggle="tooltip" data-bs-placement="right"
               title="By default all rules will be displayed. When toggled ON rules will display based on certain criteria, i.e: when the RB is discovered, movement & deployment rules will ONLY be displayed in relation to the RB">Dynamic
               Rules</label>
           </div>
 
           <h6 class="sidebarsubheader">Rise of the Empire Expansion
-            <span class="material-icons" style="font-size: large; ">dark_mode</span>
+            <span class="material-icons" style="font-size: large;">dark_mode</span>
           </h6>
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="chkROTE-Units" onclick="chkClick(this);">
@@ -118,18 +118,18 @@
               </li>
 
               <!-- Remote systems button -->
-              <li class="text-center p-2">
+              <li class="py-2">
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                   data-bs-target="#remotesystemslist">
-                  <span class="material-icons align-middle">public</span>
+                  <span class="material-icons align-middle" style="font-size: 1.2rem;">public</span>
                   <span class="d-none d-sm-inline p-1" style="font-family: Goldman, serif;">Remote Systems</span>
                 </button>
               </li>
 
               <!-- D6 button -->
-              <li class="text-center p-2">
+              <li class="">
                 <button type="button" class="btn btn-secondary" id="d6button">
-                  <span class="material-icons align-middle" id="d6buttonstyle">casino</span>
+                  <span class="material-icons align-middle" style="font-size: 1.2rem;">casino</span>
                 </button>
               </li>
 
@@ -1081,11 +1081,11 @@
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="remotesystems">A D6 Has Appeared!</h5>
+              <h5 class="modal-title" id="remotesystems">a D6 has appeared!</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex">
-              <div id="d6"></div>
+              <img src="./Resources/images/D6_1.png" alt="" id="d6">
             </div>
             <div class="modal-footer">
             </div>
