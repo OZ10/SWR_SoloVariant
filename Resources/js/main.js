@@ -1,4 +1,33 @@
+document.addEventListener("DOMContentLoaded", () => {
+    // alert("yo!");
+    // localStorage.clear();
 
+    for (let [key, value] of Object.entries(localStorage)) {
+        // console.log(`${key}: ${value}`);
+        if (value === "Planet"){
+            document.getElementById(key.toLowerCase()).checked = true;
+            numSelectedSystems++
+        }
+    }
+
+    updateNumberOfSelectedSystems();
+})
+
+function resetGame(){
+    // TODO Message: You sure?
+    localStorage.clear();
+
+    document.querySelectorAll("[id^='planet-']").forEach(
+        planet => {
+            document.getElementById(planet.id).checked = false;
+        }
+    )
+
+    numSelectedSystems = 0;
+    updateNumberOfSelectedSystems();
+}
+
+// TODO This needs to be renamed!!
 function run() {
     // alert('Working?');
 
@@ -70,17 +99,20 @@ document.getElementById('searchbar').addEventListener('input', (e) => {
 })
 
 
-var numSelectedSystems = 0;
+let numSelectedSystems = 0;
 
 document.querySelectorAll('.planetbtn').forEach(
     planetbutton => {
         planetbutton.addEventListener('click', (event) => {
             if (planetbutton.checked == true) {
                 numSelectedSystems++
+                localStorage.setItem(planetbutton.id, "Planet")
             } else {
                 numSelectedSystems--
+                localStorage.removeItem(planetbutton.id)
             }
-            document.getElementById('numselectedsystems').innerText = numSelectedSystems;
+            
+            updateNumberOfSelectedSystems();
 
             if (numSelectedSystems == 7) {
                 alert('The rebel base is on ' + GetRebelBaseName() + '!');
@@ -89,6 +121,10 @@ document.querySelectorAll('.planetbtn').forEach(
         })
     }
 )
+
+function updateNumberOfSelectedSystems(){
+    document.getElementById('numselectedsystems').innerText = numSelectedSystems;
+}
 
 function GetRebelBaseName() {
     let rebelbase;

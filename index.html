@@ -32,7 +32,8 @@
             <label for="showTooltips">Show Tooltips</label>
           </div> -->
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="chkdynamicInstructions" onclick="chkClick(this);" disabled>
+            <input class="form-check-input" type="checkbox" id="chkdynamicInstructions" onclick="chkClick(this);"
+              disabled>
             <label for="chkdynamicInstructions" data-bs-toggle="tooltip" data-bs-placement="right"
               title="By default all rules will be displayed. When toggled ON rules will display based on certain criteria, i.e: when the RB is discovered, movement & deployment rules will ONLY be displayed in relation to the RB">Dynamic
               Rules</label>
@@ -82,6 +83,9 @@
           <span class="material-icons align-middle">menu</span>
         </button>
         <div class="mx-auto">Star Wars Rebellion: Solo Variant</div>
+        <button id="reset" type="button" class="btn btn-secondary" onclick="resetGame()">
+          <span class="material-icons align-middle">refresh</span>
+        </button>
       </nav>
 
       <div class="container-fluid">
@@ -152,7 +156,7 @@
                 <div class="callout">
                   <h5>Setup</h5>
                   <p>
-                    Use the <a href="#0" data-bs-toggle="collapse" data-bs-target="#advancedsetup">Advanced Set-up</a>
+                    Use the <a class="link-danger" href="#0" data-bs-toggle="collapse" data-bs-target="#advancedsetup">Advanced Set-up</a>
                     from the Rules with the following changes:
                   </p>
                   <div class="callout-both">
@@ -218,7 +222,7 @@
                     <div class="callout-empire">
                       <h5>Empire Deployment</h5>
                       <p>
-                        Deploy the Empire Units as follows (use <a href="#" type="button" id="d6button">D6</a>, as
+                        Deploy the Empire Units as follows (use <a class="link-danger" href="#" type="button" id="d6button">D6</a>, as
                         needed):
                       </p>
                       <ul id="Base-Setup">
@@ -320,11 +324,8 @@
                 </div>
 
                 <div class="callout-empire">
-                  <a class="text-decoration-none" href="#createmissiondeck" role="button" data-bs-toggle="collapse"
-                    data-bs-target="#createmissiondeck">
-                    <h5>Create Mission Deck</h5>
-                  </a>
-                  <div class="collapse show" id="createmissiondeck">
+                  <h5>Create Mission Deck</h5>
+                  <div id="createmissiondeck">
                     <p>Draw a specified number of Missions (see Missions Table,
                       below) shuffle the drawn cards, and place them in a
                       facedown pile, forming the <em class="text-medium">Initial Missions Deck</em></p>
@@ -379,7 +380,7 @@
                       <p class="collapse" id="opposingrebelmissions">Only if there are more Imperial Leaders than
                         unrevealed<em class="text-medium"> Initial Mission
                         </em>
-                        cards, the Empire may issue an order (on a <a href="#" type="button" id="d6button">D6</a> result
+                        cards, the Empire may issue an order (on a <a class="link-danger" href="#" type="button" id="d6button">D6</a> result
                         of 4+) to send their “best” qualified
                         Leader
                         to
@@ -471,7 +472,7 @@
                       <div class="d-none variant" id="var-movement">
                         <div>
                           <p>
-                            Before moving, roll a <a href="#0" type="button" id="d6button">D6</a></p>
+                            Before moving, roll a <a class="link-danger" href="#0" type="button" id="d6button">D6</a></p>
                           <div class="d-flex">
                             <p>1-3:</p>
                             <p>Move the Empire's Units to the closest system that contains the rebel pieces. Prioritize:
@@ -749,29 +750,29 @@
             </div>
             <div class="modal-body">
               <ul>
-                <input type="checkbox" class="planetbtn d-none" id="btn-check-dagobah" title="Dagobah">
-                <label for="btn-check-dagobah" id="dagobah" class="planetlabel"></label>
+                <input type="checkbox" class="planetbtn d-none" id="planet-check-dagobah" title="Dagobah">
+                <label for="planet-check-dagobah" id="dagobah" class="planetlabel"></label>
 
-                <input type="checkbox" class="planetbtn d-none" id="btn-check-dantooine" title="Dantooine">
-                <label for="btn-check-dantooine" id="dantooine" class="planetlabel"></label>
+                <input type="checkbox" class="planetbtn d-none" id="planet-check-dantooine" title="Dantooine">
+                <label for="planet-check-dantooine" id="dantooine" class="planetlabel"></label>
 
-                <input type="checkbox" class="planetbtn d-none" id="btn-check-dathomir" title="Dathomir">
-                <label for="btn-check-dathomir" id="dathomir" class="planetlabel"></label>
+                <input type="checkbox" class="planetbtn d-none" id="planet-check-dathomir" title="Dathomir">
+                <label for="planet-check-dathomir" id="dathomir" class="planetlabel"></label>
 
-                <input type="checkbox" class="planetbtn d-none" id="btn-check-endor" title="Endor">
-                <label for="btn-check-endor" id="endor" class="planetlabel"></label>
+                <input type="checkbox" class="planetbtn d-none" id="planet-check-endor" title="Endor">
+                <label for="planet-check-endor" id="endor" class="planetlabel"></label>
 
-                <input type="checkbox" class="planetbtn d-none" id="btn-check-hoth" title="Hoth">
-                <label for="btn-check-hoth" id="hoth" class="planetlabel"></label>
+                <input type="checkbox" class="planetbtn d-none" id="planet-check-hoth" title="Hoth">
+                <label for="planet-check-hoth" id="hoth" class="planetlabel"></label>
 
-                <input type="checkbox" class="planetbtn d-none" id="btn-check-ilum" title="Ilum">
-                <label for="btn-check-ilum" id="ilum" class="planetlabel"></label>
+                <input type="checkbox" class="planetbtn d-none" id="planet-check-ilum" title="Ilum">
+                <label for="planet-check-ilum" id="ilum" class="planetlabel"></label>
 
-                <input type="checkbox" class="planetbtn d-none" id="btn-check-tatooine" title="Tatooine">
-                <label for="btn-check-tatooine" id="tatooine" class="planetlabel"></label>
+                <input type="checkbox" class="planetbtn d-none" id="planet-check-tatooine" title="Tatooine">
+                <label for="planet-check-tatooine" id="tatooine" class="planetlabel"></label>
 
-                <input type="checkbox" class="planetbtn d-none" id="btn-check-yavin" title="Yavin">
-                <label for="btn-check-yavin" id="yavin" class="planetlabel"></label>
+                <input type="checkbox" class="planetbtn d-none" id="planet-check-yavin" title="Yavin">
+                <label for="planet-check-yavin" id="yavin" class="planetlabel"></label>
               </ul>
             </div>
             <p class="paraseparator fs-7 p-2">The Rebel Base will be revealed only after the Empire has obtained
