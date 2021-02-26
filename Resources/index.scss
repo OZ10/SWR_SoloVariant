@@ -380,9 +380,17 @@ a:hover{
 
 .roundselector a{
     padding: 8px;
-    border: 1px solid #E0E0E0;
+    // border: 1px solid #E0E0E0;
     background-color: #F5F5F5;
     font-family: $SWFont;
+}
+
+.setuptab{
+    border-bottom-width: 4px;
+}
+
+.buildtab{
+    border-top-width: 4px;
 }
 
 .paraseparator{

@@ -95,7 +95,7 @@
             <!-- Setup & Round Selection -->
             <ul class="list-group sticky-top">
               <li class="list-group roundselector" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action" id="list-setup-list" data-toggle="list"
+                <a class="list-group-item list-group-item-action setuptab" id="list-setup-list" data-toggle="list"
                   data-bs-toggle="list" href="#list-setup-steps" role="tab" aria-controls="setup">
                   <span class="material-icons align-middle">settings</span>
                   <span class="d-none d-sm-inline p-1">
@@ -119,6 +119,10 @@
                   <span class="d-none d-sm-inline p-1">
                     Refresh
                   </span></a>
+                <a class="list-group-item list-group-item-action buildtab" id="list-build-list" data-toggle="list"
+                  data-bs-toggle="list" href="#list-build-steps" role="tab" aria-controls="build">
+                  <span class="material-icons align-middle" style="font-size: 1.2rem;">build</span>
+                  <span class="d-none d-sm-inline p-1" style="font-family: Goldman, serif;">Build Queue</span></a>
               </li>
 
               <!-- Remote systems button -->
@@ -716,6 +720,42 @@
                   </div>
                 </div>
               </section>
+
+              <!-- Build Steps -->
+              <section class="tab-pane" id="list-build-steps" role="tabpanel" aria-labelledby="list-build-list">
+                <div class="callout">
+                  <div class="container-flex">
+                    <div class="row">
+                      <div class="col-1">
+                        <span class="material-icons">public</span>
+                      </div>
+                      <div class="col">
+                        <div>Hoth</div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" id="chk1" name="inlineRadioOptions" value="option1">
+                          <!-- <label for="chk1">Rebel</label> -->
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" id="chk2" name="inlineRadioOptions" value="option2">
+                          <!-- <label for="chk2">Empire</label> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-1">
+                      <span class="material-icons">public</span>
+                    </div>
+                    <div class="col">
+                      <div>Ilum</div>
+                    </div>
+                    <div class="col">
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </section>
             </div>
           </section>
         </div>
@@ -1090,6 +1130,38 @@
             </div>
             <div class="modal-body d-flex">
               <img src="./Resources/images/D6_1.png" alt="" id="d6">
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Build Queue -->
+      <div class="modal fade" id="buildqueuelist" tabindex="-1" aria-labelledby="Build Queue" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="remotesystems">Systems & Build Queue</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body container-fluid">
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col">Empire</div>
+                <div class="col">Subjugated</div>
+                <div class="col">Natural</div>
+                <div class="col">Rebel</div>
+                <div class="col">Rebel-Subjugated</div>
+              </div>
+              <div class="row">
+                <div class="col-2">
+                  <label for="hoth" class="form-label">Hoth</label>
+                </div>
+                <div class="col">
+                  <input id="system_hoth" class="form-range" type="range" min="0" max="4">
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
             </div>
