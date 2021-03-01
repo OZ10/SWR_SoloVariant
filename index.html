@@ -724,35 +724,62 @@
               <!-- Build Steps -->
               <section class="tab-pane" id="list-build-steps" role="tabpanel" aria-labelledby="list-build-list">
                 <div class="callout">
-                  <div class="container-flex">
-                    <div class="row">
+                  <div class="container-flex" id="buildqueue">
+                    <div class="row sticky-top" style="background-color: lightgray;">
+                      <div class="col-3">Planet</div>
+                      <div class="col">Empire</div>
+                      <div class="col">Subjugated</div>
+                      <div class="col">Neutral</div>
+                      <div class="col">Rebel</div>
+                      <div class="col">Rebel-Subjugated</div>
+                    </div>
+                    <div class="row align-items-center my-3" id="buildplanettemplate">
+                      <div class="col-3">
+                        <div>Hoth</div>
+                        <div>Build Icons</div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" id="chk1" name="hothRadioOptions"
+                            value="empire">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" id="chk2" name="hothRadioOptions"
+                            value="Subjugated">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" id="chk2" name="hothRadioOptions"
+                            value="Neutral">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" id="chk2" name="hothRadioOptions"
+                            value="Rebel">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" id="chk2" name="hothRadioOptions"
+                            value="Rebel-Subjugated">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="row my-5">
                       <div class="col-1">
                         <span class="material-icons">public</span>
                       </div>
                       <div class="col">
-                        <div>Hoth</div>
+                        <div>Ilum</div>
                       </div>
                       <div class="col">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" id="chk1" name="inlineRadioOptions" value="option1">
-                          <!-- <label for="chk1">Rebel</label> -->
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" id="chk2" name="inlineRadioOptions" value="option2">
-                          <!-- <label for="chk2">Empire</label> -->
-                        </div>
                       </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-1">
-                      <span class="material-icons">public</span>
-                    </div>
-                    <div class="col">
-                      <div>Ilum</div>
-                    </div>
-                    <div class="col">
-                    </div>
-                  </div>
+                    </div> -->
+                    
                   </div>
                 </div>
               </section>

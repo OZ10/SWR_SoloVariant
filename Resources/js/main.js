@@ -11,6 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateNumberOfSelectedSystems();
+
+    let clonenode = document.getElementById('buildplanettemplate').cloneNode(true);
+    clonenode.id = "newplanet";
+    document.getElementById('buildqueue').appendChild(clonenode);
+
+    // let divs = document.getElementById('newplanet').getElementsByClassName('col-3');
+    // divs.forEach( div => {
+    //     alert (div.className + ' ' + div.id);
+    // });
+
+    
+
 })
 
 function resetGame(){
