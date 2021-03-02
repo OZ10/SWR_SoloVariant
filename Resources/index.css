@@ -11541,6 +11541,14 @@ a:hover {
   padding: 5px;
 }
 
+div[id*=ground] {
+  color: orange;
+}
+
+div[id*=space] {
+  color: blue;
+}
+
 .margin-small {
   margin: 8px;
 }

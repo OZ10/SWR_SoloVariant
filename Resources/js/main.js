@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let [key, value] of Object.entries(localStorage)) {
         // console.log(`${key}: ${value}`);
-        if (value === "Planet"){
+        if (value === "Planet") {
             document.getElementById(key.toLowerCase()).checked = true;
             numSelectedSystems++
         }
@@ -12,20 +12,140 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateNumberOfSelectedSystems();
 
-    let clonenode = document.getElementById('buildplanettemplate').cloneNode(true);
-    clonenode.id = "newplanet";
-    document.getElementById('buildqueue').appendChild(clonenode);
-
-    // let divs = document.getElementById('newplanet').getElementsByClassName('col-3');
-    // divs.forEach( div => {
-    //     alert (div.className + ' ' + div.id);
-    // });
-
-    
-
+    SetupBuildQueue();
 })
 
-function resetGame(){
+const planetnames = ["Rebel Base", "Alderaan", "Bespin", "Bothawui", "Cato Neimoidia",
+    "Felucia", "Geonosis", "Kashyyyk", "Kessel", "Malastare", "Mandalore",
+    "Mon Calamari", "Mustafar", "Mygeeto", "Naboo", "Nal Hutta", "Ord Mantell",
+    "Rodia", "Ryloth", "Saleucami", "Sullust", "Toydaria", "Utapau"];
+
+function SetupBuildQueue() {
+    for (let index = 0; index < planetnames.length; index++) {
+        let planetname = planetnames[index];
+
+        cloneNodeAndChangeId('buildplanettemplate', planetname);
+        changePlanetDisplayName(planetname);
+        changeRadioGroupName(planetname);
+    }
+
+    // Move build button to bottom of list
+    document.getElementById('buildqueue').appendChild(document.getElementById('buildbutton'));
+}
+
+function cloneNodeAndChangeId(nodename, planetname) {
+    let clonenode = document.getElementById(nodename).cloneNode(true);
+    clonenode.id = planetname;
+    document.getElementById('buildqueue').appendChild(clonenode);
+}
+
+function changePlanetDisplayName(planetname) {
+    let elements = document.getElementById(planetname).getElementsByClassName('col-3');
+    for (let index = 0; index < elements.length; index++) {
+        elements[index].firstElementChild.innerText = planetname;
+    }
+}
+
+function changeRadioGroupName(planetname) {
+    let elements = document.getElementById(planetname).getElementsByClassName('form-check-input');
+    for (let index = 0; index < elements.length; index++) {
+        elements[index].name = planetname + "RadioOptions";
+        if (elements[index].id === "radioneutral") { elements[index].checked = true };
+    }
+}
+
+function createBuildQueue() {
+    // let empBuildQueue = [[1, 2, 3], [1, 2, 3], [1, 2, 3]];
+    // let rebelBuildQueue = [[1, 2, 3], [1, 2, 3], [1, 2, 3]];
+
+    for (let index = 0; index < planetnames.length; index++) {
+        let planetname = planetnames[index];
+
+        // let resources = new Array();
+        let resources = getPlanetsBuildResources(planetname);
+
+        let elements = document.getElementById(planetname).getElementsByClassName('form-check-input');
+        for (let index = 0; index < elements.length; index++) {
+            if (elements[index].checked === true) {
+                switch (elements[index].id) {
+                    case "radioempire":
+                        if (resources.length === 2) {
+                            resources.forEach(element => {
+                                document.getElementById("build-emp-" + element[0] + "-" + element[1] + "-" + element[2]).innerText = "Eh?";
+                            });
+                        } else {
+                            document.getElementById("build-emp-" + resources[0] + "-" + resources[1] + "-" + resources[2]).innerText = "Eh?";
+                        }
+                        break;
+                    case "radiosubjugated":
+
+                        break;
+                    case "radioempire":
+
+                        break;
+
+                    case "radiorebel":
+
+                        break;
+
+                    case "radiorebelsubjugated":
+
+                        break;
+
+                    default:
+                        break;
+                }
+            };
+        }
+    }
+}
+
+function getPlanetsBuildResources(planetname, subjugated = false) {
+    switch (planetname) {
+        case "Alderaan":
+        case "Felucia":
+        case "Malastare":
+        case "Kessel":
+        case "Rodia":
+        case "Ryloth":
+            return ["ground", "tri", 1];
+        case "Bespin":
+        case "Bothawui":
+        case "Saleucami":
+            return ["ground", "cir", 1];
+        case "Cato Neimoidia":
+            return [["space", "tri", 2], ["ground", "cir", 2]];
+        case "Geonosis":
+            return [["space", "tri", 2], ["ground", "squ", 2]];
+        case "Kashyyyk":
+            return [["ground", "tri", 1], ["ground", "squ", 1]];
+        case "Mandalore":
+        case "Naboo":
+        case "Nal Hutta":
+            return [["ground", "tri", 1], ["space", "tri", 1]];
+        case "Mon Calamari":
+            return [["space", "tri", 3], ["space", "squ", 3]];
+        case "Mustafar":
+            return [["space", "tri", 2], ["space", "cir", 2]];
+        case "Mygeeto":
+            return [["space", "tri", 2], ["ground", "squ", 2]];
+        case "Ord Mantell":
+            return [["ground", "cir", 2], ["space", "cir", 2]];
+        case "Rebel Base":
+            // CHECK THIS!
+            return ["ground", "cir", 2];
+        case "Sullust":
+            return [["ground", "tri", 2], ["ground", "squ", 2]];
+        case "Toydaria":
+            return ["space", "cir", 2];
+        case "Utapau":
+            return [["space", "cir", 3], ["space", "squ", 3]];
+        default:
+            break;
+    }
+}
+
+function resetGame() {
     // TODO Message: You sure?
     localStorage.clear();
 
@@ -123,7 +243,7 @@ document.querySelectorAll('.planetbtn').forEach(
                 numSelectedSystems--
                 localStorage.removeItem(planetbutton.id)
             }
-            
+
             updateNumberOfSelectedSystems();
 
             if (numSelectedSystems == 7) {
@@ -134,7 +254,7 @@ document.querySelectorAll('.planetbtn').forEach(
     }
 )
 
-function updateNumberOfSelectedSystems(){
+function updateNumberOfSelectedSystems() {
     document.getElementById('numselectedsystems').innerText = numSelectedSystems;
 }
 
