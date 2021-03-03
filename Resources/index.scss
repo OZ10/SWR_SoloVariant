@@ -245,6 +245,71 @@ a:hover{
 //     margin: 8px;
 // }
 
+div[id*=ground]{
+    background-color: orange;
+}
+
+div[id*=space]{
+    background-color: blue;
+}
+
+.buildrow{
+    line-height: 60px;
+    padding: 5px 0;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    // font-size: 10px;
+    color: #fff;
+    text-align: center;
+    margin: 5px;
+  }
+
+  .square{
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    margin: 5px;
+  }
+
+//   @mixin triangleColor($type){
+//     @if $type="a"{
+//         color: orange;
+//     }
+//     }
+
+.trianglebase{
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    background-color: transparent !important;
+    border-style: solid;
+    border-width: 0px 20px 40px 20px;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    margin: 5px;
+}
+
+.triangle[id*=ground]{
+    border-bottom-color: orange;
+    @extend .trianglebase;
+ }
+
+ .triangle[id*=space]{
+    border-bottom-color: blue;
+    @extend .trianglebase;
+ }
+
 .margin-small{
     margin: 8px;
 }
@@ -380,9 +445,17 @@ a:hover{
 
 .roundselector a{
     padding: 8px;
-    border: 1px solid #E0E0E0;
+    // border: 1px solid #E0E0E0;
     background-color: #F5F5F5;
     font-family: $SWFont;
+}
+
+.setuptab{
+    border-bottom-width: 4px;
+}
+
+.buildtab{
+    border-top-width: 4px;
 }
 
 .paraseparator{

@@ -4,16 +4,175 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let [key, value] of Object.entries(localStorage)) {
         // console.log(`${key}: ${value}`);
-        if (value === "Planet"){
+        if (value === "Planet") {
             document.getElementById(key.toLowerCase()).checked = true;
             numSelectedSystems++
         }
     }
 
     updateNumberOfSelectedSystems();
+
+    SetupBuildQueue();
 })
 
-function resetGame(){
+const planetnames = ["Coruscant", "Rebel Base", "Alderaan", "Bespin", "Bothawui", "Cato Neimoidia",
+    "Felucia", "Geonosis", "Kashyyyk", "Kessel", "Malastare", "Mandalore",
+    "Mon Calamari", "Mustafar", "Mygeeto", "Naboo", "Nal Hutta", "Ord Mantell",
+    "Rodia", "Ryloth", "Saleucami", "Sullust", "Toydaria", "Utapau"];
+
+function SetupBuildQueue() {
+    for (let index = 0; index < planetnames.length; index++) {
+        let planetname = planetnames[index];
+
+        cloneNodeAndChangeId('buildtemplate', planetname);
+        changePlanetDisplayName(planetname);
+        changeRadioGroupName(planetname);
+    }
+
+    moveBuildButton();
+
+    setDefaultBuildOptions('Coruscant', 'radioempire');
+    setDefaultBuildOptions('Rebel Base', 'radiorebel');
+
+    hideBuildTemplate();
+}
+
+function hideBuildTemplate() {
+    document.getElementById('buildtemplate').classList.add('d-none');
+}
+
+function setDefaultBuildOptions(planetname, selection) {
+    let elements = document.getElementById(planetname).querySelectorAll('form-check-input, [type=radio]');
+    for (let index = 0; index < elements.length; index++) {
+        if (elements[index].id === selection) { elements[index].checked = true; }
+        elements[index].disabled = true;
+    }
+}
+
+function moveBuildButton() {
+    // Move build button to bottom of list
+    document.getElementById('buildqueue').appendChild(document.getElementById('buildbutton'));
+}
+
+function cloneNodeAndChangeId(nodename, planetname) {
+    let clonenode = document.getElementById(nodename).cloneNode(true);
+    clonenode.id = planetname;
+    document.getElementById('buildqueue').appendChild(clonenode);
+}
+
+function changePlanetDisplayName(planetname) {
+    let elements = document.getElementById(planetname).getElementsByClassName('col-3');
+    for (let index = 0; index < elements.length; index++) {
+        elements[index].firstElementChild.innerText = planetname;
+    }
+}
+
+function changeRadioGroupName(planetname) {
+    let elements = document.getElementById(planetname).querySelectorAll('form-check-input, [type=radio]');
+    for (let index = 0; index < elements.length; index++) {
+        elements[index].name = planetname + "RadioOptions";
+        if (elements[index].id === "radioneutral") { elements[index].checked = true };
+    }
+}
+
+function createBuildQueue() {
+    resetBuildQueue();
+
+    for (let index = 0; index < planetnames.length; index++) {
+        let planetname = planetnames[index];
+        let controlname = "";
+
+        let resources = getPlanetsBuildResources(planetname);
+
+        let elements = document.getElementById(planetname).getElementsByClassName('form-check-input');
+        for (let index = 0; index < elements.length; index++) {
+            if (elements[index].checked === true) {
+                switch (elements[index].id) {
+                    case "radioempire":
+                        controlname = "build-emp-";
+                        break;
+                    case "radiosubjugated":
+                    case "radiorebelsubjugated":
+                        controlname = "build-emp-";
+                        if (resources.length === 2) { resources.pop() };
+                        break;
+                    case "radiorebel":
+                        controlname = "build-rebel-";
+                        break;
+                    default:
+                        break;
+                }
+
+                if (controlname != "") {
+                    resources.forEach(resource => {
+                        let resourceIcon = document.getElementById(controlname + resource[0] + "-" + resource[1] + "-" + resource[2]);
+                        let count = parseInt(resourceIcon.innerText);
+                        count++;
+                        if (count > 0) {
+                            resourceIcon.classList.remove('d-none');
+                            resourceIcon.innerText = count;
+                        }
+                    });
+                }
+            };
+        }
+    }
+}
+
+function getPlanetsBuildResources(planetname, subjugated = false) {
+    switch (planetname) {
+        case "Alderaan":
+        case "Coruscant":
+        case "Felucia":
+        case "Malastare":
+        case "Kessel":
+        case "Rodia":
+        case "Ryloth":
+            return [["ground", "tri", 1]];
+        case "Bespin":
+        case "Bothawui":
+        case "Saleucami":
+            return [["ground", "cir", 1]];
+        case "Cato Neimoidia":
+            return [["space", "tri", 2], ["ground", "cir", 2]];
+        case "Geonosis":
+            return [["space", "tri", 2], ["ground", "squ", 2]];
+        case "Kashyyyk":
+            return [["ground", "tri", 1], ["ground", "squ", 1]];
+        case "Mandalore":
+        case "Naboo":
+        case "Nal Hutta":
+            return [["ground", "tri", 1], ["space", "tri", 1]];
+        case "Mon Calamari":
+            return [["space", "tri", 3], ["space", "squ", 3]];
+        case "Mustafar":
+            return [["space", "tri", 2], ["space", "cir", 2]];
+        case "Mygeeto":
+            return [["space", "tri", 2], ["ground", "squ", 2]];
+        case "Ord Mantell":
+            return [["ground", "cir", 2], ["space", "cir", 2]];
+        case "Rebel Base":
+            return [["space", "tri", 1], ["ground", "tri", 1]];
+        case "Sullust":
+            return [["ground", "tri", 2], ["ground", "squ", 2]];
+        case "Toydaria":
+            return [["space", "cir", 2]];
+        case "Utapau":
+            return [["space", "cir", 3], ["space", "squ", 3]];
+        default:
+            break;
+    }
+}
+
+function resetBuildQueue() {
+    document.querySelectorAll("[id^='build-'").forEach(
+        element => {
+            element.innerHTML = 0;
+        }
+    )
+}
+
+function resetGame() {
     // TODO Message: You sure?
     localStorage.clear();
 
@@ -111,7 +270,7 @@ document.querySelectorAll('.planetbtn').forEach(
                 numSelectedSystems--
                 localStorage.removeItem(planetbutton.id)
             }
-            
+
             updateNumberOfSelectedSystems();
 
             if (numSelectedSystems == 7) {
@@ -122,7 +281,7 @@ document.querySelectorAll('.planetbtn').forEach(
     }
 )
 
-function updateNumberOfSelectedSystems(){
+function updateNumberOfSelectedSystems() {
     document.getElementById('numselectedsystems').innerText = numSelectedSystems;
 }
 

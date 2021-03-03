@@ -11541,6 +11541,62 @@ a:hover {
   padding: 5px;
 }
 
+div[id*=ground] {
+  background-color: orange;
+}
+
+div[id*=space] {
+  background-color: blue;
+}
+
+.buildrow {
+  line-height: 60px;
+  padding: 5px 0;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  margin: 5px;
+}
+
+.square {
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  line-height: 40px;
+  text-align: center;
+  margin: 5px;
+}
+
+.trianglebase, .triangle[id*=ground], .triangle[id*=space] {
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  background-color: transparent !important;
+  border-style: solid;
+  border-width: 0px 20px 40px 20px;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  color: #fff;
+  line-height: 50px;
+  text-align: center;
+  margin: 5px;
+}
+
+.triangle[id*=ground] {
+  border-bottom-color: orange;
+}
+
+.triangle[id*=space] {
+  border-bottom-color: blue;
+}
+
 .margin-small {
   margin: 8px;
 }
@@ -11657,9 +11713,16 @@ a:hover {
 
 .roundselector a {
   padding: 8px;
-  border: 1px solid #E0E0E0;
   background-color: #F5F5F5;
   font-family: "Goldman", serif;
+}
+
+.setuptab {
+  border-bottom-width: 4px;
+}
+
+.buildtab {
+  border-top-width: 4px;
 }
 
 .paraseparator, .sidebarsubheader {
