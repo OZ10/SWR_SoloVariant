@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     SetupBuildQueue();
 })
 
-const planetnames = ["Rebel Base", "Alderaan", "Bespin", "Bothawui", "Cato Neimoidia",
+const planetnames = ["Coruscant", "Rebel Base", "Alderaan", "Bespin", "Bothawui", "Cato Neimoidia",
     "Felucia", "Geonosis", "Kashyyyk", "Kessel", "Malastare", "Mandalore",
     "Mon Calamari", "Mustafar", "Mygeeto", "Naboo", "Nal Hutta", "Ord Mantell",
     "Rodia", "Ryloth", "Saleucami", "Sullust", "Toydaria", "Utapau"];
@@ -24,11 +24,32 @@ function SetupBuildQueue() {
     for (let index = 0; index < planetnames.length; index++) {
         let planetname = planetnames[index];
 
-        cloneNodeAndChangeId('buildplanettemplate', planetname);
+        cloneNodeAndChangeId('buildtemplate', planetname);
         changePlanetDisplayName(planetname);
         changeRadioGroupName(planetname);
     }
 
+    moveBuildButton();
+
+    setDefaultBuildOptions('Coruscant', 'radioempire');
+    setDefaultBuildOptions('Rebel Base', 'radiorebel');
+
+    hideBuildTemplate();
+}
+
+function hideBuildTemplate() {
+    document.getElementById('buildtemplate').classList.add('d-none');
+}
+
+function setDefaultBuildOptions(planetname, selection) {
+    let elements = document.getElementById(planetname).querySelectorAll('form-check-input, [type=radio]');
+    for (let index = 0; index < elements.length; index++) {
+        if (elements[index].id === selection) { elements[index].checked = true; }
+        elements[index].disabled = true;
+    }
+}
+
+function moveBuildButton() {
     // Move build button to bottom of list
     document.getElementById('buildqueue').appendChild(document.getElementById('buildbutton'));
 }
@@ -47,7 +68,7 @@ function changePlanetDisplayName(planetname) {
 }
 
 function changeRadioGroupName(planetname) {
-    let elements = document.getElementById(planetname).getElementsByClassName('form-check-input');
+    let elements = document.getElementById(planetname).querySelectorAll('form-check-input, [type=radio]');
     for (let index = 0; index < elements.length; index++) {
         elements[index].name = planetname + "RadioOptions";
         if (elements[index].id === "radioneutral") { elements[index].checked = true };
@@ -55,13 +76,12 @@ function changeRadioGroupName(planetname) {
 }
 
 function createBuildQueue() {
-    // let empBuildQueue = [[1, 2, 3], [1, 2, 3], [1, 2, 3]];
-    // let rebelBuildQueue = [[1, 2, 3], [1, 2, 3], [1, 2, 3]];
+    resetBuildQueue();
 
     for (let index = 0; index < planetnames.length; index++) {
         let planetname = planetnames[index];
+        let controlname = "";
 
-        // let resources = new Array();
         let resources = getPlanetsBuildResources(planetname);
 
         let elements = document.getElementById(planetname).getElementsByClassName('form-check-input');
@@ -69,31 +89,30 @@ function createBuildQueue() {
             if (elements[index].checked === true) {
                 switch (elements[index].id) {
                     case "radioempire":
-                        if (resources.length === 2) {
-                            resources.forEach(element => {
-                                document.getElementById("build-emp-" + element[0] + "-" + element[1] + "-" + element[2]).innerText = "Eh?";
-                            });
-                        } else {
-                            document.getElementById("build-emp-" + resources[0] + "-" + resources[1] + "-" + resources[2]).innerText = "Eh?";
-                        }
+                        controlname = "build-emp-";
                         break;
                     case "radiosubjugated":
-
-                        break;
-                    case "radioempire":
-
-                        break;
-
-                    case "radiorebel":
-
-                        break;
-
                     case "radiorebelsubjugated":
-
+                        controlname = "build-emp-";
+                        if (resources.length === 2) { resources.pop() };
                         break;
-
+                    case "radiorebel":
+                        controlname = "build-rebel-";
+                        break;
                     default:
                         break;
+                }
+
+                if (controlname != "") {
+                    resources.forEach(resource => {
+                        let resourceIcon = document.getElementById(controlname + resource[0] + "-" + resource[1] + "-" + resource[2]);
+                        let count = parseInt(resourceIcon.innerText);
+                        count++;
+                        if (count > 0) {
+                            resourceIcon.classList.remove('d-none');
+                            resourceIcon.innerText = count;
+                        }
+                    });
                 }
             };
         }
@@ -103,16 +122,17 @@ function createBuildQueue() {
 function getPlanetsBuildResources(planetname, subjugated = false) {
     switch (planetname) {
         case "Alderaan":
+        case "Coruscant":
         case "Felucia":
         case "Malastare":
         case "Kessel":
         case "Rodia":
         case "Ryloth":
-            return ["ground", "tri", 1];
+            return [["ground", "tri", 1]];
         case "Bespin":
         case "Bothawui":
         case "Saleucami":
-            return ["ground", "cir", 1];
+            return [["ground", "cir", 1]];
         case "Cato Neimoidia":
             return [["space", "tri", 2], ["ground", "cir", 2]];
         case "Geonosis":
@@ -132,17 +152,24 @@ function getPlanetsBuildResources(planetname, subjugated = false) {
         case "Ord Mantell":
             return [["ground", "cir", 2], ["space", "cir", 2]];
         case "Rebel Base":
-            // CHECK THIS!
-            return ["ground", "cir", 2];
+            return [["space", "tri", 1], ["ground", "tri", 1]];
         case "Sullust":
             return [["ground", "tri", 2], ["ground", "squ", 2]];
         case "Toydaria":
-            return ["space", "cir", 2];
+            return [["space", "cir", 2]];
         case "Utapau":
             return [["space", "cir", 3], ["space", "squ", 3]];
         default:
             break;
     }
+}
+
+function resetBuildQueue() {
+    document.querySelectorAll("[id^='build-'").forEach(
+        element => {
+            element.innerHTML = 0;
+        }
+    )
 }
 
 function resetGame() {
