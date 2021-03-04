@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="./Resources/index.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./Resources/icons/starwars-glyphicons/css/starwars-glyphicons.css">
 </head>
 
 <body class="body">
@@ -725,50 +726,51 @@
               <section class="tab-pane" id="list-build-steps" role="tabpanel" aria-labelledby="list-build-list">
                 <div class="callout">
                   <div class="container-flex" id="buildqueue">
-                    <div class="row sticky-top" style="background-color: lightgray;">
-                      <div class="col-3">Planet</div>
-                      <div class="col">Blockade</div>
-                      <div class="col">Empire</div>
-                      <div class="col">Subjugated</div>
-                      <div class="col">Neutral</div>
-                      <div class="col">Rebel</div>
-                      <div class="col">Rebel-Subjugated</div>
+                    <div class="row sticky-top align-items-center" id="buildheader">
+                      <div class="col-3"></div>
+                      <div class="col-1 swg swg-lightsabers swg-lg"></div>
+                      <div class="col-1 swg swg-galemp swg-lg"></div>
+                      <div class="col-1 swg swg-stormtrooper swg-lg"></div>
+                      <div class="col-1 swg swg-galsenate swg-lg"></div>
+                      <div class="col-1 swg swg-reball swg-lg"></div>
+                      <div class="col-1 swg swg-stormtrooper-3 swg-lg"></div>
                     </div>
-                    <div class="row align-items-center my-3" id="buildtemplate">
+                    <div class="row align-items-center my-3 mx-1" id="buildtemplate">
                       <div class="col-3">
                         <div>BuildTemplate</div>
-                        <div>Build Icons</div>
+                        <!-- <div class="circle2" id="ground"></div> -->
+                        <!-- <span class="circle2" id="space"></span> -->
                       </div>
-                      <div class="col">
+                      <div class="col-1">
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" id="chkblock">
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-1">
                         <div class="form-check">
                           <input class="form-check-input" type="radio" id="radioempire" name="RadioOptions"
                             value="empire">
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-1">
                         <div class="form-check">
                           <input class="form-check-input" type="radio" id="radiosubjugated" name="RadioOptions"
                             value="Subjugated">
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-1">
                         <div class="form-check">
                           <input class="form-check-input" type="radio" id="radioneutral" name="RadioOptions"
                             value="Neutral">
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-1">
                         <div class="form-check">
                           <input class="form-check-input" type="radio" id="radiorebel" name="RadioOptions"
                             value="Rebel">
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-1">
                         <div class="form-check">
                           <input class="form-check-input" type="radio" id="radiorebelsubjugated"
                             name="RadioOptions" value="Rebel-Subjugated">
@@ -776,7 +778,7 @@
                       </div>
                     </div>
                     <div class="row" id="buildbutton">
-                      <button class="btn btn-secondary" data-bs-toggle="modal"
+                      <button class="btn btn-secondary mx-5" data-bs-toggle="modal"
                         data-bs-target="#buildqueuelist" onclick="createBuildQueue()">Build!</button>
                     </div>
                   </div>
@@ -1172,9 +1174,9 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body container-fluid">
-              <h6>Empire</h6>
-              <div class="row buildrow">
-                <div class="col-1">3</div>
+              <h6 class="buildrowheader">Empire</h6>
+              <div class="row buildrowempire">
+                <div class="col-1 fw-bold">3:</div>
                 <div class="triangle d-none" id="build-emp-ground-tri-3">0</div>
                 <div class="circle d-none" id="build-emp-ground-cir-3">0</div>
                 <div class="square d-none" id="build-emp-ground-squ-3">0</div>
@@ -1182,8 +1184,8 @@
                 <div class="circle d-none" id="build-emp-space-cir-3">0</div>
                 <div class="square d-none" id="build-emp-space-squ-3">0</div>
               </div>
-              <div class="row buildrow">
-                <div class="col-1">2</div>
+              <div class="row buildrowempire">
+                <div class="col-1 fw-bold">2:</div>
                 <div class="triangle d-none" id="build-emp-ground-tri-2">0</div>
                 <div class="circle d-none" id="build-emp-ground-cir-2">0</div>
                 <div class="square d-none" id="build-emp-ground-squ-2">0</div>
@@ -1191,8 +1193,8 @@
                 <div class="circle d-none" id="build-emp-space-cir-2">0</div>
                 <div class="square d-none" id="build-emp-space-squ-2">0</div>
               </div>
-              <div class="row buildrow">
-                <div class="col-1">1</div>
+              <div class="row buildrowempire">
+                <div class="col-1 fw-bold">1:</div>
                 <div class="triangle d-none" id="build-emp-ground-tri-1">0</div>
                 <div class="circle d-none" id="build-emp-ground-cir-1">0</div>
                 <div class="square d-none" id="build-emp-ground-squ-1">0</div>
@@ -1200,9 +1202,10 @@
                 <div class="circle d-none" id="build-emp-space-cir-1">0</div>
                 <div class="square d-none" id="build-emp-space-squ-1">0</div>
               </div>
-              <h6>Rebel</h6>
-              <div class="row buildrow">
-                <div class="col-1">3</div>
+              <p></p>
+              <h6 class="buildrowheader">Rebel</h6>
+              <div class="row buildrowrebel">
+                <div class="col-1 fw-bold">3:</div>
                 <div class="triangle d-none" id="build-rebel-ground-tri-3">0</div>
                 <div class="circle d-none" id="build-rebel-ground-cir-3">0</div>
                 <div class="square d-none" id="build-rebel-ground-squ-3">0</div>
@@ -1210,8 +1213,8 @@
                 <div class="circle d-none" id="build-rebel-space-cir-3">0</div>
                 <div class="square d-none" id="build-rebel-space-squ-3">0</div>
               </div>
-              <div class="row buildrow">
-                <div class="col-1">2</div>
+              <div class="row buildrowrebel">
+                <div class="col-1 fw-bold">2:</div>
                 <div class="triangle d-none" id="build-rebel-ground-tri-2">0</div>
                 <div class="circle d-none" id="build-rebel-ground-cir-2">0</div>
                 <div class="square d-none" id="build-rebel-ground-squ-2">0</div>
@@ -1219,8 +1222,8 @@
                 <div class="circle d-none" id="build-rebel-space-cir-2">0</div>
                 <div class="square d-none" id="build-rebel-space-squ-2">0</div>
               </div>
-              <div class="row buildrow">
-                <div class="col-1">1</div>
+              <div class="row buildrowrebel">
+                <div class="col-1 fw-bold">1:</div>
                 <div class="triangle d-none" id="build-rebel-ground-tri-1">0</div>
                 <div class="circle d-none" id="build-rebel-ground-cir-1">0</div>
                 <div class="square d-none" id="build-rebel-ground-squ-1">0</div>

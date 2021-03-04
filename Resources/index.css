@@ -11541,6 +11541,18 @@ a:hover {
   padding: 5px;
 }
 
+.builditemstart {
+  border-top: solid 1px;
+  border-color: #dee2e6;
+  padding-top: 10px;
+}
+
+#buildheader {
+  background-color: #f8f9fa;
+  height: 40px;
+  margin: 0 1px;
+}
+
 div[id*=ground] {
   background-color: orange;
 }
@@ -11549,9 +11561,26 @@ div[id*=space] {
   background-color: blue;
 }
 
-.buildrow {
-  line-height: 60px;
-  padding: 5px 0;
+.buildrowheader {
+  line-height: 30px;
+  padding: 5px;
+  margin: 5px 0;
+  background-color: #dee2e6;
+}
+
+.buildrow, .buildrowrebel, .buildrowempire {
+  line-height: 50px;
+  padding: 2px 0;
+  margin: 1px 0;
+  background-color: #e9ecef;
+}
+
+.buildrowrebel {
+  border-left: 3px solid #43a048c4;
+}
+
+.buildrowempire {
+  border-left: 3px solid #d50000c4;
 }
 
 .circle {
