@@ -245,6 +245,18 @@ a:hover{
 //     margin: 8px;
 // }
 
+.builditemstart{
+    border-top: solid 1px;
+    border-color: $calloutbackground3;
+    padding-top: 10px;
+}
+
+#buildheader{
+    background-color: $calloutbackground1;
+    height: 40px;
+    margin: 0 1px;
+}
+
 div[id*=ground]{
     background-color: orange;
 }
@@ -253,9 +265,38 @@ div[id*=space]{
     background-color: blue;
 }
 
+.buildrowheader{
+    line-height: 30px;
+    padding: 5px;
+    margin: 5px 0;
+    background-color: $calloutbackground3;
+}
+
+// .buildrowheaderrebel{
+//     @extend .buildrowheader;
+//     background-color: $rebelcolour;
+// }
+
+// .buildrowheaderempire{
+//     @extend .buildrowheader;
+//     background-color: $empirecolour;
+// }
+
 .buildrow{
-    line-height: 60px;
-    padding: 5px 0;
+    line-height: 50px;
+    padding: 2px 0;
+    margin: 1px 0;
+    background-color: $calloutbackground2;
+}
+
+.buildrowrebel{
+    @extend .buildrow;
+    border-left: 3px solid $rebelcolour;
+}
+
+.buildrowempire{
+    @extend .buildrow;
+    border-left: 3px solid $empirecolour;
 }
 
 .circle {
@@ -268,6 +309,19 @@ div[id*=space]{
     text-align: center;
     margin: 5px;
   }
+
+//   .circle2 {
+//     width: 10px;
+//     height: 10px;
+//     // line-height: 10px;
+//     border-radius: 50%;
+//     // font-size: 10px;
+//     color: #fff;
+//     text-align: center;
+//     background-color: orange;
+//     // display: inline;
+//     // margin: 5px;
+//   }
 
   .square{
     width: 40px;

@@ -3,10 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // localStorage.clear();
 
     for (let [key, value] of Object.entries(localStorage)) {
-        // console.log(`${key}: ${value}`);
-        if (value === "Planet") {
-            document.getElementById(key.toLowerCase()).checked = true;
-            numSelectedSystems++
+        switch (value) {
+            case "Planet":
+                document.getElementById(key.toLowerCase()).checked = true;
+                numSelectedSystems++
+                break;
+            default:
+                break;
         }
     }
 
@@ -15,18 +18,43 @@ document.addEventListener("DOMContentLoaded", () => {
     SetupBuildQueue();
 })
 
-const planetnames = ["Coruscant", "Rebel Base", "Alderaan", "Bespin", "Bothawui", "Cato Neimoidia",
-    "Felucia", "Geonosis", "Kashyyyk", "Kessel", "Malastare", "Mandalore",
-    "Mon Calamari", "Mustafar", "Mygeeto", "Naboo", "Nal Hutta", "Ord Mantell",
-    "Rodia", "Ryloth", "Saleucami", "Sullust", "Toydaria", "Utapau"];
+// const planetnames = ["Coruscant", "Rebel Base", "Alderaan", "Bespin", "Bothawui", "Cato Neimoidia",
+//     "Corellia", "Felucia", "Geonosis", "Kashyyyk", "Kessel", "Malastare", "Mandalore",
+//     "Mon Calamari", "Mustafar", "Mygeeto", "Naboo", "Nal Hutta", "Ord Mantell",
+//     "Rodia", "Ryloth", "Saleucami", "Sullust", "Toydaria", "Utapau"];
+
+// const planetnames = ["Coruscant", "Rebel Base",
+//     "Felucia", "Mon Calamari", "Saleucami",
+//     "Mygeeto", "Ord Mantell",
+//     "Kashyyyk", "Malastare", "Mandalore",
+//     "Alderaan", "Cato Neimoidia", "Corellia",
+//     "Bothawui", "Kessel", "Nal Hutta", "Toydaria",
+//     "Geonosis", "Rodia", "Ryloth",
+//     "Naboo", "Sullust", "Utapau",
+//     "Bespin", "Mustafar"];
+
+const planetnames = [["Coruscant", "Rebel Base"],
+["Felucia", "Mon Calamari", "Saleucami"],
+["Mygeeto", "Ord Mantell"],
+["Kashyyyk", "Malastare", "Mandalore"],
+["Alderaan", "Cato Neimoidia", "Corellia"],
+["Bothawui", "Kessel", "Nal Hutta", "Toydaria"],
+["Geonosis", "Rodia", "Ryloth"],
+["Naboo", "Sullust", "Utapau"],
+["Bespin", "Mustafar"]];
 
 function SetupBuildQueue() {
-    for (let index = 0; index < planetnames.length; index++) {
-        let planetname = planetnames[index];
 
-        cloneNodeAndChangeId('buildtemplate', planetname);
-        changePlanetDisplayName(planetname);
-        changeRadioGroupName(planetname);
+    for (let systemCount = 0; systemCount < planetnames.length; systemCount++) {
+        let system = planetnames[systemCount];
+
+        for (let planetCount = 0; planetCount < system.length; planetCount++) {
+            let planetname = system[planetCount];
+
+            cloneNodeAndChangeId('buildtemplate', planetname, planetCount);
+            changePlanetDisplayName(planetname);
+            changeRadioGroupName(planetname);
+        }
     }
 
     moveBuildButton();
@@ -35,6 +63,52 @@ function SetupBuildQueue() {
     setDefaultBuildOptions('Rebel Base', 'radiorebel');
 
     hideBuildTemplate();
+
+    loadBuildQueueSettings();
+}
+
+function loadBuildQueueSettings() {
+    for (let [key, value] of Object.entries(localStorage)) {
+        switch (value) {
+            case "buildchk":
+                let planetName = key.split(",")[0];
+                let chkName = key.split(",")[1];
+                let elements = document.getElementById(planetName).getElementsByClassName('form-check-input');
+                for (let index = 0; index < elements.length; index++) {
+                    if (elements[index].id === chkName) { elements[index].checked = true; };
+                }
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+function cloneNodeAndChangeId(nodename, planetname, rowCount) {
+    let clonenode = document.getElementById(nodename).cloneNode(true);
+    clonenode.id = planetname;
+
+    if (rowCount == 0) {
+        // add border to the top
+        clonenode.classList.add('builditemstart');
+    }
+
+    document.getElementById('buildqueue').appendChild(clonenode);
+}
+
+function changePlanetDisplayName(planetname) {
+    let elements = document.getElementById(planetname).getElementsByClassName('col-3');
+    for (let index = 0; index < elements.length; index++) {
+        elements[index].firstElementChild.innerText = planetname;
+    }
+}
+
+function changeRadioGroupName(planetname) {
+    let elements = document.getElementById(planetname).querySelectorAll('form-check-input, [type=radio]');
+    for (let index = 0; index < elements.length; index++) {
+        elements[index].name = planetname + "RadioOptions";
+        if (elements[index].id === "radioneutral") { elements[index].checked = true };
+    }
 }
 
 function hideBuildTemplate() {
@@ -54,39 +128,33 @@ function moveBuildButton() {
     document.getElementById('buildqueue').appendChild(document.getElementById('buildbutton'));
 }
 
-function cloneNodeAndChangeId(nodename, planetname) {
-    let clonenode = document.getElementById(nodename).cloneNode(true);
-    clonenode.id = planetname;
-    document.getElementById('buildqueue').appendChild(clonenode);
-}
-
-function changePlanetDisplayName(planetname) {
-    let elements = document.getElementById(planetname).getElementsByClassName('col-3');
-    for (let index = 0; index < elements.length; index++) {
-        elements[index].firstElementChild.innerText = planetname;
-    }
-}
-
-function changeRadioGroupName(planetname) {
-    let elements = document.getElementById(planetname).querySelectorAll('form-check-input, [type=radio]');
-    for (let index = 0; index < elements.length; index++) {
-        elements[index].name = planetname + "RadioOptions";
-        if (elements[index].id === "radioneutral") { elements[index].checked = true };
-    }
-}
-
+// TODO Refactor this
 function createBuildQueue() {
     resetBuildQueue();
 
-    for (let index = 0; index < planetnames.length; index++) {
-        let planetname = planetnames[index];
-        let controlname = "";
+    for (let systemCount = 0; systemCount < planetnames.length; systemCount++) {
+        let system = planetnames[systemCount];
 
-        let resources = getPlanetsBuildResources(planetname);
+        for (let planetCount = 0; planetCount < system.length; planetCount++) {
 
-        let elements = document.getElementById(planetname).getElementsByClassName('form-check-input');
-        for (let index = 0; index < elements.length; index++) {
-            if (elements[index].checked === true) {
+            let planetname = system[planetCount];
+
+            let resources = getPlanetsBuildResources(planetname);
+
+            let build;
+
+            let elements = document.getElementById(planetname).getElementsByClassName('form-check-input');
+            for (let index = 0; index < elements.length; index++) {
+
+                if (elements[index].id == "chkblock" && elements[index].checked === true) {
+                    localStorage.setItem([planetname, elements[index].id], "buildchk");
+                    build = false;
+                }
+
+                if (elements[index].checked === false) { continue; }
+
+                let controlname = "";
+
                 switch (elements[index].id) {
                     case "radioempire":
                         controlname = "build-emp-";
@@ -104,6 +172,11 @@ function createBuildQueue() {
                 }
 
                 if (controlname != "") {
+
+                    localStorage.setItem([planetname, elements[index].id], "buildchk");
+
+                    if (build == false) { continue; }
+
                     resources.forEach(resource => {
                         let resourceIcon = document.getElementById(controlname + resource[0] + "-" + resource[1] + "-" + resource[2]);
                         let count = parseInt(resourceIcon.innerText);
@@ -114,7 +187,7 @@ function createBuildQueue() {
                         }
                     });
                 }
-            };
+            }
         }
     }
 }
@@ -143,6 +216,7 @@ function getPlanetsBuildResources(planetname, subjugated = false) {
         case "Naboo":
         case "Nal Hutta":
             return [["ground", "tri", 1], ["space", "tri", 1]];
+        case "Corellia":
         case "Mon Calamari":
             return [["space", "tri", 3], ["space", "squ", 3]];
         case "Mustafar":
@@ -168,12 +242,18 @@ function resetBuildQueue() {
     document.querySelectorAll("[id^='build-'").forEach(
         element => {
             element.innerHTML = 0;
+            element.classList.add('d-none');
         }
     )
+
+    for (let [key, value] of Object.entries(localStorage)) {
+        if (value === "buildchk") {
+            localStorage.removeItem(key);
+        }
+    }
 }
 
 function resetGame() {
-    // TODO Message: You sure?
     localStorage.clear();
 
     document.querySelectorAll("[id^='planet-']").forEach(
@@ -184,6 +264,8 @@ function resetGame() {
 
     numSelectedSystems = 0;
     updateNumberOfSelectedSystems();
+
+    // TODO Reset build checks here
 }
 
 // TODO This needs to be renamed!!
