@@ -299,6 +299,11 @@ div[id*=space]{
     border-left: 3px solid $empirecolour;
 }
 
+#buildbutton{
+    display: flex;
+    justify-content: center;
+}
+
 .circle {
     width: 40px;
     height: 40px;

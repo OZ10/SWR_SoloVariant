@@ -379,6 +379,26 @@
                     <h5>Play Missions / Activate Systems</h5>
                     <p>Rebel player can reveal missions or active systems</p>
 
+                    <div class="callout-rebel">
+                      <a class="text-decoration-none" href="#0" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#establishnewbase">
+                        <h5>Establishing a New Base</h5>
+                      </a>
+                      <p class="collapse" id="establishnewbase">The Rebels may establish a new Base similar to the
+                        normal procedure. First,
+                        return all Probe cards of
+                        uncontrolled (no Imperial Ground Units there) Remote Systems from the Empire’s stack to the
+                        Probe
+                        deck,
+                        and shuffle it. Second, the Rebels draw the usual number of cards up to a maximum of the
+                        difference
+                        between the Turn and Reputation Markers, and establish a new Base in any Remote System drawn.
+                        Third,
+                        the
+                        Empire returns to searching for the Rebel Base as it did prior to revealing the base. Finally,
+                        place the <em>Gather Intel</em> card back into the Starting Missions Deck</p>
+                    </div>
+
                     <div class="callout-empire">
                       <a class="text-decoration-none" href="#0" role="button" data-bs-toggle="collapse"
                         data-bs-target="#opposingrebelmissions">
@@ -394,9 +414,7 @@
                         to
                         oppose a Rebel Mission. If no Leader has matching Skill icons, the Leader with the fewest total
                         number of Skill icons becomes eligible</p>
-                    </div>
 
-                    <div class="callout-empire">
                       <a class="text-decoration-none" href="#0" role="button" data-bs-toggle="collapse"
                         data-bs-target="#joinabattle">
                         <h5>Join a Battle</h5>
@@ -606,18 +624,6 @@
                   <p>At the end of the Command Phase, shuffle both Mission Decks separately and
                     place any Project Cards acquired on top of the Main Mission Deck</p>
                 </div>
-                <div class="callout-rebel">
-                  <h5>Establishing a New Base</h5>
-                  <p>The Rebels may establish a new Base similar to the normal procedure. First,
-                    return all Probe cards of
-                    uncontrolled (no Imperial Ground Units there) Remote Systems from the Empire’s stack to the Probe
-                    deck,
-                    and shuffle it. Second, the Rebels draw the usual number of cards up to a maximum of the difference
-                    between the Turn and Reputation Markers, and establish a new Base in any Remote System drawn. Third,
-                    the
-                    Empire returns to searching for the Rebel Base as it did prior to revealing the base. Finally,
-                    place the <em>Gather Intel</em> card back into the Starting Missions Deck</p>
-                </div>
               </section>
 
               <!-- Refresh Steps-->
@@ -772,13 +778,13 @@
                       </div>
                       <div class="col-1">
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" id="radiorebelsubjugated"
-                            name="RadioOptions" value="Rebel-Subjugated">
+                          <input class="form-check-input" type="radio" id="radiorebelsubjugated" name="RadioOptions"
+                            value="Rebel-Subjugated">
                         </div>
                       </div>
                     </div>
                     <div class="row" id="buildbutton">
-                      <button class="btn btn-secondary mx-5" data-bs-toggle="modal"
+                      <button class="btn btn-secondary" style="width: 50%;" data-bs-toggle="modal"
                         data-bs-target="#buildqueuelist" onclick="createBuildQueue()">Build!</button>
                     </div>
                   </div>
@@ -804,6 +810,9 @@
               <li><a
                   href="https://boardgamegeek.com/thread/1697801/solitaire-variant-empire-attacks-revised-version-1/page/1"
                   target="_blank">Solo Variant BBG Thread</a></li>
+              <p></p>
+              <li><strong>Star Wars Icons provided by: </strong> <a href="http://starwarsglyphicons.com/"
+                  target="_blank">Star Wars Glyph Icons</a></li>
             </ul>
           </div>
         </div>
@@ -1238,98 +1247,95 @@
         </div>
       </div>
 
-        <!-- Production Value Guide -->
-        <div class="modal fade" id="productionvalueguide" tabindex="-1" aria-labelledby="productionvalueguideLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="productionvalueguideLabel">Production Value Guide</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p class="text-small">
-                  Production value is equal to the <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
-                    data-bs-target="#strengthguide">Strength</a> of all Units a system may produce. Count all
-                  production icons,
-                  including Subjugated Systems (e.g., the Mon Calamari System’s has a Production Value of 4). Sabotaged
-                  Systems have a Production Value of 0
-                </p>
-              </div>
+      <!-- Production Value Guide -->
+      <div class="modal fade" id="productionvalueguide" tabindex="-1" aria-labelledby="productionvalueguideLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="productionvalueguideLabel">Production Value Guide</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p class="text-small">
+                Production value is equal to the <a class="link-danger text-medium" href="#" data-bs-toggle="modal"
+                  data-bs-target="#strengthguide">Strength</a> of all Units a system may produce. Count all
+                production icons,
+                including Subjugated Systems (e.g., the Mon Calamari System’s has a Production Value of 4). Sabotaged
+                Systems have a Production Value of 0
+              </p>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Strength List -->
-        <div class="modal fade" id="strengthguide" tabindex="-1" aria-labelledby="strengthguideLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="strengthguideLabel">Strength Guide</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body text-small">
-                <ul style="list-style-type: none;">
-                  Strength factors into the Empire’s decision-making:
-                  <p></p>
-                  <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
-                      class="bi bi-triangle-fill" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd"
-                        d="M7.022 1.566a1.13 1.13 0 0 1 1.96 0l6.857 11.667c.457.778-.092 1.767-.98 1.767H1.144c-.889 0-1.437-.99-.98-1.767L7.022 1.566z" />
-                    </svg>
-                    <strong class="maincolour">Units: 1 STRENGTH</strong> (X-Wings, TIE Fighters, both sides’ Troopers)
-                  </li>
-                  <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
-                      class="bi bi-circle-fill" viewBox="0 0 16 16">
-                      <circle cx="8" cy="8" r="8" />
-                    </svg>
-                    <strong class="maincolour">Units: 2 STRENGTH</strong> (Airspeeder and AT-ST)
-                  </li>
-                  <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
-                      class="bi bi-square-fill" viewBox="0 0 16 16">
-                      <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
-                    </svg>
-                    <strong class="maincolour">Units: 3 STRENGTH</strong> (Mon Calamari Cruiser and Star Destroyer)
-                  </li>
-                  <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
-                      class="bi bi-patch-minus-fill" viewBox="0 0 16 16">
-                      <path
-                        d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM6 7.5h4a.5.5 0 0 1 0" />
-                    </svg>
-                    <strong class="maincolour">Units: 4 STRENGTH</strong> (The Empire’s Super Star Destroyers and Death
-                    Stars)
-                  </li>
-                </ul>
-              </div>
+      <!-- Strength List -->
+      <div class="modal fade" id="strengthguide" tabindex="-1" aria-labelledby="strengthguideLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="strengthguideLabel">Strength Guide</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-small">
+              <ul style="list-style-type: none;">
+                Strength factors into the Empire’s decision-making:
+                <p></p>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                    class="bi bi-triangle-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M7.022 1.566a1.13 1.13 0 0 1 1.96 0l6.857 11.667c.457.778-.092 1.767-.98 1.767H1.144c-.889 0-1.437-.99-.98-1.767L7.022 1.566z" />
+                  </svg>
+                  <strong class="maincolour">Units: 1 STRENGTH</strong> (X-Wings, TIE Fighters, both sides’ Troopers)
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                    class="bi bi-circle-fill" viewBox="0 0 16 16">
+                    <circle cx="8" cy="8" r="8" />
+                  </svg>
+                  <strong class="maincolour">Units: 2 STRENGTH</strong> (Airspeeder and AT-ST)
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                    class="bi bi-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
+                  </svg>
+                  <strong class="maincolour">Units: 3 STRENGTH</strong> (Mon Calamari Cruiser and Star Destroyer)
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                    class="bi bi-patch-minus-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM6 7.5h4a.5.5 0 0 1 0" />
+                  </svg>
+                  <strong class="maincolour">Units: 4 STRENGTH</strong> (The Empire’s Super Star Destroyers and Death
+                  Stars)
+                </li>
+              </ul>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Yes/No Box -->
-        <div class="modal fade" id="yesNo" tabindex="-1" aria-labelledby="YesNo" aria-hidden="true">
-          <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="remotesystems">Are you sure?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body d-flex">
-                <p>Reset Game?</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="resetGame()" data-bs-dismiss="modal">Yes</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-              </div>
+      <!-- Yes/No Box -->
+      <div class="modal fade" id="yesNo" tabindex="-1" aria-labelledby="YesNo" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="remotesystems">Are you sure?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex">
+              <p>Reset Game?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" onclick="resetGame()" data-bs-dismiss="modal">Yes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
             </div>
           </div>
         </div>
-      
-
+      </div>
     </div> <!-- /Wrapper -->
 
 
