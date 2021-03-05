@@ -11583,6 +11583,15 @@ div[id*=space] {
   border-left: 3px solid #d50000c4;
 }
 
+#buildbutton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .circle {
   width: 40px;
   height: 40px;

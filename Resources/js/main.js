@@ -69,17 +69,13 @@ function SetupBuildQueue() {
 
 function loadBuildQueueSettings() {
     for (let [key, value] of Object.entries(localStorage)) {
-        switch (value) {
-            case "buildchk":
-                let planetName = key.split(",")[0];
-                let chkName = key.split(",")[1];
-                let elements = document.getElementById(planetName).getElementsByClassName('form-check-input');
-                for (let index = 0; index < elements.length; index++) {
-                    if (elements[index].id === chkName) { elements[index].checked = true; };
-                }
-                break;
-            default:
-                break;
+        if (value == "buildchk") {
+            let planetName = key.split(",")[0];
+            let chkName = key.split(",")[1];
+            let checks = document.getElementById(planetName).getElementsByClassName('form-check-input');
+            for (let index = 0; index < checks.length; index++) {
+                if (checks[index].id === chkName) { checks[index].checked = true; };
+            }
         }
     }
 }
@@ -130,69 +126,74 @@ function moveBuildButton() {
 
 // TODO Refactor this
 function createBuildQueue() {
-    resetBuildQueue();
+    resetBuildQueueCount();
 
-    for (let systemCount = 0; systemCount < planetnames.length; systemCount++) {
-        let system = planetnames[systemCount];
+    // The 'planetnames' array is arranged by groups of regions with a number of planets
+    // in each region
+    for (let regionCount = 0; regionCount < planetnames.length; regionCount++) {
+        let region = planetnames[regionCount];
 
-        for (let planetCount = 0; planetCount < system.length; planetCount++) {
+        for (let planetCount = 0; planetCount < region.length; planetCount++) {
 
-            let planetname = system[planetCount];
-
+            let planetname = region[planetCount];
             let resources = getPlanetsBuildResources(planetname);
+            let canBuild;
 
-            let build;
+            let checks = document.getElementById(planetname).getElementsByClassName('form-check-input');
+            for (let index = 0; index < checks.length; index++) {
 
-            let elements = document.getElementById(planetname).getElementsByClassName('form-check-input');
-            for (let index = 0; index < elements.length; index++) {
-
-                if (elements[index].id == "chkblock" && elements[index].checked === true) {
-                    localStorage.setItem([planetname, elements[index].id], "buildchk");
-                    build = false;
+                // if Blockaded checkbox is checked don't add any of this planet's resources
+                if (checks[index].id == "chkblock" && checks[index].checked === true) {
+                    localStorage.setItem([planetname, checks[index].id], "buildchk");
+                    canBuild = false;
                 }
 
-                if (elements[index].checked === false) { continue; }
+                if (checks[index].checked == false) { continue; }
 
-                let controlname = "";
-
-                switch (elements[index].id) {
-                    case "radioempire":
-                        controlname = "build-emp-";
-                        break;
-                    case "radiosubjugated":
-                    case "radiorebelsubjugated":
-                        controlname = "build-emp-";
-                        if (resources.length === 2) { resources.pop() };
-                        break;
-                    case "radiorebel":
-                        controlname = "build-rebel-";
-                        break;
-                    default:
-                        break;
-                }
-
-                if (controlname != "") {
-
-                    localStorage.setItem([planetname, elements[index].id], "buildchk");
-
-                    if (build == false) { continue; }
-
-                    resources.forEach(resource => {
-                        let resourceIcon = document.getElementById(controlname + resource[0] + "-" + resource[1] + "-" + resource[2]);
-                        let count = parseInt(resourceIcon.innerText);
-                        count++;
-                        if (count > 0) {
-                            resourceIcon.classList.remove('d-none');
-                            resourceIcon.innerText = count;
-                        }
-                    });
-                }
+                updateBuildQueueCount(planetname, canBuild, checks, index, resources);
             }
         }
     }
 }
 
+function updateBuildQueueCount(planetname, canBuild, checks, index, resources) {
+    let controlname = getControlName(checks, index, resources);
+
+    if (controlname == "") { return; }
+
+    saveItem([planetname, checks[index].id], "buildchk");
+
+    if (canBuild == false) { return; }
+
+    resources.forEach(resource => {
+        let resourceIcon = document.getElementById(controlname + resource[0] + "-" + resource[1] + "-" + resource[2]);
+        let count = parseInt(resourceIcon.innerText);
+        count++;
+        if (count > 0) {
+            resourceIcon.classList.remove('d-none');
+            resourceIcon.innerText = count;
+        }
+    });
+}
+
+function getControlName(checks, index, resources) {
+    switch (checks[index].id) {
+        case "radioempire":
+            return "build-emp-";
+        case "radiosubjugated":
+        case "radiorebelsubjugated":
+            if (resources.length === 2) { resources.pop(); };
+            return "build-emp-";
+        case "radiorebel":
+            return "build-rebel-";
+        default:
+            return "";
+    }
+}
+
 function getPlanetsBuildResources(planetname, subjugated = false) {
+    // Each planet can have one or two resources that it produces
+    // Resources are returned in arrays
     switch (planetname) {
         case "Alderaan":
         case "Coruscant":
@@ -238,7 +239,7 @@ function getPlanetsBuildResources(planetname, subjugated = false) {
     }
 }
 
-function resetBuildQueue() {
+function resetBuildQueueCount() {
     document.querySelectorAll("[id^='build-'").forEach(
         element => {
             element.innerHTML = 0;
@@ -256,16 +257,38 @@ function resetBuildQueue() {
 function resetGame() {
     localStorage.clear();
 
+    resetRemoteSystems();
+    resetBuildQueue();
+}
+
+function resetRemoteSystems() {
     document.querySelectorAll("[id^='planet-']").forEach(
         planet => {
             document.getElementById(planet.id).checked = false;
         }
-    )
+    );
 
     numSelectedSystems = 0;
     updateNumberOfSelectedSystems();
+}
 
-    // TODO Reset build checks here
+function resetBuildQueue() {
+    let checks = document.querySelectorAll('.form-check-input');
+    for (let checkcount = 0; checkcount < checks.length; checkcount++) {
+        const check = checks[checkcount];
+        if (check.type == 'checkbox' && check.id == 'chkblock') {
+            check.checked = false;
+        } else {
+            if (check.name == 'CoruscantRadioOptions' || check.name == 'Rebel BaseRadioOptions') { continue; }
+            if (check.id != 'radioneutral') { continue; }
+
+            check.checked = true;
+        }
+    }
+}
+
+function saveItem(key, value){
+    localStorage.setItem(key, value);
 }
 
 // TODO This needs to be renamed!!
