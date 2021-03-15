@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // alert("yo!");
     // localStorage.clear();
 
+    // TODO Refactor this
     for (let [key, value] of Object.entries(localStorage)) {
         switch (value) {
             case "Planet":
@@ -13,9 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    updateNumberOfSelectedSystems();
 
-    SetupBuildQueue();
+    loadVariantSettings();
+    updateNumberOfSelectedSystems();
+    setupBuildQueue();
 })
 
 // const planetnames = ["Coruscant", "Rebel Base", "Alderaan", "Bespin", "Bothawui", "Cato Neimoidia",
@@ -43,19 +45,14 @@ const planetnames = [["Coruscant", "Rebel Base"],
 ["Naboo", "Sullust", "Utapau"],
 ["Bespin", "Mustafar"]];
 
-function SetupBuildQueue() {
-
-    for (let systemCount = 0; systemCount < planetnames.length; systemCount++) {
-        let system = planetnames[systemCount];
-
-        for (let planetCount = 0; planetCount < system.length; planetCount++) {
-            let planetname = system[planetCount];
-
-            cloneNodeAndChangeId('buildtemplate', planetname, planetCount);
-            changePlanetDisplayName(planetname);
-            changeRadioGroupName(planetname);
-        }
-    }
+function setupBuildQueue() {
+    planetnames.forEach(system => {
+        system.forEach(planet => {
+            cloneNodeAndChangeId('buildtemplate', planet, system.indexOf(planet));
+            changePlanetDisplayName(planet);
+            changeRadioGroupName(planet);
+        })
+    })
 
     moveBuildButton();
 
@@ -67,17 +64,45 @@ function SetupBuildQueue() {
     loadBuildQueueSettings();
 }
 
-function loadBuildQueueSettings() {
+const GetSettingsByValue = (val, includes = false) => {
+    let settings = new Array;
     for (let [key, value] of Object.entries(localStorage)) {
-        if (value == "buildchk") {
-            let planetName = key.split(",")[0];
-            let chkName = key.split(",")[1];
-            let checks = document.getElementById(planetName).getElementsByClassName('form-check-input');
-            for (let index = 0; index < checks.length; index++) {
-                if (checks[index].id === chkName) { checks[index].checked = true; };
-            }
+        if (includes && value.includes(val)){
+            settings.push(key + "," + value)
+        }
+        else if (value == val) {
+            settings.push(key + "," + value)
         }
     }
+    return settings;
+}
+
+const GetSettingsByKey = (val, includes = false) => {
+    let settings = new Array;
+    for (let [key, value] of Object.entries(localStorage)) {
+        if (includes && key.includes(val)){
+            settings.push(key + "," + value)
+        }
+        else if (key == val) {
+            settings.push(key + "," + value)
+        }
+    }
+    return settings;
+}
+
+const SaveSetting = (key, value) => {
+    localStorage.setItem(key, value);
+}
+
+function loadBuildQueueSettings() {
+    GetSettingsByValue("buildchk").forEach(planet => {
+        let planetName = planet.split(",")[0];
+        let chkName = planet.split(",")[1];
+        let checks = document.getElementById(planetName).getElementsByClassName('form-check-input');
+        for (let index = 0; index < checks.length; index++) {
+            if (checks[index].id === chkName) { checks[index].checked = true; };
+        }
+    })
 }
 
 function cloneNodeAndChangeId(nodename, planetname, rowCount) {
@@ -124,7 +149,6 @@ function moveBuildButton() {
     document.getElementById('buildqueue').appendChild(document.getElementById('buildbutton'));
 }
 
-// TODO Refactor this
 function createBuildQueue() {
     resetBuildQueueCount();
 
@@ -161,7 +185,7 @@ function updateBuildQueueCount(planetname, canBuild, checks, index, resources) {
 
     if (controlname == "") { return; }
 
-    saveItem([planetname, checks[index].id], "buildchk");
+    SaveSetting([planetname, checks[index].id], "buildchk");
 
     if (canBuild == false) { return; }
 
@@ -287,10 +311,6 @@ function resetBuildQueue() {
     }
 }
 
-function saveItem(key, value){
-    localStorage.setItem(key, value);
-}
-
 // TODO This needs to be renamed!!
 function run() {
     // alert('Working?');
@@ -308,8 +328,23 @@ function run() {
     });
 }
 
+function loadVariantSettings() {
+    let settings = GetSettingsByKey("chk", true);
+    settings.forEach(setting => {
+        let id = setting.split(",")[0];
+        let value = (setting.split(",")[1] == 'true');
+        if (value) {setVariants(id)};
+        document.getElementById(id).checked = value;
+    });
+}
+
 function chkClick(cb) {
-    switch (cb.id) {
+    setVariants(cb.id);
+    SaveSetting(cb.id, cb.checked);
+}
+
+function setVariants(variantName){
+    switch (variantName) {
         case 'chkROTE-Units':
             showHideElement('ROTE-Setup');
             showHideElement('Base-Setup');

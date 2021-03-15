@@ -11553,6 +11553,10 @@ a:hover {
   margin: 0 1px;
 }
 
+.planetname {
+  font-size: 0.9rem;
+}
+
 div[id*=ground] {
   background-color: orange;
 }
