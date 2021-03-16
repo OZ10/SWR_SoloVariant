@@ -94,6 +94,14 @@ const SaveSetting = (key, value) => {
     localStorage.setItem(key, value);
 }
 
+const RemoveSetting = (val) => {
+    for (let [key, value] of Object.entries(localStorage)) {
+        if (value === val) {
+            localStorage.removeItem(key);
+        }
+    }
+}
+
 function loadBuildQueueSettings() {
     GetSettingsByValue("buildchk").forEach(planet => {
         let planetName = planet.split(",")[0];
@@ -271,11 +279,7 @@ function resetBuildQueueCount() {
         }
     )
 
-    for (let [key, value] of Object.entries(localStorage)) {
-        if (value === "buildchk") {
-            localStorage.removeItem(key);
-        }
-    }
+    RemoveSetting("buildchk");
 }
 
 function resetGame() {
@@ -311,13 +315,10 @@ function resetBuildQueue() {
     }
 }
 
-// TODO This needs to be renamed!!
-function run() {
-    // alert('Working?');
+function searchCardList() {
+    const searchText = document.getElementById('searchbar');
 
-    var searchText = document.getElementById('searchbar');
-
-    var collapseElementList = [].slice.call(document.querySelectorAll('.cardlist'))
+    const collapseElementList = [].slice.call(document.querySelectorAll('.cardlist'))
 
     collapseElementList.forEach(row => {
         if (row.title.toUpperCase().includes(searchText.value.toUpperCase())) {
@@ -371,7 +372,6 @@ function setVariants(variantName){
 }
 
 function showHideElement(id) {
-    // var element = document.getElementById(id);
     document.querySelectorAll('#' + id).forEach(
         element => {
             if (element.classList.contains('d-none')) {
@@ -394,7 +394,7 @@ function showHideElement(id) {
 // searchbar.addEventListener('keydown', run2);
 
 document.getElementById('searchbar').addEventListener('input', (e) => {
-    run();
+    searchCardList();
 })
 
 
@@ -435,6 +435,38 @@ function GetRebelBaseName() {
         }
     )
     return rebelbase;
+}
+
+function changeRound(){
+    const rounds = document.querySelectorAll("[id^='round']");
+
+    rounds.forEach(round => {
+        if (round.checked && round.disabled)
+        {
+            let roundNum = round.id.split('_')[1];
+            round.checked = false;
+            round.disabled = false;
+
+            roundNum++;
+
+            if (roundNum == '17') return;
+
+            let newRound = document.getElementById('round_' + roundNum);
+            newRound.checked = true;
+            newRound.disabled = true;
+            
+            return;
+        }
+    })
+}
+
+function setRebelRep(id){
+    const rounds = document.querySelectorAll("[id^='round']");
+
+    rounds.forEach(round => {
+        if (round.disabled) return;
+        if (round.checked && round.id != id) round.checked = false;
+    })
 }
 
 var dice = {
