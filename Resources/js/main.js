@@ -64,36 +64,6 @@ function setupBuildQueue() {
     loadBuildQueueSettings();
 }
 
-const GetSettingsByValue = (val, includes = false) => {
-    let settings = new Array;
-    for (let [key, value] of Object.entries(localStorage)) {
-        if (includes && value.includes(val)){
-            settings.push(key + "," + value)
-        }
-        else if (value == val) {
-            settings.push(key + "," + value)
-        }
-    }
-    return settings;
-}
-
-const GetSettingsByKey = (val, includes = false) => {
-    let settings = new Array;
-    for (let [key, value] of Object.entries(localStorage)) {
-        if (includes && key.includes(val)){
-            settings.push(key + "," + value)
-        }
-        else if (key == val) {
-            settings.push(key + "," + value)
-        }
-    }
-    return settings;
-}
-
-const SaveSetting = (key, value) => {
-    localStorage.setItem(key, value);
-}
-
 function loadBuildQueueSettings() {
     GetSettingsByValue("buildchk").forEach(planet => {
         let planetName = planet.split(",")[0];
@@ -161,33 +131,57 @@ function createBuildQueue() {
 
             let planetname = region[planetCount];
             let resources = getPlanetsBuildResources(planetname);
-            let canBuild;
+            let isBlockaded = false;
+            let isSubjugated = false;
 
             let checks = document.getElementById(planetname).getElementsByClassName('form-check-input');
             for (let index = 0; index < checks.length; index++) {
 
                 // if Blockaded checkbox is checked don't add any of this planet's resources
-                if (checks[index].id == "chkblock" && checks[index].checked === true) {
+                if (checks[index].id == "blockade" && checks[index].checked === true) {
                     localStorage.setItem([planetname, checks[index].id], "buildchk");
-                    canBuild = false;
+                    isBlockaded = true;
+                }
+
+                if (checks[index].id == "subjugate" && checks[index].checked === true) {
+                    localStorage.setItem([planetname, checks[index].id], "buildchk");
+                    isSubjugated = true;
                 }
 
                 if (checks[index].checked == false) { continue; }
 
-                updateBuildQueueCount(planetname, canBuild, checks, index, resources);
+                updateBuildQueueCount(planetname, isBlockaded, isSubjugated, checks, index, resources);
             }
         }
     }
 }
 
-function updateBuildQueueCount(planetname, canBuild, checks, index, resources) {
-    let controlname = getControlName(checks, index, resources);
+// const isBlockaded = (planetname, chk) =>{
+//     if (chk.id == "chkblock" && chk.checked === true) {
+//         localStorage.setItem([planetname, chk.id], "buildchk");
+//         return true;
+//     }
+
+//     return false;
+// }
+
+// const isSubjugated = (planetname, chk) =>{
+//     if (chk.id == "chkSub" && chk.checked === true) {
+//         localStorage.setItem([planetname, chk.id], "chkSub");
+//         return true;
+//     }
+
+//     return false;
+// }
+
+function updateBuildQueueCount(planetname, isBlockaded, isSubjugated, checks, index, resources) {
+    let controlname = getControlName(checks, index, resources, isSubjugated);
 
     if (controlname == "") { return; }
 
     SaveSetting([planetname, checks[index].id], "buildchk");
 
-    if (canBuild == false) { return; }
+    if (isBlockaded) { return; }
 
     resources.forEach(resource => {
         let resourceIcon = document.getElementById(controlname + resource[0] + "-" + resource[1] + "-" + resource[2]);
@@ -200,13 +194,15 @@ function updateBuildQueueCount(planetname, canBuild, checks, index, resources) {
     });
 }
 
-function getControlName(checks, index, resources) {
+function getControlName(checks, index, resources, isSubjugated) {
+    // Subjugated systems always build for the Empire
+    if (isSubjugated){
+        if (resources.length === 2) { resources.pop(); };
+        return "build-emp-";
+    }
+
     switch (checks[index].id) {
         case "radioempire":
-            return "build-emp-";
-        case "radiosubjugated":
-        case "radiorebelsubjugated":
-            if (resources.length === 2) { resources.pop(); };
             return "build-emp-";
         case "radiorebel":
             return "build-rebel-";
@@ -382,6 +378,36 @@ function showHideElement(id) {
         }
     )
 
+}
+
+const GetSettingsByValue = (val, includes = false) => {
+    let settings = new Array;
+    for (let [key, value] of Object.entries(localStorage)) {
+        if (includes && value.includes(val)){
+            settings.push(key + "," + value)
+        }
+        else if (value == val) {
+            settings.push(key + "," + value)
+        }
+    }
+    return settings;
+}
+
+const GetSettingsByKey = (val, includes = false) => {
+    let settings = new Array;
+    for (let [key, value] of Object.entries(localStorage)) {
+        if (includes && key.includes(val)){
+            settings.push(key + "," + value)
+        }
+        else if (key == val) {
+            settings.push(key + "," + value)
+        }
+    }
+    return settings;
+}
+
+const SaveSetting = (key, value) => {
+    localStorage.setItem(key, value);
 }
 
 // function run2(e){
