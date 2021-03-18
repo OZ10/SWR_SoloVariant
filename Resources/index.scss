@@ -373,6 +373,18 @@ div[id*=space]{
     @extend .trianglebase;
  }
 
+ #round_16::after{
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: red;
+ }
+
+ #round_16:checked:after{
+    background: blue;
+ }
+
 .margin-small{
     margin: 8px;
 }

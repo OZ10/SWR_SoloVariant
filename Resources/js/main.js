@@ -445,13 +445,19 @@ function changeRound(){
         {
             let roundNum = round.id.split('_')[1];
             round.checked = false;
-            round.disabled = false;
+            // round.disabled = false;
 
             roundNum++;
 
             if (roundNum == '17') return;
 
             let newRound = document.getElementById('round_' + roundNum);
+            // newRound.background = "#A5D6A7";
+            if (newRound.checked){
+                alert('Rebels win!');
+                return;
+            }
+
             newRound.checked = true;
             newRound.disabled = true;
             
