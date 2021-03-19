@@ -195,20 +195,23 @@ function updateBuildQueueCount(planetname, isBlockaded, isSubjugated, checks, in
 }
 
 function getControlName(checks, index, resources, isSubjugated) {
+    const selectedRadioButton = checks[index].id;
+
+    if (selectedRadioButton == "radioempire") {
+        return "build-emp-";
+    }
+
     // Subjugated systems always build for the Empire
-    if (isSubjugated){
+    if (isSubjugated && selectedRadioButton.includes("radio")) {
         if (resources.length === 2) { resources.pop(); };
         return "build-emp-";
     }
 
-    switch (checks[index].id) {
-        case "radioempire":
-            return "build-emp-";
-        case "radiorebel":
-            return "build-rebel-";
-        default:
-            return "";
+    if (selectedRadioButton == "radiorebel") {
+        return "build-rebel-";
     }
+
+    return "";
 }
 
 function getPlanetsBuildResources(planetname, subjugated = false) {
@@ -329,7 +332,7 @@ function loadVariantSettings() {
     settings.forEach(setting => {
         let id = setting.split(",")[0];
         let value = (setting.split(",")[1] == 'true');
-        if (value) {setVariants(id)};
+        if (value) { setVariants(id) };
         document.getElementById(id).checked = value;
     });
 }
@@ -339,7 +342,7 @@ function chkClick(cb) {
     SaveSetting(cb.id, cb.checked);
 }
 
-function setVariants(variantName){
+function setVariants(variantName) {
     switch (variantName) {
         case 'chkROTE-Units':
             showHideElement('ROTE-Setup');
@@ -383,7 +386,7 @@ function showHideElement(id) {
 const GetSettingsByValue = (val, includes = false) => {
     let settings = new Array;
     for (let [key, value] of Object.entries(localStorage)) {
-        if (includes && value.includes(val)){
+        if (includes && value.includes(val)) {
             settings.push(key + "," + value)
         }
         else if (value == val) {
@@ -396,7 +399,7 @@ const GetSettingsByValue = (val, includes = false) => {
 const GetSettingsByKey = (val, includes = false) => {
     let settings = new Array;
     for (let [key, value] of Object.entries(localStorage)) {
-        if (includes && key.includes(val)){
+        if (includes && key.includes(val)) {
             settings.push(key + "," + value)
         }
         else if (key == val) {
