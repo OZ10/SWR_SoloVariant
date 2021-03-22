@@ -11639,16 +11639,31 @@ div[id*=space] {
   border-bottom-color: blue;
 }
 
-#round_16::after {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background: red;
+.roundtracker {
+  background-color: #e9ecef;
+  margin-top: 10px;
 }
 
-#round_16:checked:after {
-  background: blue;
+#round_label {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-color: black;
+  border-style: solid;
+  line-height: 35px;
+  position: relative;
+}
+
+input[id^=round] {
+  display: none;
+}
+
+input[id^=round]:checked + label {
+  content: url("./images/Round_Rebel_sm.png");
+}
+
+input[id^=round]:checked:disabled + label {
+  content: url("./images/Round_Marker_sm.png");
 }
 
 .margin-small {
