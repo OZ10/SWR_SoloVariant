@@ -136,7 +136,7 @@
               </li>
 
               <!-- D6 button -->
-              <li class="">
+              <li class="text-center">
                 <button type="button" class="btn btn-secondary" id="d6button">
                   <span class="material-icons align-middle" style="font-size: 1.2rem;">casino</span>
                 </button>
@@ -145,113 +145,119 @@
               <!-- Round Tracker -->
               <li class="roundtracker text-center">
                 <!-- <div class="container-fluid"> -->
-                  <div class="row">
-                    <button class="btn btn-secondary" onclick="changeRound()">+</button>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col">
-                      <input type="checkbox" id="round_16" onclick="setRebelRep(id)">
-                      <label for="round_16" id="round_label">16</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col d-none d-sm-inline"></div>
-                    <div class="col">
-                      <input type="checkbox" id="round_15" onclick="setRebelRep(id)">
-                      <label for="round_15" id="round_label">15</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col">
-                      <input type="checkbox" id="round_14" onclick="setRebelRep(id)" checked>
-                      <label for="round_14" id="round_label">14</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col d-none d-sm-inline"></div>
-                    <div class="col">
-                      <input type="checkbox" id="round_13" onclick="setRebelRep(id)">
-                      <label for="round_13" id="round_label">13</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col">
-                      <input type="checkbox" id="round_12" onclick="setRebelRep(id)">
-                      <label for="round_12" id="round_label">12</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col d-none d-sm-inline"></div>
-                    <div class="col">
-                      <input type="checkbox" id="round_11" onclick="setRebelRep(id)">
-                      <label for="round_11" id="round_label">11</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col">
-                      <input type="checkbox" id="round_10" onclick="setRebelRep(id)">
-                      <label for="round_10" id="round_label">10</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col d-none d-sm-inline"></div>
-                    <div class="col">
-                      <input type="checkbox" id="round_9" onclick="setRebelRep(id)">
-                      <label for="round_9" id="round_label">9</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col">
-                      <input type="checkbox" id="round_8" onclick="setRebelRep(id)">
-                      <label for="round_8" id="round_label">8</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col d-none d-sm-inline"></div>
-                    <div class="col">
-                      <input type="checkbox" id="round_7" onclick="setRebelRep(id)">
-                      <label for="round_7" id="round_label">7</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col">
-                      <input type="checkbox" id="round_6" onclick="setRebelRep(id)">
-                      <label for="round_6" id="round_label">6</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col d-none d-sm-inline"></div>
-                    <div class="col">
-                      <input type="checkbox" id="round_5" onclick="setRebelRep(id)">
-                      <label for="round_5" id="round_label">5</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col">
-                      <input type="checkbox" id="round_4" onclick="setRebelRep(id)">
-                      <label for="round_4" id="round_label">4</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col d-none d-sm-inline"></div>
-                    <div class="col">
-                      <input type="checkbox" id="round_3" onclick="setRebelRep(id)">
-                      <label for="round_3" id="round_label">3</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col">
-                      <input type="checkbox" id="round_2" onclick="setRebelRep(id)">
-                      <label for="round_2" id="round_label">2</label>
-                    </div>
-                  </div>
-                  <div class="row row-cols-2">
-                    <div class="col d-none d-sm-inline"></div>
-                    <div class="col">
-                      <input type="checkbox" id="round_1" onclick="setRebelRep(id)" checked disabled>
-                      <label for="round_1" id="round_label">1</label>
-                    </div>
-                  </div>
+                <!-- <div class="row justify-content-center">
+                    Round Tracker
+                  </div> -->
+                <div class="row justify-content-center">
+                  <button class="btn btn-secondary" style="width: 50%;" data-bs-toggle="tooltip"
+                    data-bs-placement="right" title="New Round" onclick="changeRound()">+</button>
+                </div>
+                <p></p>
+                <!-- <div class="row row-cols-2"> -->
+                <div class="col">
+                  <input type="checkbox" id="round_16" onclick="setRebelRep(id)">
+                  <label for="round_16" id="round_label">16</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <!-- <div class="col d-none d-sm-inline"></div> -->
+                <div class="col">
+                  <input type="checkbox" id="round_15" onclick="setRebelRep(id)">
+                  <label for="round_15" id="round_label">15</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <div class="col">
+                  <input type="checkbox" id="round_14" onclick="setRebelRep(id)" checked>
+                  <label for="round_14" id="round_label">14</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <!-- <div class="col d-none d-sm-inline"></div> -->
+                <div class="col">
+                  <input type="checkbox" id="round_13" onclick="setRebelRep(id)">
+                  <label for="round_13" id="round_label">13</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <div class="col">
+                  <input type="checkbox" id="round_12" onclick="setRebelRep(id)">
+                  <label for="round_12" id="round_label">12</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <!-- <div class="col d-none d-sm-inline"></div> -->
+                <div class="col">
+                  <input type="checkbox" id="round_11" onclick="setRebelRep(id)">
+                  <label for="round_11" id="round_label">11</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <div class="col">
+                  <input type="checkbox" id="round_10" onclick="setRebelRep(id)">
+                  <label for="round_10" id="round_label">10</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <!-- <div class="col d-none d-sm-inline"></div> -->
+                <div class="col">
+                  <input type="checkbox" id="round_9" onclick="setRebelRep(id)">
+                  <label for="round_9" id="round_label">9</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <div class="col">
+                  <input type="checkbox" id="round_8" onclick="setRebelRep(id)">
+                  <label for="round_8" id="round_label">8</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <!-- <div class="col d-none d-sm-inline"></div> -->
+                <div class="col">
+                  <input type="checkbox" id="round_7" onclick="setRebelRep(id)">
+                  <label for="round_7" id="round_label">7</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <div class="col">
+                  <input type="checkbox" id="round_6" onclick="setRebelRep(id)">
+                  <label for="round_6" id="round_label">6</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <!-- <div class="col d-none d-sm-inline"></div> -->
+                <div class="col">
+                  <input type="checkbox" id="round_5" onclick="setRebelRep(id)">
+                  <label for="round_5" id="round_label">5</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <div class="col">
+                  <input type="checkbox" id="round_4" onclick="setRebelRep(id)">
+                  <label for="round_4" id="round_label">4</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <!-- <div class="col d-none d-sm-inline"></div> -->
+                <div class="col">
+                  <input type="checkbox" id="round_3" onclick="setRebelRep(id)">
+                  <label for="round_3" id="round_label">3</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <div class="col">
+                  <input type="checkbox" id="round_2" onclick="setRebelRep(id)">
+                  <label for="round_2" id="round_label">2</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row row-cols-2"> -->
+                <!-- <div class="col d-none d-sm-inline"></div> -->
+                <div class="col">
+                  <input type="checkbox" id="round_1" onclick="setRebelRep(id)" checked disabled>
+                  <label for="round_1" id="round_label">1</label>
+                </div>
+                <!-- </div> -->
+                <p></p>
                 <!-- </div> -->
               </li>
             </ul>

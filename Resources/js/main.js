@@ -452,7 +452,7 @@ function changeRound(){
             if (roundNum == '17') return;
 
             let newRound = document.getElementById('round_' + roundNum);
-            // newRound.background = "#A5D6A7";
+
             if (newRound.checked){
                 alert('Rebels win!');
                 return;
@@ -473,6 +473,17 @@ function setRebelRep(id){
         if (round.disabled) return;
         if (round.checked && round.id != id) round.checked = false;
     })
+}
+
+function getRebelRep(){
+    const rounds = document.querySelectorAll("[id^='round']");
+
+    rounds.forEach(round => {
+        if (round.disabled) return;
+        if (round.checked) return round.id.split('_')[1];
+    })
+
+    return 0;
 }
 
 var dice = {
