@@ -1,4 +1,4 @@
-let promptUser = true;
+let promptUserRebelsWithin5 = true;
 
 document.addEventListener("DOMContentLoaded", () => {
     // alert("yo!");
@@ -416,35 +416,35 @@ function showHideElement(id) {
 
 }
 
-const GetSettingsByValue = (val, includes = false) => {
-    let settings = new Array;
-    for (let [key, value] of Object.entries(localStorage)) {
-        if (includes && value.includes(val)) {
-            settings.push(key + "," + value)
-        }
-        else if (value == val) {
-            settings.push(key + "," + value)
-        }
-    }
-    return settings;
-}
+// const GetSettingsByValue = (val, includes = false) => {
+//     let settings = new Array;
+//     for (let [key, value] of Object.entries(localStorage)) {
+//         if (includes && value.includes(val)) {
+//             settings.push(key + "," + value)
+//         }
+//         else if (value == val) {
+//             settings.push(key + "," + value)
+//         }
+//     }
+//     return settings;
+// }
 
-const GetSettingsByKey = (val, includes = false) => {
-    let settings = new Array;
-    for (let [key, value] of Object.entries(localStorage)) {
-        if (includes && key.includes(val)) {
-            settings.push(key + "," + value)
-        }
-        else if (key == val) {
-            settings.push(key + "," + value)
-        }
-    }
-    return settings;
-}
+// const GetSettingsByKey = (val, includes = false) => {
+//     let settings = new Array;
+//     for (let [key, value] of Object.entries(localStorage)) {
+//         if (includes && key.includes(val)) {
+//             settings.push(key + "," + value)
+//         }
+//         else if (key == val) {
+//             settings.push(key + "," + value)
+//         }
+//     }
+//     return settings;
+// }
 
-const SaveSetting = (key, value) => {
-    localStorage.setItem(key, value);
-}
+// const SaveSetting = (key, value) => {
+//     localStorage.setItem(key, value);
+// }
 
 // function run2(e){
 //     if (e.keyCode == 13) {
@@ -531,16 +531,16 @@ function changeRound(){
 
 function checkIfRebelRepLessThan5(currentRoundNumber) {
     if (getRebelRep() - currentRoundNumber <= 5) {
-        if (promptUser) {
+        if (promptUserRebelsWithin5) {
             // alert('Rebels are now within FIVE rounds of winning the game. Movement rules have changed.');
             const messageBox = new bootstrap.Modal(document.getElementById('messageBox'));
             document.getElementById('messageBoxTitle').innerHTML = "Crossing The Finish Line";
             document.getElementById('messageBoxBody').innerHTML = "Rebels are now within FIVE rounds of winning the game. The Empire's Movement & Deployment rules have changed";
             messageBox.show();
-            promptUser = false;
+            promptUserRebelsWithin5 = false;
         }
     } else {
-        promptUser = true;
+        promptUserRebelsWithin5 = true;
     }
 }
 
