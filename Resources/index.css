@@ -11639,6 +11639,39 @@ div[id*=space] {
   border-bottom-color: blue;
 }
 
+.roundtracker {
+  background-color: #e9ecef;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+#round_label {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-color: #ced4da;
+  border-style: solid;
+  line-height: 35px;
+  position: relative;
+  font-family: "Goldman", serif;
+}
+
+input[id^=round] {
+  display: none;
+}
+
+input[id^=round]:checked + label {
+  content: url("./images/Round_Rebel_sm.png");
+}
+
+input[id^=round]:checked:disabled + label {
+  content: url("./images/Round_Marker_sm.png");
+}
+
+input[id^=round]:disabled + label {
+  background-color: #adb5bd;
+}
+
 .margin-small {
   margin: 8px;
 }
@@ -11785,13 +11818,6 @@ div[id*=space] {
 
 #carddecisionlist div {
   font-size: small;
-}
-
-.d6buttonstyle {
-  display: block;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 #d6 {
