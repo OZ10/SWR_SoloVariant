@@ -1,3 +1,5 @@
+let promptUser = true;
+
 document.addEventListener("DOMContentLoaded", () => {
     // alert("yo!");
     // localStorage.clear();
@@ -443,15 +445,16 @@ function changeRound(){
     rounds.forEach(round => {
         if (round.checked && round.disabled)
         {
-            let roundNum = round.id.split('_')[1];
             round.checked = false;
-            // round.disabled = false;
 
-            roundNum++;
+            let currentRoundNumber = getRoundNumber(round.id);
+            currentRoundNumber++;
 
-            if (roundNum == '17') return;
+            checkIfRebelRepLessThan5(currentRoundNumber);
 
-            let newRound = document.getElementById('round_' + roundNum);
+            if (currentRoundNumber == '17') return;
+
+            let newRound = document.getElementById('round_' + currentRoundNumber);
 
             if (newRound.checked){
                 alert('Rebels win!');
@@ -466,24 +469,60 @@ function changeRound(){
     })
 }
 
+function checkIfRebelRepLessThan5(currentRoundNumber) {
+    if (getRebelRep() - currentRoundNumber <= 5) {
+        if (promptUser) {
+            // alert('Rebels are now within FIVE rounds of winning the game. Movement rules have changed.');
+            const messageBox = new bootstrap.Modal(document.getElementById('messageBox'));
+            document.getElementById('messageBoxTitle').innerHTML = "Crossing The Finish Line";
+            document.getElementById('messageBoxBody').innerHTML = "Rebels are now within FIVE rounds of winning the game. The Empire's Movement & Deployment rules have changed";
+            messageBox.show();
+            promptUser = false;
+        }
+    } else {
+        promptUser = true;
+    }
+}
+
 function setRebelRep(id){
     const rounds = document.querySelectorAll("[id^='round']");
 
     rounds.forEach(round => {
+        if (round.checked & !round.disabled && round.id != id) round.checked = false;
+
+        // Get current round and check if newly selected round is <=5
+        if (round.checked && round.disabled){
+            let currentRoundNumber = getRoundNumber(round.id);
+            checkIfRebelRepLessThan5(currentRoundNumber);
+        }
+
         if (round.disabled) return;
-        if (round.checked && round.id != id) round.checked = false;
     })
 }
 
 function getRebelRep(){
     const rounds = document.querySelectorAll("[id^='round']");
 
-    rounds.forEach(round => {
-        if (round.disabled) return;
-        if (round.checked) return round.id.split('_')[1];
-    })
+    let roundNumber = 0;
 
-    return 0;
+    for (let roundCounter = 0; roundCounter < rounds.length; roundCounter++) {
+        const round = rounds[roundCounter];
+        if (round.checked & round.disabled == false){
+            roundNumber = getRoundNumber(round.id);
+            break;
+        } 
+    }
+
+    // rounds.forEach(round => {
+    //     // if (round.disabled) continue;
+    //     if (round.checked & round.disabled == false) return round.id.split('_')[1];
+    // })
+
+    return roundNumber;
+}
+
+function getRoundNumber(roundID){
+    return parseInt(roundID.split('_')[1]);
 }
 
 var dice = {
