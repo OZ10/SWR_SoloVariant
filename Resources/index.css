@@ -11507,16 +11507,6 @@ a:hover {
   content: url(./images/SWR_Yavin.png);
 }
 
-.roundslider {
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
-}
-
-.roundslider2 {
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
-}
-
 .variant {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11570,6 +11560,16 @@ div[id*=space] {
   padding: 5px;
   margin: 5px 0;
   background-color: #dee2e6;
+}
+
+.swg-galemp,
+.swg-stormtrooper {
+  color: #d50000c4;
+}
+
+.swg-reball,
+.swg-stormtrooper-3 {
+  color: #43a048c4;
 }
 
 .buildrow, .buildrowrebel, .buildrowempire {
