@@ -1,3 +1,5 @@
+let promptUserRebelsWithin5 = true;
+
 document.addEventListener("DOMContentLoaded", () => {
     // alert("yo!");
     // localStorage.clear();
@@ -62,6 +64,45 @@ function setupBuildQueue() {
     hideBuildTemplate();
 
     loadBuildQueueSettings();
+}
+
+
+const GetSettingsByValue = (val, includes = false) => {
+    let settings = new Array;
+    for (let [key, value] of Object.entries(localStorage)) {
+        if (includes && value.includes(val)){
+            settings.push(key + "," + value)
+        }
+        else if (value == val) {
+            settings.push(key + "," + value)
+        }
+    }
+    return settings;
+}
+
+const GetSettingsByKey = (val, includes = false) => {
+    let settings = new Array;
+    for (let [key, value] of Object.entries(localStorage)) {
+        if (includes && key.includes(val)){
+            settings.push(key + "," + value)
+        }
+        else if (key == val) {
+            settings.push(key + "," + value)
+        }
+    }
+    return settings;
+}
+
+const SaveSetting = (key, value) => {
+    localStorage.setItem(key, value);
+}
+
+const RemoveSetting = (val) => {
+    for (let [key, value] of Object.entries(localStorage)) {
+        if (value === val) {
+            localStorage.removeItem(key);
+        }
+    }
 }
 
 function loadBuildQueueSettings() {
@@ -270,11 +311,7 @@ function resetBuildQueueCount() {
         }
     )
 
-    for (let [key, value] of Object.entries(localStorage)) {
-        if (value === "buildchk") {
-            localStorage.removeItem(key);
-        }
-    }
+    RemoveSetting("buildchk");
 }
 
 function resetGame() {
@@ -310,13 +347,10 @@ function resetBuildQueue() {
     }
 }
 
-// TODO This needs to be renamed!!
-function run() {
-    // alert('Working?');
+function searchCardList() {
+    const searchText = document.getElementById('searchbar');
 
-    var searchText = document.getElementById('searchbar');
-
-    var collapseElementList = [].slice.call(document.querySelectorAll('.cardlist'))
+    const collapseElementList = [].slice.call(document.querySelectorAll('.cardlist'))
 
     collapseElementList.forEach(row => {
         if (row.title.toUpperCase().includes(searchText.value.toUpperCase())) {
@@ -370,7 +404,6 @@ function setVariants(variantName) {
 }
 
 function showHideElement(id) {
-    // var element = document.getElementById(id);
     document.querySelectorAll('#' + id).forEach(
         element => {
             if (element.classList.contains('d-none')) {
@@ -383,35 +416,35 @@ function showHideElement(id) {
 
 }
 
-const GetSettingsByValue = (val, includes = false) => {
-    let settings = new Array;
-    for (let [key, value] of Object.entries(localStorage)) {
-        if (includes && value.includes(val)) {
-            settings.push(key + "," + value)
-        }
-        else if (value == val) {
-            settings.push(key + "," + value)
-        }
-    }
-    return settings;
-}
+// const GetSettingsByValue = (val, includes = false) => {
+//     let settings = new Array;
+//     for (let [key, value] of Object.entries(localStorage)) {
+//         if (includes && value.includes(val)) {
+//             settings.push(key + "," + value)
+//         }
+//         else if (value == val) {
+//             settings.push(key + "," + value)
+//         }
+//     }
+//     return settings;
+// }
 
-const GetSettingsByKey = (val, includes = false) => {
-    let settings = new Array;
-    for (let [key, value] of Object.entries(localStorage)) {
-        if (includes && key.includes(val)) {
-            settings.push(key + "," + value)
-        }
-        else if (key == val) {
-            settings.push(key + "," + value)
-        }
-    }
-    return settings;
-}
+// const GetSettingsByKey = (val, includes = false) => {
+//     let settings = new Array;
+//     for (let [key, value] of Object.entries(localStorage)) {
+//         if (includes && key.includes(val)) {
+//             settings.push(key + "," + value)
+//         }
+//         else if (key == val) {
+//             settings.push(key + "," + value)
+//         }
+//     }
+//     return settings;
+// }
 
-const SaveSetting = (key, value) => {
-    localStorage.setItem(key, value);
-}
+// const SaveSetting = (key, value) => {
+//     localStorage.setItem(key, value);
+// }
 
 // function run2(e){
 //     if (e.keyCode == 13) {
@@ -423,7 +456,7 @@ const SaveSetting = (key, value) => {
 // searchbar.addEventListener('keydown', run2);
 
 document.getElementById('searchbar').addEventListener('input', (e) => {
-    run();
+    searchCardList();
 })
 
 
@@ -464,6 +497,92 @@ function GetRebelBaseName() {
         }
     )
     return rebelbase;
+}
+
+function changeRound(){
+    const rounds = document.querySelectorAll("[id^='round']");
+
+    rounds.forEach(round => {
+        if (round.checked && round.disabled)
+        {
+            round.checked = false;
+
+            let currentRoundNumber = getRoundNumber(round.id);
+            currentRoundNumber++;
+
+            checkIfRebelRepLessThan5(currentRoundNumber);
+
+            if (currentRoundNumber == '17') return;
+
+            let newRound = document.getElementById('round_' + currentRoundNumber);
+
+            if (newRound.checked){
+                alert('Rebels win!');
+                return;
+            }
+
+            newRound.checked = true;
+            newRound.disabled = true;
+            
+            return;
+        }
+    })
+}
+
+function checkIfRebelRepLessThan5(currentRoundNumber) {
+    if (getRebelRep() - currentRoundNumber <= 5) {
+        if (promptUserRebelsWithin5) {
+            // alert('Rebels are now within FIVE rounds of winning the game. Movement rules have changed.');
+            const messageBox = new bootstrap.Modal(document.getElementById('messageBox'));
+            document.getElementById('messageBoxTitle').innerHTML = "Crossing The Finish Line";
+            document.getElementById('messageBoxBody').innerHTML = "Rebels are now within FIVE rounds of winning the game. The Empire's Movement & Deployment rules have changed";
+            messageBox.show();
+            promptUserRebelsWithin5 = false;
+        }
+    } else {
+        promptUserRebelsWithin5 = true;
+    }
+}
+
+function setRebelRep(id){
+    const rounds = document.querySelectorAll("[id^='round']");
+
+    rounds.forEach(round => {
+        if (round.checked & !round.disabled && round.id != id) round.checked = false;
+
+        // Get current round and check if newly selected round is <=5
+        if (round.checked && round.disabled){
+            let currentRoundNumber = getRoundNumber(round.id);
+            checkIfRebelRepLessThan5(currentRoundNumber);
+        }
+
+        if (round.disabled) return;
+    })
+}
+
+function getRebelRep(){
+    const rounds = document.querySelectorAll("[id^='round']");
+
+    let roundNumber = 0;
+
+    for (let roundCounter = 0; roundCounter < rounds.length; roundCounter++) {
+        const round = rounds[roundCounter];
+        if (round.checked & round.disabled == false){
+            roundNumber = getRoundNumber(round.id);
+            break;
+        } 
+    }
+
+    // rounds.forEach(round => {
+    //     // if (round.disabled) continue;
+    //     if (round.checked & round.disabled == false) return round.id.split('_')[1];
+    // })
+
+    return roundNumber;
+}
+
+function getRoundNumber(roundID){
+    return parseInt(roundID.split('_')[1]);
 }
 
 var dice = {

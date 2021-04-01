@@ -369,6 +369,42 @@ div[id*=space]{
     @extend .trianglebase;
  }
 
+//  Round styles
+
+.roundtracker{
+    background-color: $gray-200;
+    margin-top: 10px;
+    padding-top: 10px;
+    // max-width: 60px;
+}
+
+#round_label{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-color: $gray-400;
+    border-style: solid;
+    line-height: 35px;
+    position: relative;
+    font-family: $SWFont;
+}
+
+ input[id^=round]{
+     display: none;
+ }
+
+input[id^=round]:checked + label{
+    content: url("./images/Round_Rebel_sm.png");
+ }
+
+ input[id^=round]:checked:disabled + label{
+    content: url("./images/Round_Marker_sm.png");
+ }
+
+ input[id^=round]:disabled + label{
+    background-color: $gray-500;
+ }
+
 .margin-small{
     margin: 8px;
 }
@@ -537,12 +573,9 @@ margin: 8px;
     font-size: small;
 }
 
-.d6buttonstyle{
-    display: block;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
+// #d6button{
+//     width: 20%;
+// }
 
 #d6{
     display: block;
