@@ -337,6 +337,8 @@ function resetGame() {
 
     resetRemoteSystems();
     resetBuildQueue();
+
+    location.reload();
 }
 
 function resetRemoteSystems() {
