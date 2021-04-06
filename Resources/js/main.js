@@ -20,22 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
     loadVariantSettings();
     updateNumberOfSelectedSystems();
     setupBuildQueue();
+    setupRoundMarkers();
 })
-
-// const planetnames = ["Coruscant", "Rebel Base", "Alderaan", "Bespin", "Bothawui", "Cato Neimoidia",
-//     "Corellia", "Felucia", "Geonosis", "Kashyyyk", "Kessel", "Malastare", "Mandalore",
-//     "Mon Calamari", "Mustafar", "Mygeeto", "Naboo", "Nal Hutta", "Ord Mantell",
-//     "Rodia", "Ryloth", "Saleucami", "Sullust", "Toydaria", "Utapau"];
-
-// const planetnames = ["Coruscant", "Rebel Base",
-//     "Felucia", "Mon Calamari", "Saleucami",
-//     "Mygeeto", "Ord Mantell",
-//     "Kashyyyk", "Malastare", "Mandalore",
-//     "Alderaan", "Cato Neimoidia", "Corellia",
-//     "Bothawui", "Kessel", "Nal Hutta", "Toydaria",
-//     "Geonosis", "Rodia", "Ryloth",
-//     "Naboo", "Sullust", "Utapau",
-//     "Bespin", "Mustafar"];
 
 const planetnames = [["Coruscant", "Rebel Base"],
 ["Felucia", "Mon Calamari", "Saleucami"],
@@ -66,6 +52,28 @@ function setupBuildQueue() {
     loadBuildQueueSettings();
 }
 
+function setupRoundMarkers() {
+    // Set Rebel Rep
+    const rebelrep = document.getElementById(GetSettingValueByKey("rebelrep"));
+    if (rebelrep) {
+        document.getElementById("round_14").checked = false;
+        rebelrep.checked = true;
+    }
+
+    // Set Round
+    const savedRound = document.getElementById(GetSettingValueByKey("round"));
+    if (savedRound) {
+        for (let counter = 1; counter < parseInt(getRoundNumber(savedRound.id)); counter++) {
+            const round = document.getElementById("round_" + counter);
+            round.disabled = true;
+            round.checked = false;
+        }
+
+        savedRound.disabled = true;
+        savedRound.checked = true;
+    }
+}
+
 
 const GetSettingsByValue = (val, includes = false) => {
     let settings = new Array;
@@ -91,6 +99,16 @@ const GetSettingsByKey = (val, includes = false) => {
         }
     }
     return settings;
+}
+
+const GetSettingValueByKey = (keytofind) => {
+    for (let [key, value] of Object.entries(localStorage)) {
+        if (key == keytofind) {
+            return value;
+        }
+    }
+
+    return "";
 }
 
 const SaveSetting = (key, value) => {
@@ -319,6 +337,8 @@ function resetGame() {
 
     resetRemoteSystems();
     resetBuildQueue();
+
+    location.reload();
 }
 
 function resetRemoteSystems() {
@@ -416,45 +436,6 @@ function showHideElement(id) {
 
 }
 
-// const GetSettingsByValue = (val, includes = false) => {
-//     let settings = new Array;
-//     for (let [key, value] of Object.entries(localStorage)) {
-//         if (includes && value.includes(val)) {
-//             settings.push(key + "," + value)
-//         }
-//         else if (value == val) {
-//             settings.push(key + "," + value)
-//         }
-//     }
-//     return settings;
-// }
-
-// const GetSettingsByKey = (val, includes = false) => {
-//     let settings = new Array;
-//     for (let [key, value] of Object.entries(localStorage)) {
-//         if (includes && key.includes(val)) {
-//             settings.push(key + "," + value)
-//         }
-//         else if (key == val) {
-//             settings.push(key + "," + value)
-//         }
-//     }
-//     return settings;
-// }
-
-// const SaveSetting = (key, value) => {
-//     localStorage.setItem(key, value);
-// }
-
-// function run2(e){
-//     if (e.keyCode == 13) {
-//         run();
-//     }
-// }
-
-// searchbutton.addEventListener('click', run);
-// searchbar.addEventListener('keydown', run2);
-
 document.getElementById('searchbar').addEventListener('input', (e) => {
     searchCardList();
 })
@@ -523,6 +504,8 @@ function changeRound(){
 
             newRound.checked = true;
             newRound.disabled = true;
+
+            SaveSetting("round", "round_" + currentRoundNumber);
             
             return;
         }
@@ -557,6 +540,8 @@ function setRebelRep(id){
         }
 
         if (round.disabled) return;
+
+        SaveSetting("rebelrep", id);
     })
 }
 
@@ -572,11 +557,6 @@ function getRebelRep(){
             break;
         } 
     }
-
-    // rounds.forEach(round => {
-    //     // if (round.disabled) continue;
-    //     if (round.checked & round.disabled == false) return round.id.split('_')[1];
-    // })
 
     return roundNumber;
 }
