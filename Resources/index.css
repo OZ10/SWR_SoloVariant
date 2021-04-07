@@ -11315,7 +11315,7 @@ html, body {
 
 #mainheader {
   background-color: #e9ecef;
-  padding: 10px;
+  padding: 20px;
   font-weight: bold;
   font-family: "Goldman", serif;
   font-size: 2rem;
@@ -11343,7 +11343,7 @@ a:hover {
 
 @media (min-width: 300px) {
   #mainheader {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -11507,16 +11507,6 @@ a:hover {
   content: url(./images/SWR_Yavin.png);
 }
 
-.roundslider {
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
-}
-
-.roundslider2 {
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
-}
-
 .variant {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11524,6 +11514,9 @@ a:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: #6c757d;
   color: white;
   border-radius: 3px;
@@ -11570,6 +11563,16 @@ div[id*=space] {
   padding: 5px;
   margin: 5px 0;
   background-color: #dee2e6;
+}
+
+.swg-galemp,
+.swg-stormtrooper {
+  color: #d50000c4;
+}
+
+.swg-reball,
+.swg-stormtrooper-3 {
+  color: #43a048c4;
 }
 
 .buildrow, .buildrowrebel, .buildrowempire {
@@ -11825,5 +11828,33 @@ input[id^=round]:disabled + label {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.btnNoBackground {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.75rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 50%;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.btnNoBackground:hover {
+  background-color: #ced4da;
+}
+
+.icon-medium {
+  font-size: 2rem;
 }
 /*# sourceMappingURL=index.css.map */

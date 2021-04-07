@@ -20,7 +20,7 @@
 
   <div class="wrapper">
     <nav id="sidebar">
-      <button class="btn btn-primary" id="dismissbutton">
+      <button class="btnNoBackground" id="dismissbutton">
         <span class="material-icons align-middle">arrow_back</span>
       </button>
       <h3 class="sidebarheader maincolour">Settings</h3>
@@ -79,15 +79,18 @@
     </nav>
 
     <main>
-      <nav class="navbar" id="mainheader">
-        <button id="sidebarToggle" type="button" class="btn btn-primary ml-auto">
-          <span class="material-icons align-middle">menu</span>
+      <div class="d-flex justify-content-between align-items-center" id="mainheader">
+        <button id="sidebarToggle" type="button" class="btnNoBackground">
+          <span class="material-icons align-middle icon-medium">menu</span>
         </button>
-        <div class="mx-auto">Star Wars Rebellion: Solo Variant</div>
-        <button id="reset" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#yesNo">
-          <span class="material-icons align-middle">refresh</span>
+        <div>
+          <div class="" style="display: inline;">Star Wars Rebellion</div>
+          <div class="" style="display: inline; font-weight: 100;"> Solo Variant</div>
+        </div>
+        <button id="reset" type="button" class="btnNoBackground" data-bs-toggle="modal" data-bs-target="#yesNo">
+          <span class="material-icons align-middle icon-medium">refresh</span>
         </button>
-      </nav>
+      </div>
 
       <div class="container-fluid">
         <div class="row">
@@ -144,121 +147,75 @@
 
               <!-- Round Tracker -->
               <li class="roundtracker text-center">
-                <!-- <div class="container-fluid"> -->
-                <!-- <div class="row justify-content-center">
-                    Round Tracker
-                  </div> -->
                 <div class="row justify-content-center">
-                  <button class="btn btn-secondary" style="width: 50%;" data-bs-toggle="tooltip"
-                    data-bs-placement="right" title="New Round" onclick="changeRound()">+</button>
+                  <button class="btn btn-outline-primary" style="width: 50%; font-size: 1rem;" onclick="changeRound()" data-bs-toggle="tooltip" data-bs-placement="right" title="New Round">+</button>
                 </div>
                 <p></p>
-                <!-- <div class="row row-cols-2"> -->
                 <div class="col">
                   <input type="checkbox" id="round_16" onclick="setRebelRep(id)">
                   <label for="round_16" id="round_label">16</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
-                <!-- <div class="col d-none d-sm-inline"></div> -->
                 <div class="col">
                   <input type="checkbox" id="round_15" onclick="setRebelRep(id)">
                   <label for="round_15" id="round_label">15</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
                 <div class="col">
                   <input type="checkbox" id="round_14" onclick="setRebelRep(id)" checked>
                   <label for="round_14" id="round_label">14</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
-                <!-- <div class="col d-none d-sm-inline"></div> -->
                 <div class="col">
                   <input type="checkbox" id="round_13" onclick="setRebelRep(id)">
                   <label for="round_13" id="round_label">13</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
                 <div class="col">
                   <input type="checkbox" id="round_12" onclick="setRebelRep(id)">
                   <label for="round_12" id="round_label">12</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
-                <!-- <div class="col d-none d-sm-inline"></div> -->
                 <div class="col">
                   <input type="checkbox" id="round_11" onclick="setRebelRep(id)">
                   <label for="round_11" id="round_label">11</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
                 <div class="col">
                   <input type="checkbox" id="round_10" onclick="setRebelRep(id)">
                   <label for="round_10" id="round_label">10</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
-                <!-- <div class="col d-none d-sm-inline"></div> -->
                 <div class="col">
                   <input type="checkbox" id="round_9" onclick="setRebelRep(id)">
                   <label for="round_9" id="round_label">9</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
                 <div class="col">
                   <input type="checkbox" id="round_8" onclick="setRebelRep(id)">
                   <label for="round_8" id="round_label">8</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
-                <!-- <div class="col d-none d-sm-inline"></div> -->
                 <div class="col">
                   <input type="checkbox" id="round_7" onclick="setRebelRep(id)">
                   <label for="round_7" id="round_label">7</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
                 <div class="col">
                   <input type="checkbox" id="round_6" onclick="setRebelRep(id)">
                   <label for="round_6" id="round_label">6</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
-                <!-- <div class="col d-none d-sm-inline"></div> -->
                 <div class="col">
                   <input type="checkbox" id="round_5" onclick="setRebelRep(id)">
                   <label for="round_5" id="round_label">5</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
                 <div class="col">
                   <input type="checkbox" id="round_4" onclick="setRebelRep(id)">
                   <label for="round_4" id="round_label">4</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
-                <!-- <div class="col d-none d-sm-inline"></div> -->
                 <div class="col">
                   <input type="checkbox" id="round_3" onclick="setRebelRep(id)">
                   <label for="round_3" id="round_label">3</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
                 <div class="col">
                   <input type="checkbox" id="round_2" onclick="setRebelRep(id)">
                   <label for="round_2" id="round_label">2</label>
                 </div>
-                <!-- </div> -->
-                <!-- <div class="row row-cols-2"> -->
-                <!-- <div class="col d-none d-sm-inline"></div> -->
                 <div class="col">
                   <input type="checkbox" id="round_1" onclick="setRebelRep(id)" checked disabled>
                   <label for="round_1" id="round_label">1</label>
                 </div>
-                <!-- </div> -->
                 <p></p>
-                <!-- </div> -->
               </li>
             </ul>
           </section>
@@ -846,54 +803,65 @@
                   <div class="container-flex" id="buildqueue">
                     <div class="row sticky-top align-items-center" id="buildheader">
                       <div class="col-3"></div>
-                      <div class="col-1 swg swg-lightsabers swg-lg"></div>
-                      <div class="col-1 swg swg-galemp swg-lg"></div>
-                      <div class="col-1 swg swg-stormtrooper swg-lg"></div>
-                      <div class="col-1 swg swg-galsenate swg-lg"></div>
-                      <div class="col-1 swg swg-reball swg-lg"></div>
-                      <div class="col-1 swg swg-stormtrooper-3 swg-lg"></div>
+                      <div class="col-1 swg swg-lightsabers swg-lg d-flex justify-content-center"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Blockaded/Sabotaged"></div>
+                      <div class="col-1 swg swg-stormtrooper swg-lg d-flex justify-content-center"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Subjugated"></div>
+                      <div class="col-1 swg swg-galemp swg-lg d-flex justify-content-center" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Empire-Loyal"></div>
+                      <!-- <div class="col-1 swg swg-stormtrooper swg-lg d-flex justify-content-center" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Subjugated"></div> -->
+                      <div class="col-1 swg swg-galsenate swg-lg d-flex justify-content-center" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Neutral"></div>
+                      <div class="col-1 swg swg-reball swg-lg d-flex justify-content-center" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Rebel-Loyal"></div>
+                      <!-- <div class="col-1 swg swg-stormtrooper-3 swg-lg d-flex justify-content-center" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Rebel-Loyal-Subjugated"></div> -->
                     </div>
-                    <div class="row align-items-center my-3 mx-1" id="buildtemplate">
+                    <div class="row my-3 mx-1" id="buildtemplate">
                       <div class="col-3">
                         <div class="planetname">BuildTemplate</div>
-                        <!-- <div class="circle2" id="ground"></div> -->
-                        <!-- <span class="circle2" id="space"></span> -->
                       </div>
-                      <div class="col-1">
+                      <div class="col-1 d-flex justify-content-center">
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="chkblock">
+                          <input class="form-check-input" type="checkbox" id="blockade">
+                        </div>
+                      </div>
+                      <div class="col-1 d-flex justify-content-center">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="subjugate">
                         </div>
                       </div>
                       <div class="col-1">
-                        <div class="form-check">
+                        <div class="form-check d-flex justify-content-center">
                           <input class="form-check-input" type="radio" id="radioempire" name="RadioOptions"
                             value="empire">
                         </div>
                       </div>
-                      <div class="col-1">
-                        <div class="form-check">
+                      <!-- <div class="col-1">
+                        <div class="form-check d-flex justify-content-center">
                           <input class="form-check-input" type="radio" id="radiosubjugated" name="RadioOptions"
                             value="Subjugated">
                         </div>
-                      </div>
+                      </div> -->
                       <div class="col-1">
-                        <div class="form-check">
+                        <div class="form-check d-flex justify-content-center">
                           <input class="form-check-input" type="radio" id="radioneutral" name="RadioOptions"
                             value="Neutral">
                         </div>
                       </div>
                       <div class="col-1">
-                        <div class="form-check">
+                        <div class="form-check d-flex justify-content-center">
                           <input class="form-check-input" type="radio" id="radiorebel" name="RadioOptions"
                             value="Rebel">
                         </div>
                       </div>
-                      <div class="col-1">
-                        <div class="form-check">
+                      <!-- <div class="col-1">
+                        <div class="form-check d-flex justify-content-center">
                           <input class="form-check-input" type="radio" id="radiorebelsubjugated" name="RadioOptions"
                             value="Rebel-Subjugated">
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                     <div class="row" id="buildbutton">
                       <button class="btn btn-secondary" style="width: 50%;" data-bs-toggle="modal"
