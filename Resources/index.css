@@ -11359,10 +11359,6 @@ a:hover {
   }
 }
 
-.wrapper {
-  display: block;
-}
-
 /* Sidebar Rules */
 #sidebar {
   width: 350px;
@@ -11795,14 +11791,6 @@ input[id^=round]:disabled + label {
   font-family: "Goldman", serif;
 }
 
-.setuptab {
-  border-bottom-width: 4px;
-}
-
-.buildtab {
-  border-top-width: 4px;
-}
-
 .paraseparator, .sidebarsubheader {
   border-top: 1px solid #ced4da;
   padding-top: 5px;
@@ -11854,7 +11842,23 @@ input[id^=round]:disabled + label {
   background-color: #ced4da;
 }
 
+.icon-small {
+  font-size: 1.4rem;
+}
+
 .icon-medium {
   font-size: 2rem;
+}
+
+@media (min-width: 300px) {
+  .icon-medium {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 544px) {
+  .icon-medium {
+    font-size: 2rem;
+  }
 }
 /*# sourceMappingURL=index.css.map */
