@@ -67,11 +67,11 @@ a:hover{
     }
 }
 
-.wrapper{
-    // width: 100%;
-    // display: flex;
-    display: block;
-}
+// .wrapper{
+//     // width: 100%;
+//     // display: flex;
+//     display: block;
+// }
 
 /* Sidebar Rules */
 #sidebar{
@@ -546,14 +546,6 @@ input[id^=round]:checked + label{
     font-family: $SWFont;
 }
 
-.setuptab{
-    border-bottom-width: 4px;
-}
-
-.buildtab{
-    border-top-width: 4px;
-}
-
 .paraseparator{
     border-top: 1px solid $gray-400;
     padding-top: 5px;
@@ -606,6 +598,38 @@ margin: 8px;
       background-color: $gray-400;
   }
 
-  .icon-medium{
-      font-size: 2rem;
-  }
+.icon-small{
+    font-size: 1.4rem;
+}
+
+// @media(min-width: 300px)
+// {
+//     .icon-small{
+//         font-size: 1rem;
+//     }
+// }
+
+// @media(min-width: 544px)
+// {
+//     .icon-small{
+//         font-size: 1.4rem;
+//     }
+// }
+
+.icon-medium{
+    font-size: 2rem;
+}
+
+@media(min-width: 300px)
+{
+    .icon-medium{
+        font-size: 1.5rem;
+    }
+}
+
+@media(min-width: 544px)
+{
+    .icon-medium{
+        font-size: 2rem;
+    }
+}

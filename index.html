@@ -19,6 +19,62 @@
   <div class="overlay"></div>
 
   <div class="wrapper">
+
+    <!-- <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas">
+      <div class="offcanvas-header">
+        <h3 class="offcanvas-title maincolour" id="offcanvasLabel">Settings</h3>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <div class="offcanvas-body">
+          <p">The settings available here allow you to modify which components / rules you want this
+            variant to use. Changes will be made to the wording of some rules to reflect these settings.</p>
+            <h6 class="paraseparator">General</h6>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="chkdynamicInstructions" onclick="chkClick(this);"
+                disabled>
+              <label for="chkdynamicInstructions" data-bs-toggle="tooltip" data-bs-placement="right"
+                title="By default all rules will be displayed. When toggled ON rules will display based on certain criteria, i.e: when the RB is discovered, movement & deployment rules will ONLY be displayed in relation to the RB">Dynamic
+                Rules</label>
+            </div>
+
+            <h6 class="sidebarsubheader">Rise of the Empire Expansion
+              <span class="material-icons" style="font-size: large;">dark_mode</span>
+            </h6>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="chkROTE-Units" onclick="chkClick(this);">
+              <label for="chkROTE-Units" data-bs-toggle="tooltip" data-bs-placement="right"
+                title="Setup deployment rules will change">Use Expansion Units</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="chkROTE-TacticCards" onclick="chkClick(this);">
+              <label for="chkROTE-TacticCards" data-bs-toggle="tooltip" data-bs-placement="right"
+                title="Battle rules will change">Use Advanced Tactic Cards</label>
+            </div>
+            <h6 class="sidebarsubheader">Variants
+              <span class="material-icons" style="font-size: large;">science</span>
+            </h6>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="chkvar-Movement" onclick="chkClick(this);">
+              <label for="chkvar-Movement" data-bs-toggle="tooltip" data-bs-placement="right"
+                title="The Empire will roll a D6 to determine whether to move to RB/PRB or nearest rebel units. Movement rules will be updated to reflect this">Movement
+                Variant</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="chkvar-Deployment" onclick="chkClick(this);">
+              <label for="chkvar-Deployment" data-bs-toggle="tooltip" data-bs-placement="right"
+                title="The Empire will deploy prioritizing proximity to PRB > proximity to Rebel system (tie going to production strength) > Imperial production strength">Deployment
+                Variant: Priority</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="chkvar-UnPlayableMissions" onclick="chkClick(this);">
+              <label for="chkvar-UnPlayableMissions" data-bs-toggle="tooltip" data-bs-placement="right"
+                title="Unplayable Missions will be put at the bottom of the Initial Missions Desk and resolved at the end of the command phase. Wording in 'Play Initial Missions' section will change">Unplayable
+                Missions
+                Variant</label>
+            </div>
+        </div>
+      </div>
+    </div> -->
+
     <nav id="sidebar">
       <button class="btnNoBackground" id="dismissbutton">
         <span class="material-icons align-middle">arrow_back</span>
@@ -79,17 +135,76 @@
     </nav>
 
     <main>
-      <div class="d-flex justify-content-between align-items-center" id="mainheader">
-        <button id="sidebarToggle" type="button" class="btnNoBackground">
-          <span class="material-icons align-middle icon-medium">menu</span>
-        </button>
-        <div>
-          <div class="" style="display: inline;">Star Wars Rebellion</div>
-          <div class="" style="display: inline; font-weight: 100;"> Solo Variant</div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="d-flex justify-content-between align-items-center" id="mainheader">
+            <button id="sidebarToggle" type="button" class="btnNoBackground">
+              <span class="material-icons align-middle icon-medium">menu</span>
+            </button>
+            <div>
+              <div class="" style="display: inline;">Star Wars Rebellion</div>
+              <div class="" style="display: inline; font-weight: 100;"> Solo Variant</div>
+            </div>
+            <div>
+              <button id="reset" type="button" class="btnNoBackground" data-bs-toggle="modal" data-bs-target="#yesNo">
+                <span class="material-icons align-middle icon-medium">refresh</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="">
+            <ul class="nav nav-tabs nav-fill roundselector">
+              <li class="nav-item">
+                <a class="list-group-item list-group-item-action" id="list-setup-list" data-toggle="list"
+                  data-bs-toggle="list" href="#list-setup-steps" role="tab" aria-controls="setup">
+                  <span class="material-icons align-middle icon-small">settings</span>
+                  <span class="d-none d-sm-inline p-1">
+                    Setup
+                  </span></a>
+              </li>
+              <li class="nav-item">
+                <a class="list-group-item list-group-item-action active" id="list-assignment-list" data-toggle="list"
+                  data-bs-toggle="list" href="#list-assigment-steps" role="tab" aria-controls="assignment">
+                  <span class="material-icons align-middle icon-small">people_alt</span>
+                  <span class="d-none d-sm-inline p-1">
+                    Assignment
+                  </span></a>
+              </li>
+              <li class="nav-item">
+                <a class="list-group-item list-group-item-action" id="list-command-list" data-toggle="list"
+                  data-bs-toggle="list" href="#list-command-steps" role="tab" aria-controls="command">
+                  <span class="material-icons align-middle icon-small">shield</span>
+                  <span class="d-none d-sm-inline p-1">
+                    Command
+                  </span></a>
+              </li>
+              <li class="nav-item">
+                <a class="list-group-item list-group-item-action" id="list-refresh-list" data-toggle="list"
+                  data-bs-toggle="list" href="#list-refresh-steps" role="tab" aria-controls="refresh">
+                  <span class="material-icons align-middle icon-small">restart_alt</span>
+                  <span class="d-none d-sm-inline p-1">
+                    Refresh
+                  </span></a>
+              </li>
+              <li class="nav-item">
+                <a class="list-group-item list-group-item-action" id="list-build-list" data-toggle="list"
+                  data-bs-toggle="list" href="#list-build-steps" role="tab" aria-controls="build">
+                  <span class="material-icons align-middle icon-small">build</span>
+                  <span class="d-none d-sm-inline p-1">Build Queue</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="list-group-item list-group-item-action" id="list-remotesystems-list" data-toggle="list"
+                  data-bs-toggle="list" href="#list-remotesystems-steps" role="tab" aria-controls="remotesystems">
+                  <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                  data-bs-target="#remotesystemslist"> -->
+                  <span class="material-icons align-middle icon-small">public</span>
+                  <span class="d-none d-sm-inline p-1">Remote Systems</span>
+                  <!-- </button> -->
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <button id="reset" type="button" class="btnNoBackground" data-bs-toggle="modal" data-bs-target="#yesNo">
-          <span class="material-icons align-middle icon-medium">refresh</span>
-        </button>
       </div>
 
       <div class="container-fluid">
@@ -98,57 +213,20 @@
           <section class="col-auto p-2">
             <!-- Setup & Round Selection -->
             <ul class="list-group sticky-top">
-              <li class="list-group roundselector" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action setuptab" id="list-setup-list" data-toggle="list"
-                  data-bs-toggle="list" href="#list-setup-steps" role="tab" aria-controls="setup">
-                  <span class="material-icons align-middle">settings</span>
-                  <span class="d-none d-sm-inline p-1">
-                    Setup
-                  </span></a>
-                <a class="list-group-item list-group-item-action active" id="list-assignment-list" data-toggle="list"
-                  data-bs-toggle="list" href="#list-assigment-steps" role="tab" aria-controls="assignment">
-                  <span class="material-icons align-middle">people_alt</span>
-                  <span class="d-none d-sm-inline p-1">
-                    Assignment
-                  </span></a>
-                <a class="list-group-item list-group-item-action" id="list-command-list" data-toggle="list"
-                  data-bs-toggle="list" href="#list-command-steps" role="tab" aria-controls="command">
-                  <span class="material-icons align-middle">shield</span>
-                  <span class="d-none d-sm-inline p-1">
-                    Command
-                  </span></a>
-                <a class="list-group-item list-group-item-action" id="list-refresh-list" data-toggle="list"
-                  data-bs-toggle="list" href="#list-refresh-steps" role="tab" aria-controls="refresh">
-                  <span class="material-icons align-middle">refresh</span>
-                  <span class="d-none d-sm-inline p-1">
-                    Refresh
-                  </span></a>
-                <a class="list-group-item list-group-item-action buildtab" id="list-build-list" data-toggle="list"
-                  data-bs-toggle="list" href="#list-build-steps" role="tab" aria-controls="build">
-                  <span class="material-icons align-middle">build</span>
-                  <span class="d-none d-sm-inline p-1">Build Queue</span></a>
-              </li>
-
-              <!-- Remote systems button -->
-              <li class="py-2">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                  data-bs-target="#remotesystemslist">
-                  <span class="material-icons align-middle" style="font-size: 1.2rem;">public</span>
-                  <span class="d-none d-sm-inline p-1" style="font-family: Goldman, serif;">Remote Systems</span>
-                </button>
-              </li>
-
               <!-- D6 button -->
               <li class="text-center">
-                <button type="button" class="btn btn-secondary" id="d6button">
-                  <span class="material-icons align-middle" style="font-size: 1.2rem;">casino</span>
+                <button type="button" class="btnNoBackground" id="d6button">
+                  <span class="material-icons align-middle icon-medium">casino</span>
                 </button>
               </li>
 
               <!-- Round Tracker -->
               <li class="roundtracker text-center">
-                <div class="row justify-content-center">
-                  <button class="btn btn-outline-primary" style="width: 50%; font-size: 1rem;" onclick="changeRound()" data-bs-toggle="tooltip" data-bs-placement="right" title="New Round">+</button>
+                <div class="justify-content-center">
+                  <button class="btnNoBackground" onclick="changeRound()" data-bs-toggle="tooltip"
+                    data-bs-placement="right" title="New Round">
+                    <span class="material-icons align-middle icon-medium">add</span>
+                  </button>
                 </div>
                 <p></p>
                 <div class="col">
@@ -870,6 +948,48 @@
                   </div>
                 </div>
               </section>
+
+              <!-- Remote Systems -->
+              <section class="tab-pane" id="list-remotesystems-steps" role="tabpanel"
+                aria-labelledby="list-remotesystems-list">
+                <div class="callout">
+                  <h5>Remote Systems List</h5>
+                  <ul>
+                    <input type="checkbox" class="planetbtn d-none" id="planet-check-dagobah" title="Dagobah">
+                    <label for="planet-check-dagobah" id="dagobah" class="planetlabel"></label>
+
+                    <input type="checkbox" class="planetbtn d-none" id="planet-check-dantooine" title="Dantooine">
+                    <label for="planet-check-dantooine" id="dantooine" class="planetlabel"></label>
+
+                    <input type="checkbox" class="planetbtn d-none" id="planet-check-dathomir" title="Dathomir">
+                    <label for="planet-check-dathomir" id="dathomir" class="planetlabel"></label>
+
+                    <input type="checkbox" class="planetbtn d-none" id="planet-check-endor" title="Endor">
+                    <label for="planet-check-endor" id="endor" class="planetlabel"></label>
+
+                    <input type="checkbox" class="planetbtn d-none" id="planet-check-hoth" title="Hoth">
+                    <label for="planet-check-hoth" id="hoth" class="planetlabel"></label>
+
+                    <input type="checkbox" class="planetbtn d-none" id="planet-check-ilum" title="Ilum">
+                    <label for="planet-check-ilum" id="ilum" class="planetlabel"></label>
+
+                    <input type="checkbox" class="planetbtn d-none" id="planet-check-tatooine" title="Tatooine">
+                    <label for="planet-check-tatooine" id="tatooine" class="planetlabel"></label>
+
+                    <input type="checkbox" class="planetbtn d-none" id="planet-check-yavin" title="Yavin">
+                    <label for="planet-check-yavin" id="yavin" class="planetlabel"></label>
+                  </ul>
+                  <p class="paraseparator fs-7 p-2">The Rebel Base will be revealed only after the Empire has obtained
+                    the Probe Cards for the other 7 Remote Systems OR when the
+                    Empire has any Ground Units in that System</p>
+                  <p class="fs-7 px-2">Empire movement and deployment will change priority when Rebel Base is revealed
+                  </p>
+                  <div class="modal-footer">
+                    <div>Number of scanned systems:</div>
+                    <div id="numselectedsystems">0</div>
+                  </div>
+                </div>
+              </section>
             </div>
           </section>
         </div>
@@ -901,54 +1021,6 @@
 
     <!-- Modals -->
     <div>
-      <!-- Remote Systems List -->
-      <div class="modal fade" id="remotesystemslist" tabindex="-1" aria-labelledby="remotesystems" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="remotesystems">Remote Systems List</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <ul>
-                <input type="checkbox" class="planetbtn d-none" id="planet-check-dagobah" title="Dagobah">
-                <label for="planet-check-dagobah" id="dagobah" class="planetlabel"></label>
-
-                <input type="checkbox" class="planetbtn d-none" id="planet-check-dantooine" title="Dantooine">
-                <label for="planet-check-dantooine" id="dantooine" class="planetlabel"></label>
-
-                <input type="checkbox" class="planetbtn d-none" id="planet-check-dathomir" title="Dathomir">
-                <label for="planet-check-dathomir" id="dathomir" class="planetlabel"></label>
-
-                <input type="checkbox" class="planetbtn d-none" id="planet-check-endor" title="Endor">
-                <label for="planet-check-endor" id="endor" class="planetlabel"></label>
-
-                <input type="checkbox" class="planetbtn d-none" id="planet-check-hoth" title="Hoth">
-                <label for="planet-check-hoth" id="hoth" class="planetlabel"></label>
-
-                <input type="checkbox" class="planetbtn d-none" id="planet-check-ilum" title="Ilum">
-                <label for="planet-check-ilum" id="ilum" class="planetlabel"></label>
-
-                <input type="checkbox" class="planetbtn d-none" id="planet-check-tatooine" title="Tatooine">
-                <label for="planet-check-tatooine" id="tatooine" class="planetlabel"></label>
-
-                <input type="checkbox" class="planetbtn d-none" id="planet-check-yavin" title="Yavin">
-                <label for="planet-check-yavin" id="yavin" class="planetlabel"></label>
-              </ul>
-            </div>
-            <p class="paraseparator fs-7 p-2">The Rebel Base will be revealed only after the Empire has obtained
-              the Probe Cards for the other 7 Remote Systems OR when the
-              Empire has any Ground Units in that System</p>
-            <p class="fs-7 px-2">Empire movement and deployment will change priority when Rebel Base is revealed
-            </p>
-            <div class="modal-footer">
-              <div>Number of scanned systems:</div>
-              <div id="numselectedsystems">0</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Empire's Decision List Modal -->
       <div class="modal fade" id="carddecisionlist" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
