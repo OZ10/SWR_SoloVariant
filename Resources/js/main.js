@@ -215,24 +215,6 @@ function createBuildQueue() {
     }
 }
 
-// const isBlockaded = (planetname, chk) =>{
-//     if (chk.id == "chkblock" && chk.checked === true) {
-//         localStorage.setItem([planetname, chk.id], "buildchk");
-//         return true;
-//     }
-
-//     return false;
-// }
-
-// const isSubjugated = (planetname, chk) =>{
-//     if (chk.id == "chkSub" && chk.checked === true) {
-//         localStorage.setItem([planetname, chk.id], "chkSub");
-//         return true;
-//     }
-
-//     return false;
-// }
-
 function updateBuildQueueCount(planetname, isBlockaded, isSubjugated, checks, index, resources) {
     let controlname = getControlName(checks, index, resources, isSubjugated);
 
