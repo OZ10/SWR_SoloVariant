@@ -71,6 +71,8 @@ function setupRoundMarkers() {
 
         savedRound.disabled = true;
         savedRound.checked = true;
+
+        updateRoundNumber(getRoundNumber(savedRound.id));
     }
 }
 
@@ -214,24 +216,6 @@ function createBuildQueue() {
         }
     }
 }
-
-// const isBlockaded = (planetname, chk) =>{
-//     if (chk.id == "chkblock" && chk.checked === true) {
-//         localStorage.setItem([planetname, chk.id], "buildchk");
-//         return true;
-//     }
-
-//     return false;
-// }
-
-// const isSubjugated = (planetname, chk) =>{
-//     if (chk.id == "chkSub" && chk.checked === true) {
-//         localStorage.setItem([planetname, chk.id], "chkSub");
-//         return true;
-//     }
-
-//     return false;
-// }
 
 function updateBuildQueueCount(planetname, isBlockaded, isSubjugated, checks, index, resources) {
     let controlname = getControlName(checks, index, resources, isSubjugated);
@@ -505,11 +489,17 @@ function changeRound(){
             newRound.checked = true;
             newRound.disabled = true;
 
+            updateRoundNumber(currentRoundNumber);
+
             SaveSetting("round", "round_" + currentRoundNumber);
             
             return;
         }
     })
+}
+
+function updateRoundNumber(roundnumber){
+    document.getElementById('roundnumber').innerHTML = roundnumber;
 }
 
 function checkIfRebelRepLessThan5(currentRoundNumber) {
