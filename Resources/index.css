@@ -6883,7 +6883,7 @@ fieldset:disabled .btn {
   }
 }
 
-.offcanvas {
+.offcanvas, .offcanvasSilm {
   position: fixed;
   bottom: 0;
   z-index: 1040;
@@ -6906,7 +6906,7 @@ fieldset:disabled .btn {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .offcanvas {
+  .offcanvas, .offcanvasSilm {
     -webkit-transition: none;
     transition: none;
   }
@@ -6968,7 +6968,7 @@ fieldset:disabled .btn {
           transform: translateY(100%);
 }
 
-.offcanvas.show {
+.offcanvas.show, .show.offcanvasSilm {
   -webkit-transform: none;
           transform: none;
 }
@@ -11515,6 +11515,11 @@ a:hover {
 }
 
 /* Sidebar Rules */
+#options {
+  padding: 0 5px;
+  font-size: small;
+}
+
 .sidebarsubheader {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11879,9 +11884,11 @@ input[id^=round]:disabled + label {
 }
 
 .roundselector a {
-  padding: 8px;
+  padding: 4px;
   background-color: #F5F5F5;
+  font-size: 0.8rem;
   font-family: "Goldman", serif;
+  color: #6c757d;
 }
 
 .paraseparator, .sidebarsubheader {
@@ -11922,7 +11929,7 @@ input[id^=round]:disabled + label {
   cursor: pointer;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 0.75rem 0.75rem;
+  padding: 0.25rem;
   font-size: 1rem;
   border-radius: 50%;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -11945,13 +11952,23 @@ input[id^=round]:disabled + label {
 
 @media (min-width: 300px) {
   .icon-medium {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 
 @media (min-width: 544px) {
   .icon-medium {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .icon-medium {
     font-size: 2rem;
   }
+}
+
+.offcanvasSilm {
+  width: 120px;
 }
 /*# sourceMappingURL=index.css.map */

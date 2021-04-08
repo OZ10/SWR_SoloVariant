@@ -71,6 +71,8 @@ function setupRoundMarkers() {
 
         savedRound.disabled = true;
         savedRound.checked = true;
+
+        updateRoundNumber(getRoundNumber(savedRound.id));
     }
 }
 
@@ -487,11 +489,17 @@ function changeRound(){
             newRound.checked = true;
             newRound.disabled = true;
 
+            updateRoundNumber(currentRoundNumber);
+
             SaveSetting("round", "round_" + currentRoundNumber);
             
             return;
         }
     })
+}
+
+function updateRoundNumber(roundnumber){
+    document.getElementById('roundnumber').innerHTML = roundnumber;
 }
 
 function checkIfRebelRepLessThan5(currentRoundNumber) {

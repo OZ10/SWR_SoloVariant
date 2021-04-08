@@ -99,10 +99,10 @@ a:hover{
 //     font-family: $SWFont;
 // }
 
-// .sidebarcontent{
-//     padding: 0 5px;
-//     font-size: small;
-// }
+#options{
+    padding: 0 5px;
+    font-size: small;
+}
 
 // .overlay{
 //     display: none;
@@ -540,10 +540,11 @@ input[id^=round]:checked + label{
 }
 
 .roundselector a{
-    padding: 8px;
-    // border: 1px solid #E0E0E0;
+    padding: 4px;
     background-color: #F5F5F5;
+    font-size: 0.8rem;
     font-family: $SWFont;
+    color: $gray-600;
 }
 
 .paraseparator{
@@ -588,7 +589,7 @@ margin: 8px;
     cursor: pointer;
     background-color: transparent;
     border: 1px solid transparent;
-    padding: 0.75rem 0.75rem;
+    padding: 0.25rem;
     font-size: 1rem;
     border-radius: 50%;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -623,13 +624,24 @@ margin: 8px;
 @media(min-width: 300px)
 {
     .icon-medium{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 }
 
 @media(min-width: 544px)
 {
     .icon-medium{
+        font-size: 1.5rem;
+    }
+}
+
+@media(min-width: 768px)
+{
+    .icon-medium{
         font-size: 2rem;
     }
+}
+.offcanvasSilm{
+    @extend .offcanvas;
+    width: 120px;
 }
