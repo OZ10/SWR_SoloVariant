@@ -278,7 +278,7 @@ function getPlanetsBuildResources(planetname, subjugated = false) {
         case "Geonosis":
             return [["space", "tri", 2], ["ground", "squ", 2]];
         case "Kashyyyk":
-            return [["ground", "tri", 1], ["ground", "squ", 1]];
+            return [["ground", "tri", 1], ["ground", "tri", 1]];
         case "Mandalore":
         case "Naboo":
         case "Nal Hutta":
