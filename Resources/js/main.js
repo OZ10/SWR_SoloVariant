@@ -497,6 +497,10 @@ function setVariants(variantName) {
             showHideElement("var-Unplayablemissions");
             showHideElement("Base-Unplayablemissions");
             break;
+        case "chkvar-ActionCardExecution":
+            showHideElement("var-ActionCardExecution");
+            showHideElement("Base-ActionCardExecution");
+            break;
         default:
             break;
     }
@@ -667,7 +671,7 @@ function rollD6(number) {
 }
 
 // Captures all D6 button on website
-document.querySelectorAll("#d6button").forEach((d6Button) => {
+document.querySelectorAll(".d6button").forEach((d6Button) => {
     d6Button.onclick = function () {
         var result = dice.roll();
         rollD6(result);
