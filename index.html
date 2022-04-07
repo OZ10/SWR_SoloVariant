@@ -288,144 +288,144 @@
         </div>
 
         <main>
-            <div class="d-flex justify-content-between" id="mainheader">
-                <button
-                    type="button"
-                    class="btnNoBackground"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#options">
-                    <span class="material-icons align-middle icon-medium" data-bs-target="#options">menu</span>
-                </button>
-                <div>
-                    <div class="d-inline" id="fulltitle">
-                        Star Wars Rebellion
-                    </div>
-                    <div class="d-inline" style="font-weight: 100">
-                        Solo Variant
-                    </div>
-                </div>
-                <div>
+            <header class="fixed-top">
+                <div class="d-flex justify-content-between" id="mainheader">
                     <button
                         type="button"
                         class="btnNoBackground"
                         data-bs-toggle="offcanvas"
-                        data-bs-target="#roundtracker">
-                        <span
-                            class="icon-medium"
-                            id="roundnumber"
-                            data-bs-toggle="tooltip"
-                            title="Round"
-                            data-bs-placement="bottom"
+                        data-bs-target="#options">
+                        <span class="material-icons align-middle icon-medium" data-bs-target="#options">menu</span>
+                    </button>
+                    <div>
+                        <div class="d-inline" id="fulltitle">
+                            Star Wars Rebellion
+                        </div>
+                        <div class="d-inline" style="font-weight: 100">
+                            Solo Variant
+                        </div>
+                    </div>
+                    <div>
+                        <button
+                            type="button"
+                            class="btnNoBackground"
+                            data-bs-toggle="offcanvas"
                             data-bs-target="#roundtracker">
-                            1
-                        </span>
-                    </button>
-                    <button type="button" class="btnNoBackground d6button">
-                        <span
-                            class="material-icons align-middle icon-medium"
-                            data-bs-toggle="tooltip"
-                            title="D6"
-                            data-bs-placement="bottom">
-                            casino
-                        </span>
-                    </button>
-                    <button
-                        id="reset"
-                        type="button"
-                        class="btnNoBackground"
-                        data-bs-toggle="modal"
-                        data-bs-target="#yesNo">
-                        <span
-                            class="material-icons align-middle icon-medium"
-                            data-bs-toggle="tooltip"
-                            title="Reset"
-                            data-bs-placement="bottom">
-                            refresh
-                        </span>
-                    </button>
+                            <span
+                                class="icon-medium"
+                                id="roundnumber"
+                                data-bs-toggle="tooltip"
+                                title="Round"
+                                data-bs-placement="bottom"
+                                data-bs-target="#roundtracker">
+                                1
+                            </span>
+                        </button>
+                        <button type="button" class="btnNoBackground d6button">
+                            <span
+                                class="material-icons align-middle icon-medium"
+                                data-bs-toggle="tooltip"
+                                title="D6"
+                                data-bs-placement="bottom">
+                                casino
+                            </span>
+                        </button>
+                        <button
+                            id="reset"
+                            type="button"
+                            class="btnNoBackground"
+                            data-bs-toggle="modal"
+                            data-bs-target="#yesNo">
+                            <span
+                                class="material-icons align-middle icon-medium"
+                                data-bs-toggle="tooltip"
+                                title="Reset"
+                                data-bs-placement="bottom">
+                                refresh
+                            </span>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            <ul class="nav nav-tabs nav-fill roundselector">
-                <li class="nav-item">
-                    <a
-                        class="list-group-item list-group-item-action"
-                        id="list-setup-list"
-                        data-toggle="list"
-                        data-bs-toggle="list"
-                        href="#list-setup-steps"
-                        role="tab"
-                        aria-controls="setup">
-                        <span class="material-icons align-middle icon-small">settings</span>
-                        <span class="d-none d-sm-inline p-1"> Setup </span></a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="list-group-item list-group-item-action active"
-                        id="list-assignment-list"
-                        data-toggle="list"
-                        data-bs-toggle="list"
-                        href="#list-assigment-steps"
-                        role="tab"
-                        aria-controls="assignment">
-                        <span class="material-icons align-middle icon-small">people_alt</span>
-                        <span class="d-none d-sm-inline p-1">
-                            Assignment
-                        </span></a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="list-group-item list-group-item-action"
-                        id="list-command-list"
-                        data-toggle="list"
-                        data-bs-toggle="list"
-                        href="#list-command-steps"
-                        role="tab"
-                        aria-controls="command">
-                        <span class="material-icons align-middle icon-small">shield</span>
-                        <span class="d-none d-sm-inline p-1"> Command </span></a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="list-group-item list-group-item-action"
-                        id="list-refresh-list"
-                        data-toggle="list"
-                        data-bs-toggle="list"
-                        href="#list-refresh-steps"
-                        role="tab"
-                        aria-controls="refresh">
-                        <span class="material-icons align-middle icon-small">restart_alt</span>
-                        <span class="d-none d-sm-inline p-1"> Refresh </span></a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="list-group-item list-group-item-action"
-                        id="list-build-list"
-                        data-toggle="list"
-                        data-bs-toggle="list"
-                        href="#list-build-steps"
-                        role="tab"
-                        aria-controls="build">
-                        <span class="material-icons align-middle icon-small">build</span>
-                        <span class="d-none d-sm-inline p-1">Build Queue</span></a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="list-group-item list-group-item-action"
-                        id="list-remotesystems-list"
-                        data-toggle="list"
-                        data-bs-toggle="list"
-                        href="#list-remotesystems-steps"
-                        role="tab"
-                        aria-controls="remotesystems">
-                        <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                  data-bs-target="#remotesystemslist"> -->
-                        <span class="material-icons align-middle icon-small">public</span>
-                        <span class="d-none d-sm-inline p-1">Remote Systems</span>
-                        <!-- </button> -->
-                    </a>
-                </li>
-            </ul>
+                <ul class="nav nav-tabs nav-fill roundselector">
+                    <li class="nav-item">
+                        <a
+                            class="list-group-item list-group-item-action"
+                            id="list-setup-list"
+                            data-toggle="list"
+                            data-bs-toggle="list"
+                            href="#list-setup-steps"
+                            role="tab"
+                            aria-controls="setup">
+                            <span class="material-icons align-middle icon-small">settings</span>
+                            <span class="d-none d-sm-inline p-1"> Setup </span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="list-group-item list-group-item-action active"
+                            id="list-assignment-list"
+                            data-toggle="list"
+                            data-bs-toggle="list"
+                            href="#list-assigment-steps"
+                            role="tab"
+                            aria-controls="assignment">
+                            <span class="material-icons align-middle icon-small">people_alt</span>
+                            <span class="d-none d-sm-inline p-1">
+                                Assignment
+                            </span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="list-group-item list-group-item-action"
+                            id="list-command-list"
+                            data-toggle="list"
+                            data-bs-toggle="list"
+                            href="#list-command-steps"
+                            role="tab"
+                            aria-controls="command">
+                            <span class="material-icons align-middle icon-small">shield</span>
+                            <span class="d-none d-sm-inline p-1"> Command </span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="list-group-item list-group-item-action"
+                            id="list-refresh-list"
+                            data-toggle="list"
+                            data-bs-toggle="list"
+                            href="#list-refresh-steps"
+                            role="tab"
+                            aria-controls="refresh">
+                            <span class="material-icons align-middle icon-small">restart_alt</span>
+                            <span class="d-none d-sm-inline p-1"> Refresh </span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="list-group-item list-group-item-action"
+                            id="list-build-list"
+                            data-toggle="list"
+                            data-bs-toggle="list"
+                            href="#list-build-steps"
+                            role="tab"
+                            aria-controls="build">
+                            <span class="material-icons align-middle icon-small">build</span>
+                            <span class="d-none d-sm-inline p-1">Build Queue</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="list-group-item list-group-item-action"
+                            id="list-remotesystems-list"
+                            data-toggle="list"
+                            data-bs-toggle="list"
+                            href="#list-remotesystems-steps"
+                            role="tab"
+                            aria-controls="remotesystems">
+                            <span class="material-icons align-middle icon-small">public</span>
+                            <span class="d-none d-sm-inline p-1">Remote Systems</span>
+
+                        </a>
+                    </li>
+                </ul>
+            </header>
 
             <div class="container">
                 <div class="row">
@@ -780,30 +780,6 @@
                                     </p>
                                 </div>
 
-                                <div
-                                    class="d-none variant callout-empire"
-                                    id="var-ActionCardExecution">
-                                    <p>
-                                       Roll a <a
-                                       class="link-danger d6button"
-                                       href="#"
-                                       type="button">D6</a>:
-                                    </p>
-                                    <div class="d-flex">
-                                        <p>1-3:</p>
-                                        <p>
-                                            The Empire does not use its Assignment Action Card
-                                        </p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p>4-6:</p>
-                                        <p>
-                                            The Empire uses its Assignment Action Card
-                                        </p>
-                                    </div>
-                                    <span class="material-icons">science</span>
-                                </div>
-
                                 <div class="callout-empire">
                                     <h5>Create Mission Deck</h5>
                                     <div id="createmissiondeck">
@@ -867,6 +843,26 @@
 
                                 <div class="callout-empire">
                                     <h5>Play Action Cards</h5>
+                                    <div
+                                        class="d-none variant"
+                                        id="var-ActionCardExecution">
+                                        <p>
+                                        Roll a <a class="link-danger d6button" href="#" type="button">D6</a>:
+                                        </p>
+                                        <div class="d-flex">
+                                            <p>1-3:</p>
+                                            <p>
+                                                The Empire does not use its Assignment Action Card
+                                            </p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <p>4-6:</p>
+                                            <p>
+                                                The Empire uses its Assignment Action Card
+                                            </p>
+                                            <span class="material-icons">science</span>
+                                        </div>
+                                    </div>
                                     <p>
                                         The Empire plays all Action Cards
                                         designated as <strong class="text-medium">playable</strong>
