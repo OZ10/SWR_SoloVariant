@@ -7,14 +7,19 @@ $SWFont: "Goldman", serif;
     top: 0.5em;
 }
 
-html,body{
+html,body {
     // height: 100%;
     background-color: #ffffff;
     // font-weight: 300;
     color:$gray-700;
 }
 
-#mainheader{
+.main {
+    margin-bottom: 100px;
+    padding-top: 121px;
+}
+
+#mainheader {
     background-color: $gray-200;
     padding: 20px;
     font-weight: bold;
@@ -23,7 +28,7 @@ html,body{
     color: $primary;
 }
 
-#footer{
+#footer {
     background-color: $gray-200;
     height: 100px;
     // padding: 10px;
