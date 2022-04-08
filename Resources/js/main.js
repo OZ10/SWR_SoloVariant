@@ -665,7 +665,7 @@ var dice = {
 function rollD6(number) {
     var placeholder = document.getElementById("d6");
     // placeholder.innerHTML = number;
-    placeholder.src = "./Resources/images/D6_" + number + ".png";
+    placeholder.src = "./resources/images/D6_" + number + ".png";
     var d6Modal = new bootstrap.Modal(document.getElementById("d6modal"));
     d6Modal.toggle();
 }

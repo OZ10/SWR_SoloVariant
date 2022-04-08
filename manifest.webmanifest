@@ -1,0 +1,29 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "name": "Star Wars Rebellion - Solo Variant",
+    "short_name": "SWR_SoloVariant",
+    "start_url": ".",
+    "display": "fullscreen",
+    "background_color": "#e9ecef",
+    "description": "Dale Buonocores Star Wars Rebellion Solo Variant",
+    "icons": [{
+        "src": "resources/images/manifest/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "resources/images/manifest/icon-256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+    },
+    {
+        "src": "resources/images/manifest/icon-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+    },
+    {
+        "src": "resources/images/manifest/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }]
+  }
