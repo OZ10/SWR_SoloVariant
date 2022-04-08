@@ -3,6 +3,7 @@
     "name": "Star Wars Rebellion - Solo Variant",
     "short_name": "SWR_SoloVariant",
     "start_url": ".",
+    "id": "/SWR_SoloVariant/",
     "display": "fullscreen",
     "background_color": "#e9ecef",
     "description": "Dale Buonocores Star Wars Rebellion Solo Variant",
