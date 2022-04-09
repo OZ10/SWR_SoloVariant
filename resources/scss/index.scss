@@ -37,9 +37,16 @@ body {
 
 @media (min-width: 544px) {
     .main {
-        padding-top: 135px;
+        padding-top: 100px;
     }
 }
+
+@media (min-width: 580px) {
+    .main {
+        padding-top: 130px;
+    }
+}
+
 
 @media (min-width: 695px) {
     .main {
