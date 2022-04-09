@@ -8,7 +8,8 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -103,7 +104,8 @@ p {
 
 abbr[title],
 abbr[data-bs-original-title] {
-  text-decoration: underline dotted;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
   cursor: help;
   text-decoration-skip-ink: none;
 }

@@ -1,3 +1,4 @@
+@import "partials/mixins";
 @import "partials/colours";
 
 $SWFont: "Goldman",
@@ -13,6 +14,7 @@ body {
     background-color: #ffffff;
     color: $gray-700;
 }
+
 
 .main {
     margin-bottom: 100px;
@@ -32,13 +34,12 @@ body {
 }
 
 
-
 .mainheader {
     background-color: $gray-200;
     padding: 20px;
     font-weight: bold;
     font-family: $SWFont;
-    font-size: 2rem;
+    @include font-size(32px);
     color: $primary;
 }
 
@@ -62,25 +63,25 @@ a:hover {
 }
 
 .mainheader {
-    font-size: 1.1rem;
+    @include font-size(18px);
 }
 
 
 @media(min-width: 544px) {
     .mainheader {
-        font-size: 1.3rem;
+        @include font-size(21px);
     }
 }
 
 @media(min-width: 768px) {
     .mainheader {
-        font-size: 2rem;
+        @include font-size(32px);
     }
 }
 
 @media(min-width: 768px) {
     .mainheader {
-        font-size: 2.3rem;
+        @include font-size(37px);
     }
 }
 
@@ -200,7 +201,7 @@ a:hover {
 }
 
 .planetname {
-    @include font-size(0.9rem);
+    @include font-size(14px);
 }
 
 div[id*=ground] {
@@ -255,7 +256,6 @@ div[id*=space] {
     height: 40px;
     line-height: 40px;
     border-radius: 50%;
-    // font-size: 10px;
     color: #fff;
     text-align: center;
     margin: 5px;
@@ -471,7 +471,7 @@ input[id^=round]:disabled+label {
 .roundselector a {
     padding: 4px;
     background-color: #F5F5F5;
-    font-size: 0.8rem;
+    @include font-size(13px);
     font-family: $SWFont;
     color: $gray-600;
 }
@@ -515,7 +515,7 @@ input[id^=round]:disabled+label {
     background-color: transparent;
     border: 1px solid transparent;
     padding: 0.25rem;
-    font-size: 1rem;
+    @include font-size(16px);
     border-radius: 50%;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -524,29 +524,30 @@ input[id^=round]:disabled+label {
     background-color: $gray-400;
 }
 
+
 .icon-small {
-    font-size: 1.4rem;
+    @include font-size(22px);
 }
 
 .icon-medium {
-    font-size: 2rem;
+    @include font-size(32px);
 }
 
 @media(min-width: 300px) {
     .icon-medium {
-        font-size: 1.2rem;
+        @include font-size(19px);
     }
 }
 
 @media(min-width: 544px) {
     .icon-medium {
-        font-size: 1.5rem;
+        @include font-size(24px);
     }
 }
 
 @media(min-width: 768px) {
     .icon-medium {
-        font-size: 2rem;
+        @include font-size(32px);
     }
 }
 

@@ -1,0 +1,50 @@
+
+// Example:
+// div {
+//     @include css3-prefix(transform, scale3d(2.5, 2, 1.5));
+// }
+@mixin css3-prefix($prop, $value) {
+    -webkit-#{$prop}: #{$value};
+    -moz-#{$prop}: #{$value};
+    -ms-#{$prop}: #{$value};
+    -o-#{$prop}: #{$value};
+    #{$prop}: #{$value};
+ }
+
+//  Example:
+//  @include breakpoint(large) {
+//     div {
+//        font-size: 2rem;
+//        line-height: 1.4;
+//     }
+//  }
+ @mixin breakpoint($point) {
+    @if $point == large {
+       @media only screen and (min-width: 1366px) {
+          @content;
+       }
+    }
+    @else if $point == desktop {
+       @media only screen and (min-width: 1024px) {
+          @content;
+       }
+    }
+    @else if $point == tablet {
+       @media only screen and (min-width: 600px) {
+          @content;
+       }
+    }
+ }
+
+/*********************
+PX TO REMS
+*********************/
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
