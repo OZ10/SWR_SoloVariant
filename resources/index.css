@@ -11463,9 +11463,16 @@ fieldset:disabled .btn {
   top: 0.5em;
 }
 
-html, body {
+html,
+body {
   background-color: #ffffff;
   color: #495057;
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding-top: 153px;
+  }
 }
 
 .main {
