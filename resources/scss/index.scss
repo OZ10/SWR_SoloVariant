@@ -1,8 +1,21 @@
 @import "partials/mixins";
 @import "partials/colours";
 
-$SWFont: "Goldman",
-serif;
+@font-face {
+    font-family: 'Goldman';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../font/Goldman-Regular.ttf')  format('truetype');
+}
+
+@font-face {
+    font-family: 'Goldman';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../font/Goldman-Bold.ttf')  format('truetype');
+}
+
+$SWFont: "Goldman", serif;
 
 /* Bootstrap modifiers */
 .sticky-top {
@@ -13,6 +26,7 @@ html,
 body {
     background-color: #ffffff;
     color: $gray-700;
+    min-width: 380px;
 }
 
 

@@ -11458,6 +11458,20 @@ fieldset:disabled .btn {
   }
 }
 
+@font-face {
+  font-family: 'Goldman';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/Goldman-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Goldman';
+  font-style: normal;
+  font-weight: 700;
+  src: url("../font/Goldman-Bold.ttf") format("truetype");
+}
+
 /* Bootstrap modifiers */
 .sticky-top {
   top: 0.5em;
@@ -11467,6 +11481,7 @@ html,
 body {
   background-color: #ffffff;
   color: #495057;
+  min-width: 380px;
 }
 
 .main {
