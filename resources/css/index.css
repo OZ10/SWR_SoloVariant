@@ -11583,67 +11583,67 @@ a:hover {
 }
 
 #dagobah:before {
-  content: url(./images/SWR_Dagobah_bw.png);
+  content: url(../images/SWR_Dagobah_bw.png);
 }
 
 :checked + #dagobah:before {
-  content: url(./images/SWR_Dagobah.png);
+  content: url(../images/SWR_Dagobah.png);
 }
 
 #dantooine:before {
-  content: url(./images/SWR_Dantooine_bw.png);
+  content: url(../images/SWR_Dantooine_bw.png);
 }
 
 :checked + #dantooine:before {
-  content: url(./images/SWR_Dantooine.png);
+  content: url(../images/SWR_Dantooine.png);
 }
 
 #dathomir:before {
-  content: url(./images/SWR_Dathomir_bw.png);
+  content: url(../images/SWR_Dathomir_bw.png);
 }
 
 :checked + #dathomir:before {
-  content: url(./images/SWR_Dathomir.png);
+  content: url(../images/SWR_Dathomir.png);
 }
 
 #endor:before {
-  content: url(./images/SWR_Endor_bw.png);
+  content: url(../images/SWR_Endor_bw.png);
 }
 
 :checked + #endor:before {
-  content: url(./images/SWR_Endor.png);
+  content: url(../images/SWR_Endor.png);
 }
 
 #hoth:before {
-  content: url(./images/SWR_Hoth_bw.png);
+  content: url(../images/SWR_Hoth_bw.png);
 }
 
 :checked + #hoth:before {
-  content: url(./images/SWR_Hoth.png);
+  content: url(../images/SWR_Hoth.png);
 }
 
 #ilum:before {
-  content: url(./images/SWR_Ilum_bw.png);
+  content: url(../images/SWR_Ilum_bw.png);
 }
 
 :checked + #ilum:before {
-  content: url(./images/SWR_Ilum.png);
+  content: url(../images/SWR_Ilum.png);
 }
 
 #tatooine:before {
-  content: url(./images/SWR_Tatooine_bw.png);
+  content: url(../images/SWR_Tatooine_bw.png);
 }
 
 :checked + #tatooine:before {
-  content: url(./images/SWR_Tatooine.png);
+  content: url(../images/SWR_Tatooine.png);
 }
 
 #yavin:before {
-  content: url(./images/SWR_Yavin_bw.png);
+  content: url(../images/SWR_Yavin_bw.png);
 }
 
 :checked + #yavin:before {
-  content: url(./images/SWR_Yavin.png);
+  content: url(../images/SWR_Yavin.png);
 }
 
 .variant {
@@ -11803,11 +11803,11 @@ input[id^=round] {
 }
 
 input[id^=round]:checked + label {
-  content: url("./images/Round_Rebel_sm.png");
+  content: url("../images/Round_Rebel_sm.png");
 }
 
 input[id^=round]:checked:disabled + label {
-  content: url("./images/Round_Marker_sm.png");
+  content: url("../images/Round_Marker_sm.png");
 }
 
 input[id^=round]:disabled + label {
