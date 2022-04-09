@@ -11469,7 +11469,7 @@ body {
   color: #495057;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .main {
     padding-top: 153px;
   }
