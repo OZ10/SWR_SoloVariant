@@ -1,23 +1,33 @@
 @import "./colours";
 
-$SWFont: "Goldman", serif;
+$SWFont: "Goldman",
+serif;
 
 /* Bootstrap modifiers */
-.sticky-top{
+.sticky-top {
     top: 0.5em;
 }
 
-html,body {
+html,
+body {
     // height: 100%;
     background-color: #ffffff;
     // font-weight: 300;
-    color:$gray-700;
+    color: $gray-700;
+}
+
+@media (max-width: 600px) {
+    .main {
+        padding-top: 153px;
+    }
 }
 
 .main {
     margin-bottom: 100px;
     padding-top: 121px;
 }
+
+
 
 #mainheader {
     background-color: $gray-200;
@@ -38,39 +48,38 @@ html,body {
     // color: $primary;
 }
 
-a{
+a {
     text-decoration: none;
     color: $gray-800;
 }
 
 a:visited {
     text-decoration: none;
-  }
+}
 
-a:hover{
+a:hover {
     text-decoration: underline;
 }
 
-@media(min-width: 300px)
-{
-    #mainheader{
+@media(min-width: 300px) {
+    #mainheader {
         font-size: 1.2rem;
     }
 }
 
-@media(min-width: 544px)
-{
-    #mainheader{
+@media(min-width: 544px) {
+    #mainheader {
         font-size: 1.5rem;
     }
 }
 
-@media(min-width: 768px)
-{
-    #mainheader{
+@media(min-width: 768px) {
+    #mainheader {
         font-size: 2rem;
     }
 }
+
+
 
 // .wrapper{
 //     // width: 100%;
@@ -104,7 +113,7 @@ a:hover{
 //     font-family: $SWFont;
 // }
 
-#options{
+#options {
     padding: 0 5px;
     font-size: small;
 }
@@ -134,83 +143,83 @@ a:hover{
 //     right: 10px;
 // }
 
-.sidebarsubheader{
+.sidebarsubheader {
     display: flex;
     justify-content: space-between;
     padding: 0 20px 0 0;
     @extend .paraseparator;
 }
 
-.planetlabel:hover{
+.planetlabel:hover {
     transition-duration: 0.3s;
     transform: scale(1.05);
 }
 
-#dagobah:before{
+#dagobah:before {
     content: url(./images/SWR_Dagobah_bw.png);
 }
 
-:checked+#dagobah:before{
+:checked+#dagobah:before {
     content: url(./images/SWR_Dagobah.png);
 }
 
-#dantooine:before{
+#dantooine:before {
     content: url(./images/SWR_Dantooine_bw.png);
 }
 
-:checked+#dantooine:before{
+:checked+#dantooine:before {
     content: url(./images/SWR_Dantooine.png);
 }
 
-#dathomir:before{
+#dathomir:before {
     content: url(./images/SWR_Dathomir_bw.png);
 }
 
-:checked+#dathomir:before{
+:checked+#dathomir:before {
     content: url(./images/SWR_Dathomir.png);
 }
 
-#endor:before{
+#endor:before {
     content: url(./images/SWR_Endor_bw.png);
 }
 
-:checked+#endor:before{
+:checked+#endor:before {
     content: url(./images/SWR_Endor.png);
 }
 
-#hoth:before{
+#hoth:before {
     content: url(./images/SWR_Hoth_bw.png);
 }
 
-:checked+#hoth:before{
+:checked+#hoth:before {
     content: url(./images/SWR_Hoth.png);
 }
 
-#ilum:before{
+#ilum:before {
     content: url(./images/SWR_Ilum_bw.png);
 }
 
-:checked+#ilum:before{
+:checked+#ilum:before {
     content: url(./images/SWR_Ilum.png);
 }
 
-#tatooine:before{
+#tatooine:before {
     content: url(./images/SWR_Tatooine_bw.png);
 }
 
-:checked+#tatooine:before{
+:checked+#tatooine:before {
     content: url(./images/SWR_Tatooine.png);
 }
 
-#yavin:before{
+#yavin:before {
     content: url(./images/SWR_Yavin_bw.png);
 }
 
-:checked+#yavin:before{
+:checked+#yavin:before {
     content: url(./images/SWR_Yavin.png);
 }
 
-.variant{
+.variant {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -219,12 +228,12 @@ a:hover{
     border-radius: 3px;
 }
 
-.variant span{
+.variant span {
     padding: 10px;
 }
 
 // Hack that needs sorting. Styles grid on Empire’s Card Decision Making List
-#row1 div[class^=col]{
+#row1 div[class^=col] {
     border-style: solid;
     border-color: $gray-400;
     border-width: 1px;
@@ -237,31 +246,31 @@ a:hover{
 //     margin: 8px;
 // }
 
-.builditemstart{
+.builditemstart {
     border-top: solid 1px;
     border-color: $calloutbackground3;
     padding-top: 10px;
 }
 
-#buildheader{
+#buildheader {
     background-color: $calloutbackground1;
     height: 40px;
     margin: 0 1px;
 }
 
-.planetname{
+.planetname {
     @include font-size(0.9rem);
 }
 
-div[id*=ground]{
+div[id*=ground] {
     background-color: orange;
 }
 
-div[id*=space]{
+div[id*=space] {
     background-color: blue;
 }
 
-.buildrowheader{
+.buildrowheader {
     line-height: 30px;
     padding: 5px;
     margin: 5px 0;
@@ -269,12 +278,12 @@ div[id*=space]{
 }
 
 .swg-galemp,
-.swg-stormtrooper{
+.swg-stormtrooper {
     color: $empirecolour;
 }
 
 .swg-reball,
-.swg-stormtrooper-3{
+.swg-stormtrooper-3 {
     color: $rebelcolour
 }
 
@@ -288,24 +297,24 @@ div[id*=space]{
 //     background-color: $empirecolour;
 // }
 
-.buildrow{
+.buildrow {
     line-height: 50px;
     padding: 2px 0;
     margin: 1px 0;
     background-color: $calloutbackground2;
 }
 
-.buildrowrebel{
+.buildrowrebel {
     @extend .buildrow;
     border-left: 3px solid $rebelcolour;
 }
 
-.buildrowempire{
+.buildrowempire {
     @extend .buildrow;
     border-left: 3px solid $empirecolour;
 }
 
-#buildbutton{
+#buildbutton {
     display: flex;
     justify-content: center;
 }
@@ -319,7 +328,7 @@ div[id*=space]{
     color: #fff;
     text-align: center;
     margin: 5px;
-  }
+}
 
 //   .circle2 {
 //     width: 10px;
@@ -334,14 +343,14 @@ div[id*=space]{
 //     // margin: 5px;
 //   }
 
-  .square{
+.square {
     width: 40px;
     height: 40px;
     color: #fff;
     line-height: 40px;
     text-align: center;
     margin: 5px;
-  }
+}
 
 //   @mixin triangleColor($type){
 //     @if $type="a"{
@@ -349,7 +358,7 @@ div[id*=space]{
 //     }
 //     }
 
-.trianglebase{
+.trianglebase {
     border-left-color: transparent;
     border-right-color: transparent;
     border-top-color: transparent;
@@ -365,26 +374,26 @@ div[id*=space]{
     margin: 5px;
 }
 
-.triangle[id*=ground]{
+.triangle[id*=ground] {
     border-bottom-color: orange;
     @extend .trianglebase;
- }
+}
 
- .triangle[id*=space]{
+.triangle[id*=space] {
     border-bottom-color: blue;
     @extend .trianglebase;
- }
+}
 
 //  Round styles
 
-.roundtracker{
+.roundtracker {
     background-color: $gray-200;
     margin-top: 10px;
     padding-top: 10px;
     // max-width: 60px;
 }
 
-#round_label{
+#round_label {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -395,45 +404,45 @@ div[id*=space]{
     font-family: $SWFont;
 }
 
- input[id^=round]{
-     display: none;
- }
+input[id^=round] {
+    display: none;
+}
 
-input[id^=round]:checked + label{
+input[id^=round]:checked+label {
     content: url("./images/Round_Rebel_sm.png");
- }
+}
 
- input[id^=round]:checked:disabled + label{
+input[id^=round]:checked:disabled+label {
     content: url("./images/Round_Marker_sm.png");
- }
+}
 
- input[id^=round]:disabled + label{
+input[id^=round]:disabled+label {
     background-color: $gray-500;
- }
+}
 
-.margin-small{
+.margin-small {
     margin: 8px;
 }
 
-.margin-medium{
+.margin-medium {
     margin: 16px;
 }
 
-.fs-7{
+.fs-7 {
     font-size: small;
 }
 
-.list-group a{
+.list-group a {
     font-size: medium;
-    color:gray;
+    color: gray;
 }
 
 /* Callouts */
 
-  %callouttext{
+%callouttext {
     font-size: small;
     margin: 10px 8px;
-  }
+}
 
 .callout {
     padding: 10px 5px 10px 10px;
@@ -443,86 +452,101 @@ input[id^=round]:checked + label{
     border-left-width: 4px;
     border-radius: 3px;
     background-color: $calloutbackground1;
-    p{
+
+    p {
         @extend %callouttext;
     }
-    ul{
+
+    ul {
         @extend %callouttext;
     }
-    li{
+
+    li {
         @extend %callouttext;
     }
-    h5{
+
+    h5 {
         font-family: $SWFont;
     }
 }
 
-.callout-rebel{
+.callout-rebel {
     @extend .callout;
     border-color: $rebelcolour;
-    h5{
+
+    h5 {
         color: $rebelcolour;
     }
 }
 
-.callout-empire{
+.callout-empire {
     @extend .callout;
-    border-color:$empirecolour;
-    h5{
+    border-color: $empirecolour;
+
+    h5 {
         color: $empirecolour;
     }
 }
 
 .callout {
-    .callout-rebel{
+    .callout-rebel {
         background-color: $calloutbackground2;
-        .callout-empire{
+
+        .callout-empire {
             background-color: $calloutbackground3;
         }
     }
-    .callout-empire{
+
+    .callout-empire {
         background-color: $calloutbackground2;
+
         .callout {
             background-color: $calloutbackground3;
         }
     }
-    .callout-both{
+
+    .callout-both {
         background-color: $calloutbackground2;
-        .callout-both{
+
+        .callout-both {
             background-color: $calloutbackground3;
         }
-        .callout-empire{
+
+        .callout-empire {
             background-color: $calloutbackground3;
         }
     }
-    .callout{
+
+    .callout {
         background-color: $calloutbackground2;
-        .callout{
+
+        .callout {
             background-color: $calloutbackground3;
         }
-        .callout-rebel{
+
+        .callout-rebel {
             background-color: $calloutbackground3;
         }
-        .callout-empire
-        {
+
+        .callout-empire {
             background-color: $calloutbackground3;
         }
     }
 }
 
-.callout-rebel{
-    .callout-empire{
+.callout-rebel {
+    .callout-empire {
         background-color: $calloutbackground2;
     }
 }
 
-.callout-empire{
+.callout-empire {
     .callout {
         background-color: $calloutbackground2;
     }
 }
 
-.callout-both{
+.callout-both {
     @extend .callout;
     border-image-source: linear-gradient(180deg, $rebelcolour, $empirecolour);
     border-image-slice: 1;
@@ -540,11 +564,11 @@ input[id^=round]:checked + label{
 //     color: blue;
 // }
 
-.maincolour{
+.maincolour {
     color: $primary;
 }
 
-.roundselector a{
+.roundselector a {
     padding: 4px;
     background-color: #F5F5F5;
     font-size: 0.8rem;
@@ -552,23 +576,23 @@ input[id^=round]:checked + label{
     color: $gray-600;
 }
 
-.paraseparator{
+.paraseparator {
     border-top: 1px solid $gray-400;
     padding-top: 5px;
 }
 
-#deployflowchart li{
-font-size: small;
-margin: 8px;
+#deployflowchart li {
+    font-size: small;
+    margin: 8px;
 }
 
-#missiontable div{
+#missiontable div {
     font-size: small;
     margin: 0;
     padding: 0;
 }
 
-#carddecisionlist div{
+#carddecisionlist div {
     font-size: small;
 }
 
@@ -576,14 +600,14 @@ margin: 8px;
 //     width: 20%;
 // }
 
-#d6{
+#d6 {
     display: block;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-  }
+}
 
-  .btnNoBackground {
+.btnNoBackground {
     display: inline-block;
     font-weight: 400;
     line-height: 1;
@@ -598,13 +622,13 @@ margin: 8px;
     font-size: 1rem;
     border-radius: 50%;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
+}
 
-  .btnNoBackground:hover{
-      background-color: $gray-400;
-  }
+.btnNoBackground:hover {
+    background-color: $gray-400;
+}
 
-.icon-small{
+.icon-small {
     font-size: 1.4rem;
 }
 
@@ -622,31 +646,29 @@ margin: 8px;
 //     }
 // }
 
-.icon-medium{
+.icon-medium {
     font-size: 2rem;
 }
 
-@media(min-width: 300px)
-{
-    .icon-medium{
+@media(min-width: 300px) {
+    .icon-medium {
         font-size: 1.2rem;
     }
 }
 
-@media(min-width: 544px)
-{
-    .icon-medium{
+@media(min-width: 544px) {
+    .icon-medium {
         font-size: 1.5rem;
     }
 }
 
-@media(min-width: 768px)
-{
-    .icon-medium{
+@media(min-width: 768px) {
+    .icon-medium {
         font-size: 2rem;
     }
 }
-.offcanvasSilm{
+
+.offcanvasSilm {
     @extend .offcanvas;
     width: 120px;
 }
