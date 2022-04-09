@@ -1,4 +1,4 @@
-@import "./colours";
+@import "partials/colours";
 
 $SWFont: "Goldman",
 serif;
@@ -10,9 +10,7 @@ serif;
 
 html,
 body {
-    // height: 100%;
     background-color: #ffffff;
-    // font-weight: 300;
     color: $gray-700;
 }
 
@@ -35,7 +33,7 @@ body {
 
 
 
-#mainheader {
+.mainheader {
     background-color: $gray-200;
     padding: 20px;
     font-weight: bold;
@@ -47,11 +45,7 @@ body {
 #footer {
     background-color: $gray-200;
     height: 100px;
-    // padding: 10px;
-    // font-weight: bold;
-    // font-family: $SWFont;
     font-size: smaller;
-    // color: $primary;
 }
 
 a {
@@ -67,87 +61,33 @@ a:hover {
     text-decoration: underline;
 }
 
-@media(min-width: 300px) {
-    #mainheader {
-        font-size: 1.2rem;
-    }
+.mainheader {
+    font-size: 1.1rem;
 }
 
+
 @media(min-width: 544px) {
-    #mainheader {
-        font-size: 1.5rem;
+    .mainheader {
+        font-size: 1.3rem;
     }
 }
 
 @media(min-width: 768px) {
-    #mainheader {
+    .mainheader {
         font-size: 2rem;
     }
 }
 
-
-
-// .wrapper{
-//     // width: 100%;
-//     // display: flex;
-//     display: block;
-// }
-
-/* Sidebar Rules */
-// #sidebar{
-//     width: 350px;
-//     height: 100vh;
-//     position: fixed;
-//     top: 0;
-//     left: -350px;
-//     z-index: 1025;
-//     background: $gray-200;
-//     transition: all 0.3s;
-// }
-
-// #sidebar.show{
-//     left: 0;
-// }
-
-// .sidebarheader{
-//     background-color: $gray-300;
-//     height: 60px;
-//     display: flex;
-//     justify-content: left;
-//     align-items: center;
-//     padding-left: 5px;
-//     font-family: $SWFont;
-// }
+@media(min-width: 768px) {
+    .mainheader {
+        font-size: 2.3rem;
+    }
+}
 
 #options {
     padding: 0 5px;
     font-size: small;
 }
-
-// .overlay{
-//     display: none;
-//     position: fixed;
-//     width: 100vw;
-//     height: 100vh;
-//     background: rgba(0,0,0,0.7);
-//     z-index: 1024;
-//     opacity: 0;
-//     transition: all 0.5s ease-in-out;
-// }
-
-// .overlay.show{
-//     display: block;
-//     opacity: 1;
-// }
-
-// #dismissbutton
-// {
-//     width: 35;
-//     height: 35;
-//     position: absolute;
-//     top: 10px;
-//     right: 10px;
-// }
 
 .sidebarsubheader {
     display: flex;
@@ -247,11 +187,6 @@ a:hover {
     padding: 5px;
 }
 
-// .stepdescription{
-//     font-size: small;
-//     margin: 8px;
-// }
-
 .builditemstart {
     border-top: solid 1px;
     border-color: $calloutbackground3;
@@ -293,16 +228,6 @@ div[id*=space] {
     color: $rebelcolour
 }
 
-// .buildrowheaderrebel{
-//     @extend .buildrowheader;
-//     background-color: $rebelcolour;
-// }
-
-// .buildrowheaderempire{
-//     @extend .buildrowheader;
-//     background-color: $empirecolour;
-// }
-
 .buildrow {
     line-height: 50px;
     padding: 2px 0;
@@ -336,19 +261,6 @@ div[id*=space] {
     margin: 5px;
 }
 
-//   .circle2 {
-//     width: 10px;
-//     height: 10px;
-//     // line-height: 10px;
-//     border-radius: 50%;
-//     // font-size: 10px;
-//     color: #fff;
-//     text-align: center;
-//     background-color: orange;
-//     // display: inline;
-//     // margin: 5px;
-//   }
-
 .square {
     width: 40px;
     height: 40px;
@@ -357,12 +269,6 @@ div[id*=space] {
     text-align: center;
     margin: 5px;
 }
-
-//   @mixin triangleColor($type){
-//     @if $type="a"{
-//         color: orange;
-//     }
-//     }
 
 .trianglebase {
     border-left-color: transparent;
@@ -558,18 +464,6 @@ input[id^=round]:disabled+label {
     border-image-slice: 1;
 }
 
-// .important{
-//     background-color: $gray-800;
-//     color: white;
-//     padding: 10;
-//     border-radius: 2;
-//     // background-clip: padding-box;
-// }
-
-// ul[id^=ROTE]{
-//     color: blue;
-// }
-
 .maincolour {
     color: $primary;
 }
@@ -602,10 +496,6 @@ input[id^=round]:disabled+label {
     font-size: small;
 }
 
-// #d6button{
-//     width: 20%;
-// }
-
 #d6 {
     display: block;
     width: 50%;
@@ -637,20 +527,6 @@ input[id^=round]:disabled+label {
 .icon-small {
     font-size: 1.4rem;
 }
-
-// @media(min-width: 300px)
-// {
-//     .icon-small{
-//         font-size: 1rem;
-//     }
-// }
-
-// @media(min-width: 544px)
-// {
-//     .icon-small{
-//         font-size: 1.4rem;
-//     }
-// }
 
 .icon-medium {
     font-size: 2rem;
