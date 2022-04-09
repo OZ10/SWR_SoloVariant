@@ -11471,12 +11471,18 @@ body {
 
 .main {
   margin-bottom: 100px;
-  padding-top: 153px;
+  padding-top: 100px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 544px) {
   .main {
-    padding-top: 121px;
+    padding-top: 135px;
+  }
+}
+
+@media (min-width: 695px) {
+  .main {
+    padding-top: 120px;
   }
 }
 
