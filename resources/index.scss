@@ -16,15 +16,15 @@ body {
     color: $gray-700;
 }
 
-@media (max-width: 700px) {
-    .main {
-        padding-top: 153px;
-    }
-}
-
 .main {
     margin-bottom: 100px;
-    padding-top: 121px;
+    padding-top: 153px;
+}
+
+@media (min-width: 700px) {
+    .main {
+        padding-top: 121px;
+    }
 }
 
 
