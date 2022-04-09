@@ -32,7 +32,7 @@ body {
 
 .main {
     margin-bottom: 100px;
-    padding-top: 100px;
+    padding-top: 120px;
 }
 
 @media (min-width: 544px) {
@@ -53,8 +53,31 @@ body {
     padding: 20px;
     font-weight: bold;
     font-family: $SWFont;
-    @include font-size(32px);
     color: $primary;
+    @include font-size-pxem(32px);
+}
+
+.mainheader {
+    @include font-size-pxem(18px);
+}
+
+
+@media(min-width: 544px) {
+    .mainheader {
+        @include font-size-pxem(21px);
+    }
+}
+
+@media(min-width: 768px) {
+    .mainheader {
+        @include font-size-pxem(32px);
+    }
+}
+
+@media(min-width: 768px) {
+    .mainheader {
+        @include font-size-pxem(37px);
+    }
 }
 
 #footer {
@@ -76,28 +99,7 @@ a:hover {
     text-decoration: underline;
 }
 
-.mainheader {
-    @include font-size(18px);
-}
 
-
-@media(min-width: 544px) {
-    .mainheader {
-        @include font-size(21px);
-    }
-}
-
-@media(min-width: 768px) {
-    .mainheader {
-        @include font-size(32px);
-    }
-}
-
-@media(min-width: 768px) {
-    .mainheader {
-        @include font-size(37px);
-    }
-}
 
 #options {
     padding: 0 5px;
@@ -215,7 +217,7 @@ a:hover {
 }
 
 .planetname {
-    @include font-size(14px);
+    @include font-size-pxem(14px);
 }
 
 div[id*=ground] {
@@ -485,7 +487,7 @@ input[id^=round]:disabled+label {
 .roundselector a {
     padding: 4px;
     background-color: #F5F5F5;
-    @include font-size(13px);
+    @include font-size-pxem(13px);
     font-family: $SWFont;
     color: $gray-600;
 }
@@ -529,7 +531,7 @@ input[id^=round]:disabled+label {
     background-color: transparent;
     border: 1px solid transparent;
     padding: 0.25rem;
-    @include font-size(16px);
+    @include font-size-pxem(16px);
     border-radius: 50%;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -540,28 +542,28 @@ input[id^=round]:disabled+label {
 
 
 .icon-small {
-    @include font-size(22px);
+    @include font-size-pxem(22px);
 }
 
 .icon-medium {
-    @include font-size(32px);
+    @include font-size-pxem(32px);
 }
 
 @media(min-width: 300px) {
     .icon-medium {
-        @include font-size(19px);
+        @include font-size-pxem(19px);
     }
 }
 
 @media(min-width: 544px) {
     .icon-medium {
-        @include font-size(24px);
+        @include font-size-pxem(24px);
     }
 }
 
 @media(min-width: 768px) {
     .icon-medium {
-        @include font-size(32px);
+        @include font-size-pxem(32px);
     }
 }
 

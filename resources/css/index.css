@@ -11486,7 +11486,7 @@ body {
 
 .main {
   margin-bottom: 100px;
-  padding-top: 100px;
+  padding-top: 120px;
 }
 
 @media (min-width: 544px) {
@@ -11506,13 +11506,34 @@ body {
   padding: 20px;
   font-weight: bold;
   font-family: "Goldman", serif;
-  font-size: calc(1.325rem + 0.9vw);
   color: #66051f;
+  font-size: 32px;
+  font-size: 2rem;
 }
 
-@media (min-width: 1200px) {
+.mainheader {
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+
+@media (min-width: 544px) {
   .mainheader {
+    font-size: 21px;
+    font-size: 1.3125rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .mainheader {
+    font-size: 32px;
     font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .mainheader {
+    font-size: 37px;
+    font-size: 2.3125rem;
   }
 }
 
@@ -11533,46 +11554,6 @@ a:visited {
 
 a:hover {
   text-decoration: underline;
-}
-
-.mainheader {
-  font-size: 1.125rem;
-}
-
-@media (min-width: 544px) {
-  .mainheader {
-    font-size: calc(1.25625rem + 0.075vw);
-  }
-}
-
-@media (min-width: 544px) and (min-width: 1200px) {
-  .mainheader {
-    font-size: 1.3125rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .mainheader {
-    font-size: calc(1.325rem + 0.9vw);
-  }
-}
-
-@media (min-width: 768px) and (min-width: 1200px) {
-  .mainheader {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .mainheader {
-    font-size: calc(1.35625rem + 1.275vw);
-  }
-}
-
-@media (min-width: 768px) and (min-width: 1200px) {
-  .mainheader {
-    font-size: 2.3125rem;
-  }
 }
 
 #options {
@@ -11701,6 +11682,7 @@ a:hover {
 }
 
 .planetname {
+  font-size: 14px;
   font-size: 0.875rem;
 }
 
@@ -11946,6 +11928,7 @@ input[id^=round]:disabled + label {
 .roundselector a {
   padding: 4px;
   background-color: #F5F5F5;
+  font-size: 13px;
   font-size: 0.8125rem;
   font-family: "Goldman", serif;
   color: #6c757d;
@@ -11990,6 +11973,7 @@ input[id^=round]:disabled + label {
   background-color: transparent;
   border: 1px solid transparent;
   padding: 0.25rem;
+  font-size: 16px;
   font-size: 1rem;
   border-radius: 50%;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -12003,51 +11987,32 @@ input[id^=round]:disabled + label {
 }
 
 .icon-small {
-  font-size: calc(1.2625rem + 0.15vw);
-}
-
-@media (min-width: 1200px) {
-  .icon-small {
-    font-size: 1.375rem;
-  }
+  font-size: 22px;
+  font-size: 1.375rem;
 }
 
 .icon-medium {
-  font-size: calc(1.325rem + 0.9vw);
-}
-
-@media (min-width: 1200px) {
-  .icon-medium {
-    font-size: 2rem;
-  }
+  font-size: 32px;
+  font-size: 2rem;
 }
 
 @media (min-width: 300px) {
   .icon-medium {
+    font-size: 19px;
     font-size: 1.1875rem;
   }
 }
 
 @media (min-width: 544px) {
   .icon-medium {
-    font-size: calc(1.275rem + 0.3vw);
-  }
-}
-
-@media (min-width: 544px) and (min-width: 1200px) {
-  .icon-medium {
+    font-size: 24px;
     font-size: 1.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .icon-medium {
-    font-size: calc(1.325rem + 0.9vw);
-  }
-}
-
-@media (min-width: 768px) and (min-width: 1200px) {
-  .icon-medium {
+    font-size: 32px;
     font-size: 2rem;
   }
 }
