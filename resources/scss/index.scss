@@ -42,91 +42,57 @@ body {
 
 
 .main {
-    margin-bottom: 100px;
-    padding-top: 123px;
+    margin-bottom: 101px;
+    padding-top: 91px;
 }
 
-@media (min-width: 544px) {
+@include breakpoint(sm) {
     .main {
-        padding-top: 137px;
+        padding-top: 114px;
     }
 }
 
-@media (min-width: 580px) {
+@include breakpoint(md) {
     .main {
-        padding-top: 169px;
+        padding-top: 82px;
     }
 }
 
-@media (min-width: 608px) {
+@include breakpoint(xl) {
     .main {
-        padding-top: 148px;
-    }
-}
-
-@media (min-width: 699px) {
-    .main {
-        padding-top: 116px;
-    }
-}
-
-@media (min-width: 768px) {
-    .main {
-        padding-top: 164px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .main {
-        padding-top: 110px;
+        padding-top: 88px;
     }
 }
 
 
 .mainheader {
     background-color: $gray-200;
-    padding: 10px;
+    padding: 5px 10px 5px 10px;
     font-weight: bold;
     font-family: $sw-font;
     color: $primary;
 }
 
 .mainheader {
-    @include font-size-pxem(20px);
+    @include font-size-pxem(16px);
 }
 
-@media(min-width: 320px) {
+@include breakpoint(sm) {
     .mainheader {
-        @include font-size-pxem(18px);
+        @include font-size-pxem(20px);
     }
 }
 
-
-@media(min-width: 544px) {
+@include breakpoint(md) {
     .mainheader {
-        @include font-size-pxem(21px);
+        @include font-size-pxem(24px);
     }
 }
 
-@media(min-width: 768px) {
+@include breakpoint(lg) {
     .mainheader {
-        @include font-size-pxem(32px);
+        @include font-size-pxem(30px);
     }
-}
-
-@media(min-width: 768px) {
-    .mainheader {
-        @include font-size-pxem(37px);
-    }
-}
-
-
-.mainheader__navbutton {
-    margin-right: 20px;
-}
-
-.mainheader__headline {
-    margin-right: 20px;
 }
 
 #footer {
@@ -619,18 +585,12 @@ input[id^=round]:disabled+label {
 }
 
 .icon-medium {
-    @include font-size-pxem(25px);
+    @include font-size-pxem(29px);
 }
 
-@media(min-width: 544px) {
+@include breakpoint(md) {
     .icon-medium {
-        @include font-size-pxem(32px);
-    }
-}
-
-@media(min-width: 768px) {
-    .icon-medium {
-        @include font-size-pxem(40px);
+        @include font-size-pxem(28px);
     }
 }
 

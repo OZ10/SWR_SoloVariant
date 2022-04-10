@@ -7,3 +7,43 @@
     font-size: $size;
     font-size: calculateRem($size);
 }
+
+// Example:
+// @include breakpoint(large) {
+//     div {
+//        font-size: 2rem;
+//        line-height: 1.4;
+//     }
+//  }
+@mixin breakpoint($point) {
+    @if $point == xxl {
+       @media only screen and (min-width: 1400px) {
+          @content;
+       }
+    }
+    @else if $point == xl {
+       @media only screen and (min-width: 1200px) {
+          @content;
+       }
+    }
+    @else if $point == lg {
+       @media only screen and (min-width: 992px) {
+          @content;
+       }
+    }
+    @else if $point == md {
+        @media only screen and (min-width: 768px) {
+           @content;
+        }
+    }
+    @else if $point == sm {
+        @media only screen and (min-width: 576px) {
+           @content;
+        }
+    }
+    @else if $point == xs {
+        @media only screen and (max-width: 575px) {
+           @content;
+        }
+    }
+}

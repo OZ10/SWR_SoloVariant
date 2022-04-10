@@ -11495,93 +11495,60 @@ body {
 }
 
 .main {
-  margin-bottom: 100px;
-  padding-top: 123px;
+  margin-bottom: 101px;
+  padding-top: 91px;
 }
 
-@media (min-width: 544px) {
+@media only screen and (min-width: 576px) {
   .main {
-    padding-top: 137px;
+    padding-top: 114px;
   }
 }
 
-@media (min-width: 580px) {
+@media only screen and (min-width: 768px) {
   .main {
-    padding-top: 169px;
+    padding-top: 82px;
   }
 }
 
-@media (min-width: 608px) {
+@media only screen and (min-width: 1200px) {
   .main {
-    padding-top: 148px;
-  }
-}
-
-@media (min-width: 699px) {
-  .main {
-    padding-top: 116px;
-  }
-}
-
-@media (min-width: 768px) {
-  .main {
-    padding-top: 164px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .main {
-    padding-top: 110px;
+    padding-top: 88px;
   }
 }
 
 .mainheader {
   background-color: #e9ecef;
-  padding: 10px;
+  padding: 5px 10px 5px 10px;
   font-weight: bold;
   font-family: "Goldman", serif;
   color: #66051f;
 }
 
 .mainheader {
-  font-size: 20px;
-  font-size: 1.25rem;
+  font-size: 16px;
+  font-size: 1rem;
 }
 
-@media (min-width: 320px) {
+@media only screen and (min-width: 576px) {
   .mainheader {
-    font-size: 18px;
-    font-size: 1.125rem;
+    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
-@media (min-width: 544px) {
+@media only screen and (min-width: 768px) {
   .mainheader {
-    font-size: 21px;
-    font-size: 1.3125rem;
+    font-size: 24px;
+    font-size: 1.5rem;
   }
 }
 
-@media (min-width: 768px) {
+@media only screen and (min-width: 992px) {
   .mainheader {
-    font-size: 32px;
-    font-size: 2rem;
+    font-size: 30px;
+    font-size: 1.875rem;
   }
-}
-
-@media (min-width: 768px) {
-  .mainheader {
-    font-size: 37px;
-    font-size: 2.3125rem;
-  }
-}
-
-.mainheader__navbutton {
-  margin-right: 20px;
-}
-
-.mainheader__headline {
-  margin-right: 20px;
 }
 
 #footer {
@@ -12059,21 +12026,14 @@ input[id^=round]:disabled + label {
 }
 
 .icon-medium {
-  font-size: 25px;
-  font-size: 1.5625rem;
+  font-size: 29px;
+  font-size: 1.8125rem;
 }
 
-@media (min-width: 544px) {
+@media only screen and (min-width: 768px) {
   .icon-medium {
-    font-size: 32px;
-    font-size: 2rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .icon-medium {
-    font-size: 40px;
-    font-size: 2.5rem;
+    font-size: 28px;
+    font-size: 1.75rem;
   }
 }
 
