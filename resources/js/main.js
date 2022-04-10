@@ -278,6 +278,7 @@ function updateBuildQueueCount(
     }
 
     resources.forEach((resource) => {
+        // e.g. "build-emp-space-tri-2"
         let resourceIcon = document.getElementById(
             controlname + resource[0] + "-" + resource[1] + "-" + resource[2]
         );
@@ -285,7 +286,16 @@ function updateBuildQueueCount(
         count++;
         if (count > 0) {
             resourceIcon.classList.remove("d-none");
-            resourceIcon.innerText = count;
+            resourceIcon.innerHTML = "";
+
+            const buildNumberDiv = document.createElement("div");
+            buildNumberDiv.setAttribute(
+                "class",
+                "build__number build__number-" + resource[1]
+            );
+            buildNumberDiv.append(count);
+            resourceIcon.append(buildNumberDiv);
+            // resourceIcon.innerText = count; // TODO: Add inner div as wrapper for number to position number correctly
         }
     });
 }

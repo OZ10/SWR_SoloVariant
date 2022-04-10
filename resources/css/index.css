@@ -11477,6 +11477,16 @@ fieldset:disabled .btn {
   top: 0.5em;
 }
 
+.font-bold {
+  font-family: "Goldman", serif;
+  font-weight: 700;
+}
+
+.font-regular {
+  font-family: "Goldman", serif;
+  font-weight: 400;
+}
+
 html,
 body {
   background-color: #ffffff;
@@ -11486,40 +11496,63 @@ body {
 
 .main {
   margin-bottom: 100px;
-  padding-top: 120px;
+  padding-top: 123px;
 }
 
 @media (min-width: 544px) {
   .main {
-    padding-top: 100px;
+    padding-top: 137px;
   }
 }
 
 @media (min-width: 580px) {
   .main {
-    padding-top: 130px;
+    padding-top: 169px;
   }
 }
 
-@media (min-width: 695px) {
+@media (min-width: 608px) {
   .main {
-    padding-top: 120px;
+    padding-top: 148px;
+  }
+}
+
+@media (min-width: 699px) {
+  .main {
+    padding-top: 116px;
+  }
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding-top: 164px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main {
+    padding-top: 110px;
   }
 }
 
 .mainheader {
   background-color: #e9ecef;
-  padding: 20px;
+  padding: 10px;
   font-weight: bold;
   font-family: "Goldman", serif;
   color: #66051f;
-  font-size: 32px;
-  font-size: 2rem;
 }
 
 .mainheader {
-  font-size: 18px;
-  font-size: 1.125rem;
+  font-size: 20px;
+  font-size: 1.25rem;
+}
+
+@media (min-width: 320px) {
+  .mainheader {
+    font-size: 18px;
+    font-size: 1.125rem;
+  }
 }
 
 @media (min-width: 544px) {
@@ -11541,6 +11574,14 @@ body {
     font-size: 37px;
     font-size: 2.3125rem;
   }
+}
+
+.mainheader__navbutton {
+  margin-right: 20px;
+}
+
+.mainheader__headline {
+  margin-right: 20px;
 }
 
 #footer {
@@ -11693,11 +11734,11 @@ a:hover {
 }
 
 div[id*=ground] {
-  background-color: orange;
+  background-color: #d58029;
 }
 
 div[id*=space] {
-  background-color: blue;
+  background-color: #2a53a3;
 }
 
 .buildrowheader {
@@ -11777,11 +11818,11 @@ div[id*=space] {
 }
 
 .triangle[id*=ground] {
-  border-bottom-color: orange;
+  border-bottom-color: #d58029;
 }
 
 .triangle[id*=space] {
-  border-bottom-color: blue;
+  border-bottom-color: #2a53a3;
 }
 
 .roundtracker {
@@ -11832,6 +11873,26 @@ input[id^=round]:disabled + label {
 .list-group a {
   font-size: medium;
   color: gray;
+}
+
+.build {
+  position: relative;
+}
+
+.build__number {
+  position: absolute;
+}
+
+.build__number-squ {
+  right: 15px;
+}
+
+.build__number-tri {
+  right: -4px;
+}
+
+.build__number-cir {
+  right: 16px;
 }
 
 /* Callouts */
@@ -11998,28 +12059,21 @@ input[id^=round]:disabled + label {
 }
 
 .icon-medium {
-  font-size: 32px;
-  font-size: 2rem;
-}
-
-@media (min-width: 300px) {
-  .icon-medium {
-    font-size: 19px;
-    font-size: 1.1875rem;
-  }
+  font-size: 25px;
+  font-size: 1.5625rem;
 }
 
 @media (min-width: 544px) {
   .icon-medium {
-    font-size: 24px;
-    font-size: 1.5rem;
+    font-size: 32px;
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 768px) {
   .icon-medium {
-    font-size: 32px;
-    font-size: 2rem;
+    font-size: 40px;
+    font-size: 2.5rem;
   }
 }
 
