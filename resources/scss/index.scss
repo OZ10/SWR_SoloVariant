@@ -1,0 +1,600 @@
+@import "partials/mixins";
+@import "partials/colours";
+
+@font-face {
+    font-family: 'Goldman';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../font/Goldman-Regular.ttf')  format('truetype');
+}
+
+@font-face {
+    font-family: 'Goldman';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../font/Goldman-Bold.ttf')  format('truetype');
+}
+
+$sw-font: "Goldman", serif;
+
+/* Bootstrap modifiers */
+.sticky-top {
+    top: 0.5em;
+}
+
+.font-bold {
+    font-family: $sw-font;
+    font-weight: 700;
+}
+
+.font-regular {
+    font-family: $sw-font;
+    font-weight: 400;
+}
+
+
+html,
+body {
+    background-color: #ffffff;
+    color: $gray-700;
+    min-width: 380px;
+}
+
+
+.main {
+    margin-bottom: 101px;
+    padding-top: 91px;
+}
+
+@include breakpoint(sm) {
+    .main {
+        padding-top: 114px;
+    }
+}
+
+@include breakpoint(md) {
+    .main {
+        padding-top: 82px;
+    }
+}
+
+@include breakpoint(xl) {
+    .main {
+        padding-top: 88px;
+    }
+}
+
+
+.mainheader {
+    background-color: $gray-200;
+    padding: 5px 10px 5px 10px;
+    font-weight: bold;
+    font-family: $sw-font;
+    color: $primary;
+}
+
+.mainheader {
+    @include font-size-pxem(16px);
+}
+
+@include breakpoint(sm) {
+    .mainheader {
+        @include font-size-pxem(20px);
+    }
+}
+
+@include breakpoint(md) {
+    .mainheader {
+        @include font-size-pxem(24px);
+    }
+}
+
+@include breakpoint(lg) {
+    .mainheader {
+        @include font-size-pxem(30px);
+    }
+}
+
+#footer {
+    background-color: $gray-200;
+    height: 100px;
+    font-size: smaller;
+}
+
+a {
+    text-decoration: none;
+    color: $gray-800;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+#options {
+    padding: 0 5px;
+    font-size: small;
+}
+
+.sidebarsubheader {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 0;
+    @extend .paraseparator;
+}
+
+.planetlabel:hover {
+    transition-duration: 0.3s;
+    transform: scale(1.05);
+}
+
+#dagobah:before {
+    content: url(../images/SWR_Dagobah_bw.png);
+}
+
+:checked+#dagobah:before {
+    content: url(../images/SWR_Dagobah.png);
+}
+
+#dantooine:before {
+    content: url(../images/SWR_Dantooine_bw.png);
+}
+
+:checked+#dantooine:before {
+    content: url(../images/SWR_Dantooine.png);
+}
+
+#dathomir:before {
+    content: url(../images/SWR_Dathomir_bw.png);
+}
+
+:checked+#dathomir:before {
+    content: url(../images/SWR_Dathomir.png);
+}
+
+#endor:before {
+    content: url(../images/SWR_Endor_bw.png);
+}
+
+:checked+#endor:before {
+    content: url(../images/SWR_Endor.png);
+}
+
+#hoth:before {
+    content: url(../images/SWR_Hoth_bw.png);
+}
+
+:checked+#hoth:before {
+    content: url(../images/SWR_Hoth.png);
+}
+
+#ilum:before {
+    content: url(../images/SWR_Ilum_bw.png);
+}
+
+:checked+#ilum:before {
+    content: url(../images/SWR_Ilum.png);
+}
+
+#tatooine:before {
+    content: url(../images/SWR_Tatooine_bw.png);
+}
+
+:checked+#tatooine:before {
+    content: url(../images/SWR_Tatooine.png);
+}
+
+#yavin:before {
+    content: url(../images/SWR_Yavin_bw.png);
+}
+
+:checked+#yavin:before {
+    content: url(../images/SWR_Yavin.png);
+}
+
+.variant {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $gray-600;
+    color: white;
+    border-radius: 3px;
+}
+
+.variant span {
+    padding: 10px;
+}
+
+// Hack that needs sorting. Styles grid on Empire’s Card Decision Making List
+#row1 div[class^=col] {
+    border-style: solid;
+    border-color: $gray-400;
+    border-width: 1px;
+    background-color: $gray-200;
+    padding: 5px;
+}
+
+.builditemstart {
+    border-top: solid 1px;
+    border-color: $calloutbackground3;
+    padding-top: 10px;
+}
+
+#buildheader {
+    background-color: $calloutbackground1;
+    height: 40px;
+    margin: 0 1px;
+}
+
+.planetname {
+    @include font-size-pxem(14px);
+}
+
+div[id*=ground] {
+    background-color: $buildGround;
+}
+
+div[id*=space] {
+    background-color: $buildSpace;
+}
+
+.buildrowheader {
+    line-height: 30px;
+    padding: 5px;
+    margin: 5px 0;
+    background-color: $calloutbackground3;
+}
+
+.swg-galemp,
+.swg-stormtrooper {
+    color: $empirecolour;
+}
+
+.swg-reball,
+.swg-stormtrooper-3 {
+    color: $rebelcolour
+}
+
+.buildrow {
+    line-height: 50px;
+    padding: 2px 0;
+    margin: 1px 0;
+    background-color: $calloutbackground2;
+}
+
+.buildrowrebel {
+    @extend .buildrow;
+    border-left: 3px solid $rebelcolour;
+}
+
+.buildrowempire {
+    @extend .buildrow;
+    border-left: 3px solid $empirecolour;
+}
+
+#buildbutton {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.circle {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    margin: 5px;
+}
+
+.square {
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    margin: 5px;
+}
+
+.trianglebase {
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    background-color: transparent !important;
+    border-style: solid;
+    border-width: 0px 20px 40px 20px;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    margin: 5px;
+}
+
+.triangle[id*=ground] {
+    border-bottom-color: $buildGround;
+    @extend .trianglebase;
+}
+
+.triangle[id*=space] {
+    border-bottom-color: $buildSpace;
+    @extend .trianglebase;
+}
+
+//  Round styles
+
+.roundtracker {
+    background-color: $gray-200;
+    margin-top: 10px;
+    padding-top: 10px;
+    // max-width: 60px;
+}
+
+#round_label {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-color: $gray-400;
+    border-style: solid;
+    line-height: 35px;
+    position: relative;
+    font-family: $sw-font;
+}
+
+input[id^=round] {
+    display: none;
+}
+
+input[id^=round]:checked+label {
+    content: url("../images/Round_Rebel_sm.png");
+}
+
+input[id^=round]:checked:disabled+label {
+    content: url("../images/Round_Marker_sm.png");
+}
+
+input[id^=round]:disabled+label {
+    background-color: $gray-500;
+}
+
+.margin-small {
+    margin: 8px;
+}
+
+.margin-medium {
+    margin: 16px;
+}
+
+
+.fs-7 {
+    font-size: small;
+}
+
+.list-group a {
+    font-size: medium;
+    color: gray;
+}
+
+.build {
+    position: relative;
+}
+
+.build__number {
+    position: absolute;
+}
+
+.build__number-squ {
+    right: 15px;
+}
+
+.build__number-tri {
+    right: -4px;
+}
+
+.build__number-cir {
+    right: 16px;
+}
+
+/* Callouts */
+
+%callouttext {
+    font-size: small;
+    margin: 10px 8px;
+}
+
+.callout {
+    padding: 10px 5px 10px 10px;
+    margin: 0px 5px 10px 10px;
+    border-style: solid;
+    border-width: 0px;
+    border-left-width: 4px;
+    border-radius: 3px;
+    background-color: $calloutbackground1;
+
+    p {
+        @extend %callouttext;
+    }
+
+    ul {
+        @extend %callouttext;
+    }
+
+    li {
+        @extend %callouttext;
+    }
+
+    h5 {
+        font-family: $sw-font;
+    }
+}
+
+.callout-rebel {
+    @extend .callout;
+    border-color: $rebelcolour;
+
+    h5 {
+        color: $rebelcolour;
+    }
+}
+
+.callout-empire {
+    @extend .callout;
+    border-color: $empirecolour;
+
+    h5 {
+        color: $empirecolour;
+    }
+}
+
+.callout {
+    .callout-rebel {
+        background-color: $calloutbackground2;
+
+        .callout-empire {
+            background-color: $calloutbackground3;
+        }
+    }
+
+    .callout-empire {
+        background-color: $calloutbackground2;
+
+        .callout {
+            background-color: $calloutbackground3;
+        }
+    }
+
+    .callout-both {
+        background-color: $calloutbackground2;
+
+        .callout-both {
+            background-color: $calloutbackground3;
+        }
+
+        .callout-empire {
+            background-color: $calloutbackground3;
+        }
+    }
+
+    .callout {
+        background-color: $calloutbackground2;
+
+        .callout {
+            background-color: $calloutbackground3;
+        }
+
+        .callout-rebel {
+            background-color: $calloutbackground3;
+        }
+
+        .callout-empire {
+            background-color: $calloutbackground3;
+        }
+    }
+}
+
+.callout-rebel {
+    .callout-empire {
+        background-color: $calloutbackground2;
+    }
+}
+
+.callout-empire {
+    .callout {
+        background-color: $calloutbackground2;
+    }
+}
+
+.callout-both {
+    @extend .callout;
+    border-image-source: linear-gradient(180deg, $rebelcolour, $empirecolour);
+    border-image-slice: 1;
+}
+
+.maincolour {
+    color: $primary;
+}
+
+.roundselector a {
+    padding: 4px;
+    background-color: #F5F5F5;
+    @include font-size-pxem(13px);
+    font-family: $sw-font;
+    color: $gray-600;
+}
+
+.paraseparator {
+    border-top: 1px solid $gray-400;
+    padding-top: 5px;
+}
+
+#deployflowchart li {
+    font-size: small;
+    margin: 8px;
+}
+
+#missiontable div {
+    font-size: small;
+    margin: 0;
+    padding: 0;
+}
+
+#carddecisionlist div {
+    font-size: small;
+}
+
+#d6 {
+    display: block;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btnNoBackground {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.25rem;
+    @include font-size-pxem(16px);
+    border-radius: 50%;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btnNoBackground:hover {
+    background-color: $gray-400;
+}
+
+
+.icon-small {
+    @include font-size-pxem(22px);
+}
+
+.icon-medium {
+    @include font-size-pxem(29px);
+}
+
+@include breakpoint(md) {
+    .icon-medium {
+        @include font-size-pxem(28px);
+    }
+}
+
+.offcanvasSilm {
+    @extend .offcanvas;
+    width: 120px;
+}
