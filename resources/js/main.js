@@ -413,43 +413,16 @@ function resetBuildQueueCount() {
 }
 
 function resetGame() {
-    localStorage.clear();
-
-    resetRemoteSystems();
-    resetBuildQueue();
-
-    location.reload();
-}
-
-function resetRemoteSystems() {
-    document.querySelectorAll("[id^='planet-']").forEach((planet) => {
-        document.getElementById(planet.id).checked = false;
+    // Clear game progress (round, reputation, remote systems, build queue) but keep
+    // the player's expansion/variant settings, which are stored under "chk..." keys.
+    // The reload then rebuilds the page from the remaining settings.
+    Object.keys(localStorage).forEach((key) => {
+        if (!key.startsWith("chk")) {
+            localStorage.removeItem(key);
+        }
     });
 
-    numSelectedSystems = 0;
-    updateNumberOfSelectedSystems();
-}
-
-function resetBuildQueue() {
-    let checks = document.querySelectorAll(".form-check-input");
-    for (let checkcount = 0; checkcount < checks.length; checkcount++) {
-        const check = checks[checkcount];
-        if (check.type == "checkbox" && check.id == "chkblock") {
-            check.checked = false;
-        } else {
-            if (
-                check.name == "CoruscantRadioOptions" ||
-                check.name == "Rebel BaseRadioOptions"
-            ) {
-                continue;
-            }
-            if (check.id != "radioneutral") {
-                continue;
-            }
-
-            check.checked = true;
-        }
-    }
+    location.reload();
 }
 
 function searchCardList() {
@@ -566,39 +539,35 @@ function GetRebelBaseName() {
     return rebelbase;
 }
 
+// The time marker is the round checkbox that is both checked and disabled
+function getTimeMarker() {
+    return document.querySelector("input[id^='round_']:checked:disabled");
+}
+
 function changeRound() {
-    const rounds = document.querySelectorAll("[id^='round']");
+    const currentRound = getTimeMarker();
+    if (!currentRound) return;
 
-    rounds.forEach((round) => {
-        if (round.checked && round.disabled) {
-            round.checked = false;
+    const nextRoundNumber = getRoundNumber(currentRound.id) + 1;
+    const nextRound = document.getElementById("round_" + nextRoundNumber);
 
-            let currentRoundNumber = getRoundNumber(round.id);
-            currentRoundNumber++;
+    // End of the track: leave the time marker where it is
+    if (!nextRound) return;
 
-            checkIfRebelRepLessThan5(currentRoundNumber);
+    // Time marker reaching the reputation marker ends the game; keep both markers visible
+    if (nextRound.checked) {
+        alert("Rebels win!");
+        return;
+    }
 
-            if (currentRoundNumber == "17") return;
+    currentRound.checked = false;
+    nextRound.checked = true;
+    nextRound.disabled = true;
 
-            let newRound = document.getElementById(
-                "round_" + currentRoundNumber
-            );
+    updateRoundNumber(nextRoundNumber);
+    SaveSetting("round", nextRound.id);
 
-            if (newRound.checked) {
-                alert("Rebels win!");
-                return;
-            }
-
-            newRound.checked = true;
-            newRound.disabled = true;
-
-            updateRoundNumber(currentRoundNumber);
-
-            SaveSetting("round", "round_" + currentRoundNumber);
-
-            return;
-        }
-    });
+    checkIfRebelRepLessThan5(nextRoundNumber);
 }
 
 function updateRoundNumber(roundnumber) {
@@ -625,38 +594,33 @@ function checkIfRebelRepLessThan5(currentRoundNumber) {
 }
 
 function setRebelRep(id) {
-    const rounds = document.querySelectorAll("[id^='round']");
+    const selected = document.getElementById(id);
 
-    rounds.forEach((round) => {
-        if (round.checked & !round.disabled && round.id != id)
+    // Clicking the current reputation marker would leave none selected; keep it
+    if (!selected.checked) {
+        selected.checked = true;
+        return;
+    }
+
+    document.querySelectorAll("input[id^='round_']").forEach((round) => {
+        if (round.checked && !round.disabled && round.id !== id) {
             round.checked = false;
-
-        // Get current round and check if newly selected round is <=5
-        if (round.checked && round.disabled) {
-            let currentRoundNumber = getRoundNumber(round.id);
-            checkIfRebelRepLessThan5(currentRoundNumber);
         }
-
-        if (round.disabled) return;
-
-        SaveSetting("rebelrep", id);
     });
+
+    SaveSetting("rebelrep", id);
+
+    const currentRound = getTimeMarker();
+    if (currentRound) {
+        checkIfRebelRepLessThan5(getRoundNumber(currentRound.id));
+    }
 }
 
 function getRebelRep() {
-    const rounds = document.querySelectorAll("[id^='round']");
-
-    let roundNumber = 0;
-
-    for (let roundCounter = 0; roundCounter < rounds.length; roundCounter++) {
-        const round = rounds[roundCounter];
-        if (round.checked & (round.disabled == false)) {
-            roundNumber = getRoundNumber(round.id);
-            break;
-        }
-    }
-
-    return roundNumber;
+    const rep = document.querySelector(
+        "input[id^='round_']:checked:not(:disabled)"
+    );
+    return rep ? getRoundNumber(rep.id) : 0;
 }
 
 function getRoundNumber(roundID) {
@@ -682,7 +646,9 @@ function rollD6(number) {
 
 // Captures all D6 button on website
 document.querySelectorAll(".d6button").forEach((d6Button) => {
-    d6Button.onclick = function () {
+    d6Button.onclick = function (event) {
+        // D6 links use href="#", which would otherwise scroll the page to the top
+        event.preventDefault();
         var result = dice.roll();
         rollD6(result);
     };
