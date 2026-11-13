@@ -449,13 +449,26 @@ runTest(async ({ browser, url, check }) => {
             return html.indexOf('setAttribute("data-bs-theme"') < html.indexOf("resources/css/index.css");
         })()));
 
+    // Installed-app manifest: valid, every icon exists, maskable icons for Android
+    const fs = require("fs");
+    const repo = require("path").join(__dirname, "..");
+    const manifest = JSON.parse(fs.readFileSync(require("path").join(repo, "manifest.webmanifest"), "utf8"));
+    const missingIcons = manifest.icons.filter((i) => !fs.existsSync(require("path").join(repo, i.src))).map((i) => i.src);
+    check("Manifest icons all exist, including maskable ones",
+        missingIcons.length === 0 && manifest.icons.filter((i) => i.purpose === "maskable").length === 2 && manifest.theme_color,
+        missingIcons.join(", "));
+
+    const barColour = (p) => p.evaluate(() => document.querySelector('meta[name="theme-color"]').getAttribute("content"));
+
     page = await newPage(browser, url, { colorScheme: "light" });
+    check("Light: browser bar matches the light header", (await barColour(page)) === "#e9ecef", await barColour(page));
     let t = await theme(page);
     check("Auto on a light device: light theme", t.attr === "light" && t.bg === LIGHT_BG && t.choice === "auto", JSON.stringify(t));
     await page.emulateMedia({ colorScheme: "dark" });
     await page.waitForTimeout(100);
     t = await theme(page);
     check("Auto follows the device switching to dark", t.attr === "dark" && t.bg === DARK_BG, JSON.stringify(t));
+    check("Dark: browser bar follows to the dark header", (await barColour(page)) === "#1f1a1c", await barColour(page));
     await page.context().close();
 
     page = await newPage(browser, url, { colorScheme: "dark" });

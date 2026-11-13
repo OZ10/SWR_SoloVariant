@@ -313,7 +313,7 @@ function getControlName(checks, index, resources, isSubjugated) {
     return "";
 }
 
-function getPlanetsBuildResources(planetname, subjugated = false) {
+function getPlanetsBuildResources(planetname) {
     // Each planet can have one or two resources that it produces
     // Resources are returned in arrays
     switch (planetname) {
@@ -416,6 +416,12 @@ function getAppearance() {
 function applyAppearance(choice) {
     const dark = choice === "dark" || (choice === "auto" && deviceDarkMode.matches);
     document.documentElement.setAttribute("data-bs-theme", dark ? "dark" : "light");
+
+    // Browser/system bar matches the header colour of the active theme
+    const headerColour = getComputedStyle(document.documentElement).getPropertyValue("--swr-header-bg").trim();
+    if (headerColour) {
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", headerColour);
+    }
 }
 
 function setupAppearance() {

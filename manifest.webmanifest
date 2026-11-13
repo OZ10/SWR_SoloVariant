@@ -6,7 +6,8 @@
     "id": "/SWR_SoloVariant/",
     "display": "fullscreen",
     "background_color": "#e9ecef",
-    "description": "Dale Buonocores Star Wars Rebellion Solo Variant",
+    "theme_color": "#e9ecef",
+    "description": "Dale Buonocore's Star Wars Rebellion Solo Variant",
     "icons": [
     {
       "src": "resources/images/manifest/icon-72x72.png",
@@ -47,6 +48,18 @@
       "src": "resources/images/manifest/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "resources/images/manifest/icon-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "resources/images/manifest/icon-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
   }

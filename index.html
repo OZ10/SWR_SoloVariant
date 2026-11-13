@@ -5,6 +5,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Star Wars Rebellion: Solo Variant</title>
+        <!-- Browser/system bar colour; matches the header (--swr-header-bg), updated with the theme -->
+        <meta name="theme-color" content="#e9ecef">
         <script>
             // Apply the Appearance setting (or the device's setting on Auto) before the page
             // draws, so dark mode doesn't flash white. main.js keeps it updated afterwards.
@@ -13,6 +15,7 @@
                 try { choice = localStorage.getItem("theme") || "auto"; } catch (e) { }
                 var dark = choice === "dark" || (choice === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches);
                 document.documentElement.setAttribute("data-bs-theme", dark ? "dark" : "light");
+                document.querySelector('meta[name="theme-color"]').setAttribute("content", dark ? "#1f1a1c" : "#e9ecef");
             })();
         </script>
         <link rel="apple-touch-icon" href="./resources/images/manifest/icon-192x192.png">
