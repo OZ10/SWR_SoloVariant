@@ -41,8 +41,12 @@ body {
 }
 
 
+// Full-height column so the footer sits at the bottom of short pages and after
+// the content on long ones (it used to be pinned over the content on phones)
 .main {
-    margin-bottom: 101px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     padding-top: 91px;
 }
 
@@ -97,7 +101,7 @@ body {
 
 #footer {
     background-color: $gray-200;
-    height: 100px;
+    margin-top: auto;
     font-size: smaller;
 }
 

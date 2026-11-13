@@ -8,6 +8,9 @@
 
 # Node
 /node_modules
+
+# Test screenshots
+/tests/output
 npm-debug.log
 yarn-error.log
 

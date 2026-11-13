@@ -11894,7 +11894,9 @@ body {
 }
 
 .main {
-  margin-bottom: 101px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   padding-top: 91px;
 }
 
@@ -11946,7 +11948,7 @@ body {
 }
 #footer {
   background-color: #e9ecef;
-  height: 100px;
+  margin-top: auto;
   font-size: smaller;
 }
 

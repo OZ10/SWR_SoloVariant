@@ -488,8 +488,10 @@ document.querySelectorAll(".planetbtn").forEach((planetbutton) => {
         updateNumberOfSelectedSystems();
 
         if (numSelectedSystems == 7) {
-            alert("The rebel base is on " + GetRebelBaseName() + "!");
-            // alert(GetRebelBaseName());
+            showMessage(
+                "Rebel Base Located",
+                "The Rebel Base is on " + GetRebelBaseName() + "!"
+            );
         }
     });
 });
@@ -526,7 +528,10 @@ function changeRound() {
 
     // Time marker reaching the reputation marker ends the game; keep both markers visible
     if (nextRound.checked) {
-        alert("Rebels win!");
+        showMessage(
+            "Rebels Win!",
+            "The time marker has reached the reputation marker. The Rebellion has won the game."
+        );
         return;
     }
 
@@ -547,12 +552,10 @@ function updateRoundNumber(roundnumber) {
 function checkIfRebelRepLessThan5(currentRoundNumber) {
     if (getRebelRep() - currentRoundNumber <= 5) {
         if (promptUserRebelsWithin5) {
-            // alert('Rebels are now within FIVE rounds of winning the game. Movement rules have changed.');
-            document.getElementById("messageBoxTitle").textContent =
-                "Crossing The Finish Line";
-            document.getElementById("messageBoxBody").textContent =
-                "Rebels are now within FIVE rounds of winning the game. The Empire's Movement & Deployment rules have changed";
-            getModal("messageBox").show();
+            showMessage(
+                "Crossing The Finish Line",
+                "Rebels are now within FIVE rounds of winning the game. The Empire's Movement & Deployment rules have changed"
+            );
             promptUserRebelsWithin5 = false;
         }
     } else {
@@ -607,6 +610,14 @@ var dice = {
 function getModal(id) {
     const element = document.getElementById(id);
     return bootstrap.Modal.getInstance(element) || new bootstrap.Modal(element);
+}
+
+// Shows the app's message box (used instead of the browser's alert(), which looks
+// out of place, especially when the app is installed and running full screen)
+function showMessage(title, body) {
+    document.getElementById("messageBoxTitle").textContent = title;
+    document.getElementById("messageBoxBody").textContent = body;
+    getModal("messageBox").show();
 }
 
 //Prints dice roll to the page
