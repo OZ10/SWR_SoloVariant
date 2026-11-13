@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    setupAppearance();
     loadVariantSettings();
     updateNumberOfSelectedSystems();
     setupBuildQueue();
@@ -400,12 +401,42 @@ function resetBuildQueueCount() {
     });
 }
 
+// ---------- Appearance (light / dark) ----------
+// The choice is "auto" (follow the device), "light" or "dark", saved under THEME_KEY.
+// A script in index.html's <head> applies it before the page draws; this keeps it
+// updated when the player changes it, or when the device switches while on Auto.
+const THEME_KEY = "theme";
+const deviceDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+
+function getAppearance() {
+    const saved = GetSettingValueByKey(THEME_KEY);
+    return ["auto", "light", "dark"].includes(saved) ? saved : "auto";
+}
+
+function applyAppearance(choice) {
+    const dark = choice === "dark" || (choice === "auto" && deviceDarkMode.matches);
+    document.documentElement.setAttribute("data-bs-theme", dark ? "dark" : "light");
+}
+
+function setupAppearance() {
+    const choice = getAppearance();
+    document.querySelectorAll("input[name='theme']").forEach((radio) => {
+        radio.checked = radio.value === choice;
+        radio.addEventListener("change", () => {
+            SaveSetting(THEME_KEY, radio.value);
+            applyAppearance(radio.value);
+        });
+    });
+    deviceDarkMode.addEventListener("change", () => applyAppearance(getAppearance()));
+    applyAppearance(choice);
+}
+
 function resetGame() {
     // Clear game progress (round, reputation, remote systems, build queue) but keep
-    // the player's expansion/variant settings, which are stored under "chk..." keys.
+    // the player's settings: expansions/variants ("chk..." keys) and Appearance.
     // The reload then rebuilds the page from the remaining settings.
     Object.keys(localStorage).forEach((key) => {
-        if (!key.startsWith("chk")) {
+        if (!key.startsWith("chk") && key !== THEME_KEY) {
             localStorage.removeItem(key);
         }
     });
@@ -620,10 +651,60 @@ function showMessage(title, body) {
     getModal("messageBox").show();
 }
 
-//Prints dice roll to the page
+// Which pips (see the <circle data-pip> elements in the d6 SVG) make up each face
+const D6_FACES = {
+    1: ["c"],
+    2: ["tl", "br"],
+    3: ["tl", "c", "br"],
+    4: ["tl", "tr", "bl", "br"],
+    5: ["tl", "tr", "c", "bl", "br"],
+    6: ["tl", "tr", "ml", "mr", "bl", "br"],
+};
+const D6_ROLL_TICKS = 8; // faces flicker this many times...
+const D6_TICK_MS = 75; // ...this far apart, matching the 600ms tumble animation in index.scss
+let d6RollTimer;
+
+function showD6Face(value) {
+    const die = document.getElementById("d6");
+    die.querySelectorAll(".pip").forEach((pip) => {
+        pip.classList.toggle("on", D6_FACES[value].includes(pip.dataset.pip));
+    });
+    die.dataset.value = value;
+    die.setAttribute("aria-label", "Die showing " + value);
+}
+
+// Shows the d6 modal and animates the die tumbling onto the rolled number
 function rollD6(number) {
-    document.getElementById("d6").src = "./resources/images/D6_" + number + ".png";
+    const die = document.getElementById("d6");
+    const result = document.getElementById("d6result");
     getModal("d6modal").show();
+
+    clearInterval(d6RollTimer);
+    const settle = () => {
+        showD6Face(number);
+        result.textContent = "You rolled a " + number;
+    };
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        settle();
+        return;
+    }
+
+    result.textContent = "";
+    die.classList.remove("rolling");
+    void die.getBoundingClientRect(); // restart the CSS animation on repeat rolls
+    die.classList.add("rolling");
+
+    let ticks = 0;
+    d6RollTimer = setInterval(() => {
+        ticks++;
+        if (ticks >= D6_ROLL_TICKS) {
+            clearInterval(d6RollTimer);
+            settle();
+        } else {
+            showD6Face(dice.roll());
+        }
+    }, D6_TICK_MS);
 }
 
 // Captures all D6 button on website

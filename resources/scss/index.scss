@@ -1,5 +1,6 @@
 @import "partials/mixins";
 @import "partials/colours";
+@import "partials/theme";
 
 @font-face {
     font-family: 'Goldman';
@@ -35,8 +36,8 @@ $sw-font: "Goldman", serif;
 
 html,
 body {
-    background-color: #ffffff;
-    color: $gray-700;
+    background-color: var(--swr-page-bg);
+    color: var(--swr-text);
     min-width: 380px;
 }
 
@@ -47,7 +48,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 91px;
+    padding-top: 105px; // phone header height, incl. the tab labels; matched per breakpoint below
 }
 
 @include breakpoint(sm) {
@@ -70,11 +71,11 @@ body {
 
 
 .mainheader {
-    background-color: $gray-200;
+    background-color: var(--swr-header-bg);
     padding: 5px 10px 5px 10px;
     font-weight: bold;
     font-family: $sw-font;
-    color: $primary;
+    color: var(--swr-brand);
 }
 
 .mainheader {
@@ -100,14 +101,14 @@ body {
 }
 
 #footer {
-    background-color: $gray-200;
+    background-color: var(--swr-header-bg);
     margin-top: auto;
     font-size: smaller;
 }
 
 a {
     text-decoration: none;
-    color: $gray-800;
+    color: var(--swr-link);
 }
 
 a:visited {
@@ -205,8 +206,8 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $gray-600;
-    color: white;
+    background-color: var(--swr-variant-bg);
+    color: var(--swr-variant-color);
     border-radius: 3px;
 }
 
@@ -217,9 +218,9 @@ a:hover {
 // Hack that needs sorting. Styles grid on Empire’s Card Decision Making List
 #row1 div[class^=col] {
     border-style: solid;
-    border-color: $gray-400;
+    border-color: var(--swr-border);
     border-width: 1px;
-    background-color: $gray-200;
+    background-color: var(--swr-surface-2);
     padding: 5px;
 }
 
@@ -337,7 +338,7 @@ div[id*=space] {
 //  Round styles
 
 .roundtracker {
-    background-color: $gray-200;
+    background-color: var(--swr-surface-2);
     margin-top: 10px;
     padding-top: 10px;
     // max-width: 60px;
@@ -347,7 +348,7 @@ div[id*=space] {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border-color: $gray-400;
+    border-color: var(--swr-border);
     border-style: solid;
     line-height: 35px;
     position: relative;
@@ -367,7 +368,7 @@ input[id^=round]:checked:disabled+label {
 }
 
 input[id^=round]:disabled+label {
-    background-color: $gray-500;
+    background-color: var(--swr-round-past);
 }
 
 .margin-small {
@@ -411,7 +412,8 @@ input[id^=round]:disabled+label {
 /* Callouts */
 
 %callouttext {
-    font-size: small;
+    font-size: 0.9375rem; // 15px: rules are read at arm's length mid-game
+    line-height: 1.55;
     margin: 10px 8px;
 }
 
@@ -422,6 +424,7 @@ input[id^=round]:disabled+label {
     border-width: 0px;
     border-left-width: 4px;
     border-radius: 3px;
+    border-color: var(--swr-callout-border);
     background-color: $calloutbackground1;
 
     p {
@@ -524,7 +527,74 @@ input[id^=round]:disabled+label {
 }
 
 .maincolour {
-    color: $primary;
+    color: var(--swr-brand);
+}
+
+// Links inside the rules (D6, Card Decision List, Production Value...): the app's
+// maroon with a faint underline, so they don't read as Empire-red text
+.rule-link {
+    color: var(--swr-brand);
+    text-decoration: underline;
+    text-decoration-color: var(--swr-brand-underline);
+    text-underline-offset: 3px;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--swr-brand);
+        text-decoration-color: var(--swr-brand);
+    }
+}
+
+// Headings that expand get an arrow, which flips when the section is open
+a[data-bs-toggle="collapse"] h5 {
+    display: flex; // block-level, so consecutive headings stay on separate lines
+    align-items: center;
+    gap: 0.3em;
+
+    &::after {
+        content: "expand_more"; // Material Icons ligature
+        font-family: "Material Icons";
+        font-size: 1.2em;
+        line-height: 1;
+        transition: transform 0.2s;
+    }
+}
+
+a[data-bs-toggle="collapse"][aria-expanded="true"] h5::after {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    a[data-bs-toggle="collapse"] h5::after {
+        transition: none;
+    }
+}
+
+// Phase tabs: short labels under the icons on phones (full labels from sm up)
+.tab-label-short {
+    display: block;
+    font-size: 10px;
+    line-height: 1.2;
+    margin-top: 1px;
+}
+
+@include breakpoint(xs) {
+    .roundselector .list-group-item {
+        padding: 5px 2px 4px;
+    }
+
+    // Nested callouts stop indenting on phones; the coloured border still shows whose rule it is
+    :is(.callout, .callout-rebel, .callout-empire, .callout-both) :is(.callout, .callout-rebel, .callout-empire, .callout-both) {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 8px;
+        padding-right: 4px;
+    }
+
+    :is(.callout, .callout-rebel, .callout-empire, .callout-both) :is(p, ul, li) {
+        margin-left: 4px;
+        margin-right: 4px;
+    }
 }
 
 // The phase tabs are .list-group-item links inside a .nav (not a .list-group).
@@ -551,19 +621,19 @@ input[id^=round]:disabled+label {
 
 .roundselector a {
     padding: 4px;
-    background-color: #F5F5F5;
+    background-color: var(--swr-tab-bg);
     @include font-size-pxem(13px);
     font-family: $sw-font;
-    color: $gray-600;
+    color: var(--swr-tab-color);
 }
 
 .paraseparator {
-    border-top: 1px solid $gray-400;
+    border-top: 1px solid var(--swr-border);
     padding-top: 5px;
 }
 
 #deployflowchart li {
-    font-size: small;
+    font-size: 0.9375rem;
     margin: 8px;
 }
 
@@ -577,18 +647,69 @@ input[id^=round]:disabled+label {
     font-size: small;
 }
 
-#d6 {
-    display: block;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+// D6 roller (SVG die in the d6 modal; pips are switched on by main.js)
+.d6-stage {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 0.75rem;
+}
+
+.d6-die {
+    width: 120px;
+    height: 120px;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35));
+
+    .pip {
+        fill: url(#d6Pip);
+        stroke: rgba(0, 0, 0, 0.25);
+        stroke-width: 0.8;
+        opacity: 0;
+    }
+
+    .pip.on {
+        opacity: 1;
+    }
+
+    &.rolling {
+        animation: d6-tumble 600ms cubic-bezier(0.2, 0.7, 0.3, 1);
+    }
+}
+
+@keyframes d6-tumble {
+    0% {
+        transform: translateY(-36px) rotate(-220deg) scale(0.6);
+    }
+    55% {
+        transform: translateY(6px) rotate(18deg) scale(1.06);
+    }
+    75% {
+        transform: translateY(-2px) rotate(-6deg) scale(0.98);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .d6-die.rolling {
+        animation: none;
+    }
+}
+
+.d6-result {
+    min-height: 1.5em; // keeps the modal from jumping while the die rolls
+    margin: 0;
+    text-align: center;
+    font-family: $sw-font;
+    @include font-size-pxem(20px);
+    color: var(--swr-brand);
 }
 
 .btnNoBackground {
     display: inline-block;
     font-weight: 400;
     line-height: 1;
-    color: #212529;
+    color: var(--swr-icon-button);
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
@@ -602,7 +723,7 @@ input[id^=round]:disabled+label {
 }
 
 .btnNoBackground:hover {
-    background-color: $gray-400;
+    background-color: var(--swr-icon-button-hover);
 }
 
 

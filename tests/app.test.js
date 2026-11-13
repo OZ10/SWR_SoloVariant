@@ -64,33 +64,70 @@ runTest(async ({ browser, url, check }) => {
     await d6.click();
     await page.waitForSelector("#d6modal.show");
     const after = await page.evaluate(() => window.scrollY);
-    const src = await page.getAttribute("#d6", "src");
-    await shot(page, "02-d6.png");
-    await page.waitForTimeout(400);
     check("D6 link (href='#') keeps scroll position", before > 0 && before === after, `scrollY before=${before} after=${after}`);
     check("D6 link doesn't add '#' to URL", !page.url().includes("#"), page.url());
-    check("D6 shows a face image 1-6", /D6_[1-6]\.png$/.test(src), src);
+
+    // The die tumbles, then settles on the result, announced in text
+    const dieState = () => page.evaluate(() => {
+        const die = document.getElementById("d6");
+        const shown = [...die.querySelectorAll(".pip")].filter((p) => getComputedStyle(p).opacity === "1").length;
+        return { value: Number(die.dataset.value), shown, label: die.getAttribute("aria-label"),
+                 result: document.getElementById("d6result").textContent, rolling: die.getAnimations().length > 0 };
+    });
+    await page.waitForTimeout(150);
+    const midRoll = await dieState();
+    check("Die animates while rolling, with no result shown yet", midRoll.rolling && midRoll.result === "", JSON.stringify(midRoll));
+    await page.waitForFunction(() => document.getElementById("d6result").textContent !== "");
+    await page.waitForTimeout(100);
+    let die = await dieState();
+    await shot(page, "02-d6.png");
+    check("Die settles on a face that matches the result text",
+        die.value >= 1 && die.value <= 6 && die.shown === die.value && die.result === `You rolled a ${die.value}` && die.label === `Die showing ${die.value}`,
+        JSON.stringify(die));
+
+    // Roll again from inside the modal
+    await page.click("#d6again");
+    await page.waitForFunction(() => document.getElementById("d6result").textContent === "");
+    await page.waitForFunction(() => document.getElementById("d6result").textContent !== "");
+    die = await dieState();
+    check("'Roll again' rolls without closing the modal",
+        (await page.isVisible("#d6modal")) && die.shown === die.value && die.result === `You rolled a ${die.value}`, JSON.stringify(die));
     await page.click("#d6modal .btn-close");
     await page.waitForSelector("#d6modal", { state: "hidden" });
 
-    const faces = new Set();
+    // Many rolls: every result is 1–6, all six come up, the face always matches
+    const results = [];
+    let facesMatch = true;
     let sameInstance = true;
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
         await page.evaluate(() => document.querySelector("header .d6button").click());
         await page.waitForSelector("#d6modal.show");
-        faces.add(await page.getAttribute("#d6", "src"));
+        await page.waitForFunction(() => document.getElementById("d6result").textContent !== "");
+        const d = await dieState();
+        results.push(d.value);
+        facesMatch = facesMatch && d.shown === d.value && d.result === `You rolled a ${d.value}`;
         sameInstance = sameInstance && (await page.evaluate(() => {
             const inst = bootstrap.Modal.getInstance(document.getElementById("d6modal"));
             window.__firstD6 = window.__firstD6 || inst;
             return inst === window.__firstD6;
         }));
-        await page.waitForTimeout(400);
         await page.click("#d6modal .btn-close");
         await page.waitForSelector("#d6modal", { state: "hidden" });
     }
-    check("Header D6 rolls only valid faces", [...faces].every((f) => /D6_[1-6]\.png$/.test(f)), [...faces].map((f) => f.slice(-8)).join(","));
+    check("30 header rolls: all 1–6 and each face matches its result",
+        facesMatch && results.every((n) => n >= 1 && n <= 6) && new Set(results).size >= 5, results.join(""));
     check("D6 modal reuses one Bootstrap instance", sameInstance);
     check("No JS errors after dice/tabs", page.errors.length === 0, page.errors.join(" | "));
+    await page.context().close();
+
+    // Players who ask for reduced motion get the result at once, with no tumble
+    page = await newPage(browser, url, { reducedMotion: "reduce" });
+    await page.evaluate(() => document.querySelector("header .d6button").click());
+    const instant = await page.evaluate(() => ({
+        result: document.getElementById("d6result").textContent,
+        animating: document.getElementById("d6").getAnimations().length > 0,
+    }));
+    check("Reduced motion: result shown immediately, no animation", /^You rolled a [1-6]$/.test(instant.result) && !instant.animating, JSON.stringify(instant));
     await page.context().close();
 
     // ---------- Round tracker ----------
@@ -324,6 +361,166 @@ runTest(async ({ browser, url, check }) => {
     check("Modal over the Settings panel doesn't crash", !page.errors.some((e) => /call stack/i.test(e)), page.errors.join(" | "));
     await page.context().close();
 
+    // ---------- Look: colours, text size, arrows, links ----------
+    page = await newPage(browser, url);
+    await page.click("#list-command-list");
+    const look = await page.evaluate(() => {
+        const parse = (c) => { const m = c.match(/[\d.]+/g).map(Number); return { r: m[0], g: m[1], b: m[2], a: m[3] ?? 1 }; };
+        const lum = ({ r, g, b }) => [r, g, b].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; })
+            .reduce((s, v, i) => s + v * [0.2126, 0.7152, 0.0722][i], 0);
+        const bgOf = (el) => { for (let e = el; e; e = e.parentElement) { const c = parse(getComputedStyle(e).backgroundColor); if (c.a > 0) return c; } return { r: 255, g: 255, b: 255 }; };
+        const contrast = (el) => {
+            const fg = parse(getComputedStyle(el).color), bg = bgOf(el);
+            const mix = { r: fg.r * fg.a + bg.r * (1 - fg.a), g: fg.g * fg.a + bg.g * (1 - fg.a), b: fg.b * fg.a + bg.b * (1 - fg.a) };
+            const [l1, l2] = [lum(mix), lum(bg)].sort((a, b) => b - a);
+            return (l1 + 0.05) / (l2 + 0.05);
+        };
+        const rebelHeadings = [...document.querySelectorAll(".callout-rebel h5")].filter((h) =>
+            h.offsetParent && h.closest(".callout, .callout-rebel, .callout-empire, .callout-both").classList.contains("callout-rebel"));
+        const ruleText = document.querySelector("#list-command-steps .callout-empire p");
+        return {
+            minRebelContrast: Math.min(...rebelHeadings.map(contrast)).toFixed(2),
+            ruleTextSize: getComputedStyle(ruleText).fontSize,
+            ruleLinks: document.querySelectorAll(".rule-link").length,
+            ruleLinkColour: getComputedStyle(document.querySelector("#list-command-steps .rule-link")).color,
+            oldRedLinks: document.querySelectorAll(".link-danger").length,
+            arrow: getComputedStyle(document.querySelector("[data-bs-target='#movementrules'] h5"), "::after").content,
+        };
+    });
+    check("Rebel headings have at least 3:1 contrast", Number(look.minRebelContrast) >= 3, `min=${look.minRebelContrast}`);
+    check("Rule text is 15px", look.ruleTextSize === "15px", look.ruleTextSize);
+    check("Rule links use the maroon rule-link style", look.ruleLinks === 12 && look.oldRedLinks === 0 && look.ruleLinkColour === "rgb(102, 5, 31)", JSON.stringify(look));
+    check("Expandable headings show an arrow", look.arrow === '"expand_more"', look.arrow);
+    const sameLine = await page.evaluate(() => {
+        const a = document.querySelector("[data-bs-target='#capturingleaders'] h5").getBoundingClientRect();
+        const b = document.querySelector("[data-bs-target='#acquiringprojectcards'] h5").getBoundingClientRect();
+        return Math.abs(a.top - b.top) < 5;
+    });
+    check("Neighbouring expandable headings stay on separate lines", !sameLine);
+    const arrowTurn = () => page.evaluate(() => getComputedStyle(document.querySelector("[data-bs-target='#movementrules'] h5"), "::after").transform);
+    const closedTurn = await arrowTurn();
+    await page.click("[data-bs-target='#movementrules']");
+    await page.waitForTimeout(400);
+    const openTurn = await arrowTurn();
+    check("Arrow flips when the section opens", closedTurn === "none" && openTurn.startsWith("matrix(-1"), `closed=${closedTurn} open=${openTurn}`);
+    await page.context().close();
+
+    // Header never covers content, and phones get tab labels + flatter nesting
+    for (const width of [390, 575, 576, 767, 768, 1280]) {
+        page = await newPage(browser, url, { viewport: { width, height: 900 } });
+        const m = await page.evaluate(() => {
+            const nested = document.querySelector("#list-assigment-steps .callout-empire .callout");
+            return {
+                header: Math.round(document.querySelector("header").getBoundingClientRect().height),
+                pad: parseFloat(getComputedStyle(document.querySelector(".main")).paddingTop),
+                shortLabels: [...document.querySelectorAll(".tab-label-short")].filter((s) => s.offsetParent).length,
+                nestedMargin: getComputedStyle(nested).marginLeft,
+            };
+        });
+        check(`${width}px: fixed header (${m.header}px) doesn't cover content (padding ${m.pad}px)`, m.pad >= m.header, JSON.stringify(m));
+        if (width < 576) {
+            check(`${width}px: tabs show short labels and nested boxes don't indent`, m.shortLabels === 6 && m.nestedMargin === "0px", JSON.stringify(m));
+        } else {
+            check(`${width}px: no short labels and nesting unchanged`, m.shortLabels === 0 && m.nestedMargin !== "0px", JSON.stringify(m));
+        }
+        await page.context().close();
+    }
+
+    // ---------- Appearance: light / dark ----------
+    const theme = (p) => p.evaluate(() => ({
+        attr: document.documentElement.getAttribute("data-bs-theme"),
+        bg: getComputedStyle(document.body).backgroundColor,
+        choice: document.querySelector("input[name='theme']:checked")?.value,
+        saved: localStorage.getItem("theme"),
+    }));
+    const pickAppearance = async (p, value) => {
+        await p.click("button[data-bs-target='#options']");
+        await p.waitForSelector("#options.show");
+        await p.click(`label[for='theme${value[0].toUpperCase() + value.slice(1)}']`);
+        await p.click("#options .btn-close");
+        await p.waitForSelector("#options", { state: "hidden" });
+    };
+    const DARK_BG = "rgb(21, 18, 20)";
+    const LIGHT_BG = "rgb(255, 255, 255)";
+
+    check("Theme script runs before the stylesheet loads (no white flash)",
+        (await (async () => {
+            const html = require("fs").readFileSync(require("path").join(__dirname, "..", "index.html"), "utf8");
+            return html.indexOf('setAttribute("data-bs-theme"') < html.indexOf("resources/css/index.css");
+        })()));
+
+    page = await newPage(browser, url, { colorScheme: "light" });
+    let t = await theme(page);
+    check("Auto on a light device: light theme", t.attr === "light" && t.bg === LIGHT_BG && t.choice === "auto", JSON.stringify(t));
+    await page.emulateMedia({ colorScheme: "dark" });
+    await page.waitForTimeout(100);
+    t = await theme(page);
+    check("Auto follows the device switching to dark", t.attr === "dark" && t.bg === DARK_BG, JSON.stringify(t));
+    await page.context().close();
+
+    page = await newPage(browser, url, { colorScheme: "dark" });
+    t = await theme(page);
+    check("Auto on a dark device: dark theme", t.attr === "dark" && t.bg === DARK_BG && t.choice === "auto", JSON.stringify(t));
+
+    // Readability in dark mode, measured against what's actually behind each item
+    await page.click("#list-command-list");
+    const darkContrast = await page.evaluate(() => {
+        const parse = (c) => { const m = c.match(/[\d.]+/g).map(Number); return { r: m[0], g: m[1], b: m[2], a: m[3] ?? 1 }; };
+        const lum = ({ r, g, b }) => [r, g, b].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; })
+            .reduce((s, v, i) => s + v * [0.2126, 0.7152, 0.0722][i], 0);
+        const bgOf = (el) => { for (let e = el; e; e = e.parentElement) { const c = parse(getComputedStyle(e).backgroundColor); if (c.a > 0) return c; } return { r: 0, g: 0, b: 0 }; };
+        const ratio = (el) => {
+            const fg = parse(getComputedStyle(el).color), bg = bgOf(el);
+            const mix = { r: fg.r * fg.a + bg.r * (1 - fg.a), g: fg.g * fg.a + bg.g * (1 - fg.a), b: fg.b * fg.a + bg.b * (1 - fg.a) };
+            const [l1, l2] = [lum(mix), lum(bg)].sort((a, b) => b - a);
+            return (l1 + 0.05) / (l2 + 0.05);
+        };
+        const min = (sel) => Math.min(...[...document.querySelectorAll(sel)].filter((e) => e.offsetParent).map(ratio));
+        const boxes = ":is(.callout, .callout-rebel, .callout-empire, .callout-both)";
+        return {
+            ruleText: min(`#list-command-steps ${boxes} p`).toFixed(1),
+            rebel: min("#list-command-steps .callout-rebel > h5, #list-command-steps .callout-rebel > a > h5").toFixed(1),
+            empire: min("#list-command-steps .callout-empire > h5, #list-command-steps .callout-empire > a > h5").toFixed(1),
+            links: min("#list-command-steps .rule-link").toFixed(1),
+            tabs: min(".roundselector a:not(.active) .d-sm-inline").toFixed(1),
+            title: min("#fulltitle").toFixed(1),
+        };
+    });
+    const c = Object.fromEntries(Object.entries(darkContrast).map(([k, v]) => [k, Number(v)]));
+    check("Dark mode: text ≥ 4.5:1 and headings ≥ 3:1",
+        c.ruleText >= 4.5 && c.links >= 4.5 && c.tabs >= 4.5 && c.title >= 4.5 && c.rebel >= 3 && c.empire >= 3, JSON.stringify(darkContrast));
+    await page.screenshot({ path: path.join(OUTPUT, "10-dark-command.png") });
+
+    // Choosing Light overrides the device, survives a reload and a game reset
+    await pickAppearance(page, "light");
+    t = await theme(page);
+    check("Picking Light on a dark device switches to light", t.attr === "light" && t.bg === LIGHT_BG && t.saved === "light", JSON.stringify(t));
+    await page.reload({ waitUntil: "networkidle" });
+    t = await theme(page);
+    check("Light choice survives a reload", t.attr === "light" && t.choice === "light", JSON.stringify(t));
+    await page.click("#reset");
+    await page.waitForSelector("#yesNo.show");
+    await page.waitForTimeout(400);
+    await Promise.all([page.waitForNavigation({ waitUntil: "networkidle" }), page.click("#yesNo .btn-primary")]);
+    t = await theme(page);
+    check("Reset Game keeps the Appearance choice", t.attr === "light" && t.saved === "light", JSON.stringify(t));
+
+    // Choosing Dark, and back to Auto
+    await pickAppearance(page, "dark");
+    t = await theme(page);
+    check("Picking Dark switches to dark", t.attr === "dark" && t.bg === DARK_BG && t.saved === "dark", JSON.stringify(t));
+    await page.click("button[data-bs-target='#options']");
+    await page.waitForSelector("#options.show");
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(OUTPUT, "10-dark-settings.png") });
+    await page.click("#options .btn-close");
+    await page.waitForSelector("#options", { state: "hidden" });
+    await pickAppearance(page, "auto");
+    t = await theme(page);
+    check("Back to Auto follows the device again (dark)", t.attr === "dark" && t.saved === "auto", JSON.stringify(t));
+    check("No JS errors in appearance checks", page.errors.length === 0, page.errors.join(" | "));
+    await page.context().close();
+
     // Footer: sits after the content, not pinned over it
     for (const [label, viewport] of [["desktop", { width: 1280, height: 900 }], ["phone", { width: 390, height: 844 }]]) {
         page = await newPage(browser, url, { viewport });
@@ -337,7 +534,10 @@ runTest(async ({ browser, url, check }) => {
         await page.waitForTimeout(300);
         let f = await footer();
         check(`${label}: footer is not fixed and nothing in it is cut off`, f.position !== "fixed" && !f.clipped, JSON.stringify(f));
-        check(`${label}: on a short page the footer sits at the bottom of the window`, Math.abs(f.bottom - f.viewport) <= 1, JSON.stringify(f));
+        // Footer is the last thing on the page, and short pages still fill the window
+        // (so the footer sits at the bottom of the screen rather than mid-way up)
+        check(`${label}: footer ends the page and the page fills the window`,
+            Math.abs(f.bottom - f.page) <= 1 && f.page >= f.viewport, JSON.stringify(f));
         await page.click("#list-command-list"); // long page
         await page.waitForTimeout(300);
         f = await footer();

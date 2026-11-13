@@ -11859,6 +11859,89 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+:root,
+[data-bs-theme=light] {
+  --swr-page-bg: #ffffff;
+  --swr-text: #495057;
+  --swr-link: #343a40;
+  --swr-surface-1: #f8f9fa;
+  --swr-surface-2: #e9ecef;
+  --swr-surface-3: #dee2e6;
+  --swr-header-bg: #e9ecef;
+  --swr-border: #ced4da;
+  --swr-callout-border: #495057;
+  --swr-brand: #66051f;
+  --swr-brand-underline: rgba(102, 5, 31, 0.35);
+  --swr-rebel: #2e7d32;
+  --swr-empire: #d50000c4;
+  --swr-tab-bg: #f5f5f5;
+  --swr-tab-color: #6c757d;
+  --swr-icon-button: #212529;
+  --swr-icon-button-hover: #ced4da;
+  --swr-variant-bg: #6c757d;
+  --swr-variant-color: #ffffff;
+  --swr-round-past: #adb5bd;
+}
+
+[data-bs-theme=dark] {
+  --swr-page-bg: #151214;
+  --swr-text: #d9d2d4;
+  --swr-link: #efe9eb;
+  --swr-surface-1: #1f1a1c;
+  --swr-surface-2: #292326;
+  --swr-surface-3: #332c2f;
+  --swr-header-bg: #1f1a1c;
+  --swr-border: #40373a;
+  --swr-callout-border: #6c6266;
+  --swr-brand: #e891a8;
+  --swr-brand-underline: rgba(232, 145, 168, 0.45);
+  --swr-rebel: #73c476;
+  --swr-empire: #f27474;
+  --swr-tab-bg: #1f1a1c;
+  --swr-tab-color: #a99fa2;
+  --swr-icon-button: #efe9eb;
+  --swr-icon-button-hover: #332c2f;
+  --swr-variant-bg: #332c2f;
+  --swr-variant-color: #d9d2d4;
+  --swr-round-past: #332c2f;
+  --bs-body-bg: #151214;
+  --bs-body-color: #d9d2d4;
+  --bs-emphasis-color: #efe9eb;
+  --bs-heading-color: #efe9eb;
+  --bs-secondary-bg: #292326;
+  --bs-tertiary-bg: #1f1a1c;
+  --bs-border-color: #40373a;
+}
+[data-bs-theme=dark] .roundselector {
+  --bs-list-group-color: #a99fa2;
+  --bs-list-group-bg: #1f1a1c;
+  --bs-list-group-border-color: #40373a;
+  --bs-list-group-action-color: #a99fa2;
+  --bs-list-group-action-hover-color: #efe9eb;
+  --bs-list-group-action-hover-bg: #292326;
+  --bs-list-group-active-color: #ffffff;
+  --bs-list-group-active-bg: #8c1236;
+  --bs-list-group-active-border-color: #8c1236;
+}
+[data-bs-theme=dark] .btn-primary {
+  --bs-btn-bg: #8c1236;
+  --bs-btn-border-color: #8c1236;
+  --bs-btn-hover-bg: #a3163f;
+  --bs-btn-hover-border-color: #a3163f;
+  --bs-btn-active-bg: #a3163f;
+  --bs-btn-active-border-color: #a3163f;
+}
+[data-bs-theme=dark] .btn-outline-primary {
+  --bs-btn-color: #e891a8;
+  --bs-btn-border-color: #40373a;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #332c2f;
+  --bs-btn-hover-border-color: #40373a;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #8c1236;
+  --bs-btn-active-border-color: #8c1236;
+}
+
 @font-face {
   font-family: "Goldman";
   font-style: normal;
@@ -11888,8 +11971,8 @@ textarea.form-control-lg {
 
 html,
 body {
-  background-color: #ffffff;
-  color: #495057;
+  background-color: var(--swr-page-bg);
+  color: var(--swr-text);
   min-width: 380px;
 }
 
@@ -11897,7 +11980,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: 91px;
+  padding-top: 105px;
 }
 
 @media only screen and (min-width: 576px) {
@@ -11916,11 +11999,11 @@ body {
   }
 }
 .mainheader {
-  background-color: #e9ecef;
+  background-color: var(--swr-header-bg);
   padding: 5px 10px 5px 10px;
   font-weight: bold;
   font-family: "Goldman", serif;
-  color: #66051f;
+  color: var(--swr-brand);
 }
 
 .mainheader {
@@ -11947,14 +12030,14 @@ body {
   }
 }
 #footer {
-  background-color: #e9ecef;
+  background-color: var(--swr-header-bg);
   margin-top: auto;
   font-size: smaller;
 }
 
 a {
   text-decoration: none;
-  color: #343a40;
+  color: var(--swr-link);
 }
 
 a:visited {
@@ -12049,8 +12132,8 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #6c757d;
-  color: white;
+  background-color: var(--swr-variant-bg);
+  color: var(--swr-variant-color);
   border-radius: 3px;
 }
 
@@ -12060,20 +12143,20 @@ a:hover {
 
 #row1 div[class^=col] {
   border-style: solid;
-  border-color: #ced4da;
+  border-color: var(--swr-border);
   border-width: 1px;
-  background-color: #e9ecef;
+  background-color: var(--swr-surface-2);
   padding: 5px;
 }
 
 .builditemstart {
   border-top: solid 1px;
-  border-color: #dee2e6;
+  border-color: var(--swr-surface-3);
   padding-top: 10px;
 }
 
 #buildheader {
-  background-color: #f8f9fa;
+  background-color: var(--swr-surface-1);
   height: 40px;
   margin: 0 1px;
 }
@@ -12095,32 +12178,32 @@ div[id*=space] {
   line-height: 30px;
   padding: 5px;
   margin: 5px 0;
-  background-color: #dee2e6;
+  background-color: var(--swr-surface-3);
 }
 
 .swg-galemp,
 .swg-stormtrooper {
-  color: rgba(213, 0, 0, 0.768627451);
+  color: var(--swr-empire);
 }
 
 .swg-reball,
 .swg-stormtrooper-3 {
-  color: rgba(67, 160, 72, 0.768627451);
+  color: var(--swr-rebel);
 }
 
 .buildrow, .buildrowempire, .buildrowrebel {
   line-height: 50px;
   padding: 2px 0;
   margin: 1px 0;
-  background-color: #e9ecef;
+  background-color: var(--swr-surface-2);
 }
 
 .buildrowrebel {
-  border-left: 3px solid rgba(67, 160, 72, 0.768627451);
+  border-left: 3px solid var(--swr-rebel);
 }
 
 .buildrowempire {
-  border-left: 3px solid rgba(213, 0, 0, 0.768627451);
+  border-left: 3px solid var(--swr-empire);
 }
 
 #buildbutton {
@@ -12172,7 +12255,7 @@ div[id*=space] {
 }
 
 .roundtracker {
-  background-color: #e9ecef;
+  background-color: var(--swr-surface-2);
   margin-top: 10px;
   padding-top: 10px;
 }
@@ -12181,7 +12264,7 @@ div[id*=space] {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border-color: #ced4da;
+  border-color: var(--swr-border);
   border-style: solid;
   line-height: 35px;
   position: relative;
@@ -12201,7 +12284,7 @@ input[id^=round]:checked:disabled + label {
 }
 
 input[id^=round]:disabled + label {
-  background-color: #adb5bd;
+  background-color: var(--swr-round-past);
 }
 
 .margin-small {
@@ -12243,7 +12326,8 @@ input[id^=round]:disabled + label {
 
 /* Callouts */
 .callout li, .callout-both li, .callout-empire li, .callout-rebel li, .callout ul, .callout-both ul, .callout-empire ul, .callout-rebel ul, .callout p, .callout-both p, .callout-empire p, .callout-rebel p {
-  font-size: small;
+  font-size: 0.9375rem;
+  line-height: 1.55;
   margin: 10px 8px;
 }
 
@@ -12254,77 +12338,133 @@ input[id^=round]:disabled + label {
   border-width: 0px;
   border-left-width: 4px;
   border-radius: 3px;
-  background-color: #f8f9fa;
+  border-color: var(--swr-callout-border);
+  background-color: var(--swr-surface-1);
 }
 .callout h5, .callout-both h5, .callout-empire h5, .callout-rebel h5, .callout .h5, .callout-both .h5, .callout-empire .h5, .callout-rebel .h5 {
   font-family: "Goldman", serif;
 }
 
 .callout-rebel {
-  border-color: rgba(67, 160, 72, 0.768627451);
+  border-color: var(--swr-rebel);
 }
 .callout-rebel h5, .callout-rebel .h5 {
-  color: rgba(67, 160, 72, 0.768627451);
+  color: var(--swr-rebel);
 }
 
 .callout-empire {
-  border-color: rgba(213, 0, 0, 0.768627451);
+  border-color: var(--swr-empire);
 }
 .callout-empire h5, .callout-empire .h5 {
-  color: rgba(213, 0, 0, 0.768627451);
+  color: var(--swr-empire);
 }
 
 .callout .callout-rebel, .callout-both .callout-rebel, .callout-rebel .callout-rebel, .callout-empire .callout-rebel {
-  background-color: #e9ecef;
+  background-color: var(--swr-surface-2);
 }
 .callout .callout-rebel .callout-empire, .callout-both .callout-rebel .callout-empire, .callout-rebel .callout-rebel .callout-empire, .callout-empire .callout-rebel .callout-empire {
-  background-color: #dee2e6;
+  background-color: var(--swr-surface-3);
 }
 .callout .callout-empire, .callout-both .callout-empire, .callout-rebel .callout-empire, .callout-empire .callout-empire {
-  background-color: #e9ecef;
+  background-color: var(--swr-surface-2);
 }
 .callout .callout-empire .callout, .callout-both .callout-empire .callout, .callout .callout-empire .callout-both, .callout-both .callout-empire .callout-both, .callout-rebel .callout-empire .callout, .callout-rebel .callout-empire .callout-both, .callout-empire .callout-empire .callout, .callout-empire .callout-empire .callout-both, .callout .callout-empire .callout-rebel, .callout-both .callout-empire .callout-rebel, .callout-rebel .callout-empire .callout-rebel, .callout-empire .callout-empire .callout-rebel, .callout .callout-empire .callout-empire, .callout-both .callout-empire .callout-empire, .callout-rebel .callout-empire .callout-empire, .callout-empire .callout-empire .callout-empire {
-  background-color: #dee2e6;
+  background-color: var(--swr-surface-3);
 }
 .callout .callout-both, .callout-both .callout-both, .callout-rebel .callout-both, .callout-empire .callout-both {
-  background-color: #e9ecef;
+  background-color: var(--swr-surface-2);
 }
 .callout .callout-both .callout-both, .callout-both .callout-both .callout-both, .callout-rebel .callout-both .callout-both, .callout-empire .callout-both .callout-both {
-  background-color: #dee2e6;
+  background-color: var(--swr-surface-3);
 }
 .callout .callout-both .callout-empire, .callout-both .callout-both .callout-empire, .callout-rebel .callout-both .callout-empire, .callout-empire .callout-both .callout-empire {
-  background-color: #dee2e6;
+  background-color: var(--swr-surface-3);
 }
 .callout .callout, .callout-both .callout, .callout .callout-both, .callout-both .callout-both, .callout-rebel .callout, .callout-rebel .callout-both, .callout-empire .callout, .callout-empire .callout-both, .callout .callout-rebel, .callout-both .callout-rebel, .callout-rebel .callout-rebel, .callout-empire .callout-rebel, .callout .callout-empire, .callout-both .callout-empire, .callout-rebel .callout-empire, .callout-empire .callout-empire {
-  background-color: #e9ecef;
+  background-color: var(--swr-surface-2);
 }
 .callout .callout .callout, .callout-both .callout .callout, .callout .callout-both .callout, .callout-both .callout-both .callout, .callout .callout .callout-both, .callout-both .callout .callout-both, .callout .callout-both .callout-both, .callout-both .callout-both .callout-both, .callout-rebel .callout .callout, .callout-rebel .callout-both .callout, .callout-rebel .callout .callout-both, .callout-rebel .callout-both .callout-both, .callout-empire .callout .callout, .callout-empire .callout-both .callout, .callout-empire .callout .callout-both, .callout-empire .callout-both .callout-both, .callout .callout-rebel .callout, .callout-both .callout-rebel .callout, .callout .callout-rebel .callout-both, .callout-both .callout-rebel .callout-both, .callout-rebel .callout-rebel .callout, .callout-rebel .callout-rebel .callout-both, .callout-empire .callout-rebel .callout, .callout-empire .callout-rebel .callout-both, .callout .callout-empire .callout, .callout-both .callout-empire .callout, .callout .callout-empire .callout-both, .callout-both .callout-empire .callout-both, .callout-rebel .callout-empire .callout, .callout-rebel .callout-empire .callout-both, .callout-empire .callout-empire .callout, .callout-empire .callout-empire .callout-both, .callout .callout .callout-rebel, .callout-both .callout .callout-rebel, .callout .callout-both .callout-rebel, .callout-both .callout-both .callout-rebel, .callout-rebel .callout .callout-rebel, .callout-rebel .callout-both .callout-rebel, .callout-empire .callout .callout-rebel, .callout-empire .callout-both .callout-rebel, .callout .callout-rebel .callout-rebel, .callout-both .callout-rebel .callout-rebel, .callout-rebel .callout-rebel .callout-rebel, .callout-empire .callout-rebel .callout-rebel, .callout .callout-empire .callout-rebel, .callout-both .callout-empire .callout-rebel, .callout-rebel .callout-empire .callout-rebel, .callout-empire .callout-empire .callout-rebel, .callout .callout .callout-empire, .callout-both .callout .callout-empire, .callout .callout-both .callout-empire, .callout-both .callout-both .callout-empire, .callout-rebel .callout .callout-empire, .callout-rebel .callout-both .callout-empire, .callout-empire .callout .callout-empire, .callout-empire .callout-both .callout-empire, .callout .callout-rebel .callout-empire, .callout-both .callout-rebel .callout-empire, .callout-rebel .callout-rebel .callout-empire, .callout-empire .callout-rebel .callout-empire, .callout .callout-empire .callout-empire, .callout-both .callout-empire .callout-empire, .callout-rebel .callout-empire .callout-empire, .callout-empire .callout-empire .callout-empire {
-  background-color: #dee2e6;
+  background-color: var(--swr-surface-3);
 }
 .callout .callout .callout-rebel, .callout-both .callout .callout-rebel, .callout .callout-both .callout-rebel, .callout-both .callout-both .callout-rebel, .callout-rebel .callout .callout-rebel, .callout-rebel .callout-both .callout-rebel, .callout-empire .callout .callout-rebel, .callout-empire .callout-both .callout-rebel, .callout .callout-rebel .callout-rebel, .callout-both .callout-rebel .callout-rebel, .callout-rebel .callout-rebel .callout-rebel, .callout-empire .callout-rebel .callout-rebel, .callout .callout-empire .callout-rebel, .callout-both .callout-empire .callout-rebel, .callout-rebel .callout-empire .callout-rebel, .callout-empire .callout-empire .callout-rebel {
-  background-color: #dee2e6;
+  background-color: var(--swr-surface-3);
 }
 .callout .callout .callout-empire, .callout-both .callout .callout-empire, .callout .callout-both .callout-empire, .callout-both .callout-both .callout-empire, .callout-rebel .callout .callout-empire, .callout-rebel .callout-both .callout-empire, .callout-empire .callout .callout-empire, .callout-empire .callout-both .callout-empire, .callout .callout-rebel .callout-empire, .callout-both .callout-rebel .callout-empire, .callout-rebel .callout-rebel .callout-empire, .callout-empire .callout-rebel .callout-empire, .callout .callout-empire .callout-empire, .callout-both .callout-empire .callout-empire, .callout-rebel .callout-empire .callout-empire, .callout-empire .callout-empire .callout-empire {
-  background-color: #dee2e6;
+  background-color: var(--swr-surface-3);
 }
 
 .callout-rebel .callout-empire {
-  background-color: #e9ecef;
+  background-color: var(--swr-surface-2);
 }
 
 .callout-empire .callout, .callout-empire .callout-both, .callout-empire .callout-rebel, .callout-empire .callout-empire {
-  background-color: #e9ecef;
+  background-color: var(--swr-surface-2);
 }
 
 .callout-both {
-  border-image-source: linear-gradient(180deg, rgba(67, 160, 72, 0.768627451), rgba(213, 0, 0, 0.768627451));
+  border-image-source: linear-gradient(180deg, var(--swr-rebel), var(--swr-empire));
   border-image-slice: 1;
 }
 
 .maincolour {
-  color: #66051f;
+  color: var(--swr-brand);
 }
 
+.rule-link {
+  color: var(--swr-brand);
+  text-decoration: underline;
+  text-decoration-color: var(--swr-brand-underline);
+  text-underline-offset: 3px;
+}
+.rule-link:hover, .rule-link:focus-visible {
+  color: var(--swr-brand);
+  text-decoration-color: var(--swr-brand);
+}
+
+a[data-bs-toggle=collapse] h5, a[data-bs-toggle=collapse] .h5 {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+a[data-bs-toggle=collapse] h5::after, a[data-bs-toggle=collapse] .h5::after {
+  content: "expand_more";
+  font-family: "Material Icons";
+  font-size: 1.2em;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+a[data-bs-toggle=collapse][aria-expanded=true] h5::after, a[data-bs-toggle=collapse][aria-expanded=true] .h5::after {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a[data-bs-toggle=collapse] h5::after, a[data-bs-toggle=collapse] .h5::after {
+    transition: none;
+  }
+}
+.tab-label-short {
+  display: block;
+  font-size: 10px;
+  line-height: 1.2;
+  margin-top: 1px;
+}
+
+@media only screen and (max-width: 575px) {
+  .roundselector .list-group-item {
+    padding: 5px 2px 4px;
+  }
+  :is(.callout, .callout-rebel, .callout-empire, .callout-both) :is(.callout, .callout-rebel, .callout-empire, .callout-both) {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 8px;
+    padding-right: 4px;
+  }
+  :is(.callout, .callout-rebel, .callout-empire, .callout-both) :is(p, ul, li) {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+}
 .roundselector {
   --bs-list-group-color: var(--bs-body-color);
   --bs-list-group-bg: var(--bs-body-bg);
@@ -12345,20 +12485,20 @@ input[id^=round]:disabled + label {
 
 .roundselector a {
   padding: 4px;
-  background-color: #F5F5F5;
+  background-color: var(--swr-tab-bg);
   font-size: 13px;
   font-size: 0.8125rem;
   font-family: "Goldman", serif;
-  color: #6c757d;
+  color: var(--swr-tab-color);
 }
 
 .paraseparator, .sidebarsubheader {
-  border-top: 1px solid #ced4da;
+  border-top: 1px solid var(--swr-border);
   padding-top: 5px;
 }
 
 #deployflowchart li {
-  font-size: small;
+  font-size: 0.9375rem;
   margin: 8px;
 }
 
@@ -12372,18 +12512,64 @@ input[id^=round]:disabled + label {
   font-size: small;
 }
 
-#d6 {
-  display: block;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+.d6-stage {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 0.75rem;
+}
+
+.d6-die {
+  width: 120px;
+  height: 120px;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35));
+}
+.d6-die .pip {
+  fill: url(#d6Pip);
+  stroke: rgba(0, 0, 0, 0.25);
+  stroke-width: 0.8;
+  opacity: 0;
+}
+.d6-die .pip.on {
+  opacity: 1;
+}
+.d6-die.rolling {
+  animation: d6-tumble 600ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+@keyframes d6-tumble {
+  0% {
+    transform: translateY(-36px) rotate(-220deg) scale(0.6);
+  }
+  55% {
+    transform: translateY(6px) rotate(18deg) scale(1.06);
+  }
+  75% {
+    transform: translateY(-2px) rotate(-6deg) scale(0.98);
+  }
+  100% {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .d6-die.rolling {
+    animation: none;
+  }
+}
+.d6-result {
+  min-height: 1.5em;
+  margin: 0;
+  text-align: center;
+  font-family: "Goldman", serif;
+  font-size: 20px;
+  font-size: 1.25rem;
+  color: var(--swr-brand);
 }
 
 .btnNoBackground {
   display: inline-block;
   font-weight: 400;
   line-height: 1;
-  color: #212529;
+  color: var(--swr-icon-button);
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -12398,7 +12584,7 @@ input[id^=round]:disabled + label {
 }
 
 .btnNoBackground:hover {
-  background-color: #ced4da;
+  background-color: var(--swr-icon-button-hover);
 }
 
 .icon-small {

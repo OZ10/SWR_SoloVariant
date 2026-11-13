@@ -47,8 +47,8 @@ function launchBrowser() {
 
 // Opens a page with error and dialog tracking. Service workers are blocked unless
 // asked for, so each test starts from a clean, uncached page.
-async function newPage(browser, url, { viewport = { width: 1280, height: 900 }, serviceWorkers = "block" } = {}) {
-    const ctx = await browser.newContext({ viewport, serviceWorkers });
+async function newPage(browser, url, { viewport = { width: 1280, height: 900 }, serviceWorkers = "block", reducedMotion = "no-preference", colorScheme = "light" } = {}) {
+    const ctx = await browser.newContext({ viewport, serviceWorkers, reducedMotion, colorScheme });
     const page = await ctx.newPage();
     page.errors = [];
     page.dialogs = [];

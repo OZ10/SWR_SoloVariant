@@ -1,0 +1,98 @@
+// Light and dark colours for the app's own styles.
+//
+// The theme is chosen by data-bs-theme="light|dark" on <html> (set by a small script
+// in index.html from the Appearance setting, or the device's setting when on Auto).
+// Bootstrap 5.3 styles its own components (panels, pop-ups, form controls) from the
+// same attribute; the --bs-* values below tune those to match the app.
+
+:root,
+[data-bs-theme="light"] {
+    --swr-page-bg: #ffffff;
+    --swr-text: #{$gray-700};
+    --swr-link: #{$gray-800};
+    --swr-surface-1: #{$gray-100}; // rule boxes
+    --swr-surface-2: #{$gray-200}; // nested boxes
+    --swr-surface-3: #{$gray-300}; // deepest boxes
+    --swr-header-bg: #{$gray-200};
+    --swr-border: #{$gray-400};
+    --swr-callout-border: #{$gray-700};
+    --swr-brand: #{$primary}; // title, links, results
+    --swr-brand-underline: #{rgba($primary, 0.35)};
+    --swr-rebel: #2e7d32; // solid, ≥3.9:1 on the rule boxes
+    --swr-empire: #d50000c4;
+    --swr-tab-bg: #f5f5f5;
+    --swr-tab-color: #{$gray-600};
+    --swr-icon-button: #212529;
+    --swr-icon-button-hover: #{$gray-400};
+    --swr-variant-bg: #{$gray-600};
+    --swr-variant-color: #ffffff;
+    --swr-round-past: #{$gray-500};
+}
+
+// Near-black with a slight maroon tint; the maroon becomes a rose for text so it
+// stays readable, and the faction colours are lifted to keep their contrast.
+[data-bs-theme="dark"] {
+    --swr-page-bg: #151214;
+    --swr-text: #d9d2d4;
+    --swr-link: #efe9eb;
+    --swr-surface-1: #1f1a1c;
+    --swr-surface-2: #292326;
+    --swr-surface-3: #332c2f;
+    --swr-header-bg: #1f1a1c;
+    --swr-border: #40373a;
+    --swr-callout-border: #6c6266;
+    --swr-brand: #e891a8;
+    --swr-brand-underline: rgba(232, 145, 168, 0.45);
+    --swr-rebel: #73c476;
+    --swr-empire: #f27474;
+    --swr-tab-bg: #1f1a1c;
+    --swr-tab-color: #a99fa2;
+    --swr-icon-button: #efe9eb;
+    --swr-icon-button-hover: #332c2f;
+    --swr-variant-bg: #332c2f;
+    --swr-variant-color: #d9d2d4;
+    --swr-round-past: #332c2f;
+
+    // Bootstrap components (modals, settings panel, form controls)
+    --bs-body-bg: #151214;
+    --bs-body-color: #d9d2d4;
+    --bs-emphasis-color: #efe9eb;
+    --bs-heading-color: #efe9eb;
+    --bs-secondary-bg: #292326;
+    --bs-tertiary-bg: #1f1a1c;
+    --bs-border-color: #40373a;
+
+    // Phase tabs (see .roundselector in index.scss)
+    .roundselector {
+        --bs-list-group-color: #a99fa2;
+        --bs-list-group-bg: #1f1a1c;
+        --bs-list-group-border-color: #40373a;
+        --bs-list-group-action-color: #a99fa2;
+        --bs-list-group-action-hover-color: #efe9eb;
+        --bs-list-group-action-hover-bg: #292326;
+        --bs-list-group-active-color: #ffffff;
+        --bs-list-group-active-bg: #8c1236;
+        --bs-list-group-active-border-color: #8c1236;
+    }
+
+    // Buttons are compiled from the dark maroon; brighten them so they read on dark
+    .btn-primary {
+        --bs-btn-bg: #8c1236;
+        --bs-btn-border-color: #8c1236;
+        --bs-btn-hover-bg: #a3163f;
+        --bs-btn-hover-border-color: #a3163f;
+        --bs-btn-active-bg: #a3163f;
+        --bs-btn-active-border-color: #a3163f;
+    }
+
+    .btn-outline-primary {
+        --bs-btn-color: #e891a8;
+        --bs-btn-border-color: #40373a;
+        --bs-btn-hover-color: #ffffff;
+        --bs-btn-hover-bg: #332c2f;
+        --bs-btn-hover-border-color: #40373a;
+        --bs-btn-active-color: #ffffff;
+        --bs-btn-active-bg: #8c1236;
+        --bs-btn-active-border-color: #8c1236;
+    }
+}

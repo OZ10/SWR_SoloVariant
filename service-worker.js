@@ -8,7 +8,7 @@
 // - The Google Material Icons font is cached on install and served cache-first.
 //
 // Bump CACHE_VERSION when files are added to/removed from PRECACHE_URLS.
-const CACHE_VERSION = "v2";
+const CACHE_VERSION = "v3";
 const CACHE_NAME = "swr-solo-" + CACHE_VERSION;
 const NETWORK_TIMEOUT_MS = 3000;
 
@@ -30,7 +30,6 @@ const PRECACHE_URLS = [
     "./resources/images/Round_Rebel_sm.png",
     "./resources/images/manifest/icon-192x192.png",
     "./resources/images/manifest/icon-512x512.png",
-    ...[1, 2, 3, 4, 5, 6].map((n) => `./resources/images/D6_${n}.png`),
     ...["Dagobah", "Dantooine", "Dathomir", "Endor", "Hoth", "Ilum", "Tatooine", "Yavin"].flatMap(
         (p) => [`./resources/images/SWR_${p}.png`, `./resources/images/SWR_${p}_bw.png`]
     ),

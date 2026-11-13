@@ -13,8 +13,15 @@ fs.mkdirSync(out, { recursive: true });
 (async () => {
     const { server, url } = await startServer();
     const browser = await launchBrowser();
-    for (const [label, viewport] of [["desktop", { width: 1280, height: 900 }], ["phone", { width: 390, height: 844 }]]) {
-        const ctx = await browser.newContext({ viewport, serviceWorkers: "block" });
+    const runs = [];
+    for (const colorScheme of ["light", "dark"]) {
+        for (const [device, viewport] of [["desktop", { width: 1280, height: 900 }], ["phone", { width: 390, height: 844 }]]) {
+            // Light keeps the plain names (desktop-setup.png) so older snapshots still compare
+            runs.push({ label: colorScheme === "light" ? device : `${device}-dark`, viewport, colorScheme });
+        }
+    }
+    for (const { label, viewport, colorScheme } of runs) {
+        const ctx = await browser.newContext({ viewport, serviceWorkers: "block", colorScheme });
         const page = await ctx.newPage();
         const errors = [];
         page.on("pageerror", (e) => errors.push(String(e)));

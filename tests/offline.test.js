@@ -88,9 +88,12 @@ runTest(async ({ browser, url, check }) => {
 
     await page.evaluate(() => document.querySelector("header .d6button").click());
     await page.waitForSelector("#d6modal.show");
-    await page.waitForTimeout(400);
-    const face = await page.evaluate(async () => { const i = document.getElementById("d6"); await i.decode().catch(() => {}); return { src: i.src.slice(-8), w: i.naturalWidth }; });
-    check("Offline: D6 roll shows a face image", face.w > 0, JSON.stringify(face));
+    await page.waitForFunction(() => document.getElementById("d6result").textContent !== "");
+    const face = await page.evaluate(() => ({
+        result: document.getElementById("d6result").textContent,
+        pips: document.querySelectorAll("#d6 .pip.on").length,
+    }));
+    check("Offline: D6 roll works", /^You rolled a [1-6]$/.test(face.result) && face.result.endsWith(String(face.pips)), JSON.stringify(face));
     await page.screenshot({ path: path.join(OUTPUT, "offline-d6.png") });
     await page.click("#d6modal .btn-close");
     await page.waitForSelector("#d6modal", { state: "hidden" });
