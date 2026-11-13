@@ -91,9 +91,9 @@
             </div>
         </div>
 
-        <div class="offcanvasSilm offcanvas-end" id="roundtracker" tabindex="-1" aria-labelledby="offcanvasLabel" data-bs-backdrop="false" data-bs-scroll="true">
+        <div class="offcanvas offcanvas-end offcanvasSilm" id="roundtracker" tabindex="-1" aria-labelledby="roundtrackerLabel" data-bs-backdrop="false" data-bs-scroll="true">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title">Round Tracker</h5>
+                <h5 class="offcanvas-title" id="roundtrackerLabel">Round Tracker</h5>
             </div>
             <div class="offcanvas-body small">
                 <div class="roundtracker text-center">
@@ -105,67 +105,67 @@
                     <p></p>
                     <div class="col">
                         <input type="checkbox" id="round_16" onclick="setRebelRep(id)">
-                        <label for="round_16" id="round_label">16</label>
+                        <label class="round_label" for="round_16">16</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_15" onclick="setRebelRep(id)">
-                        <label for="round_15" id="round_label">15</label>
+                        <label class="round_label" for="round_15">15</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_14" onclick="setRebelRep(id)" checked>
-                        <label for="round_14" id="round_label">14</label>
+                        <label class="round_label" for="round_14">14</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_13" onclick="setRebelRep(id)">
-                        <label for="round_13" id="round_label">13</label>
+                        <label class="round_label" for="round_13">13</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_12" onclick="setRebelRep(id)">
-                        <label for="round_12" id="round_label">12</label>
+                        <label class="round_label" for="round_12">12</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_11" onclick="setRebelRep(id)">
-                        <label for="round_11" id="round_label">11</label>
+                        <label class="round_label" for="round_11">11</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_10" onclick="setRebelRep(id)">
-                        <label for="round_10" id="round_label">10</label>
+                        <label class="round_label" for="round_10">10</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_9" onclick="setRebelRep(id)">
-                        <label for="round_9" id="round_label">9</label>
+                        <label class="round_label" for="round_9">9</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_8" onclick="setRebelRep(id)">
-                        <label for="round_8" id="round_label">8</label>
+                        <label class="round_label" for="round_8">8</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_7" onclick="setRebelRep(id)">
-                        <label for="round_7" id="round_label">7</label>
+                        <label class="round_label" for="round_7">7</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_6" onclick="setRebelRep(id)">
-                        <label for="round_6" id="round_label">6</label>
+                        <label class="round_label" for="round_6">6</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_5" onclick="setRebelRep(id)">
-                        <label for="round_5" id="round_label">5</label>
+                        <label class="round_label" for="round_5">5</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_4" onclick="setRebelRep(id)">
-                        <label for="round_4" id="round_label">4</label>
+                        <label class="round_label" for="round_4">4</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_3" onclick="setRebelRep(id)">
-                        <label for="round_3" id="round_label">3</label>
+                        <label class="round_label" for="round_3">3</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_2" onclick="setRebelRep(id)">
-                        <label for="round_2" id="round_label">2</label>
+                        <label class="round_label" for="round_2">2</label>
                     </div>
                     <div class="col">
                         <input type="checkbox" id="round_1" onclick="setRebelRep(id)" checked disabled>
-                        <label for="round_1" id="round_label">1</label>
+                        <label class="round_label" for="round_1">1</label>
                     </div>
                     <p></p>
                 </div>
@@ -263,13 +263,13 @@
                                     <h5>Setup</h5>
                                     <p>
                                         Use the
-                                        <a class="link-danger" href="#0" data-bs-toggle="collapse" data-bs-target="#advancedsetup">Advanced Set-up</a>
+                                        <a class="link-danger" href="#0" data-bs-toggle="collapse" data-bs-target=".advancedsetup">Advanced Set-up</a>
                                         from the Rules with the following
                                         changes:
                                     </p>
                                     <div class="callout-both">
                                         <h5>Place Starting Leaders</h5>
-                                        <p class="collapse" id="advancedsetup">
+                                        <p class="collapse advancedsetup">
                                             Gather the four leaders that do not
                                             have a recruit icon and places them
                                             in the box labeled “Leader Pool”
@@ -284,7 +284,7 @@
                                             </p>
                                         </strong>
                                     </div>
-                                    <div class="callout collapse" id="advancedsetup">
+                                    <div class="callout collapse advancedsetup">
                                         <h5>Prepare Time Track</h5>
                                         <p>
                                             Then place the time marker on space
@@ -294,7 +294,7 @@
                                     </div>
                                     <div class="callout-rebel">
                                         <h5>Prepare Objective Deck</h5>
-                                        <p class="collapse" id="advancedsetup">
+                                        <p class="collapse advancedsetup">
                                             Sort the objective cards into three
                                             piles based on the number shown on
                                             the card back (I, II, or III)
@@ -305,12 +305,12 @@
                                                 (Level II) Objective card
                                             </p>
                                         </strong>
-                                        <p class="collapse" id="advancedsetup">
+                                        <p class="collapse advancedsetup">
                                             Draw one card from the objective
                                             deck
                                         </p>
                                     </div>
-                                    <div class="callout-both collapse" id="advancedsetup">
+                                    <div class="callout-both collapse advancedsetup">
                                         <h5>Prepare Action Decks</h5>
                                         <p>
                                             Gather all action cards that have a
@@ -322,7 +322,7 @@
                                     </div>
                                     <div class="callout-both">
                                         <h5>Prepare Mission Cards</h5>
-                                        <div class="callout-both collapse" id="advancedsetup">
+                                        <div class="callout-both collapse advancedsetup">
                                             <p>
                                                 Starting Missions: Starting
                                                 mission cards are identified by
@@ -332,7 +332,7 @@
                                                 set them aside.
                                             </p>
                                         </div>
-                                        <div class="callout-both collapse" id="advancedsetup">
+                                        <div class="callout-both collapse advancedsetup">
                                             <p>
                                                 Remaining Missions: For both
                                                 sides take the remaining mission
@@ -358,7 +358,7 @@
                                         <h5>
                                             Place Starting Units and Loyalty
                                         </h5>
-                                        <div class="callout collapse" id="advancedsetup">
+                                        <div class="callout collapse advancedsetup">
                                             <h5>Loyalty</h5>
                                             <p>
                                                 Shuffle the probe deck and
@@ -391,7 +391,7 @@
                                                 follows (use
                                                 <a class="link-danger d6button" href="#" type="button">D6</a>, as needed):
                                             </p>
-                                            <ul id="Base-Setup">
+                                            <ul class="Base-Setup">
                                                 <li>
                                                     2 TIE Fighters & 2
                                                     Stormtroopers in each of the
@@ -415,7 +415,7 @@
                                                     Star
                                                 </li>
                                             </ul>
-                                            <div class="d-none variant" id="ROTE-Setup">
+                                            <div class="d-none variant ROTE-Setup">
                                                 <div>
                                                     <p>
                                                         Place a Death Star on
@@ -477,10 +477,10 @@
                                                 <span class="material-icons">dark_mode</span>
                                             </div>
                                         </div>
-                                        <div class="callout-rebel collapse" id="advancedsetup">
+                                        <div class="callout-rebel collapse advancedsetup">
                                             <h5>Rebel Deployment</h5>
                                             <p>The Rebel player receives:</p>
-                                            <div id="Base-Setup" style="display: flex">
+                                            <div class="Base-Setup" style="display: flex">
                                                 <ul>
                                                     <li>
                                                         1 Corellian Corvette
@@ -494,7 +494,7 @@
                                                     <li>2 Airspeeders</li>
                                                 </ul>
                                             </div>
-                                            <div class="d-none variant" id="ROTE-Setup">
+                                            <div class="d-none variant ROTE-Setup">
                                                 <ul>
                                                     <li>
                                                         1 Corellian Corvette
@@ -518,7 +518,7 @@
                                                 neutral system
                                             </p>
                                         </div>
-                                        <div class="callout-both collapse" id="advancedsetup">
+                                        <div class="callout-both collapse advancedsetup">
                                             <h5>Action Cards</h5>
                                             <p>
                                                 For both sides draw two random
@@ -544,7 +544,7 @@
                                             search for it
                                         </p>
                                     </div>
-                                    <div class="callout-rebel collapse" id="advancedsetup">
+                                    <div class="callout-rebel collapse advancedsetup">
                                         <h5>Draw Starting Hand</h5>
                                         <p>
                                             Take the four starting missions and
@@ -627,7 +627,7 @@
 
                                 <div class="callout-empire">
                                     <h5>Play Action Cards</h5>
-                                    <div class="d-none variant" id="var-ActionCardExecution">
+                                    <div class="d-none variant var-ActionCardExecution">
                                         <div>
                                             <p>
                                                 Roll a <a class="link-danger d6button" href="#" type="button">D6</a>:
@@ -647,7 +647,7 @@
                                         </div>
                                         <span class="material-icons">science</span>
                                     </div>
-                                    <p id="Base-ActionCardExecution">
+                                    <p class="Base-ActionCardExecution">
                                         The Empire plays all Action Cards designated as <strong class="text-medium">playable</strong> during the Assignment Phase
                                     </p>
                                 </div>
@@ -762,7 +762,7 @@
                                             Leader possessing the most matching
                                             Skill icons)
                                         </p>
-                                        <p id="Base-Unplayablemissions">
+                                        <p class="Base-Unplayablemissions">
                                             If a Mission proves unplayable (no
                                             appropriate Leader or for any
                                             reason), select a new Mission from
@@ -770,7 +770,7 @@
                                             unfulfilled Mission cards at the
                                             bottom of their respective Decks
                                         </p>
-                                        <div class="d-none variant" id="var-Unplayablemissions">
+                                        <div class="d-none variant var-Unplayablemissions">
                                             <p>
                                                 If a mission cannot be performed
                                                 due to circumstances that may
@@ -847,7 +847,7 @@
                                             <h5>Movement Rules</h5>
                                         </a>
                                         <div class="collapse" id="movementrules">
-                                            <div class="d-none variant" id="var-movement">
+                                            <div class="d-none variant var-movement">
                                                 <div>
                                                     <p>
                                                         Before moving, roll a
@@ -886,7 +886,7 @@
                                                 </div>
                                                 <span class="material-icons">science</span>
                                             </div>
-                                            <p id="Base-movement">
+                                            <p class="Base-movement">
                                                 Move the Empire’s Units by the
                                                 shortest possible route toward
                                                 the nearest unexplored (Probe
@@ -1008,14 +1008,14 @@
                                             <h5>Battles</h5>
                                         </a>
                                         <div class="collapse" id="battles">
-                                            <p id="Base-Battles">
+                                            <p class="Base-Battles">
                                                 While Battles will play out
                                                 normally, the Empire will not
                                                 draw/use any Tactics cards.
                                                 Additionally, follow these
                                                 special rules:
                                             </p>
-                                            <div class="d-none variant" id="ROTE-Battles">
+                                            <div class="d-none variant ROTE-Battles">
                                                 <p>
                                                     While Battles will play out
                                                     normally, the Empire will
@@ -1196,13 +1196,13 @@
                                             placed per system rule:
                                         </p>
                                         <ul id="deployflowchart">
-                                            <li id="Base-Empiredeploy">
+                                            <li class="Base-Empiredeploy">
                                                 Locate the
                                                 <a class="link-danger text-medium" href="#" data-bs-toggle="modal" data-bs-target="#productionvalueguide">Highest
                                                     Production Value</a>
                                                 System
                                             </li>
-                                            <div class="d-none variant" id="var-Empiredeploy">
+                                            <div class="d-none variant var-Empiredeploy">
                                                 <li>
                                                     Locate the Empire system
                                                     closest to (in priority
@@ -1229,7 +1229,7 @@
                                                 randomly choose between the
                                                 Theaters)
                                             </li>
-                                            <li id="Base-Empiredeploy">
+                                            <li class="Base-Empiredeploy">
                                                 Move to the next
                                                 <a class="link-danger text-medium" href="#" data-bs-toggle="modal" data-bs-target="#productionvalueguide">Highest
                                                     Production Value</a>
@@ -1241,8 +1241,8 @@
                                                     Production Value</a>
                                                 System, if necessary
                                             </li>
-                                            <div class="d-none variant" id="var-Empiredeploy">
-                                                <li class="d-none" id="var-Empiredeploy">
+                                            <div class="d-none variant var-Empiredeploy">
+                                                <li class="d-none var-Empiredeploy">
                                                     Return to the beginning of
                                                     the flowchart, wrapping back
                                                     around to the first located
@@ -1292,28 +1292,28 @@
                                             </div>
                                             <div class="col-1 d-flex justify-content-center">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="blockade">
+                                                    <input class="form-check-input" type="checkbox" data-choice="blockade" data-label="Blockaded/Sabotaged">
                                                 </div>
                                             </div>
                                             <div class="col-1 d-flex justify-content-center">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="subjugate">
+                                                    <input class="form-check-input" type="checkbox" data-choice="subjugate" data-label="Subjugated">
                                                 </div>
                                             </div>
                                             <div class="col-1">
                                                 <div class="form-check d-flex justify-content-center">
-                                                    <input class="form-check-input" type="radio" id="radioempire" name="RadioOptions" value="empire">
+                                                    <input class="form-check-input" type="radio" data-choice="radioempire" data-label="Empire-Loyal" name="RadioOptions" value="empire">
                                                 </div>
                                             </div>
 
                                             <div class="col-1">
                                                 <div class="form-check d-flex justify-content-center">
-                                                    <input class="form-check-input" type="radio" id="radioneutral" name="RadioOptions" value="Neutral">
+                                                    <input class="form-check-input" type="radio" data-choice="radioneutral" data-label="Neutral" name="RadioOptions" value="Neutral">
                                                 </div>
                                             </div>
                                             <div class="col-1">
                                                 <div class="form-check d-flex justify-content-center">
-                                                    <input class="form-check-input" type="radio" id="radiorebel" name="RadioOptions" value="Rebel">
+                                                    <input class="form-check-input" type="radio" data-choice="radiorebel" data-label="Rebel-Loyal" name="RadioOptions" value="Rebel">
                                                 </div>
                                             </div>
                                         </div>
@@ -1368,7 +1368,7 @@
                                         change priority when Rebel Base is
                                         revealed
                                     </p>
-                                    <div class="modal-footer">
+                                    <div class="d-flex flex-wrap justify-content-end align-items-center gap-2 p-3 border-top">
                                         <div>Number of scanned systems:</div>
                                         <div id="numselectedsystems">0</div>
                                     </div>
@@ -1412,11 +1412,11 @@
         <!-- Modals -->
         <div>
             <!-- Empire's Decision List Modal -->
-            <div class="modal fade" id="carddecisionlist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="carddecisionlist" tabindex="-1" aria-labelledby="carddecisionlistLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">
+                            <h5 class="modal-title" id="carddecisionlistLabel">
                                 Empire's Card Decision List
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -1803,11 +1803,11 @@
             </div>
 
             <!-- D6 -->
-            <div class="modal fade" id="d6modal" tabindex="-1" aria-labelledby="D6" aria-hidden="true">
+            <div class="modal fade" id="d6modal" tabindex="-1" aria-labelledby="d6modalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="remotesystems">
+                            <h5 class="modal-title" id="d6modalLabel">
                                 a D6 has appeared!
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -1821,11 +1821,11 @@
             </div>
 
             <!-- Build Queue -->
-            <div class="modal fade" id="buildqueuelist" tabindex="-1" aria-labelledby="BuildQueue" aria-hidden="true">
+            <div class="modal fade" id="buildqueuelist" tabindex="-1" aria-labelledby="buildqueuelistLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="remotesystems">
+                            <h5 class="modal-title" id="buildqueuelistLabel">
                                 Build Queue
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -2049,11 +2049,11 @@
             </div>
 
             <!-- Yes/No Box -->
-            <div class="modal fade" id="yesNo" tabindex="-1" aria-labelledby="YesNo" aria-hidden="true">
+            <div class="modal fade" id="yesNo" tabindex="-1" aria-labelledby="yesNoLabel" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="remotesystems">
+                            <h5 class="modal-title" id="yesNoLabel">
                                 Are you sure?
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -2074,7 +2074,7 @@
             </div>
 
             <!-- Message Box -->
-            <div class="modal fade" id="messageBox" tabindex="-1" aria-labelledby="MessageBox" aria-hidden="true">
+            <div class="modal fade" id="messageBox" tabindex="-1" aria-labelledby="messageBoxTitle" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -2095,7 +2095,7 @@
         </div>
 
         <!-- Served locally (not from a CDN) so the app works offline -->
-        <script src="./resources/bootstrap-5.0.0-beta3-dist/js/bootstrap.bundle.min.js"></script>
+        <script src="./resources/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
 
         <script src="./resources/js/main.js"></script>
 

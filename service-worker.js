@@ -8,7 +8,7 @@
 // - The Google Material Icons font is cached on install and served cache-first.
 //
 // Bump CACHE_VERSION when files are added to/removed from PRECACHE_URLS.
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = "v2";
 const CACHE_NAME = "swr-solo-" + CACHE_VERSION;
 const NETWORK_TIMEOUT_MS = 3000;
 
@@ -21,7 +21,7 @@ const PRECACHE_URLS = [
     "./favicon.ico",
     "./resources/css/index.css",
     "./resources/js/main.js",
-    "./resources/bootstrap-5.0.0-beta3-dist/js/bootstrap.bundle.min.js",
+    "./resources/bootstrap-5.3.8/js/bootstrap.bundle.min.js",
     "./resources/icons/starwars-glyphicons/css/starwars-glyphicons.css",
     "./resources/icons/starwars-glyphicons/fonts/starwars-glyphicons-webfont.ttf",
     "./resources/font/Goldman-Regular.ttf",

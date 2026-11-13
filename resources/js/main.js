@@ -31,16 +31,21 @@ const planetnames = [
     ["Bespin", "Mustafar"],
 ];
 
+// Build queue rows are clones of #buildtemplate, one per planet. Each row is identified
+// by data-planet="<name>" and each input by data-choice="blockade|subjugate|radio...",
+// so the page has no duplicate ids (several planet names also contain spaces).
+function getPlanetRow(planetname) {
+    return document.querySelector(
+        `#buildqueue [data-planet="${CSS.escape(planetname)}"]`
+    );
+}
+
 function setupBuildQueue() {
     planetnames.forEach((system) => {
         system.forEach((planet) => {
-            cloneNodeAndChangeId(
-                "buildtemplate",
-                planet,
-                system.indexOf(planet)
-            );
+            cloneBuildTemplate(planet, system.indexOf(planet));
             changePlanetDisplayName(planet);
-            changeRadioGroupName(planet);
+            setupPlanetInputs(planet);
         });
     });
 
@@ -121,40 +126,38 @@ const RemoveSetting = (val) => {
     }
 };
 
-// Each saved choice is stored as key "<planet>,<input id>" with value "buildchk".
+// Each saved choice is stored as key "<planet>,<choice>" with value "buildchk".
 // Neutral is the default, so only blockade/subjugate/Empire/Rebel choices are stored.
 // Disabled inputs (Coruscant and Rebel Base's fixed loyalty) are always set on load.
 function saveBuildQueueSettings() {
     RemoveSetting("buildchk");
 
     planetnames.flat().forEach((planetname) => {
-        document
-            .getElementById(planetname)
-            .querySelectorAll(".form-check-input:checked:not(#radioneutral):not(:disabled)")
+        getPlanetRow(planetname)
+            .querySelectorAll(
+                ".form-check-input:checked:not([data-choice=radioneutral]):not(:disabled)"
+            )
             .forEach((input) => {
-                SaveSetting(planetname + "," + input.id, "buildchk");
+                SaveSetting(planetname + "," + input.dataset.choice, "buildchk");
             });
     });
 }
 
 function loadBuildQueueSettings() {
     GetSettingsByValue("buildchk").forEach((planet) => {
-        let planetName = planet.split(",")[0];
-        let chkName = planet.split(",")[1];
-        let checks = document
-            .getElementById(planetName)
-            .getElementsByClassName("form-check-input");
-        for (let index = 0; index < checks.length; index++) {
-            if (checks[index].id === chkName) {
-                checks[index].checked = true;
-            }
+        const [planetName, choice] = planet.split(",");
+        const row = getPlanetRow(planetName);
+        const input = row && row.querySelector(`[data-choice="${CSS.escape(choice)}"]`);
+        if (input) {
+            input.checked = true;
         }
     });
 }
 
-function cloneNodeAndChangeId(nodename, planetname, rowCount) {
-    let clonenode = document.getElementById(nodename).cloneNode(true);
-    clonenode.id = planetname;
+function cloneBuildTemplate(planetname, rowCount) {
+    const clonenode = document.getElementById("buildtemplate").cloneNode(true);
+    clonenode.removeAttribute("id");
+    clonenode.dataset.planet = planetname;
 
     if (rowCount == 0) {
         // add border to the top
@@ -165,24 +168,21 @@ function cloneNodeAndChangeId(nodename, planetname, rowCount) {
 }
 
 function changePlanetDisplayName(planetname) {
-    let elements = document
-        .getElementById(planetname)
-        .getElementsByClassName("col-3");
-    for (let index = 0; index < elements.length; index++) {
-        elements[index].firstElementChild.innerText = planetname;
-    }
+    getPlanetRow(planetname).querySelector(".planetname").innerText = planetname;
 }
 
-function changeRadioGroupName(planetname) {
-    let elements = document
-        .getElementById(planetname)
-        .querySelectorAll("form-check-input, [type=radio]");
-    for (let index = 0; index < elements.length; index++) {
-        elements[index].name = planetname + "RadioOptions";
-        if (elements[index].id === "radioneutral") {
-            elements[index].checked = true;
-        }
-    }
+// Gives each row its own radio group, defaults it to Neutral, and names every
+// input for screen readers (e.g. "Naboo: Rebel-Loyal")
+function setupPlanetInputs(planetname) {
+    getPlanetRow(planetname)
+        .querySelectorAll(".form-check-input")
+        .forEach((input) => {
+            input.setAttribute("aria-label", planetname + ": " + input.dataset.label);
+            if (input.type === "radio") {
+                input.name = planetname + "RadioOptions";
+                input.checked = input.dataset.choice === "radioneutral";
+            }
+        });
 }
 
 function hideBuildTemplate() {
@@ -190,15 +190,14 @@ function hideBuildTemplate() {
 }
 
 function setDefaultBuildOptions(planetname, selection) {
-    let elements = document
-        .getElementById(planetname)
-        .querySelectorAll("form-check-input, [type=radio]");
-    for (let index = 0; index < elements.length; index++) {
-        if (elements[index].id === selection) {
-            elements[index].checked = true;
-        }
-        elements[index].disabled = true;
-    }
+    getPlanetRow(planetname)
+        .querySelectorAll("[type=radio]")
+        .forEach((radio) => {
+            if (radio.dataset.choice === selection) {
+                radio.checked = true;
+            }
+            radio.disabled = true;
+        });
 }
 
 function moveBuildButton() {
@@ -222,16 +221,16 @@ function createBuildQueue() {
             let isBlockaded = false;
             let isSubjugated = false;
 
-            let checks = document
-                .getElementById(planetname)
-                .getElementsByClassName("form-check-input");
+            let checks = getPlanetRow(planetname).getElementsByClassName(
+                "form-check-input"
+            );
             for (let index = 0; index < checks.length; index++) {
                 // if Blockaded checkbox is checked don't add any of this planet's resources
-                if (checks[index].id == "blockade" && checks[index].checked) {
+                if (checks[index].dataset.choice == "blockade" && checks[index].checked) {
                     isBlockaded = true;
                 }
 
-                if (checks[index].id == "subjugate" && checks[index].checked) {
+                if (checks[index].dataset.choice == "subjugate" && checks[index].checked) {
                     isSubjugated = true;
                 }
 
@@ -292,7 +291,7 @@ function updateBuildQueueCount(
 }
 
 function getControlName(checks, index, resources, isSubjugated) {
-    const selectedRadioButton = checks[index].id;
+    const selectedRadioButton = checks[index].dataset.choice;
 
     if (selectedRadioButton == "radioempire") {
         return "build-emp-";
@@ -463,9 +462,9 @@ function setVariant(variantName, enabled) {
     setElementVisible(sections[1], !enabled);
 }
 
-function setElementVisible(id, visible) {
-    // Some sections appear more than once on the page under the same id
-    document.querySelectorAll("#" + id).forEach((element) => {
+function setElementVisible(className, visible) {
+    // Some sections appear more than once on the page, so they're marked with a class
+    document.querySelectorAll("." + className).forEach((element) => {
         element.classList.toggle("d-none", !visible);
     });
 }
