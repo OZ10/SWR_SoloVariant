@@ -52,6 +52,11 @@ function setupBuildQueue() {
     hideBuildTemplate();
 
     loadBuildQueueSettings();
+
+    // Save choices as soon as they change, so a reload doesn't lose them
+    document
+        .getElementById("buildqueue")
+        .addEventListener("change", saveBuildQueueSettings);
 }
 
 function setupRoundMarkers() {
@@ -94,18 +99,6 @@ const GetSettingsByValue = (val, includes = false) => {
     return settings;
 };
 
-const GetSettingsByKey = (val, includes = false) => {
-    let settings = new Array();
-    for (let [key, value] of Object.entries(localStorage)) {
-        if (includes && key.includes(val)) {
-            settings.push(key + "," + value);
-        } else if (key == val) {
-            settings.push(key + "," + value);
-        }
-    }
-    return settings;
-};
-
 const GetSettingValueByKey = (keytofind) => {
     for (let [key, value] of Object.entries(localStorage)) {
         if (key == keytofind) {
@@ -127,6 +120,22 @@ const RemoveSetting = (val) => {
         }
     }
 };
+
+// Each saved choice is stored as key "<planet>,<input id>" with value "buildchk".
+// Neutral is the default, so only blockade/subjugate/Empire/Rebel choices are stored.
+// Disabled inputs (Coruscant and Rebel Base's fixed loyalty) are always set on load.
+function saveBuildQueueSettings() {
+    RemoveSetting("buildchk");
+
+    planetnames.flat().forEach((planetname) => {
+        document
+            .getElementById(planetname)
+            .querySelectorAll(".form-check-input:checked:not(#radioneutral):not(:disabled)")
+            .forEach((input) => {
+                SaveSetting(planetname + "," + input.id, "buildchk");
+            });
+    });
+}
 
 function loadBuildQueueSettings() {
     GetSettingsByValue("buildchk").forEach((planet) => {
@@ -218,25 +227,11 @@ function createBuildQueue() {
                 .getElementsByClassName("form-check-input");
             for (let index = 0; index < checks.length; index++) {
                 // if Blockaded checkbox is checked don't add any of this planet's resources
-                if (
-                    checks[index].id == "blockade" &&
-                    checks[index].checked === true
-                ) {
-                    localStorage.setItem(
-                        [planetname, checks[index].id],
-                        "buildchk"
-                    );
+                if (checks[index].id == "blockade" && checks[index].checked) {
                     isBlockaded = true;
                 }
 
-                if (
-                    checks[index].id == "subjugate" &&
-                    checks[index].checked === true
-                ) {
-                    localStorage.setItem(
-                        [planetname, checks[index].id],
-                        "buildchk"
-                    );
+                if (checks[index].id == "subjugate" && checks[index].checked) {
                     isSubjugated = true;
                 }
 
@@ -245,7 +240,6 @@ function createBuildQueue() {
                 }
 
                 updateBuildQueueCount(
-                    planetname,
                     isBlockaded,
                     isSubjugated,
                     checks,
@@ -258,7 +252,6 @@ function createBuildQueue() {
 }
 
 function updateBuildQueueCount(
-    planetname,
     isBlockaded,
     isSubjugated,
     checks,
@@ -270,8 +263,6 @@ function updateBuildQueueCount(
     if (controlname == "") {
         return;
     }
-
-    SaveSetting([planetname, checks[index].id], "buildchk");
 
     if (isBlockaded) {
         return;
@@ -404,12 +395,10 @@ function getPlanetsBuildResources(planetname, subjugated = false) {
 }
 
 function resetBuildQueueCount() {
-    document.querySelectorAll("[id^='build-'").forEach((element) => {
+    document.querySelectorAll("[id^='build-']").forEach((element) => {
         element.innerHTML = 0;
         element.classList.add("d-none");
     });
-
-    RemoveSetting("buildchk");
 }
 
 function resetGame() {
@@ -441,61 +430,43 @@ function searchCardList() {
     });
 }
 
+// Each settings switch swaps a block of rule text: [shown when ON, shown when OFF]
+const variantSections = {
+    "chkROTE-Units": ["ROTE-Setup", "Base-Setup"],
+    "chkROTE-TacticCards": ["ROTE-Battles", "Base-Battles"],
+    "chkvar-Movement": ["var-movement", "Base-movement"],
+    "chkvar-Deployment": ["var-Empiredeploy", "Base-Empiredeploy"],
+    "chkvar-UnPlayableMissions": ["var-Unplayablemissions", "Base-Unplayablemissions"],
+    "chkvar-ActionCardExecution": ["var-ActionCardExecution", "Base-ActionCardExecution"],
+};
+
 function loadVariantSettings() {
-    let settings = GetSettingsByKey("chk", true);
-    settings.forEach((setting) => {
-        let id = setting.split(",")[0];
-        let value = setting.split(",")[1] == "true";
-        if (value) {
-            setVariants(id);
-        }
-        document.getElementById(id).checked = value;
+    Object.keys(variantSections).forEach((id) => {
+        const enabled = GetSettingValueByKey(id) === "true";
+        document.getElementById(id).checked = enabled;
+        setVariant(id, enabled);
     });
 }
 
 function chkClick(cb) {
-    setVariants(cb.id);
+    setVariant(cb.id, cb.checked);
     SaveSetting(cb.id, cb.checked);
 }
 
-function setVariants(variantName) {
-    switch (variantName) {
-        case "chkROTE-Units":
-            showHideElement("ROTE-Setup");
-            showHideElement("Base-Setup");
-            break;
-        case "chkROTE-TacticCards":
-            showHideElement("ROTE-Battles");
-            showHideElement("Base-Battles");
-            break;
-        case "chkvar-Movement":
-            showHideElement("var-movement");
-            showHideElement("Base-movement");
-            break;
-        case "chkvar-Deployment":
-            showHideElement("var-Empiredeploy");
-            showHideElement("Base-Empiredeploy");
-            break;
-        case "chkvar-UnPlayableMissions":
-            showHideElement("var-Unplayablemissions");
-            showHideElement("Base-Unplayablemissions");
-            break;
-        case "chkvar-ActionCardExecution":
-            showHideElement("var-ActionCardExecution");
-            showHideElement("Base-ActionCardExecution");
-            break;
-        default:
-            break;
-    }
+// Shows the variant's rule text and hides the base text (or the reverse),
+// based on the switch's actual state rather than flipping whatever is shown
+function setVariant(variantName, enabled) {
+    const sections = variantSections[variantName];
+    if (!sections) return;
+
+    setElementVisible(sections[0], enabled);
+    setElementVisible(sections[1], !enabled);
 }
 
-function showHideElement(id) {
+function setElementVisible(id, visible) {
+    // Some sections appear more than once on the page under the same id
     document.querySelectorAll("#" + id).forEach((element) => {
-        if (element.classList.contains("d-none")) {
-            element.classList.remove("d-none");
-        } else {
-            element.classList.add("d-none");
-        }
+        element.classList.toggle("d-none", !visible);
     });
 }
 
@@ -578,14 +549,11 @@ function checkIfRebelRepLessThan5(currentRoundNumber) {
     if (getRebelRep() - currentRoundNumber <= 5) {
         if (promptUserRebelsWithin5) {
             // alert('Rebels are now within FIVE rounds of winning the game. Movement rules have changed.');
-            const messageBox = new bootstrap.Modal(
-                document.getElementById("messageBox")
-            );
-            document.getElementById("messageBoxTitle").innerHTML =
+            document.getElementById("messageBoxTitle").textContent =
                 "Crossing The Finish Line";
-            document.getElementById("messageBoxBody").innerHTML =
+            document.getElementById("messageBoxBody").textContent =
                 "Rebels are now within FIVE rounds of winning the game. The Empire's Movement & Deployment rules have changed";
-            messageBox.show();
+            getModal("messageBox").show();
             promptUserRebelsWithin5 = false;
         }
     } else {
@@ -635,13 +603,17 @@ var dice = {
     },
 };
 
+// Returns the modal's existing Bootstrap instance, creating it only the first time.
+// Creating a new instance on every use left extra event listeners behind.
+function getModal(id) {
+    const element = document.getElementById(id);
+    return bootstrap.Modal.getInstance(element) || new bootstrap.Modal(element);
+}
+
 //Prints dice roll to the page
 function rollD6(number) {
-    var placeholder = document.getElementById("d6");
-    // placeholder.innerHTML = number;
-    placeholder.src = "./resources/images/D6_" + number + ".png";
-    var d6Modal = new bootstrap.Modal(document.getElementById("d6modal"));
-    d6Modal.toggle();
+    document.getElementById("d6").src = "./resources/images/D6_" + number + ".png";
+    getModal("d6modal").show();
 }
 
 // Captures all D6 button on website

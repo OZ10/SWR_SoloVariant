@@ -30,8 +30,9 @@
                     will be made to the wording of some rules to reflect these
                     settings.
                 </p>
-                <h6 class="paraseparator">General</h6>
-                <div class="form-check form-switch">
+                <!-- Dynamic Rules isn't implemented yet; hidden until it is (remove d-none from both) -->
+                <h6 class="paraseparator d-none">General</h6>
+                <div class="form-check form-switch d-none">
                     <input class="form-check-input" type="checkbox" id="chkdynamicInstructions" onclick="chkClick(this);" disabled>
                     <label for="chkdynamicInstructions" data-bs-toggle="tooltip" data-bs-placement="right"
                         title="By default all rules will be displayed. When toggled ON rules will display based on certain criteria, i.e: when the RB is discovered, movement & deployment rules will ONLY be displayed in relation to the RB">Dynamic
