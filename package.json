@@ -1,0 +1,17 @@
+{
+  "name": "swr-solovariant",
+  "private": true,
+  "description": "Star Wars: Rebellion solo variant companion app",
+  "scripts": {
+    "test": "node tests/run.js",
+    "test:app": "node tests/app.test.js",
+    "test:offline": "node tests/offline.test.js",
+    "css": "sass --style=expanded --quiet-deps resources/scss/index.scss resources/css/index.css",
+    "snap": "node tests/visual/snap.js",
+    "diff": "node tests/visual/diff.js"
+  },
+  "devDependencies": {
+    "playwright-core": "1.48.2",
+    "sass": "1.78.0"
+  }
+}

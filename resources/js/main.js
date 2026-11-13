@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    setupAppearance();
     loadVariantSettings();
     updateNumberOfSelectedSystems();
     setupBuildQueue();
@@ -31,16 +32,21 @@ const planetnames = [
     ["Bespin", "Mustafar"],
 ];
 
+// Build queue rows are clones of #buildtemplate, one per planet. Each row is identified
+// by data-planet="<name>" and each input by data-choice="blockade|subjugate|radio...",
+// so the page has no duplicate ids (several planet names also contain spaces).
+function getPlanetRow(planetname) {
+    return document.querySelector(
+        `#buildqueue [data-planet="${CSS.escape(planetname)}"]`
+    );
+}
+
 function setupBuildQueue() {
     planetnames.forEach((system) => {
         system.forEach((planet) => {
-            cloneNodeAndChangeId(
-                "buildtemplate",
-                planet,
-                system.indexOf(planet)
-            );
+            cloneBuildTemplate(planet, system.indexOf(planet));
             changePlanetDisplayName(planet);
-            changeRadioGroupName(planet);
+            setupPlanetInputs(planet);
         });
     });
 
@@ -52,6 +58,11 @@ function setupBuildQueue() {
     hideBuildTemplate();
 
     loadBuildQueueSettings();
+
+    // Save choices as soon as they change, so a reload doesn't lose them
+    document
+        .getElementById("buildqueue")
+        .addEventListener("change", saveBuildQueueSettings);
 }
 
 function setupRoundMarkers() {
@@ -94,18 +105,6 @@ const GetSettingsByValue = (val, includes = false) => {
     return settings;
 };
 
-const GetSettingsByKey = (val, includes = false) => {
-    let settings = new Array();
-    for (let [key, value] of Object.entries(localStorage)) {
-        if (includes && key.includes(val)) {
-            settings.push(key + "," + value);
-        } else if (key == val) {
-            settings.push(key + "," + value);
-        }
-    }
-    return settings;
-};
-
 const GetSettingValueByKey = (keytofind) => {
     for (let [key, value] of Object.entries(localStorage)) {
         if (key == keytofind) {
@@ -128,24 +127,38 @@ const RemoveSetting = (val) => {
     }
 };
 
+// Each saved choice is stored as key "<planet>,<choice>" with value "buildchk".
+// Neutral is the default, so only blockade/subjugate/Empire/Rebel choices are stored.
+// Disabled inputs (Coruscant and Rebel Base's fixed loyalty) are always set on load.
+function saveBuildQueueSettings() {
+    RemoveSetting("buildchk");
+
+    planetnames.flat().forEach((planetname) => {
+        getPlanetRow(planetname)
+            .querySelectorAll(
+                ".form-check-input:checked:not([data-choice=radioneutral]):not(:disabled)"
+            )
+            .forEach((input) => {
+                SaveSetting(planetname + "," + input.dataset.choice, "buildchk");
+            });
+    });
+}
+
 function loadBuildQueueSettings() {
     GetSettingsByValue("buildchk").forEach((planet) => {
-        let planetName = planet.split(",")[0];
-        let chkName = planet.split(",")[1];
-        let checks = document
-            .getElementById(planetName)
-            .getElementsByClassName("form-check-input");
-        for (let index = 0; index < checks.length; index++) {
-            if (checks[index].id === chkName) {
-                checks[index].checked = true;
-            }
+        const [planetName, choice] = planet.split(",");
+        const row = getPlanetRow(planetName);
+        const input = row && row.querySelector(`[data-choice="${CSS.escape(choice)}"]`);
+        if (input) {
+            input.checked = true;
         }
     });
 }
 
-function cloneNodeAndChangeId(nodename, planetname, rowCount) {
-    let clonenode = document.getElementById(nodename).cloneNode(true);
-    clonenode.id = planetname;
+function cloneBuildTemplate(planetname, rowCount) {
+    const clonenode = document.getElementById("buildtemplate").cloneNode(true);
+    clonenode.removeAttribute("id");
+    clonenode.dataset.planet = planetname;
 
     if (rowCount == 0) {
         // add border to the top
@@ -156,24 +169,21 @@ function cloneNodeAndChangeId(nodename, planetname, rowCount) {
 }
 
 function changePlanetDisplayName(planetname) {
-    let elements = document
-        .getElementById(planetname)
-        .getElementsByClassName("col-3");
-    for (let index = 0; index < elements.length; index++) {
-        elements[index].firstElementChild.innerText = planetname;
-    }
+    getPlanetRow(planetname).querySelector(".planetname").innerText = planetname;
 }
 
-function changeRadioGroupName(planetname) {
-    let elements = document
-        .getElementById(planetname)
-        .querySelectorAll("form-check-input, [type=radio]");
-    for (let index = 0; index < elements.length; index++) {
-        elements[index].name = planetname + "RadioOptions";
-        if (elements[index].id === "radioneutral") {
-            elements[index].checked = true;
-        }
-    }
+// Gives each row its own radio group, defaults it to Neutral, and names every
+// input for screen readers (e.g. "Naboo: Rebel-Loyal")
+function setupPlanetInputs(planetname) {
+    getPlanetRow(planetname)
+        .querySelectorAll(".form-check-input")
+        .forEach((input) => {
+            input.setAttribute("aria-label", planetname + ": " + input.dataset.label);
+            if (input.type === "radio") {
+                input.name = planetname + "RadioOptions";
+                input.checked = input.dataset.choice === "radioneutral";
+            }
+        });
 }
 
 function hideBuildTemplate() {
@@ -181,15 +191,14 @@ function hideBuildTemplate() {
 }
 
 function setDefaultBuildOptions(planetname, selection) {
-    let elements = document
-        .getElementById(planetname)
-        .querySelectorAll("form-check-input, [type=radio]");
-    for (let index = 0; index < elements.length; index++) {
-        if (elements[index].id === selection) {
-            elements[index].checked = true;
-        }
-        elements[index].disabled = true;
-    }
+    getPlanetRow(planetname)
+        .querySelectorAll("[type=radio]")
+        .forEach((radio) => {
+            if (radio.dataset.choice === selection) {
+                radio.checked = true;
+            }
+            radio.disabled = true;
+        });
 }
 
 function moveBuildButton() {
@@ -213,30 +222,16 @@ function createBuildQueue() {
             let isBlockaded = false;
             let isSubjugated = false;
 
-            let checks = document
-                .getElementById(planetname)
-                .getElementsByClassName("form-check-input");
+            let checks = getPlanetRow(planetname).getElementsByClassName(
+                "form-check-input"
+            );
             for (let index = 0; index < checks.length; index++) {
                 // if Blockaded checkbox is checked don't add any of this planet's resources
-                if (
-                    checks[index].id == "blockade" &&
-                    checks[index].checked === true
-                ) {
-                    localStorage.setItem(
-                        [planetname, checks[index].id],
-                        "buildchk"
-                    );
+                if (checks[index].dataset.choice == "blockade" && checks[index].checked) {
                     isBlockaded = true;
                 }
 
-                if (
-                    checks[index].id == "subjugate" &&
-                    checks[index].checked === true
-                ) {
-                    localStorage.setItem(
-                        [planetname, checks[index].id],
-                        "buildchk"
-                    );
+                if (checks[index].dataset.choice == "subjugate" && checks[index].checked) {
                     isSubjugated = true;
                 }
 
@@ -245,7 +240,6 @@ function createBuildQueue() {
                 }
 
                 updateBuildQueueCount(
-                    planetname,
                     isBlockaded,
                     isSubjugated,
                     checks,
@@ -258,7 +252,6 @@ function createBuildQueue() {
 }
 
 function updateBuildQueueCount(
-    planetname,
     isBlockaded,
     isSubjugated,
     checks,
@@ -270,8 +263,6 @@ function updateBuildQueueCount(
     if (controlname == "") {
         return;
     }
-
-    SaveSetting([planetname, checks[index].id], "buildchk");
 
     if (isBlockaded) {
         return;
@@ -301,7 +292,7 @@ function updateBuildQueueCount(
 }
 
 function getControlName(checks, index, resources, isSubjugated) {
-    const selectedRadioButton = checks[index].id;
+    const selectedRadioButton = checks[index].dataset.choice;
 
     if (selectedRadioButton == "radioempire") {
         return "build-emp-";
@@ -322,7 +313,7 @@ function getControlName(checks, index, resources, isSubjugated) {
     return "";
 }
 
-function getPlanetsBuildResources(planetname, subjugated = false) {
+function getPlanetsBuildResources(planetname) {
     // Each planet can have one or two resources that it produces
     // Resources are returned in arrays
     switch (planetname) {
@@ -404,52 +395,59 @@ function getPlanetsBuildResources(planetname, subjugated = false) {
 }
 
 function resetBuildQueueCount() {
-    document.querySelectorAll("[id^='build-'").forEach((element) => {
+    document.querySelectorAll("[id^='build-']").forEach((element) => {
         element.innerHTML = 0;
         element.classList.add("d-none");
     });
+}
 
-    RemoveSetting("buildchk");
+// ---------- Appearance (light / dark) ----------
+// The choice is "auto" (follow the device), "light" or "dark", saved under THEME_KEY.
+// A script in index.html's <head> applies it before the page draws; this keeps it
+// updated when the player changes it, or when the device switches while on Auto.
+const THEME_KEY = "theme";
+const deviceDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+
+function getAppearance() {
+    const saved = GetSettingValueByKey(THEME_KEY);
+    return ["auto", "light", "dark"].includes(saved) ? saved : "auto";
+}
+
+function applyAppearance(choice) {
+    const dark = choice === "dark" || (choice === "auto" && deviceDarkMode.matches);
+    document.documentElement.setAttribute("data-bs-theme", dark ? "dark" : "light");
+
+    // Browser/system bar matches the header colour of the active theme
+    const headerColour = getComputedStyle(document.documentElement).getPropertyValue("--swr-header-bg").trim();
+    if (headerColour) {
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", headerColour);
+    }
+}
+
+function setupAppearance() {
+    const choice = getAppearance();
+    document.querySelectorAll("input[name='theme']").forEach((radio) => {
+        radio.checked = radio.value === choice;
+        radio.addEventListener("change", () => {
+            SaveSetting(THEME_KEY, radio.value);
+            applyAppearance(radio.value);
+        });
+    });
+    deviceDarkMode.addEventListener("change", () => applyAppearance(getAppearance()));
+    applyAppearance(choice);
 }
 
 function resetGame() {
-    localStorage.clear();
-
-    resetRemoteSystems();
-    resetBuildQueue();
-
-    location.reload();
-}
-
-function resetRemoteSystems() {
-    document.querySelectorAll("[id^='planet-']").forEach((planet) => {
-        document.getElementById(planet.id).checked = false;
+    // Clear game progress (round, reputation, remote systems, build queue) but keep
+    // the player's settings: expansions/variants ("chk..." keys) and Appearance.
+    // The reload then rebuilds the page from the remaining settings.
+    Object.keys(localStorage).forEach((key) => {
+        if (!key.startsWith("chk") && key !== THEME_KEY) {
+            localStorage.removeItem(key);
+        }
     });
 
-    numSelectedSystems = 0;
-    updateNumberOfSelectedSystems();
-}
-
-function resetBuildQueue() {
-    let checks = document.querySelectorAll(".form-check-input");
-    for (let checkcount = 0; checkcount < checks.length; checkcount++) {
-        const check = checks[checkcount];
-        if (check.type == "checkbox" && check.id == "chkblock") {
-            check.checked = false;
-        } else {
-            if (
-                check.name == "CoruscantRadioOptions" ||
-                check.name == "Rebel BaseRadioOptions"
-            ) {
-                continue;
-            }
-            if (check.id != "radioneutral") {
-                continue;
-            }
-
-            check.checked = true;
-        }
-    }
+    location.reload();
 }
 
 function searchCardList() {
@@ -468,61 +466,43 @@ function searchCardList() {
     });
 }
 
+// Each settings switch swaps a block of rule text: [shown when ON, shown when OFF]
+const variantSections = {
+    "chkROTE-Units": ["ROTE-Setup", "Base-Setup"],
+    "chkROTE-TacticCards": ["ROTE-Battles", "Base-Battles"],
+    "chkvar-Movement": ["var-movement", "Base-movement"],
+    "chkvar-Deployment": ["var-Empiredeploy", "Base-Empiredeploy"],
+    "chkvar-UnPlayableMissions": ["var-Unplayablemissions", "Base-Unplayablemissions"],
+    "chkvar-ActionCardExecution": ["var-ActionCardExecution", "Base-ActionCardExecution"],
+};
+
 function loadVariantSettings() {
-    let settings = GetSettingsByKey("chk", true);
-    settings.forEach((setting) => {
-        let id = setting.split(",")[0];
-        let value = setting.split(",")[1] == "true";
-        if (value) {
-            setVariants(id);
-        }
-        document.getElementById(id).checked = value;
+    Object.keys(variantSections).forEach((id) => {
+        const enabled = GetSettingValueByKey(id) === "true";
+        document.getElementById(id).checked = enabled;
+        setVariant(id, enabled);
     });
 }
 
 function chkClick(cb) {
-    setVariants(cb.id);
+    setVariant(cb.id, cb.checked);
     SaveSetting(cb.id, cb.checked);
 }
 
-function setVariants(variantName) {
-    switch (variantName) {
-        case "chkROTE-Units":
-            showHideElement("ROTE-Setup");
-            showHideElement("Base-Setup");
-            break;
-        case "chkROTE-TacticCards":
-            showHideElement("ROTE-Battles");
-            showHideElement("Base-Battles");
-            break;
-        case "chkvar-Movement":
-            showHideElement("var-movement");
-            showHideElement("Base-movement");
-            break;
-        case "chkvar-Deployment":
-            showHideElement("var-Empiredeploy");
-            showHideElement("Base-Empiredeploy");
-            break;
-        case "chkvar-UnPlayableMissions":
-            showHideElement("var-Unplayablemissions");
-            showHideElement("Base-Unplayablemissions");
-            break;
-        case "chkvar-ActionCardExecution":
-            showHideElement("var-ActionCardExecution");
-            showHideElement("Base-ActionCardExecution");
-            break;
-        default:
-            break;
-    }
+// Shows the variant's rule text and hides the base text (or the reverse),
+// based on the switch's actual state rather than flipping whatever is shown
+function setVariant(variantName, enabled) {
+    const sections = variantSections[variantName];
+    if (!sections) return;
+
+    setElementVisible(sections[0], enabled);
+    setElementVisible(sections[1], !enabled);
 }
 
-function showHideElement(id) {
-    document.querySelectorAll("#" + id).forEach((element) => {
-        if (element.classList.contains("d-none")) {
-            element.classList.remove("d-none");
-        } else {
-            element.classList.add("d-none");
-        }
+function setElementVisible(className, visible) {
+    // Some sections appear more than once on the page, so they're marked with a class
+    document.querySelectorAll("." + className).forEach((element) => {
+        element.classList.toggle("d-none", !visible);
     });
 }
 
@@ -545,8 +525,10 @@ document.querySelectorAll(".planetbtn").forEach((planetbutton) => {
         updateNumberOfSelectedSystems();
 
         if (numSelectedSystems == 7) {
-            alert("The rebel base is on " + GetRebelBaseName() + "!");
-            // alert(GetRebelBaseName());
+            showMessage(
+                "Rebel Base Located",
+                "The Rebel Base is on " + GetRebelBaseName() + "!"
+            );
         }
     });
 });
@@ -566,39 +548,38 @@ function GetRebelBaseName() {
     return rebelbase;
 }
 
+// The time marker is the round checkbox that is both checked and disabled
+function getTimeMarker() {
+    return document.querySelector("input[id^='round_']:checked:disabled");
+}
+
 function changeRound() {
-    const rounds = document.querySelectorAll("[id^='round']");
+    const currentRound = getTimeMarker();
+    if (!currentRound) return;
 
-    rounds.forEach((round) => {
-        if (round.checked && round.disabled) {
-            round.checked = false;
+    const nextRoundNumber = getRoundNumber(currentRound.id) + 1;
+    const nextRound = document.getElementById("round_" + nextRoundNumber);
 
-            let currentRoundNumber = getRoundNumber(round.id);
-            currentRoundNumber++;
+    // End of the track: leave the time marker where it is
+    if (!nextRound) return;
 
-            checkIfRebelRepLessThan5(currentRoundNumber);
+    // Time marker reaching the reputation marker ends the game; keep both markers visible
+    if (nextRound.checked) {
+        showMessage(
+            "Rebels Win!",
+            "The time marker has reached the reputation marker. The Rebellion has won the game."
+        );
+        return;
+    }
 
-            if (currentRoundNumber == "17") return;
+    currentRound.checked = false;
+    nextRound.checked = true;
+    nextRound.disabled = true;
 
-            let newRound = document.getElementById(
-                "round_" + currentRoundNumber
-            );
+    updateRoundNumber(nextRoundNumber);
+    SaveSetting("round", nextRound.id);
 
-            if (newRound.checked) {
-                alert("Rebels win!");
-                return;
-            }
-
-            newRound.checked = true;
-            newRound.disabled = true;
-
-            updateRoundNumber(currentRoundNumber);
-
-            SaveSetting("round", "round_" + currentRoundNumber);
-
-            return;
-        }
-    });
+    checkIfRebelRepLessThan5(nextRoundNumber);
 }
 
 function updateRoundNumber(roundnumber) {
@@ -608,15 +589,10 @@ function updateRoundNumber(roundnumber) {
 function checkIfRebelRepLessThan5(currentRoundNumber) {
     if (getRebelRep() - currentRoundNumber <= 5) {
         if (promptUserRebelsWithin5) {
-            // alert('Rebels are now within FIVE rounds of winning the game. Movement rules have changed.');
-            const messageBox = new bootstrap.Modal(
-                document.getElementById("messageBox")
+            showMessage(
+                "Crossing The Finish Line",
+                "Rebels are now within FIVE rounds of winning the game. The Empire's Movement & Deployment rules have changed"
             );
-            document.getElementById("messageBoxTitle").innerHTML =
-                "Crossing The Finish Line";
-            document.getElementById("messageBoxBody").innerHTML =
-                "Rebels are now within FIVE rounds of winning the game. The Empire's Movement & Deployment rules have changed";
-            messageBox.show();
             promptUserRebelsWithin5 = false;
         }
     } else {
@@ -625,38 +601,33 @@ function checkIfRebelRepLessThan5(currentRoundNumber) {
 }
 
 function setRebelRep(id) {
-    const rounds = document.querySelectorAll("[id^='round']");
+    const selected = document.getElementById(id);
 
-    rounds.forEach((round) => {
-        if (round.checked & !round.disabled && round.id != id)
+    // Clicking the current reputation marker would leave none selected; keep it
+    if (!selected.checked) {
+        selected.checked = true;
+        return;
+    }
+
+    document.querySelectorAll("input[id^='round_']").forEach((round) => {
+        if (round.checked && !round.disabled && round.id !== id) {
             round.checked = false;
-
-        // Get current round and check if newly selected round is <=5
-        if (round.checked && round.disabled) {
-            let currentRoundNumber = getRoundNumber(round.id);
-            checkIfRebelRepLessThan5(currentRoundNumber);
         }
-
-        if (round.disabled) return;
-
-        SaveSetting("rebelrep", id);
     });
+
+    SaveSetting("rebelrep", id);
+
+    const currentRound = getTimeMarker();
+    if (currentRound) {
+        checkIfRebelRepLessThan5(getRoundNumber(currentRound.id));
+    }
 }
 
 function getRebelRep() {
-    const rounds = document.querySelectorAll("[id^='round']");
-
-    let roundNumber = 0;
-
-    for (let roundCounter = 0; roundCounter < rounds.length; roundCounter++) {
-        const round = rounds[roundCounter];
-        if (round.checked & (round.disabled == false)) {
-            roundNumber = getRoundNumber(round.id);
-            break;
-        }
-    }
-
-    return roundNumber;
+    const rep = document.querySelector(
+        "input[id^='round_']:checked:not(:disabled)"
+    );
+    return rep ? getRoundNumber(rep.id) : 0;
 }
 
 function getRoundNumber(roundID) {
@@ -671,18 +642,82 @@ var dice = {
     },
 };
 
-//Prints dice roll to the page
+// Returns the modal's existing Bootstrap instance, creating it only the first time.
+// Creating a new instance on every use left extra event listeners behind.
+function getModal(id) {
+    const element = document.getElementById(id);
+    return bootstrap.Modal.getInstance(element) || new bootstrap.Modal(element);
+}
+
+// Shows the app's message box (used instead of the browser's alert(), which looks
+// out of place, especially when the app is installed and running full screen)
+function showMessage(title, body) {
+    document.getElementById("messageBoxTitle").textContent = title;
+    document.getElementById("messageBoxBody").textContent = body;
+    getModal("messageBox").show();
+}
+
+// Which pips (see the <circle data-pip> elements in the d6 SVG) make up each face
+const D6_FACES = {
+    1: ["c"],
+    2: ["tl", "br"],
+    3: ["tl", "c", "br"],
+    4: ["tl", "tr", "bl", "br"],
+    5: ["tl", "tr", "c", "bl", "br"],
+    6: ["tl", "tr", "ml", "mr", "bl", "br"],
+};
+const D6_ROLL_TICKS = 8; // faces flicker this many times...
+const D6_TICK_MS = 75; // ...this far apart, matching the 600ms tumble animation in index.scss
+let d6RollTimer;
+
+function showD6Face(value) {
+    const die = document.getElementById("d6");
+    die.querySelectorAll(".pip").forEach((pip) => {
+        pip.classList.toggle("on", D6_FACES[value].includes(pip.dataset.pip));
+    });
+    die.dataset.value = value;
+    die.setAttribute("aria-label", "Die showing " + value);
+}
+
+// Shows the d6 modal and animates the die tumbling onto the rolled number
 function rollD6(number) {
-    var placeholder = document.getElementById("d6");
-    // placeholder.innerHTML = number;
-    placeholder.src = "./resources/images/D6_" + number + ".png";
-    var d6Modal = new bootstrap.Modal(document.getElementById("d6modal"));
-    d6Modal.toggle();
+    const die = document.getElementById("d6");
+    const result = document.getElementById("d6result");
+    getModal("d6modal").show();
+
+    clearInterval(d6RollTimer);
+    const settle = () => {
+        showD6Face(number);
+        result.textContent = "You rolled a " + number;
+    };
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        settle();
+        return;
+    }
+
+    result.textContent = "";
+    die.classList.remove("rolling");
+    void die.getBoundingClientRect(); // restart the CSS animation on repeat rolls
+    die.classList.add("rolling");
+
+    let ticks = 0;
+    d6RollTimer = setInterval(() => {
+        ticks++;
+        if (ticks >= D6_ROLL_TICKS) {
+            clearInterval(d6RollTimer);
+            settle();
+        } else {
+            showD6Face(dice.roll());
+        }
+    }, D6_TICK_MS);
 }
 
 // Captures all D6 button on website
 document.querySelectorAll(".d6button").forEach((d6Button) => {
-    d6Button.onclick = function () {
+    d6Button.onclick = function (event) {
+        // D6 links use href="#", which would otherwise scroll the page to the top
+        event.preventDefault();
         var result = dice.roll();
         rollD6(result);
     };
